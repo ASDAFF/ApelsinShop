@@ -1,0 +1,371 @@
+.AuthorizationFormTable {
+    float: left;
+    margin-left: 10px;
+}
+.AuthorizationFormLogin {
+    width: 16px;
+    height: 16px;
+    background: url('../img/login.png') center center no-repeat;
+}
+
+.AuthorizationFormPassword {
+    width: 16px;
+    height: 16px;
+    background: url('../img/pswd.png') center center no-repeat;
+}
+input[type=submit].AuthorizationFormButton {
+    width: 32px;
+    height: 32px;
+    background: url('../img/in.png') center center no-repeat;
+    border: none;
+    box-shadow: none;
+    font-size: 0px;
+    margin-left: 10px;
+    border-radius: 0;
+}
+input[type=submit].AuthorizationFormButton:hover {
+    box-shadow: none;
+}
+
+.LoginPanelBlock {
+    height: 30px;
+    width: 60px;
+    float: left;
+    border-right: rgba(255,255,255,0.4) 1px solid;
+}
+.RegButon {
+    height: 30px;
+    /*width: 120px;*/
+    width: 150px;
+}
+
+.LoginPanelBlock .LoginPanelTextButon {
+    text-align: center;
+    cursor: pointer;
+    font: 14px/30px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    /*color: #e6e6e6;*/
+    font-weight: bold;
+    color: #ef7f1a;
+    color: #6d6d6d;
+/*    text-shadow: 
+        1px 0px 0px #FFF,
+        0px 1px 0px #FFF,
+        -1px 0px 0px #FFF,
+        0px -1px 0px #FFF,
+        1px 1px 0px #FFF,
+        -1px -1px 0px #FFF,
+        0px 0px 3px #FFF;*/
+    text-shadow: 0px 1px 0px rgba(255,255,255,0.7);
+}
+.LoginPanelBlock .LoginPanelTextButon a {
+    text-decoration: none;
+    /*color: #e6e6e6;*/
+    display: block;
+    height: 30px;
+    color: #ef7f1a;
+    color: #6d6d6d;
+/*    text-shadow: 
+        1px 0px 0px #FFF,
+        0px 1px 0px #FFF,
+        -1px 0px 0px #FFF,
+        0px -1px 0px #FFF,
+        1px 1px 0px #FFF,
+        -1px -1px 0px #FFF,
+        0px 0px 3px #FFF;*/
+    text-shadow: 0px 1px 0px rgba(255,255,255,0.7);
+}
+
+.LoginPanelBlock .LoginPanelTextButon:hover {
+    box-shadow: inset 0px 0px 3px rgba(0,0,0,0.5);
+    background: rgba(255,255,255,.7);
+}
+
+
+.LoginPanelBlock .LoginPanel {
+    height: 60px;
+    width: 270px;
+    background: rgba(255,255,255,0.75);
+    padding-top: 10px;
+    float: right;
+    display: none;
+    border: 1px rgba(255,255,255,0.5) solid;
+    border-top: none;
+}
+
+.LoginPanelBlock.active .LoginPanel{
+    display: block;
+}
+
+.LoginPanelBlock .LoginPanel input[type=text],
+.LoginPanelBlock .LoginPanel input[type=password] {
+    background: rgba(255,255,255,0.75);
+    text-shadow: 0px 0px 3px #000;
+    text-shadow: none;
+    color: #ef7f1a;
+    font-weight: bold;
+    color: #9d9d9d;
+}
+
+/* UserPanelAvatarBlock */
+
+.UserPanelAvatarBlock {
+    height: 30px;
+    width: 30px;
+    float: right;
+}
+
+.UserPanelAvatarBlock img.UserPanelAvatar {
+    height: 30px;
+    width: 30px;
+    vertical-align:bottom;
+}
+
+/* UserPanelLoginBlock */
+
+.UserPanelLoginBlock {
+    float: right;
+    height: 30px;
+    font: 14px/25px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    font-weight: bold;
+    text-shadow: 0px 0px 3px #000;
+}
+
+.UserPanelLoginBlock:hover {
+    /*box-shadow: inset 0px 0px 3px rgba(0,0,0,0.5);*/
+    /*background: rgba(255,255,255,.7);*/
+    background: #ef7f1a;
+    cursor: pointer;
+}
+
+.UserPanelLoginBlock .UserPanelLoginBlockElement {
+    font: 14px/30px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    font-weight: bold;
+/*    text-shadow: 0px 0px 3px #000;
+    color: #fff;*/
+    padding: 0px 5px 0px 5px;
+    height: 30px;
+    border-right: rgba(255,255,255,0.4) 1px solid;
+    color: #fff;
+    text-shadow: none;
+}
+
+.UserPanelLoginBlock .UserPanelLoginBlockElementMenuBlock {
+    width: 0px;
+    height: 0px;
+    float: right;
+}
+.UserPanelLoginBlock .UserPanelLoginBlockElementMenuBlock .UserPanelLoginBlockElementMenu {
+    /*background: rgba(255,255,255,0.7);*/
+    background: #CDCDCD;
+    float: right;
+    z-index: 999;
+    position: relative;
+}
+.UserPanelLoginBlock .UserPanelLoginBlockElementMenuBlock 
+.UserPanelLoginBlockElementMenu .UserPanelLoginBlockElementMenuElement {
+    font: 14px/25px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    font-weight: bold;
+/*    text-shadow: 0px 0px 3px #000;
+    color: #fff;*/
+    /*text-shadow: 0px 0px 10px #fff;*/
+    padding: 0px 10px 0px 10px;
+    height: 25px;
+    white-space: nowrap;
+    text-align: left;
+    border-top: 1px #fff solid;
+    color: #6d6d6d;
+    text-shadow: 0px 1px 0px rgba(255,255,255,0.7);
+}
+.UserPanelLoginBlock .UserPanelLoginBlockElementMenuBlock 
+.UserPanelLoginBlockElementMenu .UserPanelLoginBlockElementMenuElement a {
+    /*color: #fff;*/
+    display: block;
+    width: 100%;
+    height: 25px;
+    text-decoration: none;
+    color: #fff;
+    text-shadow: none;
+}
+
+
+.UserPanelLoginBlock .UserPanelLoginBlockElementMenuBlock 
+.UserPanelLoginBlockElementMenu .UserPanelLoginBlockElementMenuElement:hover {
+    /*background: rgba(0,0,0,0.2);*/
+    background: #ef7f1a;
+    cursor: pointer;
+    /*box-shadow: inset 0px 1px 5px rgba(0,0,0,0.5);*/
+}
+
+
+/* UserPanelInfoBlock */
+.UserPanelInfoBlock {
+    float: right;
+    border-right: rgba(255,255,255,0.4) 1px solid;
+    display: none;
+}
+.UserPanelInfoBlock,
+.UserPanelInfoBlock .NoInfo,
+.UserPanelInfoBlock .Info,
+.UserPanelInfoBlock .ImportantInfo,
+.UserPanelInfoBlock .VeryImportantInfo{
+    height: 30px;
+    width: 36px;
+}
+
+.UserPanelInfoBlock:hover {
+    background: rgba(0,0,0,0.2);
+    box-shadow: inset 0px 1px 5px rgba(0,0,0,0.5);
+    cursor: pointer;
+}
+
+.UserPanelInfoBlock.NO_HOVER:hover {
+    background: transparent;
+    cursor: auto;
+}
+
+.UserPanelInfoBlock .NoInfo {
+    background: url('../img/info/noInfo.png') center center no-repeat;
+}
+
+.UserPanelInfoBlock .Info {
+    background: url('../img/info/info.png') center center no-repeat;
+}
+
+.UserPanelInfoBlock .ImportantInfo {
+    background: url('../img/info/importantInfo.png') center center no-repeat;
+}
+
+.UserPanelInfoBlock .VeryImportantInfo {
+    background: url('../img/info/veryImportantInfo.png') center center no-repeat;
+}
+
+.UserPanelInfoBlock .UserPanelInfoBlockText {
+    max-height: 300px;
+    background: rgba(0,0,0,0.9);
+    
+    background: rgba(0,0,0,0.5);
+    padding: 0px;
+    float: right;
+    overflow:scroll;
+    overflow-x: hidden;
+}
+
+.NotificationsBlockElements {
+    width: 500px;
+    font: 14px/16px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    font-weight: bold;
+    text-shadow: 0px 0px 3px #000;
+    color: #fff;
+    padding: 0px;
+    min-height: 25px;
+    text-align: left;
+    border-top: 1px rgba(255,255,255,0.2) solid;
+    clear: both;
+}
+
+.NotificationsBlockElements:hover{
+    background: rgba(0,0,0,0.2);
+    color: #fff;
+    text-shadow: 0px 0px 10px #fff;
+}
+
+.NotificationsBlockElementsEnd {
+    clear: both;
+}
+
+.NotificationsBlockElements .NotificationsBlockElementsDate{
+    float: left;
+    width: 50px;
+    text-align: center;
+    padding: 10px 0px 10px 0px;
+    font: 9px/10px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    border-right: 1px rgba(255,255,255,0.2) solid;
+}
+
+.NotificationsBlockElements .NotificationsBlockElementsContent {
+    text-align: left;
+}
+
+.NotificationsBlockElements .NotificationsBlockElementsTitle {
+    font: 14px/18px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    font-weight: bold;
+    text-shadow: 0px 0px 3px #000;
+    color: #fff;
+    border-bottom: 1px rgba(255,255,255,0.2) solid;
+    border-left: 1px rgba(255,255,255,0.2) solid;
+    background: rgba(0,0,0,0.2);
+}
+/*.NotificationsBlockElements .NotificationsBlockElementsTitle.notification {
+    background: rgba(0,255,0,0.2);
+}
+.NotificationsBlockElements .NotificationsBlockElementsTitle.alert {
+    background: rgba(255,255,0,0.2);
+}
+.NotificationsBlockElements .NotificationsBlockElementsTitle.alarm {
+    background: rgba(255,0,0,0.2);
+}*/
+
+.NotificationsBlockElements .NotificationsBlockElementsText {
+    padding: 5px;
+    text-align: justify;
+    float: right;
+    width: 439px;
+}
+
+.NotificationsBlockElements .icon {
+    float: left;
+    height: 16px;
+    width: 19px;
+    margin: 1px 5px 1px 0px;
+    
+}
+.NotificationsBlockElements .icon.Info {
+    background: url('../img/info/16_info.png') center center no-repeat;
+}
+
+.NotificationsBlockElements .icon.ImportantInfo {
+    background: url('../img/info/16_importantInfo.png') center center no-repeat;
+}
+
+.NotificationsBlockElements .icon.VeryImportantInfo {
+    background: url('../img/info/16_veryImportantInfo.png') center center no-repeat;
+}
+
+.LoginPanelBlockError {
+    background: rgba(0,0,0,0.6);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 30;
+    padding-top: 150px;
+}
+
+.LoginPanelBlockError .Error {
+    background: rgba(255,255,255,0.8);
+    border: rgba(0,0,0,0.2) 5px solid;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -o-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    
+    max-width: 400px;
+    margin: 0px auto;
+    padding: 20px;
+}
+
+.LoginPanelBlockError ul {
+    margin-left: 30px;
+    margin-bottom: 10px;
+    list-style-type: none;
+    text-align: left;
+}
+
+.LoginPanelBlockError ul li {
+    
+}
+
+.LoginPanelBlockError ul li:before {
+    content: "- ";
+}

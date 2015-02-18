@@ -1,0 +1,285 @@
+/*.contentWrapper .ContentBlock {
+    background-color: transparent;
+    box-shadow: none;
+    margin-bottom: 20px;
+    padding: 0px;
+}*/
+.material_element {
+    width: 300px;
+    height: 400px;
+    float: left;
+    margin: 0px 10px 25px 10px;
+    
+    background: #fff;
+    /*box-shadow: 0px 5px 10px rgba(0,0,0,0.7);*/
+    /*box-shadow: inset 0px 1px 10px rgba(0,0,0,0.5);*/
+    padding: 0px;
+    position:relative;
+    background: url('./materialElementBackground.png') center center no-repeat;
+    /*background: url('../../../resources/materials/img/akcija_na_kolerovku.png') center center no-repeat;*/
+    overflow: hidden;
+}
+.MaterialsListEnd {
+    clear: both;
+}
+.material_element .text {
+    font: 11px/12px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    font-weight: bold;
+    color: #6d6d6d;
+    text-align: justify;
+    position:absolute;
+    bottom:0;
+    text-shadow: 0 1px 0px rgba(255,255,255,0.5);
+    padding: 10px;
+    width: 280px;
+    background: rgba(255,255,255,.75);
+    overflow: hidden;
+    /*box-shadow: 0px 1px 10px rgba(0,0,0,.5);*/
+    /*height: 100px;*/
+}
+.material_element .promoText {
+    height: 60px;
+}
+.material_element .text a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #ef7f1a;
+}
+.material_element .text a:hover {
+    /*color: #ef7f1a;*/
+   color: #000;
+}
+.material_element .materials_date {
+    margin-top: 10px;
+    text-align: right;
+    float: right;
+}
+.material_element h2 {
+    font: 15px/15px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    height: auto;
+    font-weight: bold;
+    color: #6d6d6d;
+    text-align: center;
+    padding: 10px;
+    background: rgba(255,255,255,.75);
+    box-shadow: none;
+    border-bottom: 1px rgba(255,255,255,0.2) solid;
+    overflow: hidden;
+    box-shadow: 0px 1px 10px rgba(0,0,0,0.7);
+    height: 30px;
+    margin: 0px;
+    text-shadow: 0 1px 0px rgba(255,255,255,0.5);
+}
+
+.material_element .material_element_title {
+    display: table;
+    background: rgba(255,255,255,.75);
+    box-shadow: none;
+    border-bottom: 1px rgba(255,255,255,0.2) solid;
+    overflow: hidden;
+    /*box-shadow: 0px 1px 10px rgba(0,0,0,0.7);*/
+    height: 50px;
+    margin: 0px;
+    width: 100%;
+}
+.material_element .material_element_title_text {
+    display: table-cell;
+    vertical-align: middle;
+    font: bold 15px/20px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    color: #6d6d6d;
+    text-shadow: 0 1px 0px rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 0px 10px 0px 10px;
+}
+
+.material {
+    padding: 0px 0px 15px 0px;
+}
+
+.material .materialHeder {
+    text-align: left;
+    font: 20px/30px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    color: #ef7f1a;
+    text-shadow: none;
+    text-shadow: 0 1px 0 white;
+    font-weight: bold;
+    height: 30px;
+    margin: 0px 0px 10px 0px;
+    padding: 0px 5px 0px 10px;
+    background: #ef7f1a;
+}
+.material .materialIcon {
+    height: 30px;
+    width: 30px;
+    float: right;
+    font-weight: normal;
+    cursor: pointer;
+}
+.material .materialIcon.back {
+    background: url('./backIcon.png') center center no-repeat;
+}
+
+.material .materialIcon a {
+    display: block;
+    height: 30px;
+    width: 30px;
+}
+
+.materials_info_panel{
+    font: 12px/14px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    font-weight: bold;
+    text-align: right;
+    margin-bottom: 10px;
+}
+.materials_info_panel {
+    clear: both;
+}
+
+.materialsPromoImageBlock {
+    background-position-y: -51px !important; 
+    height: 244px;
+    width: 300px;
+    float: left;
+    margin: 0px 30px 10px 0px;
+    box-shadow: inset 0px 1px 10px rgba(0,0,0,0.5);
+}
+
+.withoutShortMaterialsText .materialsPromoImageBlock {
+    background-position-y: -51px !important; 
+    height: 304px;
+    width: 300px;
+    float: left;
+    margin: 0px 30px 10px 0px;
+    box-shadow: inset 0px 1px 10px rgba(0,0,0,0.5);
+}
+
+
+.materialsLogoBlock {
+    padding: 0px 15px 5px 5px;
+    float: left;
+    margin: 0px 10px 5px 10px;
+}
+.materialsLogoMainBlock {
+background: rgba(255,255,255,0.7);
+box-shadow: 0px 1px 10px rgba(0,0,0,0.7);
+padding: 10px 10px 5px 10px;
+}
+.materialsLogoMainBlock img {
+    max-width: 250px;
+    max-height: 250px;
+}
+
+.material .buttonBack {
+    clear: both;
+}
+
+.buttonBack {
+    height: 30px;
+    background-color: #ef7f1a;
+    border-radius: 5px;
+}
+.buttonBack:hover {
+    box-shadow: inset 0px 1px 5px rgba(0,0,0,0.5), inset 0px 1px 10px rgba(0,0,0,0.5);
+}
+
+.buttonBack a, .buttonBack a:hover {
+    display: block;
+    width: 100px;
+    height: 30px;
+    text-decoration: none;
+    font: 16px/30px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: none;
+}
+
+.buttonIn {
+    width: 80px;
+    height: 20px;
+    background-color: #ef7f1a;
+    border-radius: 5px;
+}
+.buttonIn:hover {
+    box-shadow: inset 0px 1px 5px rgba(0,0,0,0.5), inset 0px 1px 10px rgba(0,0,0,0.5);
+}
+.material_element .text .buttonIn a {
+    display: block;
+    width: 80px;
+    height: 20px;
+    text-decoration: none;
+    font: 12px/20px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    font-weight: bold;
+    text-shadow: none;
+    color: #fff;
+    text-align: center;
+}
+.infoPanel {
+    margin-top: 5px;
+}
+
+.MorInfoText {
+    padding-top: 20px;
+}
+/*.MorInfoText {
+    font: 12px/14px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    color: #6d6d6d;
+    text-align: justify;
+}*/
+.MorInfoText,
+.InfoArticle {
+    font: 12px/14px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    letter-spacing: 1px;
+    color: #6d6d6d;
+    text-align: justify;
+}
+
+.InfoArticle h1,
+.InfoArticle h2,
+.InfoArticle h3,
+.InfoArticle h4 {
+    background: none;
+    height: 20px;
+    font: bold 20px/20px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #ef7f1a;
+    margin: 0px 0px 10px 0px;
+    padding: 0px 10px 0px 10px;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+    text-shadow: 0 1px 0px rgba(255,255,255,1);
+}
+
+.InfoArticle h1.mainTitle{
+    height: 30px;
+    background: #ef7f1a;
+    font: 18px/30px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+    text-align: left;
+}
+
+.InfoArticle .main_text {
+    color: #ef7f1a;
+    font-weight: bold;
+}
+.InfoArticle .InfoArticleImageBig {
+    width: 100%;
+    margin-bottom: 20px;
+}
+.InfoArticle .InfoArticleEND {
+    font: bold 20px/30px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    color: #ef7f1a;
+    text-align: center;
+}
+.InfoArticle .InfoArticleSource {
+    font: 11px/12px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    color: #6d6d6d;
+    text-align: right;
+}
+.InfoArticle .InfoArticleSourceURL {
+    font: 11px/12px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    color: #007fd1;
+    text-align: right;
+}

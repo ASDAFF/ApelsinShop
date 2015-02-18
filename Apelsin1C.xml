@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SystemInformation>
+    <ExportDateTime>
+        <year>ГГГГ</year>
+        <month>ММ</month>
+        <day>ДД</day>
+        <hours>ЧЧ</hours>
+        <minutes>ММ</minutes>
+        <seconds>СС</seconds>
+    </ExportDateTime>
+    <FullExport>
+        Булевое значение (1|0), определяющее делается выгрузка из корня 
+        или из конкретного каталога
+    </FullExport>
+</SystemInformation>
+<PricesTypes>
+    <type>
+        <id>идентификатор типа цены из 1С</id>
+        <title>название типа цены из 1С</title>
+        <default>
+            Булевое значение (1|0), определяет какой тип цен 
+            будет использоваться по умолчанию.
+            Грубо говоря это та цена которая у нас выгружалась раньше.
+            * Значение 1 должно быть обязательно только у одного типа цен.
+            ** Хотябы у одного типа цен должно быть значение 1.
+        </default>
+    </type>
+    ...
+</PricesTypes>
+<Properties>
+    <property>
+        <id>идентификатор свойства из 1С</id>
+        <propertyName>Название свойства для сайта</propertyName>
+        <filterType>Тип фильтра для сайта</filterType>
+        <valueType>Тип значения свойства для сайта</valueType>
+        <oneOfAllValues>
+            Булевое значение (1|0), определяющее поведение в
+            случае, когда для одного свойства задано несколько значений
+        </oneOfAllValues>
+    </property>
+    ...
+</Properties>
+<Groups>
+    <Group>
+        <id>идентификатор группы из 1С</id>
+        <groupName>Название группы для сайта</groupName>
+        <shown>
+            флаг со значение 1 или 0, который определяет
+            будет ли отображаться группа на сайте
+        </shown>
+        <showInHierarchy>
+            флаг со значение 1 или 0 который определяет
+            будет ли отображаться группа в структурном дереве сайта
+        </showInHierarchy>
+    </Group>
+    ...
+</Groups>
+<GroupsHierarchy>
+    <Relation>
+        <group>Группа</group>
+        <parentGroup>Родительская группа</parentGroup>
+    </Relation>
+    ...
+</GroupsHierarchy>
+<PropertiesInGroups>
+    <Relation>
+        <group>Группа</group>
+        <property>идентификатор свойства из 1С</property>
+        <sequence>Порядковый номер для свойства</sequence>
+    </Relation>
+    ...
+</PropertiesInGroups>
+<Items>
+    <Item>
+        <id>идентификатор товара из 1С</id>
+        <itemName>Название товара для сайта</itemName>
+        <group>Группа, в которой находится товар</group>
+        <action>Акционный товар или нет (1|0)</action>
+        <prices>
+            <price>
+                <id>идентификатор типа цены из 1С</id>
+                <value>Цена товара</value>
+            </price>
+            ...
+        </prices>
+        <amount>Количество товара</amount>
+        <minamount>Минимальное количество товара</minamount>
+        <description>Описание товара</description>
+        <shown>
+            флаг со значение 1 или 0, который определяет,
+            будет ли отображаться товар на сайте
+        </shown>
+        <propertiesValues>
+            <propertyValue>
+                <property>идентификатор свойства из 1С</property>
+                <value>значение свойства</value>
+                <measure>
+                    единица измерения, которая будет
+                    приписыватсья к значению
+                </measure>
+            </propertyValue>
+            ...
+        </propertiesValues>
+    </Item>
+    ...
+</Items>

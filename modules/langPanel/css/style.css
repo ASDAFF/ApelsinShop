@@ -1,0 +1,83 @@
+/* panel */
+
+.wrapper-dropdown-2 {
+    /* Size and position */
+    position: relative; /* Enable absolute positionning for children and pseudo elements */
+    /*width: 90px;*/
+    width: 38px;
+    margin: 0 auto;
+    outline: none;
+    text-align: center;
+    cursor: pointer;
+    font: 12px/30px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    color: #e6e6e6;
+}
+
+.LoginPanelBlock .LoginPanelTextButon {
+    text-align: center;
+    cursor: pointer;
+    font: 12px/30px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    color: #e6e6e6;
+}
+
+.wrapper-dropdown-2:hover {
+    /*background: rgba(255,255,255,0.2);*/
+    /*box-shadow: inset 0px 0px 3px rgba(0,0,0,0.5);*/
+    /*background: rgba(255,255,255,.7);*/
+    background: #ef7f1a;
+}
+
+.wrapper-dropdown-2 .dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0px;
+    right: 0px;
+    background: rgba(255,255,255,.7);
+    background: #CDCDCD;
+    list-style: none;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.wrapper-dropdown-2 .dropdown li a {
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    color: #e6e6e6;
+}
+
+/* Hover state */
+
+.wrapper-dropdown-2 .dropdown li:hover a {
+    color: #fff;
+    /*background: rgba(255,255,255,0.2);*/
+    background: #ef7f1a;
+}
+
+/* Active state */
+
+.wrapper-dropdown-2.active:after {
+    border-width: 0 6px 6px 6px;
+}
+
+.wrapper-dropdown-2.active .dropdown {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 999;
+    /*position: relative;*/
+}
+
+/* No CSS3 support */
+
+.no-opacity       .wrapper-dropdown-2 .dropdown,
+.no-pointerevents .wrapper-dropdown-2 .dropdown {
+    display: none;
+    opacity: 1; /* If opacity support but no pointer-events support */
+    pointer-events: auto; /* If pointer-events support but no pointer-events support */
+}
+
+.no-opacity       .wrapper-dropdown-2.active .dropdown,
+.no-pointerevents .wrapper-dropdown-2.active .dropdown {
+    display: block;
+}

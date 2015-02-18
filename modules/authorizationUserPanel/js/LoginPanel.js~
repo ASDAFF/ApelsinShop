@@ -1,0 +1,8 @@
+function LoginPanelHideShow(id) {
+    var obj = document.getElementById("LoginPanel");
+    if (obj.style.display != "block") {
+        obj.style.display = "block";
+    } else {
+        obj.style.display = "none";
+    }
+}    

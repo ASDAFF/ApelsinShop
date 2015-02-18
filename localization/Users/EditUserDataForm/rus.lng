@@ -1,0 +1,9 @@
+namePatern=от 3 до 20 букв
+ferstName=Имя (По паспорту)
+lastName=Фамилия (По паспорту)
+sex=Ваш пол
+male=Мужской
+female=Женский
+birthday=Дата рождения
+birthdayInfo=Дата рождения в формате ГГГГ-ММ-ДД
+aboutYourself=Расскажите немного о себе

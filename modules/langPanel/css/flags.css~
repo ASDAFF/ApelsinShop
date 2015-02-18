@@ -1,0 +1,8 @@
+.flag {
+	width: 25px;
+	height: 15px;
+	background:url(flags.png) no-repeat
+}
+
+.flag.flag-ru {background-position: -25px 0}
+.flag.flag-us {background-position: 0 -15px}
