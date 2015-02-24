@@ -1,0 +1,26 @@
+AddDefaultCharset UTF-8
+
+RewriteEngine on
+Options +FollowSymlinks
+
+RewriteCond %{REQUEST_URI} !=/sistem
+RewriteCond %{REQUEST_URI} !=/admin
+RewriteCond %{HTTP_HOST} ^www\.(.*) [NC]
+RewriteRule ^/?(.*) http://%1/$1 [L,R=permanent]
+
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+
+RewriteRule .* index.php [L]
+
+
+
+# содержание файла .htaccess:
+#ErrorDocument 404 http://bg10.ru/error/404.htm
+#ErrorDocument 403 http://bg10.ru/error/403.htm
+#ErrorDocument 400 http://bg10.ru/error/400.htm
+#ErrorDocument 500 http://bg10.ru/error/500.htm
+
+

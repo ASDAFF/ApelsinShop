@@ -81,6 +81,7 @@ class MysqliHelper {
         }
         $this->mysqli->query($query);
         return $this->mysqli->error==null;
+//        return $this->mysqli->error;
     }
     
     public function escapeString($string) {
@@ -100,6 +101,19 @@ class MysqliHelper {
      */
     public function __destruct() {
         $this->mysqli->close();
+    }
+    
+    
+    public function sqlFileExec($scriptFile) {
+        global $_DBSETTINGS;
+        $command = 'mysql'
+        . ' --host=' . $_DBSETTINGS['host']
+        . ' --user=' . $_DBSETTINGS['user']
+        . ' --password=' . $_DBSETTINGS['password']
+        . ' --database=' . $_DBSETTINGS['db_name']
+        . ' --execute="SOURCE '.$scriptFile.'"';
+        echo $command;
+        return shell_exec($command);
     }
 }
 

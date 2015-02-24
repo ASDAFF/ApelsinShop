@@ -3,12 +3,17 @@ class XML {
     private $array;
     public function XML() {
         $this->valid = FALSE;
+        $this->test = 0;
     }
     public function xmlwebi($file_name, $WHITE=1, $encoding='UTF-8') {
         $data = file_get_contents($file_name);
         $data = str_replace ("&", "&amp;" , $data);
-        $data = preg_replace ("'<\?xml.*\?>'si", "", $data); 
-        $data = "<webi_xml>".$data."</webi_xml>";   
+        $ferstData = substr($data, 0,  300);
+        $secondData = substr($data, 300);
+        $ferstData = preg_replace ("'<\?xml.*\?>'si", "", $ferstData);
+        $data = $ferstData.$secondData;
+        /*$data = preg_replace ("'<\?xml.*\?>'si", "", $data,0);*/
+        $data = "<webi_xml>".$data."</webi_xml>";
         $data = trim($data);
         $vals = $index = $this->array = array();
         $parser = xml_parser_create($encoding);
@@ -18,6 +23,8 @@ class XML {
         xml_parser_free($parser);
         $i = 0;
         $tagname = $vals[$i]['tag'];
+        
+        
         if(isset($vals[$i]['attributes'])) {
             $this->array[$tagname]['@'] = $vals[$i]['attributes'];
         } else {
@@ -31,7 +38,7 @@ class XML {
         $children = array();
         if (isset($vals[$i]['value'])) {
             array_push($children, $vals[$i]['value']);
-        }
+        }        
         while (++$i < count($vals)) {
             switch ($vals[$i]['type']) {
                 case 'open':
