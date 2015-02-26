@@ -4,22 +4,68 @@
 		<ExportDateTime>
 			<year>2015</year>
 			<month>02</month>
-			<day>19</day>
-			<hours>16</hours>
-			<minutes>47</minutes>
-			<seconds>25</seconds>
+			<day>25</day>
+			<hours>11</hours>
+			<minutes>44</minutes>
+			<seconds>48</seconds>
 		</ExportDateTime>
-		<FullExport>0</FullExport>
+		<FullExport>1</FullExport>
+		<user>Гриненко Михаил (дизайнер)</user>
 	</SystemInformation>
 	<PricesTypes>
 		<type>
-			<id>288427e0-9732-11db-bbb4-0017315894a1</id>
-			<typeName>Розничная</typeName>
+			<id>4dc0750a-691d-11e0-adb9-001cc494be80</id>
+			<typeName>VIP</typeName>
 			<default>1</default>
+		</type>
+		<type>
+			<id>31ff32bd-65bc-11e0-894e-000e0c431b58</id>
+			<typeName>VIPs</typeName>
+			<default>0</default>
+		</type>
+		<type>
+			<id>1c061a1b-c3cc-4287-9381-8dbd718263ba</id>
+			<typeName>Закупочная</typeName>
+			<default>0</default>
+		</type>
+		<type>
+			<id>feff0695-99ab-11db-937f-000e0c431b59</id>
+			<typeName>Кр. оптовая</typeName>
+			<default>0</default>
+		</type>
+		<type>
+			<id>86157e22-e56b-11dc-8b6b-000e0c431b58</id>
+			<typeName>М. оптовая</typeName>
+			<default>0</default>
 		</type>
 		<type>
 			<id>feff0694-99ab-11db-937f-000e0c431b59</id>
 			<typeName>Оптовая</typeName>
+			<default>0</default>
+		</type>
+		<type>
+			<id>288427e0-9732-11db-bbb4-0017315894a1</id>
+			<typeName>Розничная</typeName>
+			<default>0</default>
+		</type>
+		<type>
+			<id>86157e21-e56b-11dc-8b6b-000e0c431b58</id>
+			<typeName>Спец. цена</typeName>
+			<default>0</default>
+		</type>
+		<type>
+			<id>ecdc8d57-afb7-11e1-a7d3-005056be3bd8</id>
+			<typeName>СПЕЦs</typeName>
+			<default>0</default>
+		</type>
+		<type>
+			<id>feff0696-99ab-11db-937f-000e0c431b59</id>
+			<typeName>СпецТорг</typeName>
+			<default>0</default>
+		</type>
+		<type>
+			<id>feff0693-99ab-11db-937f-000e0c431b59</id>
+			<typeName>Ср. оптовая</typeName>
 			<default>0</default>
 		</type>
 	</PricesTypes>
@@ -216,1365 +262,322 @@
 	</Properties>
 	<Groups>
 		<Group>
+			<id>4204b36d-99a3-11db-937f-000e0c431b59</id>
+			<groupName>ГКЛ, ГВЛ, ПГП, Аквапанель</groupName>
+			<shown>1</shown>
+			<showInHierarchy>1</showInHierarchy>
+		</Group>
+		<Group>
+			<id>a17ecef1-c56d-11db-b63f-000e0c431b58</id>
+			<groupName>Аквапанель</groupName>
+			<shown>1</shown>
+			<showInHierarchy>1</showInHierarchy>
+		</Group>
+		<Group>
+			<id>4204b36e-99a3-11db-937f-000e0c431b59</id>
+			<groupName>ГВЛВ (Гипсоволокно) </groupName>
+			<shown>1</shown>
+			<showInHierarchy>1</showInHierarchy>
+		</Group>
+		<Group>
+			<id>4204b371-99a3-11db-937f-000e0c431b59</id>
+			<groupName>ГКЛ (Гипсокартон )</groupName>
+			<shown>1</shown>
+			<showInHierarchy>1</showInHierarchy>
+		</Group>
+		<Group>
+			<id>53706587-89d2-11dc-be6a-000e0c431b58</id>
+			<groupName>ГКЛ Danogips</groupName>
+			<shown>1</shown>
+			<showInHierarchy>1</showInHierarchy>
+		</Group>
+		<Group>
+			<id>c8b207ce-2700-11dd-942f-000e0c431b58</id>
+			<groupName>ГКЛ Gyproc</groupName>
+			<shown>1</shown>
+			<showInHierarchy>1</showInHierarchy>
+		</Group>
+		<Group>
+			<id>7f850514-1d18-11de-8db9-000e0c431b58</id>
+			<groupName>ГКЛ Кнауф</groupName>
+			<shown>1</shown>
+			<showInHierarchy>1</showInHierarchy>
+		</Group>
+		<Group>
+			<id>7f850515-1d18-11de-8db9-000e0c431b58</id>
+			<groupName>ГКЛ Уцененный</groupName>
+			<shown>1</shown>
+			<showInHierarchy>1</showInHierarchy>
+		</Group>
+		<Group>
+			<id>7f850512-1d18-11de-8db9-000e0c431b58</id>
+			<groupName>ПГП (Пазогребневая гипсовая плита)</groupName>
+			<shown>1</shown>
+			<showInHierarchy>1</showInHierarchy>
+		</Group>
+		<Group>
+			<id>6db83294-0d81-11de-8db9-000e0c431b58</id>
+			<groupName>яПрочее_ГКЛ,ПГП,ГВЛВ</groupName>
+			<shown>1</shown>
+			<showInHierarchy>1</showInHierarchy>
+		</Group>
+		<Group>
+			<id>7f85050f-1d18-11de-8db9-000e0c431b58</id>
+			<groupName>ГВЛ НОМИ</groupName>
+			<shown>1</shown>
+			<showInHierarchy>1</showInHierarchy>
+		</Group>
+		<Group>
+			<id>7f85050e-1d18-11de-8db9-000e0c431b58</id>
+			<groupName>ГВЛВ Кнауф</groupName>
+			<shown>1</shown>
+			<showInHierarchy>1</showInHierarchy>
+		</Group>
+		<Group>
+			<id>7f850510-1d18-11de-8db9-000e0c431b58</id>
+			<groupName>ГВЛ Уцененный</groupName>
+			<shown>1</shown>
+			<showInHierarchy>1</showInHierarchy>
+		</Group>
+		<Group>
+			<id>401f67c0-6701-11e3-9833-005056be1f7b</id>
+			<groupName>ГКЛ г.Казань</groupName>
+			<shown>1</shown>
+			<showInHierarchy>1</showInHierarchy>
+		</Group>
+		<Group>
+			<id>4204b36f-99a3-11db-937f-000e0c431b59</id>
+			<groupName>Заказной материал</groupName>
+			<shown>1</shown>
+			<showInHierarchy>1</showInHierarchy>
+		</Group>
+		<Group>
+			<id>7bf741b9-99a5-11db-937f-000e0c431b59</id>
+			<groupName>яПрочее_ГКЛ</groupName>
+			<shown>1</shown>
+			<showInHierarchy>1</showInHierarchy>
+		</Group>
+		<Group>
+			<id>930774d5-a05c-11e3-862c-005056be1f7b</id>
+			<groupName>Аксолит для субдиллеров</groupName>
+			<shown>1</shown>
+			<showInHierarchy>1</showInHierarchy>
+		</Group>
+		<Group>
+			<id>7f850511-1d18-11de-8db9-000e0c431b58</id>
+			<groupName>ГКЛ ВОЛМА</groupName>
+			<shown>1</shown>
+			<showInHierarchy>1</showInHierarchy>
+		</Group>
+		<Group>
+			<id>34ebd80d-d7d4-11e2-ba5d-005056be3574</id>
+			<groupName>ГКЛ Гипсополимер</groupName>
+			<shown>1</shown>
+			<showInHierarchy>1</showInHierarchy>
+		</Group>
+		<Group>
+			<id>4204b370-99a3-11db-937f-000e0c431b59</id>
+			<groupName>ГКЛ РиГипс</groupName>
+			<shown>1</shown>
+			<showInHierarchy>1</showInHierarchy>
+		</Group>
+		<Group>
+			<id>7bf741ba-99a5-11db-937f-000e0c431b59</id>
+			<groupName>ГКЛ ТИГИ-КНАУФ</groupName>
+			<shown>1</shown>
+			<showInHierarchy>1</showInHierarchy>
+		</Group>
+		<Group>
+			<id>7f850513-1d18-11de-8db9-000e0c431b58</id>
+			<groupName>яПрочее_ПГП</groupName>
+			<shown>1</shown>
+			<showInHierarchy>1</showInHierarchy>
+		</Group>
+		<Group>
+			<id>84056bc5-d341-11dc-bc3a-000e0c431b58</id>
+			<groupName>ПГП ВОЛМА</groupName>
+			<shown>1</shown>
+			<showInHierarchy>1</showInHierarchy>
+		</Group>
+		<Group>
+			<id>53b71407-e151-11dc-bc3a-000e0c431b58</id>
+			<groupName>ПГП КНАУФ</groupName>
+			<shown>1</shown>
+			<showInHierarchy>1</showInHierarchy>
+		</Group>
+		<Group>
+			<id>3bd9fae6-d9f3-11dc-bc3a-000e0c431b58</id>
+			<groupName>КРЕПЕЖНЫЕ ЭЛЕМЕНТЫ</groupName>
+			<shown>1</shown>
+			<showInHierarchy>0</showInHierarchy>
+		</Group>
+		<Group>
 			<id>7bf74036-99a5-11db-937f-000e0c431b59</id>
 			<groupName>СУХИЕ СМЕСИ</groupName>
 			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>7bf74038-99a5-11db-937f-000e0c431b59</id>
-			<groupName>Антиморозные добавки</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>0e0a7c73-1daf-11de-8db9-000e0c431b58</id>
-			<groupName>Готовые шпаклевки</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>0e0a7c6f-1daf-11de-8db9-000e0c431b58</id>
-			<groupName>Грунтовки</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>763735c2-2a2b-11e2-9366-005056be3bd8</id>
-			<groupName>Грунтовки  Альмира</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>0e0a7c72-1daf-11de-8db9-000e0c431b58</id>
-			<groupName>Грунтовки  ГЛИМС</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>7bf74058-99a5-11db-937f-000e0c431b59</id>
-			<groupName>Грунтовки  Кнауф</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>26335c77-6153-11de-9531-000e0c431b58</id>
-			<groupName>Грунтовки  ОСНОВИТ</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>55f723c2-160a-11e3-ae8d-005056be3574</id>
-			<groupName>Грунтовки Церезит</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>f89ed568-4c91-11dc-97da-000e0c431b58</id>
-			<groupName>яПрочее/Грунты </groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>b9f8a041-e071-11e1-a27b-005056be3bd8</id>
-			<groupName>Альмира</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>f85d7b04-07dd-11de-9846-000e0c431b58</id>
-			<groupName>Грунтовки  Kraizer </groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>6d99c77c-9dd4-11de-a774-000e0c431b58</id>
-			<groupName>Грунтовки  Solaks</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>0e0a7c70-1daf-11de-8db9-000e0c431b58</id>
-			<groupName>Грунтовки  ВЕТОНИТ</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>84056bc4-d341-11dc-bc3a-000e0c431b58</id>
-			<groupName>Грунтовки  ВОЛМА</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>0e0a7c71-1daf-11de-8db9-000e0c431b58</id>
-			<groupName>Грунтовки  СТАРАТЕЛИ</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>62ed09fe-b896-11de-90d4-000e0c431b58</id>
-			<groupName>Грунтовки  Строитель</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>14a35e15-b2e8-11dd-8051-000e0c431b58</id>
-			<groupName>Грунтовки  ЮНИС</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>a964656d-2dd4-11df-860d-000e0c431b58</id>
-			<groupName>Грунтовки ЛАКРА</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>2b784715-bbc2-11e3-b52a-005056be1f7b</id>
-			<groupName>Грунтовки ОСНОВИТ</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>072e023b-f01c-11e1-b97a-005056be3bd8</id>
-			<groupName>Грунты  Kraizer</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>11886488-1965-11e4-be61-005056be1f7b</id>
-			<groupName>Затирка KIILTO (Финляндия)</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>90ad0703-2f58-11e4-891e-005056be1f7b</id>
-			<groupName>Клинкерная затирка (3-12 мм)</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>91e44b55-222d-11e4-89ba-005056be1f7b</id>
-			<groupName>Специальные средства для затирки KILTO</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>7bf7403a-99a5-11db-937f-000e0c431b59</id>
-			<groupName>Затирки АТЛАС</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>7bf7404a-99a5-11db-937f-000e0c431b59</id>
-			<groupName>Сухие смеси  Ю Н И С</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>14a35e14-b2e8-11dd-8051-000e0c431b58</id>
-			<groupName>Клей  ЮНИС</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>14a35e18-b2e8-11dd-8051-000e0c431b58</id>
-			<groupName>Смеси для полов  ЮНИС</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>14a35e17-b2e8-11dd-8051-000e0c431b58</id>
-			<groupName>Штукатурка  ЮНИС</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>a6658bb3-bb8e-11e1-ad56-005056be3bd8</id>
-			<groupName>Сухие смеси (мелкая фасовка)</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>7bf74037-99a5-11db-937f-000e0c431b59</id>
-			<groupName>Сухие смеси CERESIT</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>2850e32f-c091-11df-a0c5-000e0c431b58</id>
-			<groupName>CE 33 Затирка противогрибковая для узких швов до 5 мм MicroProtect</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>2850e362-c091-11df-a0c5-000e0c431b58</id>
-			<groupName>CE 40/2 Затирка противогрибковая до 10 мм MicroProtect</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>fe3e115a-24be-11e1-bda7-001cc494be80</id>
-			<groupName>СЕ 35 Затирка для швов до 15 мм. (для камня)</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>0e99b359-7cd6-11e2-bdb1-005056be3574</id>
-			<groupName>Цветные герметики CERESIT</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>26924ea3-d1d3-11df-a0c5-000e0c431b58</id>
-			<groupName>Сухие смеси LITOKOL (Италия)</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>dcbb53b5-d1e8-11df-a0c5-000e0c431b58</id>
-			<groupName>Вспомогательные средства для затирки STARLIKE</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>7bb9953e-d9be-11e3-a9ae-005056be1f7b</id>
-			<groupName>Затирочные смеси на эпоксидной основе KERAKOLL FUGALITE ECO</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>26924ea4-d1d3-11df-a0c5-000e0c431b58</id>
-			<groupName>Затирочные смеси на эпоксидной основе LITOCHROM STARLIKE</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>26924ea5-d1d3-11df-a0c5-000e0c431b58</id>
-			<groupName>STARLIKE Classic Collection</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>26924ea6-d1d3-11df-a0c5-000e0c431b58</id>
-			<groupName>STARLIKE Glamour Collection</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>bf991644-d1d2-11df-a0c5-000e0c431b58</id>
-			<groupName>Специальные добавки к затирочным смесям LITOCHROM STARLIKE</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>a56ffce8-d268-11e1-9771-005056be3bd8</id>
-			<groupName>Товары под заказ</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>bf991641-d1d2-11df-a0c5-000e0c431b58</id>
-			<groupName>Metallic Collettion</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>5c2d416b-4327-11e0-894e-000e0c431b58</id>
-			<groupName>Затирочные смеси на цементной основе LITOCHROM 1-6</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>52b25ed9-11e5-11e1-ae34-001cc494be80</id>
-			<groupName>Латексные добавки</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>b4c46ac6-8aaf-11e1-b903-005056be3bd8</id>
-			<groupName>Сухие смеси PERFEKTA</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>7bf7403c-99a5-11db-937f-000e0c431b59</id>
-			<groupName>Сухие смеси ВЕТОНИТ </groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>7bf74046-99a5-11db-937f-000e0c431b59</id>
-			<groupName>Сухие смеси ВОЛМА</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>3a2c3b23-c369-11e2-bd0e-005056be3574</id>
-			<groupName>Сухие смеси ГИПСОПОЛИМЕР</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>1116661d-08ff-11e4-8631-005056be1f7b</id>
-			<groupName>Шпаклевки Гипсополимер</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>c53af91c-08fe-11e4-8631-005056be1f7b</id>
-			<groupName>Штукатурки Гипсополимер</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>7bf7403d-99a5-11db-937f-000e0c431b59</id>
-			<groupName>Сухие смеси ГЛИМС </groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>1aeaaebc-1df2-11de-8db9-000e0c431b58</id>
-			<groupName>Смеси для полов ГЛИМС</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>1aeaaebb-1df2-11de-8db9-000e0c431b58</id>
-			<groupName>Шпаклевки ГЛИМС</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>7bf74057-99a5-11db-937f-000e0c431b59</id>
-			<groupName>Сухие смеси Кнауф</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>7bf74059-99a5-11db-937f-000e0c431b59</id>
-			<groupName>Плиточные клеи  Кнауф</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>7bf7405a-99a5-11db-937f-000e0c431b59</id>
-			<groupName>Шпаклевки  Кнауф</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>7bf7405b-99a5-11db-937f-000e0c431b59</id>
-			<groupName>Штукатурка  Кнауф</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
+			<showInHierarchy>0</showInHierarchy>
 		</Group>
 		<Group>
 			<id>0472249b-07b5-11de-9846-000e0c431b58</id>
 			<groupName>Сухие смеси ОСНОВИТ</groupName>
 			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>d5ce643c-c3d2-11e3-a69f-005056be1f7b</id>
-			<groupName>МОКРЫЙ ФАСАД</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>d1b5414d-4557-11e4-8f7a-005056be1f7b</id>
-			<groupName>Заказные позиции</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>0472249e-07b5-11de-9846-000e0c431b58</id>
-			<groupName>Плиточный клей ОСНОВИТ</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>047224a1-07b5-11de-9846-000e0c431b58</id>
-			<groupName>Смеси для полов   ОСНОВИТ</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>07e40b12-53f8-11de-a649-000e0c431b58</id>
-			<groupName>Шпатлевки  ОСНОВИТ</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
+			<showInHierarchy>0</showInHierarchy>
 		</Group>
 		<Group>
 			<id>07e40b11-53f8-11de-a649-000e0c431b58</id>
 			<groupName>Штукатурка  ОСНОВИТ</groupName>
 			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>7bf7403f-99a5-11db-937f-000e0c431b59</id>
-			<groupName>Сухие смеси СТАРАТЕЛИ</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>7bf74045-99a5-11db-937f-000e0c431b59</id>
-			<groupName>Цемент; смеси М150, М300; известь; керамзит</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>1cae3d85-8b8f-11dc-be6a-000e0c431b58</id>
-			<groupName>Пескобетон</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>1cae3d84-8b8f-11dc-be6a-000e0c431b58</id>
-			<groupName>Сухая смесь М-150, М-200</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>1cae3d83-8b8f-11dc-be6a-000e0c431b58</id>
-			<groupName>Цемент</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>7b95eeaf-5f45-11e0-894e-000e0c431b58</id>
-			<groupName>Я Прочее / смесь, цемент</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>e3977bf4-b671-11e3-9ba7-005056be1f7b</id>
-			<groupName>Я Прочее / смесь</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>5d7dfef6-11d5-11e2-8994-005056be3bd8</id>
-			<groupName>Я Прочее/Цемент</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>df7cc964-ccf6-11de-860c-000e0c431b58</id>
-			<groupName>яПрочее_СУХИЕ  СМЕСИ</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>9b4a3bce-b50d-11db-af52-000e0c431b58</id>
-			<groupName>Garant</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>e96c3e00-0d24-11e2-a686-005056be3bd8</id>
-			<groupName>Антиморозные добавки</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>55be65df-5c69-11e1-951b-005056be3bd8</id>
-			<groupName>Мешки + др.материал</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>07bf903d-5d1e-11e1-b46a-005056be3bd8</id>
-			<groupName>Волма мешки</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>39beaf66-2d43-11e1-b34d-001cc494be80</id>
-			<groupName>Основит Канистры + Крышки + Мешки</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>0e0a7c74-1daf-11de-8db9-000e0c431b58</id>
-			<groupName>Прочие сухие смеси</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>7bf7403b-99a5-11db-937f-000e0c431b59</id>
-			<groupName>Б А Й Р А М И К С и составные</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>7bf741c6-99a5-11db-937f-000e0c431b59</id>
-			<groupName>Сухие смеси</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>7bf74049-99a5-11db-937f-000e0c431b59</id>
-			<groupName>яПрочее/"BAU MASTER"</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>7bf7403e-99a5-11db-937f-000e0c431b59</id>
-			<groupName>яПрочее/"FEIDAL" </groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>7bf74044-99a5-11db-937f-000e0c431b59</id>
-			<groupName>яПрочее/"RIGIPS"</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>7bf74048-99a5-11db-937f-000e0c431b59</id>
-			<groupName>яПрочее/"Sheetrock"</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>a56ffce7-d268-11e1-9771-005056be3bd8</id>
-			<groupName>яПрочее/LITOKOL </groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>0d59cfd2-0ebc-11e1-98a2-001cc494be80</id>
-			<groupName>Средства для очистки и защиты камня</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>7bf74039-99a5-11db-937f-000e0c431b59</id>
-			<groupName>яПрочее/АТЛАС</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>7bf74104-99a5-11db-937f-000e0c431b59</id>
-			<groupName>Атлас</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>05916707-1d2e-11de-8db9-000e0c431b58</id>
-			<groupName>Плиточные клеи</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>1aeaaeb9-1df2-11de-8db9-000e0c431b58</id>
-			<groupName>яПрочее/ВЕТОНИТ</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>1aeaaeba-1df2-11de-8db9-000e0c431b58</id>
-			<groupName>Шпаклевки ВЕТОНИТ</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>7bf741c8-99a5-11db-937f-000e0c431b59</id>
-			<groupName>яПрочее/ВОЛМА</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>7bf74047-99a5-11db-937f-000e0c431b59</id>
-			<groupName>Плиточные клеи ВОЛМА</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>1aeaaec2-1df2-11de-8db9-000e0c431b58</id>
-			<groupName>Шпаклевки ВОЛМА</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>84056bc3-d341-11dc-bc3a-000e0c431b58</id>
-			<groupName>Штукатурки ВОЛМА</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>4487332a-5458-11dc-beb4-000e0c431b58</id>
-			<groupName>я Б О Н У С  клей для плитки  ВОЛМА (ДО 01 НОЯБРЯ)</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>39b2c528-d28a-11e2-9f37-005056be3574</id>
-			<groupName>яПрочее/Гипсополимер</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>a56ffce6-d268-11e1-9771-005056be3bd8</id>
-			<groupName>яПрочее/Глимс</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>fb2753ce-76af-11de-9531-000e0c431b58</id>
-			<groupName>яПрочее/КАМЕННЫЙ ЦВЕТОК</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>fb2753d6-76af-11de-9531-000e0c431b58</id>
-			<groupName>Наливной пол КАМЕННЫЙ ЦВЕТОК</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>fb2753d5-76af-11de-9531-000e0c431b58</id>
-			<groupName>Плиточный клей КАМЕННЫЙ ЦВЕТОК</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>ec837860-c0aa-11df-a0c5-000e0c431b58</id>
-			<groupName>яПрочее/Кнауф</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>0e0a7c76-1daf-11de-8db9-000e0c431b58</id>
-			<groupName>Смеси для полов  Кнауф</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>7bf74103-99a5-11db-937f-000e0c431b59</id>
-			<groupName>яПрочее/ОСНОВИТ</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>77923ead-f38c-11e3-b05c-005056be1f7b</id>
-			<groupName>Затирки ОСНОВИТ</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>6c11fa21-d835-11de-860d-000e0c431b58</id>
-			<groupName>яПрочее/Перфекта</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>a56ffce5-d268-11e1-9771-005056be3bd8</id>
-			<groupName>яПрочее/СERESIT</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>e20d704b-cf99-11e3-a00d-005056be1f7b</id>
-			<groupName>CE 33 проч </groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>e760d20b-c0a7-11df-a0c5-000e0c431b58</id>
-			<groupName>CS 25 Эластичный силиконовый противогрибк. герметик для стыков MicroProtect</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>2850e32d-c091-11df-a0c5-000e0c431b58</id>
-			<groupName>Затирки CERESIT</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>b2ca7a14-d25f-11e1-9771-005056be3bd8</id>
-			<groupName>яПрочее/Старатели</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>7bf74040-99a5-11db-937f-000e0c431b59</id>
-			<groupName>Затирка /Старатели/</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>7bf74041-99a5-11db-937f-000e0c431b59</id>
-			<groupName>Плиточные клеи Старатели</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>1aeaaebd-1df2-11de-8db9-000e0c431b58</id>
-			<groupName>Смеси для полов Старатели</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>7bf74043-99a5-11db-937f-000e0c431b59</id>
-			<groupName>Шпатлевки Старатели</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>1aeaaebe-1df2-11de-8db9-000e0c431b58</id>
-			<groupName>Штукатурки Старатели</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>31060fc6-84e8-11e3-93d3-005056be1f7b</id>
-			<groupName>Сухие смеси AKSOLIT</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>016074c0-71b8-11e2-b3db-005056be271d</id>
-			<groupName>яПрочее/ТРИМ (мелкая фасовка)</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>7bf741c7-99a5-11db-937f-000e0c431b59</id>
-			<groupName>яПрочее/Фарвест</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>7bf740b7-99a5-11db-937f-000e0c431b59</id>
-			<groupName>Шпаклевка /Фарвест/</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>93b8cb6c-8330-11de-8f0e-000e0c431b58</id>
-			<groupName>яПрочее/ФОРМАН</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>812838e9-1df6-11de-8db9-000e0c431b58</id>
-			<groupName>Смеси для полов  ФОРМАН</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>c640205c-f1d1-11dd-9439-000e0c431b58</id>
-			<groupName>Сухие смеси ФОРМАН</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>2ae549a7-1dd7-11de-8db9-000e0c431b58</id>
-			<groupName>Шпаклевки  ФОРМАН</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>2ae549a8-1dd7-11de-8db9-000e0c431b58</id>
-			<groupName>Штукатурка ФОРМАН  </groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>267b6283-a67f-11de-a774-000e0c431b58</id>
-			<groupName>яПрочее/ЭТАЛОНСТРОЙ</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>267b6284-a67f-11de-a774-000e0c431b58</id>
-			<groupName>Плиточный клей ЭТАЛОНСТРОЙ</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>267b6285-a67f-11de-a774-000e0c431b58</id>
-			<groupName>Смеси для полов   ЭТАЛОНСТРОЙ</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>c64939de-b239-11de-90d4-000e0c431b58</id>
-			<groupName>Шпатлевка  ЭТАЛОНСТРОЙ</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>267b6286-a67f-11de-a774-000e0c431b58</id>
-			<groupName>Штукатурка  ЭТАЛОНСТРОЙ</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>7bf74105-99a5-11db-937f-000e0c431b59</id>
-			<groupName>яПрочее/Юнис</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>7bf7404b-99a5-11db-937f-000e0c431b59</id>
-			<groupName>Затирки   ЮНИС</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
-		</Group>
-		<Group>
-			<id>14a35e16-b2e8-11dd-8051-000e0c431b58</id>
-			<groupName>Шпатлевка  ЮНИС</groupName>
-			<shown>1</shown>
-			<showInHierarchy>1</showInHierarchy>
+			<showInHierarchy>0</showInHierarchy>
 		</Group>
 	</Groups>
 	<GroupsHierarchy>
 		<Relation>
-			<group>7bf74038-99a5-11db-937f-000e0c431b59</group>
-			<parentGroup>7bf74036-99a5-11db-937f-000e0c431b59</parentGroup>
+			<group>a17ecef1-c56d-11db-b63f-000e0c431b58</group>
+			<parentGroup>4204b36d-99a3-11db-937f-000e0c431b59</parentGroup>
 		</Relation>
 		<Relation>
-			<group>0e0a7c73-1daf-11de-8db9-000e0c431b58</group>
-			<parentGroup>7bf74036-99a5-11db-937f-000e0c431b59</parentGroup>
+			<group>4204b36e-99a3-11db-937f-000e0c431b59</group>
+			<parentGroup>4204b36d-99a3-11db-937f-000e0c431b59</parentGroup>
 		</Relation>
 		<Relation>
-			<group>0e0a7c6f-1daf-11de-8db9-000e0c431b58</group>
-			<parentGroup>7bf74036-99a5-11db-937f-000e0c431b59</parentGroup>
+			<group>4204b371-99a3-11db-937f-000e0c431b59</group>
+			<parentGroup>4204b36d-99a3-11db-937f-000e0c431b59</parentGroup>
 		</Relation>
 		<Relation>
-			<group>763735c2-2a2b-11e2-9366-005056be3bd8</group>
-			<parentGroup>0e0a7c6f-1daf-11de-8db9-000e0c431b58</parentGroup>
+			<group>53706587-89d2-11dc-be6a-000e0c431b58</group>
+			<parentGroup>4204b371-99a3-11db-937f-000e0c431b59</parentGroup>
 		</Relation>
 		<Relation>
-			<group>0e0a7c72-1daf-11de-8db9-000e0c431b58</group>
-			<parentGroup>0e0a7c6f-1daf-11de-8db9-000e0c431b58</parentGroup>
+			<group>c8b207ce-2700-11dd-942f-000e0c431b58</group>
+			<parentGroup>4204b371-99a3-11db-937f-000e0c431b59</parentGroup>
 		</Relation>
 		<Relation>
-			<group>7bf74058-99a5-11db-937f-000e0c431b59</group>
-			<parentGroup>0e0a7c6f-1daf-11de-8db9-000e0c431b58</parentGroup>
+			<group>7f850514-1d18-11de-8db9-000e0c431b58</group>
+			<parentGroup>4204b371-99a3-11db-937f-000e0c431b59</parentGroup>
 		</Relation>
 		<Relation>
-			<group>26335c77-6153-11de-9531-000e0c431b58</group>
-			<parentGroup>0e0a7c6f-1daf-11de-8db9-000e0c431b58</parentGroup>
+			<group>7f850515-1d18-11de-8db9-000e0c431b58</group>
+			<parentGroup>4204b371-99a3-11db-937f-000e0c431b59</parentGroup>
 		</Relation>
 		<Relation>
-			<group>55f723c2-160a-11e3-ae8d-005056be3574</group>
-			<parentGroup>0e0a7c6f-1daf-11de-8db9-000e0c431b58</parentGroup>
+			<group>7f850512-1d18-11de-8db9-000e0c431b58</group>
+			<parentGroup>4204b36d-99a3-11db-937f-000e0c431b59</parentGroup>
 		</Relation>
 		<Relation>
-			<group>f89ed568-4c91-11dc-97da-000e0c431b58</group>
-			<parentGroup>0e0a7c6f-1daf-11de-8db9-000e0c431b58</parentGroup>
+			<group>6db83294-0d81-11de-8db9-000e0c431b58</group>
+			<parentGroup>4204b36d-99a3-11db-937f-000e0c431b59</parentGroup>
 		</Relation>
 		<Relation>
-			<group>b9f8a041-e071-11e1-a27b-005056be3bd8</group>
-			<parentGroup>f89ed568-4c91-11dc-97da-000e0c431b58</parentGroup>
+			<group>7f85050f-1d18-11de-8db9-000e0c431b58</group>
+			<parentGroup>6db83294-0d81-11de-8db9-000e0c431b58</parentGroup>
 		</Relation>
 		<Relation>
-			<group>f85d7b04-07dd-11de-9846-000e0c431b58</group>
-			<parentGroup>f89ed568-4c91-11dc-97da-000e0c431b58</parentGroup>
+			<group>7f85050e-1d18-11de-8db9-000e0c431b58</group>
+			<parentGroup>6db83294-0d81-11de-8db9-000e0c431b58</parentGroup>
 		</Relation>
 		<Relation>
-			<group>6d99c77c-9dd4-11de-a774-000e0c431b58</group>
-			<parentGroup>f89ed568-4c91-11dc-97da-000e0c431b58</parentGroup>
+			<group>7f850510-1d18-11de-8db9-000e0c431b58</group>
+			<parentGroup>7f85050e-1d18-11de-8db9-000e0c431b58</parentGroup>
 		</Relation>
 		<Relation>
-			<group>0e0a7c70-1daf-11de-8db9-000e0c431b58</group>
-			<parentGroup>f89ed568-4c91-11dc-97da-000e0c431b58</parentGroup>
+			<group>401f67c0-6701-11e3-9833-005056be1f7b</group>
+			<parentGroup>6db83294-0d81-11de-8db9-000e0c431b58</parentGroup>
 		</Relation>
 		<Relation>
-			<group>84056bc4-d341-11dc-bc3a-000e0c431b58</group>
-			<parentGroup>f89ed568-4c91-11dc-97da-000e0c431b58</parentGroup>
+			<group>4204b36f-99a3-11db-937f-000e0c431b59</group>
+			<parentGroup>6db83294-0d81-11de-8db9-000e0c431b58</parentGroup>
 		</Relation>
 		<Relation>
-			<group>0e0a7c71-1daf-11de-8db9-000e0c431b58</group>
-			<parentGroup>f89ed568-4c91-11dc-97da-000e0c431b58</parentGroup>
+			<group>7bf741b9-99a5-11db-937f-000e0c431b59</group>
+			<parentGroup>6db83294-0d81-11de-8db9-000e0c431b58</parentGroup>
 		</Relation>
 		<Relation>
-			<group>62ed09fe-b896-11de-90d4-000e0c431b58</group>
-			<parentGroup>f89ed568-4c91-11dc-97da-000e0c431b58</parentGroup>
+			<group>930774d5-a05c-11e3-862c-005056be1f7b</group>
+			<parentGroup>7bf741b9-99a5-11db-937f-000e0c431b59</parentGroup>
 		</Relation>
 		<Relation>
-			<group>14a35e15-b2e8-11dd-8051-000e0c431b58</group>
-			<parentGroup>f89ed568-4c91-11dc-97da-000e0c431b58</parentGroup>
+			<group>7f850511-1d18-11de-8db9-000e0c431b58</group>
+			<parentGroup>7bf741b9-99a5-11db-937f-000e0c431b59</parentGroup>
 		</Relation>
 		<Relation>
-			<group>a964656d-2dd4-11df-860d-000e0c431b58</group>
-			<parentGroup>f89ed568-4c91-11dc-97da-000e0c431b58</parentGroup>
+			<group>34ebd80d-d7d4-11e2-ba5d-005056be3574</group>
+			<parentGroup>7bf741b9-99a5-11db-937f-000e0c431b59</parentGroup>
 		</Relation>
 		<Relation>
-			<group>2b784715-bbc2-11e3-b52a-005056be1f7b</group>
-			<parentGroup>f89ed568-4c91-11dc-97da-000e0c431b58</parentGroup>
+			<group>4204b370-99a3-11db-937f-000e0c431b59</group>
+			<parentGroup>7bf741b9-99a5-11db-937f-000e0c431b59</parentGroup>
 		</Relation>
 		<Relation>
-			<group>072e023b-f01c-11e1-b97a-005056be3bd8</group>
-			<parentGroup>f89ed568-4c91-11dc-97da-000e0c431b58</parentGroup>
+			<group>7bf741ba-99a5-11db-937f-000e0c431b59</group>
+			<parentGroup>7bf741b9-99a5-11db-937f-000e0c431b59</parentGroup>
 		</Relation>
 		<Relation>
-			<group>11886488-1965-11e4-be61-005056be1f7b</group>
-			<parentGroup>7bf74036-99a5-11db-937f-000e0c431b59</parentGroup>
+			<group>7f850513-1d18-11de-8db9-000e0c431b58</group>
+			<parentGroup>6db83294-0d81-11de-8db9-000e0c431b58</parentGroup>
 		</Relation>
 		<Relation>
-			<group>90ad0703-2f58-11e4-891e-005056be1f7b</group>
-			<parentGroup>11886488-1965-11e4-be61-005056be1f7b</parentGroup>
+			<group>84056bc5-d341-11dc-bc3a-000e0c431b58</group>
+			<parentGroup>7f850513-1d18-11de-8db9-000e0c431b58</parentGroup>
 		</Relation>
 		<Relation>
-			<group>91e44b55-222d-11e4-89ba-005056be1f7b</group>
-			<parentGroup>11886488-1965-11e4-be61-005056be1f7b</parentGroup>
-		</Relation>
-		<Relation>
-			<group>7bf7403a-99a5-11db-937f-000e0c431b59</group>
-			<parentGroup>7bf74036-99a5-11db-937f-000e0c431b59</parentGroup>
-		</Relation>
-		<Relation>
-			<group>7bf7404a-99a5-11db-937f-000e0c431b59</group>
-			<parentGroup>7bf74036-99a5-11db-937f-000e0c431b59</parentGroup>
-		</Relation>
-		<Relation>
-			<group>14a35e14-b2e8-11dd-8051-000e0c431b58</group>
-			<parentGroup>7bf7404a-99a5-11db-937f-000e0c431b59</parentGroup>
-		</Relation>
-		<Relation>
-			<group>14a35e18-b2e8-11dd-8051-000e0c431b58</group>
-			<parentGroup>7bf7404a-99a5-11db-937f-000e0c431b59</parentGroup>
-		</Relation>
-		<Relation>
-			<group>14a35e17-b2e8-11dd-8051-000e0c431b58</group>
-			<parentGroup>7bf7404a-99a5-11db-937f-000e0c431b59</parentGroup>
-		</Relation>
-		<Relation>
-			<group>a6658bb3-bb8e-11e1-ad56-005056be3bd8</group>
-			<parentGroup>7bf74036-99a5-11db-937f-000e0c431b59</parentGroup>
-		</Relation>
-		<Relation>
-			<group>7bf74037-99a5-11db-937f-000e0c431b59</group>
-			<parentGroup>7bf74036-99a5-11db-937f-000e0c431b59</parentGroup>
-		</Relation>
-		<Relation>
-			<group>2850e32f-c091-11df-a0c5-000e0c431b58</group>
-			<parentGroup>7bf74037-99a5-11db-937f-000e0c431b59</parentGroup>
-		</Relation>
-		<Relation>
-			<group>2850e362-c091-11df-a0c5-000e0c431b58</group>
-			<parentGroup>7bf74037-99a5-11db-937f-000e0c431b59</parentGroup>
-		</Relation>
-		<Relation>
-			<group>fe3e115a-24be-11e1-bda7-001cc494be80</group>
-			<parentGroup>7bf74037-99a5-11db-937f-000e0c431b59</parentGroup>
-		</Relation>
-		<Relation>
-			<group>0e99b359-7cd6-11e2-bdb1-005056be3574</group>
-			<parentGroup>7bf74037-99a5-11db-937f-000e0c431b59</parentGroup>
-		</Relation>
-		<Relation>
-			<group>26924ea3-d1d3-11df-a0c5-000e0c431b58</group>
-			<parentGroup>7bf74036-99a5-11db-937f-000e0c431b59</parentGroup>
-		</Relation>
-		<Relation>
-			<group>dcbb53b5-d1e8-11df-a0c5-000e0c431b58</group>
-			<parentGroup>26924ea3-d1d3-11df-a0c5-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>7bb9953e-d9be-11e3-a9ae-005056be1f7b</group>
-			<parentGroup>26924ea3-d1d3-11df-a0c5-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>26924ea4-d1d3-11df-a0c5-000e0c431b58</group>
-			<parentGroup>26924ea3-d1d3-11df-a0c5-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>26924ea5-d1d3-11df-a0c5-000e0c431b58</group>
-			<parentGroup>26924ea4-d1d3-11df-a0c5-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>26924ea6-d1d3-11df-a0c5-000e0c431b58</group>
-			<parentGroup>26924ea4-d1d3-11df-a0c5-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>bf991644-d1d2-11df-a0c5-000e0c431b58</group>
-			<parentGroup>26924ea3-d1d3-11df-a0c5-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>a56ffce8-d268-11e1-9771-005056be3bd8</group>
-			<parentGroup>26924ea3-d1d3-11df-a0c5-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>bf991641-d1d2-11df-a0c5-000e0c431b58</group>
-			<parentGroup>a56ffce8-d268-11e1-9771-005056be3bd8</parentGroup>
-		</Relation>
-		<Relation>
-			<group>5c2d416b-4327-11e0-894e-000e0c431b58</group>
-			<parentGroup>a56ffce8-d268-11e1-9771-005056be3bd8</parentGroup>
-		</Relation>
-		<Relation>
-			<group>52b25ed9-11e5-11e1-ae34-001cc494be80</group>
-			<parentGroup>a56ffce8-d268-11e1-9771-005056be3bd8</parentGroup>
-		</Relation>
-		<Relation>
-			<group>b4c46ac6-8aaf-11e1-b903-005056be3bd8</group>
-			<parentGroup>7bf74036-99a5-11db-937f-000e0c431b59</parentGroup>
-		</Relation>
-		<Relation>
-			<group>7bf7403c-99a5-11db-937f-000e0c431b59</group>
-			<parentGroup>7bf74036-99a5-11db-937f-000e0c431b59</parentGroup>
-		</Relation>
-		<Relation>
-			<group>7bf74046-99a5-11db-937f-000e0c431b59</group>
-			<parentGroup>7bf74036-99a5-11db-937f-000e0c431b59</parentGroup>
-		</Relation>
-		<Relation>
-			<group>3a2c3b23-c369-11e2-bd0e-005056be3574</group>
-			<parentGroup>7bf74036-99a5-11db-937f-000e0c431b59</parentGroup>
-		</Relation>
-		<Relation>
-			<group>1116661d-08ff-11e4-8631-005056be1f7b</group>
-			<parentGroup>3a2c3b23-c369-11e2-bd0e-005056be3574</parentGroup>
-		</Relation>
-		<Relation>
-			<group>c53af91c-08fe-11e4-8631-005056be1f7b</group>
-			<parentGroup>3a2c3b23-c369-11e2-bd0e-005056be3574</parentGroup>
-		</Relation>
-		<Relation>
-			<group>7bf7403d-99a5-11db-937f-000e0c431b59</group>
-			<parentGroup>7bf74036-99a5-11db-937f-000e0c431b59</parentGroup>
-		</Relation>
-		<Relation>
-			<group>1aeaaebc-1df2-11de-8db9-000e0c431b58</group>
-			<parentGroup>7bf7403d-99a5-11db-937f-000e0c431b59</parentGroup>
-		</Relation>
-		<Relation>
-			<group>1aeaaebb-1df2-11de-8db9-000e0c431b58</group>
-			<parentGroup>7bf7403d-99a5-11db-937f-000e0c431b59</parentGroup>
-		</Relation>
-		<Relation>
-			<group>7bf74057-99a5-11db-937f-000e0c431b59</group>
-			<parentGroup>7bf74036-99a5-11db-937f-000e0c431b59</parentGroup>
-		</Relation>
-		<Relation>
-			<group>7bf74059-99a5-11db-937f-000e0c431b59</group>
-			<parentGroup>7bf74057-99a5-11db-937f-000e0c431b59</parentGroup>
-		</Relation>
-		<Relation>
-			<group>7bf7405a-99a5-11db-937f-000e0c431b59</group>
-			<parentGroup>7bf74057-99a5-11db-937f-000e0c431b59</parentGroup>
-		</Relation>
-		<Relation>
-			<group>7bf7405b-99a5-11db-937f-000e0c431b59</group>
-			<parentGroup>7bf74057-99a5-11db-937f-000e0c431b59</parentGroup>
+			<group>53b71407-e151-11dc-bc3a-000e0c431b58</group>
+			<parentGroup>7f850513-1d18-11de-8db9-000e0c431b58</parentGroup>
 		</Relation>
 		<Relation>
 			<group>0472249b-07b5-11de-9846-000e0c431b58</group>
 			<parentGroup>7bf74036-99a5-11db-937f-000e0c431b59</parentGroup>
 		</Relation>
 		<Relation>
-			<group>d5ce643c-c3d2-11e3-a69f-005056be1f7b</group>
-			<parentGroup>0472249b-07b5-11de-9846-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>d1b5414d-4557-11e4-8f7a-005056be1f7b</group>
-			<parentGroup>d5ce643c-c3d2-11e3-a69f-005056be1f7b</parentGroup>
-		</Relation>
-		<Relation>
-			<group>0472249e-07b5-11de-9846-000e0c431b58</group>
-			<parentGroup>0472249b-07b5-11de-9846-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>047224a1-07b5-11de-9846-000e0c431b58</group>
-			<parentGroup>0472249b-07b5-11de-9846-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>07e40b12-53f8-11de-a649-000e0c431b58</group>
-			<parentGroup>0472249b-07b5-11de-9846-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
 			<group>07e40b11-53f8-11de-a649-000e0c431b58</group>
 			<parentGroup>0472249b-07b5-11de-9846-000e0c431b58</parentGroup>
 		</Relation>
-		<Relation>
-			<group>7bf7403f-99a5-11db-937f-000e0c431b59</group>
-			<parentGroup>7bf74036-99a5-11db-937f-000e0c431b59</parentGroup>
-		</Relation>
-		<Relation>
-			<group>7bf74045-99a5-11db-937f-000e0c431b59</group>
-			<parentGroup>7bf74036-99a5-11db-937f-000e0c431b59</parentGroup>
-		</Relation>
-		<Relation>
-			<group>1cae3d85-8b8f-11dc-be6a-000e0c431b58</group>
-			<parentGroup>7bf74045-99a5-11db-937f-000e0c431b59</parentGroup>
-		</Relation>
-		<Relation>
-			<group>1cae3d84-8b8f-11dc-be6a-000e0c431b58</group>
-			<parentGroup>7bf74045-99a5-11db-937f-000e0c431b59</parentGroup>
-		</Relation>
-		<Relation>
-			<group>1cae3d83-8b8f-11dc-be6a-000e0c431b58</group>
-			<parentGroup>7bf74045-99a5-11db-937f-000e0c431b59</parentGroup>
-		</Relation>
-		<Relation>
-			<group>7b95eeaf-5f45-11e0-894e-000e0c431b58</group>
-			<parentGroup>7bf74045-99a5-11db-937f-000e0c431b59</parentGroup>
-		</Relation>
-		<Relation>
-			<group>e3977bf4-b671-11e3-9ba7-005056be1f7b</group>
-			<parentGroup>7b95eeaf-5f45-11e0-894e-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>5d7dfef6-11d5-11e2-8994-005056be3bd8</group>
-			<parentGroup>7b95eeaf-5f45-11e0-894e-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>df7cc964-ccf6-11de-860c-000e0c431b58</group>
-			<parentGroup>7bf74036-99a5-11db-937f-000e0c431b59</parentGroup>
-		</Relation>
-		<Relation>
-			<group>9b4a3bce-b50d-11db-af52-000e0c431b58</group>
-			<parentGroup>df7cc964-ccf6-11de-860c-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>e96c3e00-0d24-11e2-a686-005056be3bd8</group>
-			<parentGroup>df7cc964-ccf6-11de-860c-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>55be65df-5c69-11e1-951b-005056be3bd8</group>
-			<parentGroup>df7cc964-ccf6-11de-860c-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>07bf903d-5d1e-11e1-b46a-005056be3bd8</group>
-			<parentGroup>55be65df-5c69-11e1-951b-005056be3bd8</parentGroup>
-		</Relation>
-		<Relation>
-			<group>39beaf66-2d43-11e1-b34d-001cc494be80</group>
-			<parentGroup>55be65df-5c69-11e1-951b-005056be3bd8</parentGroup>
-		</Relation>
-		<Relation>
-			<group>0e0a7c74-1daf-11de-8db9-000e0c431b58</group>
-			<parentGroup>df7cc964-ccf6-11de-860c-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>7bf7403b-99a5-11db-937f-000e0c431b59</group>
-			<parentGroup>0e0a7c74-1daf-11de-8db9-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>7bf741c6-99a5-11db-937f-000e0c431b59</group>
-			<parentGroup>0e0a7c74-1daf-11de-8db9-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>7bf74049-99a5-11db-937f-000e0c431b59</group>
-			<parentGroup>df7cc964-ccf6-11de-860c-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>7bf7403e-99a5-11db-937f-000e0c431b59</group>
-			<parentGroup>df7cc964-ccf6-11de-860c-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>7bf74044-99a5-11db-937f-000e0c431b59</group>
-			<parentGroup>df7cc964-ccf6-11de-860c-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>7bf74048-99a5-11db-937f-000e0c431b59</group>
-			<parentGroup>df7cc964-ccf6-11de-860c-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>a56ffce7-d268-11e1-9771-005056be3bd8</group>
-			<parentGroup>df7cc964-ccf6-11de-860c-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>0d59cfd2-0ebc-11e1-98a2-001cc494be80</group>
-			<parentGroup>a56ffce7-d268-11e1-9771-005056be3bd8</parentGroup>
-		</Relation>
-		<Relation>
-			<group>7bf74039-99a5-11db-937f-000e0c431b59</group>
-			<parentGroup>df7cc964-ccf6-11de-860c-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>7bf74104-99a5-11db-937f-000e0c431b59</group>
-			<parentGroup>7bf74039-99a5-11db-937f-000e0c431b59</parentGroup>
-		</Relation>
-		<Relation>
-			<group>05916707-1d2e-11de-8db9-000e0c431b58</group>
-			<parentGroup>7bf74104-99a5-11db-937f-000e0c431b59</parentGroup>
-		</Relation>
-		<Relation>
-			<group>1aeaaeb9-1df2-11de-8db9-000e0c431b58</group>
-			<parentGroup>df7cc964-ccf6-11de-860c-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>1aeaaeba-1df2-11de-8db9-000e0c431b58</group>
-			<parentGroup>1aeaaeb9-1df2-11de-8db9-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>7bf741c8-99a5-11db-937f-000e0c431b59</group>
-			<parentGroup>df7cc964-ccf6-11de-860c-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>7bf74047-99a5-11db-937f-000e0c431b59</group>
-			<parentGroup>7bf741c8-99a5-11db-937f-000e0c431b59</parentGroup>
-		</Relation>
-		<Relation>
-			<group>1aeaaec2-1df2-11de-8db9-000e0c431b58</group>
-			<parentGroup>7bf741c8-99a5-11db-937f-000e0c431b59</parentGroup>
-		</Relation>
-		<Relation>
-			<group>84056bc3-d341-11dc-bc3a-000e0c431b58</group>
-			<parentGroup>7bf741c8-99a5-11db-937f-000e0c431b59</parentGroup>
-		</Relation>
-		<Relation>
-			<group>4487332a-5458-11dc-beb4-000e0c431b58</group>
-			<parentGroup>7bf741c8-99a5-11db-937f-000e0c431b59</parentGroup>
-		</Relation>
-		<Relation>
-			<group>39b2c528-d28a-11e2-9f37-005056be3574</group>
-			<parentGroup>df7cc964-ccf6-11de-860c-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>a56ffce6-d268-11e1-9771-005056be3bd8</group>
-			<parentGroup>df7cc964-ccf6-11de-860c-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>fb2753ce-76af-11de-9531-000e0c431b58</group>
-			<parentGroup>df7cc964-ccf6-11de-860c-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>fb2753d6-76af-11de-9531-000e0c431b58</group>
-			<parentGroup>fb2753ce-76af-11de-9531-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>fb2753d5-76af-11de-9531-000e0c431b58</group>
-			<parentGroup>fb2753ce-76af-11de-9531-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>ec837860-c0aa-11df-a0c5-000e0c431b58</group>
-			<parentGroup>df7cc964-ccf6-11de-860c-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>0e0a7c76-1daf-11de-8db9-000e0c431b58</group>
-			<parentGroup>ec837860-c0aa-11df-a0c5-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>7bf74103-99a5-11db-937f-000e0c431b59</group>
-			<parentGroup>df7cc964-ccf6-11de-860c-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>77923ead-f38c-11e3-b05c-005056be1f7b</group>
-			<parentGroup>7bf74103-99a5-11db-937f-000e0c431b59</parentGroup>
-		</Relation>
-		<Relation>
-			<group>6c11fa21-d835-11de-860d-000e0c431b58</group>
-			<parentGroup>df7cc964-ccf6-11de-860c-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>a56ffce5-d268-11e1-9771-005056be3bd8</group>
-			<parentGroup>df7cc964-ccf6-11de-860c-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>e20d704b-cf99-11e3-a00d-005056be1f7b</group>
-			<parentGroup>a56ffce5-d268-11e1-9771-005056be3bd8</parentGroup>
-		</Relation>
-		<Relation>
-			<group>e760d20b-c0a7-11df-a0c5-000e0c431b58</group>
-			<parentGroup>a56ffce5-d268-11e1-9771-005056be3bd8</parentGroup>
-		</Relation>
-		<Relation>
-			<group>2850e32d-c091-11df-a0c5-000e0c431b58</group>
-			<parentGroup>a56ffce5-d268-11e1-9771-005056be3bd8</parentGroup>
-		</Relation>
-		<Relation>
-			<group>b2ca7a14-d25f-11e1-9771-005056be3bd8</group>
-			<parentGroup>df7cc964-ccf6-11de-860c-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>7bf74040-99a5-11db-937f-000e0c431b59</group>
-			<parentGroup>b2ca7a14-d25f-11e1-9771-005056be3bd8</parentGroup>
-		</Relation>
-		<Relation>
-			<group>7bf74041-99a5-11db-937f-000e0c431b59</group>
-			<parentGroup>b2ca7a14-d25f-11e1-9771-005056be3bd8</parentGroup>
-		</Relation>
-		<Relation>
-			<group>1aeaaebd-1df2-11de-8db9-000e0c431b58</group>
-			<parentGroup>b2ca7a14-d25f-11e1-9771-005056be3bd8</parentGroup>
-		</Relation>
-		<Relation>
-			<group>7bf74043-99a5-11db-937f-000e0c431b59</group>
-			<parentGroup>b2ca7a14-d25f-11e1-9771-005056be3bd8</parentGroup>
-		</Relation>
-		<Relation>
-			<group>1aeaaebe-1df2-11de-8db9-000e0c431b58</group>
-			<parentGroup>b2ca7a14-d25f-11e1-9771-005056be3bd8</parentGroup>
-		</Relation>
-		<Relation>
-			<group>31060fc6-84e8-11e3-93d3-005056be1f7b</group>
-			<parentGroup>df7cc964-ccf6-11de-860c-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>016074c0-71b8-11e2-b3db-005056be271d</group>
-			<parentGroup>df7cc964-ccf6-11de-860c-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>7bf741c7-99a5-11db-937f-000e0c431b59</group>
-			<parentGroup>df7cc964-ccf6-11de-860c-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>7bf740b7-99a5-11db-937f-000e0c431b59</group>
-			<parentGroup>7bf741c7-99a5-11db-937f-000e0c431b59</parentGroup>
-		</Relation>
-		<Relation>
-			<group>93b8cb6c-8330-11de-8f0e-000e0c431b58</group>
-			<parentGroup>df7cc964-ccf6-11de-860c-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>812838e9-1df6-11de-8db9-000e0c431b58</group>
-			<parentGroup>93b8cb6c-8330-11de-8f0e-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>c640205c-f1d1-11dd-9439-000e0c431b58</group>
-			<parentGroup>93b8cb6c-8330-11de-8f0e-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>2ae549a7-1dd7-11de-8db9-000e0c431b58</group>
-			<parentGroup>c640205c-f1d1-11dd-9439-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>2ae549a8-1dd7-11de-8db9-000e0c431b58</group>
-			<parentGroup>93b8cb6c-8330-11de-8f0e-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>267b6283-a67f-11de-a774-000e0c431b58</group>
-			<parentGroup>df7cc964-ccf6-11de-860c-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>267b6284-a67f-11de-a774-000e0c431b58</group>
-			<parentGroup>267b6283-a67f-11de-a774-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>267b6285-a67f-11de-a774-000e0c431b58</group>
-			<parentGroup>267b6283-a67f-11de-a774-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>c64939de-b239-11de-90d4-000e0c431b58</group>
-			<parentGroup>267b6283-a67f-11de-a774-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>267b6286-a67f-11de-a774-000e0c431b58</group>
-			<parentGroup>267b6283-a67f-11de-a774-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>7bf74105-99a5-11db-937f-000e0c431b59</group>
-			<parentGroup>df7cc964-ccf6-11de-860c-000e0c431b58</parentGroup>
-		</Relation>
-		<Relation>
-			<group>7bf7404b-99a5-11db-937f-000e0c431b59</group>
-			<parentGroup>7bf74105-99a5-11db-937f-000e0c431b59</parentGroup>
-		</Relation>
-		<Relation>
-			<group>14a35e16-b2e8-11dd-8051-000e0c431b58</group>
-			<parentGroup>7bf74105-99a5-11db-937f-000e0c431b59</parentGroup>
-		</Relation>
 	</GroupsHierarchy>
 	<PropertiesInGroups>
+		<Relation>
+			<group>4204b36d-99a3-11db-937f-000e0c431b59</group>
+			<property>e8287600-ad96-11e3-b114-005056be1f7c</property>
+			<sequence>1</sequence>
+		</Relation>
+		<Relation>
+			<group>4204b36d-99a3-11db-937f-000e0c431b59</group>
+			<property>cce0ab91-6a67-11e4-8945-005056be1f7a</property>
+			<sequence>2</sequence>
+		</Relation>
+		<Relation>
+			<group>4204b36d-99a3-11db-937f-000e0c431b59</group>
+			<property>86212cd6-9722-11e4-80ed-00155d37037a</property>
+			<sequence>3</sequence>
+		</Relation>
+		<Relation>
+			<group>4204b36d-99a3-11db-937f-000e0c431b59</group>
+			<property>98d876e7-9722-11e4-80ed-00155d37037a</property>
+			<sequence>4</sequence>
+		</Relation>
+		<Relation>
+			<group>4204b36d-99a3-11db-937f-000e0c431b59</group>
+			<property>c59571db-9722-11e4-80ed-00155d37037a</property>
+			<sequence>5</sequence>
+		</Relation>
+		<Relation>
+			<group>4204b36d-99a3-11db-937f-000e0c431b59</group>
+			<property>bbea9c1a-3a4b-11e3-88c8-005056be1f7a</property>
+			<sequence>6</sequence>
+		</Relation>
+		<Relation>
+			<group>4204b36d-99a3-11db-937f-000e0c431b59</group>
+			<property>27c97b3a-3bc1-11e3-80e1-005056be1f7a</property>
+			<sequence>7</sequence>
+		</Relation>
+		<Relation>
+			<group>4204b36d-99a3-11db-937f-000e0c431b59</group>
+			<property>618eeb90-3bc1-11e3-80e1-005056be1f7a</property>
+			<sequence>8</sequence>
+		</Relation>
+		<Relation>
+			<group>4204b36d-99a3-11db-937f-000e0c431b59</group>
+			<property>0569475c-1474-11e3-82b9-0050569a1080</property>
+			<sequence>9</sequence>
+		</Relation>
 		<Relation>
 			<group>7bf74036-99a5-11db-937f-000e0c431b59</group>
 			<property>e8287600-ad96-11e3-b114-005056be1f7c</property>
@@ -1625,46 +628,97 @@
 			<property>27c97b3a-3bc1-11e3-80e1-005056be1f7a</property>
 			<sequence>1</sequence>
 		</Relation>
+		<Relation>
+			<group>a17ecef1-c56d-11db-b63f-000e0c431b58</group>
+			<property>c17ab514-3bbc-11e3-80e1-005056be1f7a</property>
+			<sequence>1</sequence>
+		</Relation>
 	</PropertiesInGroups>
 	<Items>
 		<Item>
-			<id>75990b7b-d39c-11e0-8306-001cc494be80</id>
-			<itemName>Штукатурка  МР-75 МН 30кг Кнауф</itemName>
-			<group>7bf7405b-99a5-11db-937f-000e0c431b59</group>
+			<id>1ae96ec3-10cc-11e4-8071-005056be1f7b</id>
+			<itemName>ГКЛ 2500х1200х12,5мм  Danogips (62шт/уп)</itemName>
+			<group>53706587-89d2-11dc-be6a-000e0c431b58</group>
 			<prices>
 				<price>
+					<id>31ff32bd-65bc-11e0-894e-000e0c431b58</id>
+					<value>165</value>
+				</price>
+				<price>
+					<id>86157e21-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>165</value>
+				</price>
+				<price>
+					<id>86157e22-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>172</value>
+				</price>
+				<price>
+					<id>feff0693-99ab-11db-937f-000e0c431b59</id>
+					<value>169</value>
+				</price>
+				<price>
 					<id>feff0694-99ab-11db-937f-000e0c431b59</id>
-					<value>260</value>
+					<value>167</value>
+				</price>
+				<price>
+					<id>feff0695-99ab-11db-937f-000e0c431b59</id>
+					<value>165</value>
+				</price>
+				<price>
+					<id>feff0696-99ab-11db-937f-000e0c431b59</id>
+					<value>165</value>
+				</price>
+				<price>
+					<id>ecdc8d57-afb7-11e1-a7d3-005056be3bd8</id>
+					<value>165</value>
+				</price>
+				<price>
+					<id>4dc0750a-691d-11e0-adb9-001cc494be80</id>
+					<value>165</value>
 				</price>
 				<price>
 					<id>288427e0-9732-11db-bbb4-0017315894a1</id>
-					<value>285</value>
+					<value>175</value>
+				</price>
+				<price>
+					<id>1c061a1b-c3cc-4287-9381-8dbd718263ba</id>
+					<value>151,2</value>
 				</price>
 			</prices>
-			<amount>229</amount>
-			<minAmount/>
-			<description>Высокоадгезионная, универсальная сухая штукатурная смесь на основе гипса с полимерными добавками. Гипсовые сухие смеси могут быть различного цвета, от белого до серого и даже до розового. Это объясняется наличием природных примесей в гипсовом камне. Цвет смеси никак не влияет на ее характеристики.</description>
+			<amount>2721</amount>
+			<minAmount>30</minAmount>
+			<description>Используются в качестве облицовочного материала в каркасно-обшивных конструкциях перегородок, облицовок стен и подвесных потолков в помещениях с сухим и нормальным влажностным режимами. </description>
 			<shown>1</shown>
 			<action>0</action>
 			<propertiesValues>
 				<propertyValue>
 					<property>e8287600-ad96-11e3-b114-005056be1f7c</property>
-					<value/>
+					<value>ннннннннннн</value>
 					<measure/>
 				</propertyValue>
 				<propertyValue>
 					<property>cce0ab91-6a67-11e4-8945-005056be1f7a</property>
-					<value/>
+					<value>Россия</value>
 					<measure/>
 				</propertyValue>
 				<propertyValue>
-					<property>2b321f98-9723-11e4-80ed-00155d37037a</property>
+					<property>86212cd6-9722-11e4-80ed-00155d37037a</property>
 					<value/>
-					<measure>кг</measure>
+					<measure>мм</measure>
+				</propertyValue>
+				<propertyValue>
+					<property>98d876e7-9722-11e4-80ed-00155d37037a</property>
+					<value/>
+					<measure>мм</measure>
+				</propertyValue>
+				<propertyValue>
+					<property>c59571db-9722-11e4-80ed-00155d37037a</property>
+					<value/>
+					<measure>мм</measure>
 				</propertyValue>
 				<propertyValue>
 					<property>bbea9c1a-3a4b-11e3-88c8-005056be1f7a</property>
-					<value/>
+					<value>33</value>
 					<measure/>
 				</propertyValue>
 				<propertyValue>
@@ -1682,13 +736,312 @@
 					<value/>
 					<measure/>
 				</propertyValue>
+			</propertiesValues>
+		</Item>
+		<Item>
+			<id>3e191582-10cc-11e4-8071-005056be1f7b</id>
+			<itemName>ГКЛ 2500х1200х12,5мм  Danogips (62шт/уп)</itemName>
+			<group>53706587-89d2-11dc-be6a-000e0c431b58</group>
+			<prices>
+				<price>
+					<id>31ff32bd-65bc-11e0-894e-000e0c431b58</id>
+					<value>158</value>
+				</price>
+				<price>
+					<id>86157e21-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>158</value>
+				</price>
+				<price>
+					<id>86157e22-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>163</value>
+				</price>
+				<price>
+					<id>feff0693-99ab-11db-937f-000e0c431b59</id>
+					<value>162</value>
+				</price>
+				<price>
+					<id>feff0694-99ab-11db-937f-000e0c431b59</id>
+					<value>160</value>
+				</price>
+				<price>
+					<id>feff0695-99ab-11db-937f-000e0c431b59</id>
+					<value>158</value>
+				</price>
+				<price>
+					<id>feff0696-99ab-11db-937f-000e0c431b59</id>
+					<value>158</value>
+				</price>
+				<price>
+					<id>ecdc8d57-afb7-11e1-a7d3-005056be3bd8</id>
+					<value>158</value>
+				</price>
+				<price>
+					<id>4dc0750a-691d-11e0-adb9-001cc494be80</id>
+					<value>158</value>
+				</price>
+				<price>
+					<id>288427e0-9732-11db-bbb4-0017315894a1</id>
+					<value>165</value>
+				</price>
+				<price>
+					<id>1c061a1b-c3cc-4287-9381-8dbd718263ba</id>
+					<value>140,4</value>
+				</price>
+			</prices>
+			<amount>2639</amount>
+			<minAmount>30</minAmount>
+			<description>Используются в качестве облицовочного материала в каркасно-обшивных конструкциях перегородок, облицовок стен и подвесных потолков в помещениях с сухим и нормальным влажностным режимами. </description>
+			<shown>1</shown>
+			<action>0</action>
+			<propertiesValues>
 				<propertyValue>
-					<property>e765ba75-107d-11e3-8a5d-0050569a1080</property>
+					<property>e8287600-ad96-11e3-b114-005056be1f7c</property>
+					<value>ннннннннннн</value>
+					<measure/>
+				</propertyValue>
+				<propertyValue>
+					<property>cce0ab91-6a67-11e4-8945-005056be1f7a</property>
+					<value>Россия</value>
+					<measure/>
+				</propertyValue>
+				<propertyValue>
+					<property>86212cd6-9722-11e4-80ed-00155d37037a</property>
+					<value/>
+					<measure>мм</measure>
+				</propertyValue>
+				<propertyValue>
+					<property>98d876e7-9722-11e4-80ed-00155d37037a</property>
+					<value/>
+					<measure>мм</measure>
+				</propertyValue>
+				<propertyValue>
+					<property>c59571db-9722-11e4-80ed-00155d37037a</property>
+					<value/>
+					<measure>мм</measure>
+				</propertyValue>
+				<propertyValue>
+					<property>bbea9c1a-3a4b-11e3-88c8-005056be1f7a</property>
+					<value>33</value>
+					<measure/>
+				</propertyValue>
+				<propertyValue>
+					<property>27c97b3a-3bc1-11e3-80e1-005056be1f7a</property>
 					<value/>
 					<measure/>
 				</propertyValue>
 				<propertyValue>
-					<property>e2e87ce8-ad99-11e3-b114-005056be1f7c</property>
+					<property>618eeb90-3bc1-11e3-80e1-005056be1f7a</property>
+					<value/>
+					<measure/>
+				</propertyValue>
+				<propertyValue>
+					<property>0569475c-1474-11e3-82b9-0050569a1080</property>
+					<value/>
+					<measure/>
+				</propertyValue>
+			</propertiesValues>
+		</Item>
+		<Item>
+			<id>7cf1eb18-10cc-11e4-8071-005056be1f7b</id>
+			<itemName>ГКЛВ 2500х1200х12,5мм  Danogips (62шт/уп)</itemName>
+			<group>53706587-89d2-11dc-be6a-000e0c431b58</group>
+			<prices>
+				<price>
+					<id>31ff32bd-65bc-11e0-894e-000e0c431b58</id>
+					<value>253</value>
+				</price>
+				<price>
+					<id>86157e21-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>249</value>
+				</price>
+				<price>
+					<id>86157e22-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>261</value>
+				</price>
+				<price>
+					<id>feff0693-99ab-11db-937f-000e0c431b59</id>
+					<value>258</value>
+				</price>
+				<price>
+					<id>feff0694-99ab-11db-937f-000e0c431b59</id>
+					<value>257</value>
+				</price>
+				<price>
+					<id>feff0695-99ab-11db-937f-000e0c431b59</id>
+					<value>255</value>
+				</price>
+				<price>
+					<id>feff0696-99ab-11db-937f-000e0c431b59</id>
+					<value>241</value>
+				</price>
+				<price>
+					<id>ecdc8d57-afb7-11e1-a7d3-005056be3bd8</id>
+					<value>245</value>
+				</price>
+				<price>
+					<id>4dc0750a-691d-11e0-adb9-001cc494be80</id>
+					<value>251</value>
+				</price>
+				<price>
+					<id>288427e0-9732-11db-bbb4-0017315894a1</id>
+					<value>263</value>
+				</price>
+				<price>
+					<id>1c061a1b-c3cc-4287-9381-8dbd718263ba</id>
+					<value>218,7</value>
+				</price>
+			</prices>
+			<amount>2058</amount>
+			<minAmount>50</minAmount>
+			<description>0</description>
+			<shown>1</shown>
+			<action>0</action>
+			<propertiesValues>
+				<propertyValue>
+					<property>e8287600-ad96-11e3-b114-005056be1f7c</property>
+					<value>ннннннннннн</value>
+					<measure/>
+				</propertyValue>
+				<propertyValue>
+					<property>cce0ab91-6a67-11e4-8945-005056be1f7a</property>
+					<value>Россия</value>
+					<measure/>
+				</propertyValue>
+				<propertyValue>
+					<property>86212cd6-9722-11e4-80ed-00155d37037a</property>
+					<value/>
+					<measure>мм</measure>
+				</propertyValue>
+				<propertyValue>
+					<property>98d876e7-9722-11e4-80ed-00155d37037a</property>
+					<value/>
+					<measure>мм</measure>
+				</propertyValue>
+				<propertyValue>
+					<property>c59571db-9722-11e4-80ed-00155d37037a</property>
+					<value/>
+					<measure>мм</measure>
+				</propertyValue>
+				<propertyValue>
+					<property>bbea9c1a-3a4b-11e3-88c8-005056be1f7a</property>
+					<value>33</value>
+					<measure/>
+				</propertyValue>
+				<propertyValue>
+					<property>27c97b3a-3bc1-11e3-80e1-005056be1f7a</property>
+					<value/>
+					<measure/>
+				</propertyValue>
+				<propertyValue>
+					<property>618eeb90-3bc1-11e3-80e1-005056be1f7a</property>
+					<value/>
+					<measure/>
+				</propertyValue>
+				<propertyValue>
+					<property>0569475c-1474-11e3-82b9-0050569a1080</property>
+					<value/>
+					<measure/>
+				</propertyValue>
+			</propertiesValues>
+		</Item>
+		<Item>
+			<id>947af2d8-10cc-11e4-8071-005056be1f7b</id>
+			<itemName>ГКЛВ 2500х1200х9,5мм  Danogips (82шт/уп)</itemName>
+			<group>53706587-89d2-11dc-be6a-000e0c431b58</group>
+			<prices>
+				<price>
+					<id>31ff32bd-65bc-11e0-894e-000e0c431b58</id>
+					<value>236</value>
+				</price>
+				<price>
+					<id>86157e21-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>232</value>
+				</price>
+				<price>
+					<id>86157e22-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>241</value>
+				</price>
+				<price>
+					<id>feff0693-99ab-11db-937f-000e0c431b59</id>
+					<value>240</value>
+				</price>
+				<price>
+					<id>feff0694-99ab-11db-937f-000e0c431b59</id>
+					<value>239</value>
+				</price>
+				<price>
+					<id>feff0695-99ab-11db-937f-000e0c431b59</id>
+					<value>238</value>
+				</price>
+				<price>
+					<id>feff0696-99ab-11db-937f-000e0c431b59</id>
+					<value>226</value>
+				</price>
+				<price>
+					<id>ecdc8d57-afb7-11e1-a7d3-005056be3bd8</id>
+					<value>229</value>
+				</price>
+				<price>
+					<id>4dc0750a-691d-11e0-adb9-001cc494be80</id>
+					<value>234</value>
+				</price>
+				<price>
+					<id>288427e0-9732-11db-bbb4-0017315894a1</id>
+					<value>247</value>
+				</price>
+				<price>
+					<id>1c061a1b-c3cc-4287-9381-8dbd718263ba</id>
+					<value>205,2</value>
+				</price>
+			</prices>
+			<amount>1373</amount>
+			<minAmount>50</minAmount>
+			<description>0</description>
+			<shown>1</shown>
+			<action>0</action>
+			<propertiesValues>
+				<propertyValue>
+					<property>e8287600-ad96-11e3-b114-005056be1f7c</property>
+					<value>ннннннннннн</value>
+					<measure/>
+				</propertyValue>
+				<propertyValue>
+					<property>cce0ab91-6a67-11e4-8945-005056be1f7a</property>
+					<value>Россия</value>
+					<measure/>
+				</propertyValue>
+				<propertyValue>
+					<property>86212cd6-9722-11e4-80ed-00155d37037a</property>
+					<value/>
+					<measure>мм</measure>
+				</propertyValue>
+				<propertyValue>
+					<property>98d876e7-9722-11e4-80ed-00155d37037a</property>
+					<value/>
+					<measure>мм</measure>
+				</propertyValue>
+				<propertyValue>
+					<property>c59571db-9722-11e4-80ed-00155d37037a</property>
+					<value/>
+					<measure>мм</measure>
+				</propertyValue>
+				<propertyValue>
+					<property>bbea9c1a-3a4b-11e3-88c8-005056be1f7a</property>
+					<value>33</value>
+					<measure/>
+				</propertyValue>
+				<propertyValue>
+					<property>27c97b3a-3bc1-11e3-80e1-005056be1f7a</property>
+					<value/>
+					<measure/>
+				</propertyValue>
+				<propertyValue>
+					<property>618eeb90-3bc1-11e3-80e1-005056be1f7a</property>
+					<value/>
+					<measure/>
+				</propertyValue>
+				<propertyValue>
+					<property>0569475c-1474-11e3-82b9-0050569a1080</property>
 					<value/>
 					<measure/>
 				</propertyValue>
@@ -1700,12 +1053,48 @@
 			<group>07e40b11-53f8-11de-a649-000e0c431b58</group>
 			<prices>
 				<price>
+					<id>31ff32bd-65bc-11e0-894e-000e0c431b58</id>
+					<value>111</value>
+				</price>
+				<price>
+					<id>86157e21-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>106</value>
+				</price>
+				<price>
 					<id>feff0694-99ab-11db-937f-000e0c431b59</id>
 					<value>115</value>
 				</price>
 				<price>
+					<id>feff0695-99ab-11db-937f-000e0c431b59</id>
+					<value>113</value>
+				</price>
+				<price>
+					<id>86157e22-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>124</value>
+				</price>
+				<price>
+					<id>feff0693-99ab-11db-937f-000e0c431b59</id>
+					<value>119,5</value>
+				</price>
+				<price>
+					<id>feff0696-99ab-11db-937f-000e0c431b59</id>
+					<value>103</value>
+				</price>
+				<price>
+					<id>ecdc8d57-afb7-11e1-a7d3-005056be3bd8</id>
+					<value>105</value>
+				</price>
+				<price>
+					<id>4dc0750a-691d-11e0-adb9-001cc494be80</id>
+					<value>109</value>
+				</price>
+				<price>
 					<id>288427e0-9732-11db-bbb4-0017315894a1</id>
 					<value>132</value>
+				</price>
+				<price>
+					<id>1c061a1b-c3cc-4287-9381-8dbd718263ba</id>
+					<value>95</value>
 				</price>
 			</prices>
 			<amount>6</amount>
@@ -1755,11 +1144,6 @@
 					<measure/>
 				</propertyValue>
 				<propertyValue>
-					<property>e765ba75-107d-11e3-8a5d-0050569a1080</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
 					<property>e2e87ce8-ad99-11e3-b114-005056be1f7c</property>
 					<value>Расход смеси при слое 10 мм – 9 кг. на 1 м/2</value>
 					<measure/>
@@ -1767,177 +1151,203 @@
 			</propertiesValues>
 		</Item>
 		<Item>
-			<id>8f0c8f4f-99aa-11db-937f-000e0c431b59</id>
-			<itemName>Мастика ФЛЕХЕНДИХТ 5кг  Кнауф</itemName>
-			<group>7bf74057-99a5-11db-937f-000e0c431b59</group>
+			<id>c2e42f4d-700e-11e0-894e-000e0c431b58</id>
+			<itemName>Гидроизоляция блокирующая Т-61 АКВАСКРИН 0,5кг  ОСНОВИТ </itemName>
+			<group>0472249b-07b5-11de-9846-000e0c431b58</group>
 			<prices>
 				<price>
+					<id>31ff32bd-65bc-11e0-894e-000e0c431b58</id>
+					<value>106</value>
+				</price>
+				<price>
+					<id>86157e21-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>101</value>
+				</price>
+				<price>
 					<id>feff0694-99ab-11db-937f-000e0c431b59</id>
-					<value>1115</value>
+					<value>110</value>
+				</price>
+				<price>
+					<id>feff0695-99ab-11db-937f-000e0c431b59</id>
+					<value>108</value>
+				</price>
+				<price>
+					<id>86157e22-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>114</value>
+				</price>
+				<price>
+					<id>feff0693-99ab-11db-937f-000e0c431b59</id>
+					<value>112</value>
+				</price>
+				<price>
+					<id>feff0696-99ab-11db-937f-000e0c431b59</id>
+					<value>94</value>
+				</price>
+				<price>
+					<id>ecdc8d57-afb7-11e1-a7d3-005056be3bd8</id>
+					<value>98</value>
+				</price>
+				<price>
+					<id>4dc0750a-691d-11e0-adb9-001cc494be80</id>
+					<value>104</value>
 				</price>
 				<price>
 					<id>288427e0-9732-11db-bbb4-0017315894a1</id>
-					<value>1199</value>
+					<value>119</value>
+				</price>
+				<price>
+					<id>1c061a1b-c3cc-4287-9381-8dbd718263ba</id>
+					<value>70</value>
 				</price>
 			</prices>
-			<amount>4</amount>
-			<minAmount>7</minAmount>
-			<description>КНАУФ-Флэхендихт, готовый состав, представляет собой не содержащую растворитель каучуко-битумную эмульсию, имеет хорошее сцепление почти со всеми основаниями, например с бетоном, известковой, цементной и гипсовой штукатуркой, гипсокартонными КНАУФ-листами и гипсоволокнистыми КНАУФ-суперлистами, кирпичной и каменной кладкой, асбестоцементом, деревом, древесно-стружечными и древесноволокнистыми плитами, полиуретаном, пенопластом, плиточной облицовкой, металлом. КНАУФ-Флэхендихт , безопасна для здоровья, не имеет запаха и вкуса.</description>
+			<amount>63</amount>
+			<minAmount>40</minAmount>
+			<description>0</description>
 			<shown>1</shown>
 			<action>0</action>
-			<propertiesValues>
-				<propertyValue>
-					<property>e8287600-ad96-11e3-b114-005056be1f7c</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>cce0ab91-6a67-11e4-8945-005056be1f7a</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>2b321f98-9723-11e4-80ed-00155d37037a</property>
-					<value/>
-					<measure>кг</measure>
-				</propertyValue>
-				<propertyValue>
-					<property>bbea9c1a-3a4b-11e3-88c8-005056be1f7a</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>27c97b3a-3bc1-11e3-80e1-005056be1f7a</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>618eeb90-3bc1-11e3-80e1-005056be1f7a</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>0569475c-1474-11e3-82b9-0050569a1080</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>e765ba75-107d-11e3-8a5d-0050569a1080</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>e2e87ce8-ad99-11e3-b114-005056be1f7c</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-			</propertiesValues>
+			<propertiesValues/>
 		</Item>
 		<Item>
-			<id>8f0c8f51-99aa-11db-937f-000e0c431b59</id>
-			<itemName>Монтажный клей гипсовый  Перлфикс  30кг  Кнауф</itemName>
-			<group>7bf74057-99a5-11db-937f-000e0c431b59</group>
+			<id>56d05fc3-7463-11df-8f04-000e0c431b58</id>
+			<itemName>Клей для пенобетона Т-112  СЕЛФОРМ 20кг  ОСНОВИТ </itemName>
+			<group>0472249b-07b5-11de-9846-000e0c431b58</group>
 			<prices>
 				<price>
-					<id>feff0694-99ab-11db-937f-000e0c431b59</id>
-					<value>274</value>
+					<id>31ff32bd-65bc-11e0-894e-000e0c431b58</id>
+					<value>159</value>
 				</price>
 				<price>
-					<id>288427e0-9732-11db-bbb4-0017315894a1</id>
-					<value>286</value>
-				</price>
-			</prices>
-			<amount>249</amount>
-			<minAmount>113</minAmount>
-			<description>Сухая монтажная смесь на основе гипса с полимерными добавками, обеспечивающими повышенную адгезию. Гипсовые сухие смеси могут быть различного цвета, от белого до серого и даже до розового. Это объясняется наличием природных примесей в гипсовом камне. Цвет смеси никак не влияет на ее характеристики.</description>
-			<shown>1</shown>
-			<action>0</action>
-			<propertiesValues>
-				<propertyValue>
-					<property>e8287600-ad96-11e3-b114-005056be1f7c</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>cce0ab91-6a67-11e4-8945-005056be1f7a</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>2b321f98-9723-11e4-80ed-00155d37037a</property>
-					<value/>
-					<measure>кг</measure>
-				</propertyValue>
-				<propertyValue>
-					<property>bbea9c1a-3a4b-11e3-88c8-005056be1f7a</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>27c97b3a-3bc1-11e3-80e1-005056be1f7a</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>618eeb90-3bc1-11e3-80e1-005056be1f7a</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>0569475c-1474-11e3-82b9-0050569a1080</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>e765ba75-107d-11e3-8a5d-0050569a1080</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>e2e87ce8-ad99-11e3-b114-005056be1f7c</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-			</propertiesValues>
-		</Item>
-		<Item>
-			<id>8f0c8f59-99aa-11db-937f-000e0c431b59</id>
-			<itemName>Плиточный клей Флизенклебер 10 кг  Кнауф</itemName>
-			<group>7bf74059-99a5-11db-937f-000e0c431b59</group>
-			<prices>
-				<price>
-					<id>feff0694-99ab-11db-937f-000e0c431b59</id>
-					<value>145</value>
-				</price>
-				<price>
-					<id>288427e0-9732-11db-bbb4-0017315894a1</id>
+					<id>86157e21-e56b-11dc-8b6b-000e0c431b58</id>
 					<value>157</value>
 				</price>
+				<price>
+					<id>86157e22-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>169</value>
+				</price>
+				<price>
+					<id>feff0693-99ab-11db-937f-000e0c431b59</id>
+					<value>165</value>
+				</price>
+				<price>
+					<id>feff0694-99ab-11db-937f-000e0c431b59</id>
+					<value>162</value>
+				</price>
+				<price>
+					<id>feff0695-99ab-11db-937f-000e0c431b59</id>
+					<value>160</value>
+				</price>
+				<price>
+					<id>feff0696-99ab-11db-937f-000e0c431b59</id>
+					<value>155</value>
+				</price>
+				<price>
+					<id>ecdc8d57-afb7-11e1-a7d3-005056be3bd8</id>
+					<value>156</value>
+				</price>
+				<price>
+					<id>4dc0750a-691d-11e0-adb9-001cc494be80</id>
+					<value>158</value>
+				</price>
+				<price>
+					<id>288427e0-9732-11db-bbb4-0017315894a1</id>
+					<value>174</value>
+				</price>
+				<price>
+					<id>1c061a1b-c3cc-4287-9381-8dbd718263ba</id>
+					<value>109</value>
+				</price>
 			</prices>
-			<amount>290</amount>
-			<minAmount>134</minAmount>
-			<description>Плиточный клей КНАУФ - универсальная сухая смесь на цементной основе с повышенной эластичностью и адгезией. Используется для внутренних и наружных работ и предназначен для облицовки стен и пола керамической плиткой и природным камнем, а также для крепления изоляционных материалов,(плит из пенополистирола, минеральной ваты, пенополиуретана и т.п.). Особенно рекомендуется для облицовки поверхностей с повышенными нагрузками (полы производственных помещений), поверхностей, подверженных колебаниям температуры (террасы, балконы, отапливаемые полы), а также для применения на деформируемых основаниях (ДСП, ЦСП) и при облицовке плиткой по плитке. После высыхания тепло-, морозо- и водоустойчив.</description>
+			<amount>237</amount>
+			<minAmount>301</minAmount>
+			<description>0</description>
+			<shown>1</shown>
+			<action>0</action>
+			<propertiesValues/>
+		</Item>
+		<Item>
+			<id>93478061-fc6f-11db-9073-000e0c431b58</id>
+			<itemName>Аквапанель Наружная    2400х900х12.5мм  Кнауф (25шт/уп)</itemName>
+			<group>a17ecef1-c56d-11db-b63f-000e0c431b58</group>
+			<prices>
+				<price>
+					<id>31ff32bd-65bc-11e0-894e-000e0c431b58</id>
+					<value>1336</value>
+				</price>
+				<price>
+					<id>86157e21-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>1312</value>
+				</price>
+				<price>
+					<id>86157e22-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>1383</value>
+				</price>
+				<price>
+					<id>feff0693-99ab-11db-937f-000e0c431b59</id>
+					<value>1376</value>
+				</price>
+				<price>
+					<id>feff0694-99ab-11db-937f-000e0c431b59</id>
+					<value>1368</value>
+				</price>
+				<price>
+					<id>feff0695-99ab-11db-937f-000e0c431b59</id>
+					<value>1352</value>
+				</price>
+				<price>
+					<id>feff0696-99ab-11db-937f-000e0c431b59</id>
+					<value>1288</value>
+				</price>
+				<price>
+					<id>ecdc8d57-afb7-11e1-a7d3-005056be3bd8</id>
+					<value>1300</value>
+				</price>
+				<price>
+					<id>4dc0750a-691d-11e0-adb9-001cc494be80</id>
+					<value>1324</value>
+				</price>
+				<price>
+					<id>288427e0-9732-11db-bbb4-0017315894a1</id>
+					<value>1415</value>
+				</price>
+				<price>
+					<id>1c061a1b-c3cc-4287-9381-8dbd718263ba</id>
+					<value>1185,6</value>
+				</price>
+			</prices>
+			<amount>33</amount>
+			<minAmount>0</minAmount>
+			<description>0</description>
 			<shown>1</shown>
 			<action>0</action>
 			<propertiesValues>
 				<propertyValue>
 					<property>e8287600-ad96-11e3-b114-005056be1f7c</property>
-					<value/>
+					<value>ннннннннннн</value>
 					<measure/>
 				</propertyValue>
 				<propertyValue>
 					<property>cce0ab91-6a67-11e4-8945-005056be1f7a</property>
-					<value/>
+					<value>Россия</value>
 					<measure/>
 				</propertyValue>
 				<propertyValue>
-					<property>2b321f98-9723-11e4-80ed-00155d37037a</property>
+					<property>86212cd6-9722-11e4-80ed-00155d37037a</property>
 					<value/>
-					<measure>кг</measure>
+					<measure>мм</measure>
+				</propertyValue>
+				<propertyValue>
+					<property>98d876e7-9722-11e4-80ed-00155d37037a</property>
+					<value/>
+					<measure>мм</measure>
+				</propertyValue>
+				<propertyValue>
+					<property>c59571db-9722-11e4-80ed-00155d37037a</property>
+					<value/>
+					<measure>мм</measure>
 				</propertyValue>
 				<propertyValue>
 					<property>bbea9c1a-3a4b-11e3-88c8-005056be1f7a</property>
-					<value/>
+					<value>33</value>
 					<measure/>
 				</propertyValue>
 				<propertyValue>
@@ -1955,56 +1365,92 @@
 					<value/>
 					<measure/>
 				</propertyValue>
-				<propertyValue>
-					<property>e765ba75-107d-11e3-8a5d-0050569a1080</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>e2e87ce8-ad99-11e3-b114-005056be1f7c</property>
-					<value/>
-					<measure/>
-				</propertyValue>
 			</propertiesValues>
 		</Item>
 		<Item>
-			<id>8f0c8f5b-99aa-11db-937f-000e0c431b59</id>
-			<itemName>Плиточный клей Флизенклебер 25кг  Кнауф</itemName>
-			<group>7bf74059-99a5-11db-937f-000e0c431b59</group>
+			<id>83afb766-99a5-11db-937f-000e0c431b59</id>
+			<itemName>ГВЛВ 2500х1200 х 10.0 мм Кнауф  (50шт/уп)</itemName>
+			<group>4204b36e-99a3-11db-937f-000e0c431b59</group>
 			<prices>
 				<price>
+					<id>31ff32bd-65bc-11e0-894e-000e0c431b58</id>
+					<value>411</value>
+				</price>
+				<price>
+					<id>86157e21-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>409</value>
+				</price>
+				<price>
+					<id>86157e22-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>432</value>
+				</price>
+				<price>
+					<id>feff0693-99ab-11db-937f-000e0c431b59</id>
+					<value>422</value>
+				</price>
+				<price>
 					<id>feff0694-99ab-11db-937f-000e0c431b59</id>
-					<value>271</value>
+					<value>420</value>
+				</price>
+				<price>
+					<id>feff0695-99ab-11db-937f-000e0c431b59</id>
+					<value>412</value>
+				</price>
+				<price>
+					<id>feff0696-99ab-11db-937f-000e0c431b59</id>
+					<value>407</value>
+				</price>
+				<price>
+					<id>ecdc8d57-afb7-11e1-a7d3-005056be3bd8</id>
+					<value>408</value>
+				</price>
+				<price>
+					<id>4dc0750a-691d-11e0-adb9-001cc494be80</id>
+					<value>410</value>
 				</price>
 				<price>
 					<id>288427e0-9732-11db-bbb4-0017315894a1</id>
-					<value>289</value>
+					<value>453</value>
+				</price>
+				<price>
+					<id>1c061a1b-c3cc-4287-9381-8dbd718263ba</id>
+					<value>334,53</value>
 				</price>
 			</prices>
-			<amount>1116</amount>
-			<minAmount>649</minAmount>
-			<description>Плиточный клей КНАУФ - универсальная сухая смесь на цементной основе с повышенной эластичностью и адгезией. Используется для внутренних и наружных работ и предназначен для облицовки стен и пола керамической плиткой и природным камнем, а также для крепления изоляционных материалов,(плит из пенополистирола, минеральной ваты, пенополиуретана и т.п.). Особенно рекомендуется для облицовки поверхностей с повышенными нагрузками (полы производственных помещений), поверхностей, подверженных колебаниям температуры (террасы, балконы, отапливаемые полы), а также для применения на деформируемых основаниях (ДСП, ЦСП) и при облицовке плиткой по плитке. После высыхания тепло-, морозо- и водоустойчив.</description>
+			<amount>800</amount>
+			<minAmount>380</minAmount>
+			<description>Гипсокартонный КНАУФ-лист  представляет собой прямоугольный элемент, который состоит из двух слоев специального картона с прослойкой из гипсового теста с армирующими добавками, при этом боковые кромки полосы зафальцовываются краями картона (лицевого слоя). Другим важнейшим компонентом гипсокартонного КНАУФ-листа является облицовочный картон, сцепление которого с сердечником обеспечивается за счет применения клеящих добавок. Картон выполняет роль, как армирующего каркаса, так и прекрасной основы для нанесения любого отделочного материала (штукатурка, обои, краска, керамическая плитка и др.). По своим физическим и гигиеническим свойствам картон идеально подходит для жилых помещений.</description>
 			<shown>1</shown>
 			<action>0</action>
 			<propertiesValues>
 				<propertyValue>
 					<property>e8287600-ad96-11e3-b114-005056be1f7c</property>
-					<value/>
+					<value>ннннннннннн</value>
 					<measure/>
 				</propertyValue>
 				<propertyValue>
 					<property>cce0ab91-6a67-11e4-8945-005056be1f7a</property>
-					<value/>
+					<value>Россия</value>
 					<measure/>
 				</propertyValue>
 				<propertyValue>
-					<property>2b321f98-9723-11e4-80ed-00155d37037a</property>
+					<property>86212cd6-9722-11e4-80ed-00155d37037a</property>
 					<value/>
-					<measure>кг</measure>
+					<measure>мм</measure>
+				</propertyValue>
+				<propertyValue>
+					<property>98d876e7-9722-11e4-80ed-00155d37037a</property>
+					<value/>
+					<measure>мм</measure>
+				</propertyValue>
+				<propertyValue>
+					<property>c59571db-9722-11e4-80ed-00155d37037a</property>
+					<value/>
+					<measure>мм</measure>
 				</propertyValue>
 				<propertyValue>
 					<property>bbea9c1a-3a4b-11e3-88c8-005056be1f7a</property>
-					<value/>
+					<value>33</value>
 					<measure/>
 				</propertyValue>
 				<propertyValue>
@@ -2022,56 +1468,92 @@
 					<value/>
 					<measure/>
 				</propertyValue>
-				<propertyValue>
-					<property>e765ba75-107d-11e3-8a5d-0050569a1080</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>e2e87ce8-ad99-11e3-b114-005056be1f7c</property>
-					<value/>
-					<measure/>
-				</propertyValue>
 			</propertiesValues>
 		</Item>
 		<Item>
-			<id>8f0c8f5d-99aa-11db-937f-000e0c431b59</id>
-			<itemName>Плиточный клей ФЛЕКСКЛЕБЕР 25кг  Кнауф</itemName>
-			<group>7bf74059-99a5-11db-937f-000e0c431b59</group>
+			<id>83afb76a-99a5-11db-937f-000e0c431b59</id>
+			<itemName>ГВЛВ 2500х1200 х12,5 мм Кнауф  (40шт/уп)</itemName>
+			<group>4204b36e-99a3-11db-937f-000e0c431b59</group>
 			<prices>
 				<price>
+					<id>31ff32bd-65bc-11e0-894e-000e0c431b58</id>
+					<value>487</value>
+				</price>
+				<price>
+					<id>86157e21-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>483</value>
+				</price>
+				<price>
+					<id>86157e22-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>512</value>
+				</price>
+				<price>
+					<id>feff0693-99ab-11db-937f-000e0c431b59</id>
+					<value>504,5</value>
+				</price>
+				<price>
 					<id>feff0694-99ab-11db-937f-000e0c431b59</id>
-					<value>569</value>
+					<value>497</value>
+				</price>
+				<price>
+					<id>feff0695-99ab-11db-937f-000e0c431b59</id>
+					<value>488</value>
+				</price>
+				<price>
+					<id>feff0696-99ab-11db-937f-000e0c431b59</id>
+					<value>479</value>
+				</price>
+				<price>
+					<id>ecdc8d57-afb7-11e1-a7d3-005056be3bd8</id>
+					<value>482</value>
+				</price>
+				<price>
+					<id>4dc0750a-691d-11e0-adb9-001cc494be80</id>
+					<value>485</value>
 				</price>
 				<price>
 					<id>288427e0-9732-11db-bbb4-0017315894a1</id>
-					<value>609</value>
+					<value>536</value>
+				</price>
+				<price>
+					<id>1c061a1b-c3cc-4287-9381-8dbd718263ba</id>
+					<value>398,25</value>
 				</price>
 			</prices>
-			<amount>504</amount>
-			<minAmount>106</minAmount>
-			<description>Плиточный клей КНАУФ - универсальная сухая смесь на цементной основе с повышенной эластичностью и адгезией. Используется для внутренних и наружных работ и предназначен для облицовки стен и пола керамической плиткой и природным камнем, а также для крепления изоляционных материалов,(плит из пенополистирола, минеральной ваты, пенополиуретана и т.п.). Особенно рекомендуется для облицовки поверхностей с повышенными нагрузками (полы производственных помещений), поверхностей, подверженных колебаниям температуры (террасы, балконы, отапливаемые полы), а также для применения на деформируемых основаниях (ДСП, ЦСП) и при облицовке плиткой по плитке. После высыхания тепло-, морозо- и водоустойчив.</description>
+			<amount>453</amount>
+			<minAmount>270</minAmount>
+			<description>Гипсокартонный КНАУФ-лист  представляет собой прямоугольный элемент, который состоит из двух слоев специального картона с прослойкой из гипсового теста с армирующими добавками, при этом боковые кромки полосы зафальцовываются краями картона (лицевого слоя). Другим важнейшим компонентом гипсокартонного КНАУФ-листа является облицовочный картон, сцепление которого с сердечником обеспечивается за счет применения клеящих добавок. Картон выполняет роль, как армирующего каркаса, так и прекрасной основы для нанесения любого отделочного материала (штукатурка, обои, краска, керамическая плитка и др.). По своим физическим и гигиеническим свойствам картон идеально подходит для жилых помещений.</description>
 			<shown>1</shown>
 			<action>0</action>
 			<propertiesValues>
 				<propertyValue>
 					<property>e8287600-ad96-11e3-b114-005056be1f7c</property>
-					<value/>
+					<value>ннннннннннн</value>
 					<measure/>
 				</propertyValue>
 				<propertyValue>
 					<property>cce0ab91-6a67-11e4-8945-005056be1f7a</property>
-					<value/>
+					<value>Россия</value>
 					<measure/>
 				</propertyValue>
 				<propertyValue>
-					<property>2b321f98-9723-11e4-80ed-00155d37037a</property>
+					<property>86212cd6-9722-11e4-80ed-00155d37037a</property>
 					<value/>
-					<measure>кг</measure>
+					<measure>мм</measure>
+				</propertyValue>
+				<propertyValue>
+					<property>98d876e7-9722-11e4-80ed-00155d37037a</property>
+					<value/>
+					<measure>мм</measure>
+				</propertyValue>
+				<propertyValue>
+					<property>c59571db-9722-11e4-80ed-00155d37037a</property>
+					<value/>
+					<measure>мм</measure>
 				</propertyValue>
 				<propertyValue>
 					<property>bbea9c1a-3a4b-11e3-88c8-005056be1f7a</property>
-					<value/>
+					<value>33</value>
 					<measure/>
 				</propertyValue>
 				<propertyValue>
@@ -2089,458 +1571,548 @@
 					<value/>
 					<measure/>
 				</propertyValue>
-				<propertyValue>
-					<property>e765ba75-107d-11e3-8a5d-0050569a1080</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>e2e87ce8-ad99-11e3-b114-005056be1f7c</property>
-					<value/>
-					<measure/>
-				</propertyValue>
 			</propertiesValues>
 		</Item>
 		<Item>
-			<id>8f0c8f68-99aa-11db-937f-000e0c431b59</id>
-			<itemName>Шпаклевка для швов  ГКЛ  Унифлот  25 кг  Кнауф</itemName>
-			<group>7bf7405a-99a5-11db-937f-000e0c431b59</group>
+			<id>c8b207cf-2700-11dd-942f-000e0c431b58</id>
+			<itemName>ГКЛ 2500х1200х9,5 мм  Gyproc (60шт/уп)</itemName>
+			<group>c8b207ce-2700-11dd-942f-000e0c431b58</group>
 			<prices>
 				<price>
+					<id>31ff32bd-65bc-11e0-894e-000e0c431b58</id>
+					<value>174</value>
+				</price>
+				<price>
+					<id>86157e21-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>172</value>
+				</price>
+				<price>
+					<id>86157e22-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>189</value>
+				</price>
+				<price>
+					<id>feff0693-99ab-11db-937f-000e0c431b59</id>
+					<value>185</value>
+				</price>
+				<price>
 					<id>feff0694-99ab-11db-937f-000e0c431b59</id>
-					<value>946</value>
+					<value>180</value>
+				</price>
+				<price>
+					<id>feff0695-99ab-11db-937f-000e0c431b59</id>
+					<value>175</value>
 				</price>
 				<price>
 					<id>288427e0-9732-11db-bbb4-0017315894a1</id>
-					<value>989</value>
+					<value>209</value>
+				</price>
+				<price>
+					<id>feff0696-99ab-11db-937f-000e0c431b59</id>
+					<value>170</value>
+				</price>
+				<price>
+					<id>ecdc8d57-afb7-11e1-a7d3-005056be3bd8</id>
+					<value>171</value>
+				</price>
+				<price>
+					<id>4dc0750a-691d-11e0-adb9-001cc494be80</id>
+					<value>173</value>
+				</price>
+				<price>
+					<id>1c061a1b-c3cc-4287-9381-8dbd718263ba</id>
+					<value>155</value>
 				</price>
 			</prices>
-			<amount>180</amount>
-			<minAmount>70</minAmount>
-			<description>Сухая шпаклевочная смесь на основе высокопрочного гипса с полимерными добавками. Гипсовые сухие смеси могут быть различного цвета, от белого до серого и даже до розового. Это объясняется наличием природных примесей в гипсовом камне. Цвет смеси никак не влияет на ее характеристики.</description>
+			<amount>3815</amount>
+			<minAmount>160</minAmount>
+			<description>0</description>
 			<shown>1</shown>
 			<action>0</action>
-			<propertiesValues>
-				<propertyValue>
-					<property>e8287600-ad96-11e3-b114-005056be1f7c</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>cce0ab91-6a67-11e4-8945-005056be1f7a</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>2b321f98-9723-11e4-80ed-00155d37037a</property>
-					<value/>
-					<measure>кг</measure>
-				</propertyValue>
-				<propertyValue>
-					<property>bbea9c1a-3a4b-11e3-88c8-005056be1f7a</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>27c97b3a-3bc1-11e3-80e1-005056be1f7a</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>618eeb90-3bc1-11e3-80e1-005056be1f7a</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>0569475c-1474-11e3-82b9-0050569a1080</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>e765ba75-107d-11e3-8a5d-0050569a1080</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>e2e87ce8-ad99-11e3-b114-005056be1f7c</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-			</propertiesValues>
+			<propertiesValues/>
 		</Item>
 		<Item>
-			<id>8f0c8f6b-99aa-11db-937f-000e0c431b59</id>
-			<itemName>Шпаклевка для швов  ГКЛ  Унифлот   5 кг  Кнауф</itemName>
-			<group>7bf7405a-99a5-11db-937f-000e0c431b59</group>
+			<id>c8b207d1-2700-11dd-942f-000e0c431b58</id>
+			<itemName>ГКЛВ 2500х1200х12,5мм  Gyproc  (50 шт/уп)</itemName>
+			<group>c8b207ce-2700-11dd-942f-000e0c431b58</group>
 			<prices>
 				<price>
+					<id>31ff32bd-65bc-11e0-894e-000e0c431b58</id>
+					<value>302</value>
+				</price>
+				<price>
+					<id>86157e21-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>300</value>
+				</price>
+				<price>
+					<id>86157e22-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>308</value>
+				</price>
+				<price>
+					<id>feff0693-99ab-11db-937f-000e0c431b59</id>
+					<value>306</value>
+				</price>
+				<price>
 					<id>feff0694-99ab-11db-937f-000e0c431b59</id>
-					<value>226</value>
+					<value>304</value>
+				</price>
+				<price>
+					<id>feff0695-99ab-11db-937f-000e0c431b59</id>
+					<value>303</value>
+				</price>
+				<price>
+					<id>feff0696-99ab-11db-937f-000e0c431b59</id>
+					<value>298</value>
+				</price>
+				<price>
+					<id>ecdc8d57-afb7-11e1-a7d3-005056be3bd8</id>
+					<value>299</value>
+				</price>
+				<price>
+					<id>4dc0750a-691d-11e0-adb9-001cc494be80</id>
+					<value>301</value>
 				</price>
 				<price>
 					<id>288427e0-9732-11db-bbb4-0017315894a1</id>
-					<value>239</value>
+					<value>309</value>
+				</price>
+				<price>
+					<id>1c061a1b-c3cc-4287-9381-8dbd718263ba</id>
+					<value>235</value>
 				</price>
 			</prices>
-			<amount>333</amount>
+			<amount>1148</amount>
+			<minAmount>220</minAmount>
+			<description>0</description>
+			<shown>1</shown>
+			<action>0</action>
+			<propertiesValues/>
+		</Item>
+		<Item>
+			<id>c8b207d3-2700-11dd-942f-000e0c431b58</id>
+			<itemName>ГКЛ 2500х1200х12,5мм  Gyproc (50шт/уп)</itemName>
+			<group>c8b207ce-2700-11dd-942f-000e0c431b58</group>
+			<prices>
+				<price>
+					<id>31ff32bd-65bc-11e0-894e-000e0c431b58</id>
+					<value>184</value>
+				</price>
+				<price>
+					<id>86157e21-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>182</value>
+				</price>
+				<price>
+					<id>86157e22-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>199</value>
+				</price>
+				<price>
+					<id>feff0693-99ab-11db-937f-000e0c431b59</id>
+					<value>195</value>
+				</price>
+				<price>
+					<id>feff0694-99ab-11db-937f-000e0c431b59</id>
+					<value>190</value>
+				</price>
+				<price>
+					<id>feff0695-99ab-11db-937f-000e0c431b59</id>
+					<value>185</value>
+				</price>
+				<price>
+					<id>288427e0-9732-11db-bbb4-0017315894a1</id>
+					<value>219</value>
+				</price>
+				<price>
+					<id>feff0696-99ab-11db-937f-000e0c431b59</id>
+					<value>180</value>
+				</price>
+				<price>
+					<id>ecdc8d57-afb7-11e1-a7d3-005056be3bd8</id>
+					<value>181</value>
+				</price>
+				<price>
+					<id>4dc0750a-691d-11e0-adb9-001cc494be80</id>
+					<value>183</value>
+				</price>
+				<price>
+					<id>1c061a1b-c3cc-4287-9381-8dbd718263ba</id>
+					<value>162</value>
+				</price>
+			</prices>
+			<amount>3631</amount>
+			<minAmount>120</minAmount>
+			<description>0</description>
+			<shown>1</shown>
+			<action>0</action>
+			<propertiesValues/>
+		</Item>
+		<Item>
+			<id>dfd87069-2283-11e3-95c3-005056be1f7b</id>
+			<itemName>Наливной пол Быстрил (5-80ммм) 20кг СТРОЙБРИГ</itemName>
+			<group>0472249b-07b5-11de-9846-000e0c431b58</group>
+			<prices>
+				<price>
+					<id>31ff32bd-65bc-11e0-894e-000e0c431b58</id>
+					<value>195</value>
+				</price>
+				<price>
+					<id>86157e21-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>195</value>
+				</price>
+				<price>
+					<id>86157e22-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>195</value>
+				</price>
+				<price>
+					<id>feff0693-99ab-11db-937f-000e0c431b59</id>
+					<value>195</value>
+				</price>
+				<price>
+					<id>feff0694-99ab-11db-937f-000e0c431b59</id>
+					<value>195</value>
+				</price>
+				<price>
+					<id>feff0695-99ab-11db-937f-000e0c431b59</id>
+					<value>195</value>
+				</price>
+				<price>
+					<id>feff0696-99ab-11db-937f-000e0c431b59</id>
+					<value>195</value>
+				</price>
+				<price>
+					<id>ecdc8d57-afb7-11e1-a7d3-005056be3bd8</id>
+					<value>195</value>
+				</price>
+				<price>
+					<id>4dc0750a-691d-11e0-adb9-001cc494be80</id>
+					<value>195</value>
+				</price>
+				<price>
+					<id>288427e0-9732-11db-bbb4-0017315894a1</id>
+					<value>195</value>
+				</price>
+				<price>
+					<id>1c061a1b-c3cc-4287-9381-8dbd718263ba</id>
+					<value>173</value>
+				</price>
+			</prices>
+			<amount>115</amount>
 			<minAmount>80</minAmount>
-			<description>Сухая шпаклевочная смесь на основе высокопрочного гипса с полимерными добавками. Гипсовые сухие смеси могут быть различного цвета, от белого до серого и даже до розового. Это объясняется наличием природных примесей в гипсовом камне. Цвет смеси никак не влияет на ее характеристики.</description>
+			<description>0</description>
 			<shown>1</shown>
 			<action>0</action>
-			<propertiesValues>
-				<propertyValue>
-					<property>e8287600-ad96-11e3-b114-005056be1f7c</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>cce0ab91-6a67-11e4-8945-005056be1f7a</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>2b321f98-9723-11e4-80ed-00155d37037a</property>
-					<value/>
-					<measure>кг</measure>
-				</propertyValue>
-				<propertyValue>
-					<property>bbea9c1a-3a4b-11e3-88c8-005056be1f7a</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>27c97b3a-3bc1-11e3-80e1-005056be1f7a</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>618eeb90-3bc1-11e3-80e1-005056be1f7a</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>0569475c-1474-11e3-82b9-0050569a1080</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>e765ba75-107d-11e3-8a5d-0050569a1080</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>e2e87ce8-ad99-11e3-b114-005056be1f7c</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-			</propertiesValues>
+			<propertiesValues/>
 		</Item>
 		<Item>
-			<id>8f0c8f6d-99aa-11db-937f-000e0c431b59</id>
-			<itemName>Шпаклевка для швов  ГКЛ  Фугенфюллер  10 кг  Кнауф</itemName>
-			<group>7bf7405a-99a5-11db-937f-000e0c431b59</group>
+			<id>0e3f13e8-32ec-11e2-9665-005056be271d</id>
+			<itemName>Клей монтажный гипсовый ОСНОВИТ ГИПСФОРМ Т-115 20кг  ОСНОВИТ </itemName>
+			<group>0472249b-07b5-11de-9846-000e0c431b58</group>
 			<prices>
 				<price>
+					<id>31ff32bd-65bc-11e0-894e-000e0c431b58</id>
+					<value>168</value>
+				</price>
+				<price>
+					<id>86157e21-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>166</value>
+				</price>
+				<price>
 					<id>feff0694-99ab-11db-937f-000e0c431b59</id>
+					<value>170</value>
+				</price>
+				<price>
+					<id>feff0695-99ab-11db-937f-000e0c431b59</id>
+					<value>169</value>
+				</price>
+				<price>
+					<id>86157e22-e56b-11dc-8b6b-000e0c431b58</id>
 					<value>176</value>
 				</price>
 				<price>
+					<id>feff0693-99ab-11db-937f-000e0c431b59</id>
+					<value>173</value>
+				</price>
+				<price>
+					<id>feff0696-99ab-11db-937f-000e0c431b59</id>
+					<value>164</value>
+				</price>
+				<price>
+					<id>ecdc8d57-afb7-11e1-a7d3-005056be3bd8</id>
+					<value>165</value>
+				</price>
+				<price>
+					<id>4dc0750a-691d-11e0-adb9-001cc494be80</id>
+					<value>167</value>
+				</price>
+				<price>
 					<id>288427e0-9732-11db-bbb4-0017315894a1</id>
-					<value>201</value>
+					<value>193</value>
+				</price>
+				<price>
+					<id>1c061a1b-c3cc-4287-9381-8dbd718263ba</id>
+					<value>139</value>
 				</price>
 			</prices>
-			<amount>368</amount>
-			<minAmount>162</minAmount>
-			<description>Сухая шпаклевочная смесь на основе высокопрочного гипса с полимерными добавками. Гипсовые сухие смеси могут быть различного цвета, от белого до серого и даже до розового. Это объясняется наличием природных примесей в гипсовом камне. Цвет смеси никак не влияет на ее характеристики.</description>
+			<amount>86</amount>
+			<minAmount>93</minAmount>
+			<description>0</description>
 			<shown>1</shown>
 			<action>0</action>
-			<propertiesValues>
-				<propertyValue>
-					<property>e8287600-ad96-11e3-b114-005056be1f7c</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>cce0ab91-6a67-11e4-8945-005056be1f7a</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>2b321f98-9723-11e4-80ed-00155d37037a</property>
-					<value/>
-					<measure>кг</measure>
-				</propertyValue>
-				<propertyValue>
-					<property>bbea9c1a-3a4b-11e3-88c8-005056be1f7a</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>27c97b3a-3bc1-11e3-80e1-005056be1f7a</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>618eeb90-3bc1-11e3-80e1-005056be1f7a</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>0569475c-1474-11e3-82b9-0050569a1080</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>e765ba75-107d-11e3-8a5d-0050569a1080</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>e2e87ce8-ad99-11e3-b114-005056be1f7c</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-			</propertiesValues>
+			<propertiesValues/>
 		</Item>
 		<Item>
-			<id>8f0c8f6f-99aa-11db-937f-000e0c431b59</id>
-			<itemName>Шпаклевка для швов  ГКЛ  Фугенфюллер  25 кг  Кнауф</itemName>
-			<group>7bf7405a-99a5-11db-937f-000e0c431b59</group>
+			<id>4c562149-49b3-11e2-96a1-005056be271d</id>
+			<itemName>ПГП полнотелая 667*500*80мм (30шт/уп)</itemName>
+			<group>7f850512-1d18-11de-8db9-000e0c431b58</group>
 			<prices>
 				<price>
+					<id>31ff32bd-65bc-11e0-894e-000e0c431b58</id>
+					<value>184</value>
+				</price>
+				<price>
+					<id>86157e21-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>181</value>
+				</price>
+				<price>
+					<id>86157e22-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>190</value>
+				</price>
+				<price>
+					<id>feff0693-99ab-11db-937f-000e0c431b59</id>
+					<value>188</value>
+				</price>
+				<price>
 					<id>feff0694-99ab-11db-937f-000e0c431b59</id>
-					<value>359</value>
+					<value>186</value>
+				</price>
+				<price>
+					<id>feff0695-99ab-11db-937f-000e0c431b59</id>
+					<value>185</value>
+				</price>
+				<price>
+					<id>ecdc8d57-afb7-11e1-a7d3-005056be3bd8</id>
+					<value>180</value>
+				</price>
+				<price>
+					<id>4dc0750a-691d-11e0-adb9-001cc494be80</id>
+					<value>183</value>
 				</price>
 				<price>
 					<id>288427e0-9732-11db-bbb4-0017315894a1</id>
-					<value>359</value>
+					<value>195</value>
+				</price>
+				<price>
+					<id>feff0696-99ab-11db-937f-000e0c431b59</id>
+					<value>175</value>
+				</price>
+				<price>
+					<id>1c061a1b-c3cc-4287-9381-8dbd718263ba</id>
+					<value>107,8</value>
 				</price>
 			</prices>
-			<amount>762</amount>
-			<minAmount>326</minAmount>
-			<description>Сухая шпаклевочная смесь на основе высокопрочного гипса с полимерными добавками. Гипсовые сухие смеси могут быть различного цвета, от белого до серого и даже до розового. Это объясняется наличием природных примесей в гипсовом камне. Цвет смеси никак не влияет на ее характеристики.</description>
+			<amount>342</amount>
+			<minAmount>0</minAmount>
+			<description>0</description>
 			<shown>1</shown>
 			<action>0</action>
-			<propertiesValues>
-				<propertyValue>
-					<property>e8287600-ad96-11e3-b114-005056be1f7c</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>cce0ab91-6a67-11e4-8945-005056be1f7a</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>2b321f98-9723-11e4-80ed-00155d37037a</property>
-					<value/>
-					<measure>кг</measure>
-				</propertyValue>
-				<propertyValue>
-					<property>bbea9c1a-3a4b-11e3-88c8-005056be1f7a</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>27c97b3a-3bc1-11e3-80e1-005056be1f7a</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>618eeb90-3bc1-11e3-80e1-005056be1f7a</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>0569475c-1474-11e3-82b9-0050569a1080</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>e765ba75-107d-11e3-8a5d-0050569a1080</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>e2e87ce8-ad99-11e3-b114-005056be1f7c</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-			</propertiesValues>
+			<propertiesValues/>
 		</Item>
 		<Item>
-			<id>8f0c8f73-99aa-11db-937f-000e0c431b59</id>
-			<itemName> Штукатурка фасад Зокельпутц УП -310 25кг  Кнауф</itemName>
-			<group>7bf7405b-99a5-11db-937f-000e0c431b59</group>
+			<id>72452afa-7f2c-11e2-9b48-005056be3574</id>
+			<itemName>ГКЛО 2500х1200х12,5мм  Gyproc  (50 шт/уп)</itemName>
+			<group>c8b207ce-2700-11dd-942f-000e0c431b58</group>
 			<prices>
 				<price>
+					<id>31ff32bd-65bc-11e0-894e-000e0c431b58</id>
+					<value>291</value>
+				</price>
+				<price>
+					<id>86157e21-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>291</value>
+				</price>
+				<price>
+					<id>86157e22-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>295</value>
+				</price>
+				<price>
+					<id>feff0693-99ab-11db-937f-000e0c431b59</id>
+					<value>294</value>
+				</price>
+				<price>
 					<id>feff0694-99ab-11db-937f-000e0c431b59</id>
-					<value>249</value>
+					<value>293</value>
+				</price>
+				<price>
+					<id>feff0695-99ab-11db-937f-000e0c431b59</id>
+					<value>291</value>
+				</price>
+				<price>
+					<id>feff0696-99ab-11db-937f-000e0c431b59</id>
+					<value>291</value>
+				</price>
+				<price>
+					<id>ecdc8d57-afb7-11e1-a7d3-005056be3bd8</id>
+					<value>291</value>
+				</price>
+				<price>
+					<id>4dc0750a-691d-11e0-adb9-001cc494be80</id>
+					<value>291</value>
 				</price>
 				<price>
 					<id>288427e0-9732-11db-bbb4-0017315894a1</id>
-					<value>269</value>
+					<value>309</value>
+				</price>
+				<price>
+					<id>1c061a1b-c3cc-4287-9381-8dbd718263ba</id>
+					<value>252,94</value>
 				</price>
 			</prices>
-			<amount>193</amount>
-			<minAmount>174</minAmount>
-			<description>Цокольная штукатурка КНАУФ ЗОКЕЛЬПУТЦ УП 310 - сухая штукатурная смесь на цементной основе с повышенной прочностью. Предназначена для машинного и ручного нанесения в местах с повышенными динамическими нагрузками или воздействием грунтовых вод. Штукатурка Зокельпутц применяется для оштукатуривания цоколей фасадов, а также наружных и внутренних стен подвалов, для выравнивания оснований под облицовку плиткой или природным камнем и т.п. Внутри зданий рекомендуется для применения в помещениях с повышенной влажностью (подвалы, ванные, прачечные и т.д.).</description>
+			<amount>0</amount>
+			<minAmount>0</minAmount>
+			<description>0</description>
 			<shown>1</shown>
 			<action>0</action>
-			<propertiesValues>
-				<propertyValue>
-					<property>e8287600-ad96-11e3-b114-005056be1f7c</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>cce0ab91-6a67-11e4-8945-005056be1f7a</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>2b321f98-9723-11e4-80ed-00155d37037a</property>
-					<value/>
-					<measure>кг</measure>
-				</propertyValue>
-				<propertyValue>
-					<property>bbea9c1a-3a4b-11e3-88c8-005056be1f7a</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>27c97b3a-3bc1-11e3-80e1-005056be1f7a</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>618eeb90-3bc1-11e3-80e1-005056be1f7a</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>0569475c-1474-11e3-82b9-0050569a1080</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>e765ba75-107d-11e3-8a5d-0050569a1080</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>e2e87ce8-ad99-11e3-b114-005056be1f7c</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-			</propertiesValues>
+			<propertiesValues/>
 		</Item>
 		<Item>
-			<id>8f0c8f75-99aa-11db-937f-000e0c431b59</id>
-			<itemName> Штукатурка структурная  Диамант 260 25кг  Кнауф</itemName>
-			<group>7bf7405b-99a5-11db-937f-000e0c431b59</group>
+			<id>53e306e3-bc76-11e2-9eb0-005056be3574</id>
+			<itemName>ПГПВ пустотелая 667*500*80мм (30шт/уп)</itemName>
+			<group>7f850512-1d18-11de-8db9-000e0c431b58</group>
 			<prices>
 				<price>
+					<id>31ff32bd-65bc-11e0-894e-000e0c431b58</id>
+					<value>210</value>
+				</price>
+				<price>
+					<id>86157e21-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>208</value>
+				</price>
+				<price>
+					<id>86157e22-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>230</value>
+				</price>
+				<price>
+					<id>feff0693-99ab-11db-937f-000e0c431b59</id>
+					<value>225</value>
+				</price>
+				<price>
 					<id>feff0694-99ab-11db-937f-000e0c431b59</id>
-					<value>336</value>
+					<value>220</value>
+				</price>
+				<price>
+					<id>feff0695-99ab-11db-937f-000e0c431b59</id>
+					<value>215</value>
+				</price>
+				<price>
+					<id>ecdc8d57-afb7-11e1-a7d3-005056be3bd8</id>
+					<value>207</value>
+				</price>
+				<price>
+					<id>4dc0750a-691d-11e0-adb9-001cc494be80</id>
+					<value>209</value>
 				</price>
 				<price>
 					<id>288427e0-9732-11db-bbb4-0017315894a1</id>
-					<value>366</value>
+					<value>235</value>
+				</price>
+				<price>
+					<id>feff0696-99ab-11db-937f-000e0c431b59</id>
+					<value>200</value>
+				</price>
+				<price>
+					<id>1c061a1b-c3cc-4287-9381-8dbd718263ba</id>
+					<value>128,33</value>
 				</price>
 			</prices>
-			<amount>325</amount>
-			<minAmount>259</minAmount>
-			<description>Минеральная структурная штукатурка на цементной основе с полимерными добавками и пигментами различных цветов. Основной цвет: белый.</description>
+			<amount>497</amount>
+			<minAmount>0</minAmount>
+			<description>0</description>
 			<shown>1</shown>
 			<action>0</action>
-			<propertiesValues>
-				<propertyValue>
-					<property>e8287600-ad96-11e3-b114-005056be1f7c</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>cce0ab91-6a67-11e4-8945-005056be1f7a</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>2b321f98-9723-11e4-80ed-00155d37037a</property>
-					<value/>
-					<measure>кг</measure>
-				</propertyValue>
-				<propertyValue>
-					<property>bbea9c1a-3a4b-11e3-88c8-005056be1f7a</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>27c97b3a-3bc1-11e3-80e1-005056be1f7a</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>618eeb90-3bc1-11e3-80e1-005056be1f7a</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>0569475c-1474-11e3-82b9-0050569a1080</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>e765ba75-107d-11e3-8a5d-0050569a1080</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>e2e87ce8-ad99-11e3-b114-005056be1f7c</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-			</propertiesValues>
+			<propertiesValues/>
 		</Item>
 		<Item>
-			<id>8f0c8f7f-99aa-11db-937f-000e0c431b59</id>
-			<itemName> Штукатурка  Ротбанд 30кг  Кнауф</itemName>
-			<group>7bf7405b-99a5-11db-937f-000e0c431b59</group>
+			<id>5fba478c-17b7-11e4-a244-005056be1f7b</id>
+			<itemName>ГКЛ 3000х1200х12,5мм  Danogips (62шт/уп)</itemName>
+			<group>53706587-89d2-11dc-be6a-000e0c431b58</group>
 			<prices>
 				<price>
+					<id>31ff32bd-65bc-11e0-894e-000e0c431b58</id>
+					<value>212</value>
+				</price>
+				<price>
+					<id>86157e21-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>208</value>
+				</price>
+				<price>
+					<id>86157e22-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>220</value>
+				</price>
+				<price>
+					<id>feff0693-99ab-11db-937f-000e0c431b59</id>
+					<value>218</value>
+				</price>
+				<price>
 					<id>feff0694-99ab-11db-937f-000e0c431b59</id>
-					<value>365</value>
+					<value>216</value>
+				</price>
+				<price>
+					<id>feff0695-99ab-11db-937f-000e0c431b59</id>
+					<value>214</value>
+				</price>
+				<price>
+					<id>feff0696-99ab-11db-937f-000e0c431b59</id>
+					<value>204</value>
+				</price>
+				<price>
+					<id>ecdc8d57-afb7-11e1-a7d3-005056be3bd8</id>
+					<value>206</value>
+				</price>
+				<price>
+					<id>4dc0750a-691d-11e0-adb9-001cc494be80</id>
+					<value>210</value>
 				</price>
 				<price>
 					<id>288427e0-9732-11db-bbb4-0017315894a1</id>
-					<value>379</value>
+					<value>222</value>
+				</price>
+				<price>
+					<id>1c061a1b-c3cc-4287-9381-8dbd718263ba</id>
+					<value>181,44</value>
 				</price>
 			</prices>
-			<amount>3377</amount>
-			<minAmount>613</minAmount>
-			<description>Универсальная сухая штукатурная смесь на основе гипса с полимерными добавками, обеспечивающими повышенную адгезию. Гипсовые сухие смеси могут быть различного цвета, от белого до серого и даже до розового. Это объясняется наличием природных примесей в гипсовом камне. Цвет смеси никак не влияет на ее характеристики.</description>
+			<amount>879</amount>
+			<minAmount>0</minAmount>
+			<description>0</description>
 			<shown>1</shown>
 			<action>0</action>
 			<propertiesValues>
 				<propertyValue>
 					<property>e8287600-ad96-11e3-b114-005056be1f7c</property>
-					<value/>
+					<value>ннннннннннн</value>
 					<measure/>
 				</propertyValue>
 				<propertyValue>
 					<property>cce0ab91-6a67-11e4-8945-005056be1f7a</property>
-					<value/>
+					<value>Россия</value>
 					<measure/>
 				</propertyValue>
 				<propertyValue>
-					<property>2b321f98-9723-11e4-80ed-00155d37037a</property>
+					<property>86212cd6-9722-11e4-80ed-00155d37037a</property>
 					<value/>
-					<measure>кг</measure>
+					<measure>мм</measure>
+				</propertyValue>
+				<propertyValue>
+					<property>98d876e7-9722-11e4-80ed-00155d37037a</property>
+					<value/>
+					<measure>мм</measure>
+				</propertyValue>
+				<propertyValue>
+					<property>c59571db-9722-11e4-80ed-00155d37037a</property>
+					<value/>
+					<measure>мм</measure>
 				</propertyValue>
 				<propertyValue>
 					<property>bbea9c1a-3a4b-11e3-88c8-005056be1f7a</property>
-					<value/>
+					<value>33</value>
 					<measure/>
 				</propertyValue>
 				<propertyValue>
@@ -2555,151 +2127,6 @@
 				</propertyValue>
 				<propertyValue>
 					<property>0569475c-1474-11e3-82b9-0050569a1080</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>e765ba75-107d-11e3-8a5d-0050569a1080</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>e2e87ce8-ad99-11e3-b114-005056be1f7c</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-			</propertiesValues>
-		</Item>
-		<Item>
-			<id>8f0c8f85-99aa-11db-937f-000e0c431b59</id>
-			<itemName> Штукатурка фасад Унтерпутц 25кг  Кнауф</itemName>
-			<group>7bf7405b-99a5-11db-937f-000e0c431b59</group>
-			<prices>
-				<price>
-					<id>feff0694-99ab-11db-937f-000e0c431b59</id>
-					<value>256</value>
-				</price>
-				<price>
-					<id>288427e0-9732-11db-bbb4-0017315894a1</id>
-					<value>275</value>
-				</price>
-			</prices>
-			<amount>113</amount>
-			<minAmount>128</minAmount>
-			<description>Штукатурка – материал, который используется перед окраской или оклейкой стен. Штукатурка бывает как для работ внутри помещения, так и для наружного применения. Основная цель штукатурки – выравнивание потолков и неровных стен. В отличие от шпатлевок, штукатурки не имеют крупного наполнителя и не могут шлифоваться. Особой популярностью пользуется штукатурка кнауф унтерпутц. Преимущества кнауф унтерпутц: •	Идеально подходит как основа под декоративное покрытие любого фасада •	Проста в использовании, обладает высокой пластичностью •	Предотвращает усаживание фасада •	Высокие водоудерживающие свойства •	Защищает стены и фасад от трещин Сухие смеси, применяемые для выравнивания различных поверхностей, могут использоваться как во внутренних, так и в фасадных работах. Штукатурки типа КНАУФ-Унтерпутц УП 210 штукатурная смесь цементная фасадная применяются для выравнивания поверхностей ручным и машинным способом. Сухие смеси и штукатурки типа КНАУФ-Унтерпутц УП 210 штукатурная смесь цементная фасадная подходят для выравнивания поверхностей в условиях повышенной влажности. КНАУФ-Унтерпутц УП 210 штукатурная смесь цементная фасадная идеально подходят для фасадных работ. Также такие штукатурки как КНАУФ-Унтерпутц УП 210 штукатурная смесь цементная фасадная могут использоваться и для внутренних работ.
-</description>
-			<shown>1</shown>
-			<action>0</action>
-			<propertiesValues>
-				<propertyValue>
-					<property>e8287600-ad96-11e3-b114-005056be1f7c</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>cce0ab91-6a67-11e4-8945-005056be1f7a</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>2b321f98-9723-11e4-80ed-00155d37037a</property>
-					<value/>
-					<measure>кг</measure>
-				</propertyValue>
-				<propertyValue>
-					<property>bbea9c1a-3a4b-11e3-88c8-005056be1f7a</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>27c97b3a-3bc1-11e3-80e1-005056be1f7a</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>618eeb90-3bc1-11e3-80e1-005056be1f7a</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>0569475c-1474-11e3-82b9-0050569a1080</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>e765ba75-107d-11e3-8a5d-0050569a1080</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>e2e87ce8-ad99-11e3-b114-005056be1f7c</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-			</propertiesValues>
-		</Item>
-		<Item>
-			<id>8f0c8f8f-99aa-11db-937f-000e0c431b59</id>
-			<itemName>Штукатурно-клеевая смесь СЕВЕНЕР 25кг  Кнауф</itemName>
-			<group>7bf7405b-99a5-11db-937f-000e0c431b59</group>
-			<prices>
-				<price>
-					<id>feff0694-99ab-11db-937f-000e0c431b59</id>
-					<value>392</value>
-				</price>
-				<price>
-					<id>288427e0-9732-11db-bbb4-0017315894a1</id>
-					<value>415</value>
-				</price>
-			</prices>
-			<amount>369</amount>
-			<minAmount>173</minAmount>
-			<description>Сухая смесь на цементной основе. Содержит фракционированный песок, специальные волокна и полимерные добавки.</description>
-			<shown>1</shown>
-			<action>0</action>
-			<propertiesValues>
-				<propertyValue>
-					<property>e8287600-ad96-11e3-b114-005056be1f7c</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>cce0ab91-6a67-11e4-8945-005056be1f7a</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>2b321f98-9723-11e4-80ed-00155d37037a</property>
-					<value/>
-					<measure>кг</measure>
-				</propertyValue>
-				<propertyValue>
-					<property>bbea9c1a-3a4b-11e3-88c8-005056be1f7a</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>27c97b3a-3bc1-11e3-80e1-005056be1f7a</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>618eeb90-3bc1-11e3-80e1-005056be1f7a</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>0569475c-1474-11e3-82b9-0050569a1080</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>e765ba75-107d-11e3-8a5d-0050569a1080</property>
-					<value/>
-					<measure/>
-				</propertyValue>
-				<propertyValue>
-					<property>e2e87ce8-ad99-11e3-b114-005056be1f7c</property>
 					<value/>
 					<measure/>
 				</propertyValue>
@@ -2711,16 +2138,52 @@
 			<group>07e40b11-53f8-11de-a649-000e0c431b58</group>
 			<prices>
 				<price>
+					<id>31ff32bd-65bc-11e0-894e-000e0c431b58</id>
+					<value>180</value>
+				</price>
+				<price>
+					<id>86157e21-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>176</value>
+				</price>
+				<price>
+					<id>86157e22-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>188</value>
+				</price>
+				<price>
+					<id>feff0693-99ab-11db-937f-000e0c431b59</id>
+					<value>186</value>
+				</price>
+				<price>
 					<id>feff0694-99ab-11db-937f-000e0c431b59</id>
 					<value>184</value>
+				</price>
+				<price>
+					<id>feff0695-99ab-11db-937f-000e0c431b59</id>
+					<value>182</value>
+				</price>
+				<price>
+					<id>feff0696-99ab-11db-937f-000e0c431b59</id>
+					<value>172</value>
+				</price>
+				<price>
+					<id>ecdc8d57-afb7-11e1-a7d3-005056be3bd8</id>
+					<value>174</value>
+				</price>
+				<price>
+					<id>4dc0750a-691d-11e0-adb9-001cc494be80</id>
+					<value>178</value>
 				</price>
 				<price>
 					<id>288427e0-9732-11db-bbb4-0017315894a1</id>
 					<value>190</value>
 				</price>
+				<price>
+					<id>1c061a1b-c3cc-4287-9381-8dbd718263ba</id>
+					<value>154</value>
+				</price>
 			</prices>
 			<amount>42</amount>
-			<minAmount/>
+			<minAmount>0</minAmount>
 			<description>Гипсовая штукатурка ОСНОВИТ ГИПСВЭЛЛ Т-21 предназначена для выравнивания стен и потолков в помещениях с нормальной влажностью. Для внутренних работ.</description>
 			<shown>1</shown>
 			<action>0</action>
@@ -2773,12 +2236,48 @@
 			<group>07e40b11-53f8-11de-a649-000e0c431b58</group>
 			<prices>
 				<price>
+					<id>31ff32bd-65bc-11e0-894e-000e0c431b58</id>
+					<value>178</value>
+				</price>
+				<price>
+					<id>86157e21-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>174</value>
+				</price>
+				<price>
 					<id>feff0694-99ab-11db-937f-000e0c431b59</id>
 					<value>185</value>
 				</price>
 				<price>
+					<id>feff0695-99ab-11db-937f-000e0c431b59</id>
+					<value>180</value>
+				</price>
+				<price>
+					<id>86157e22-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>195</value>
+				</price>
+				<price>
+					<id>feff0693-99ab-11db-937f-000e0c431b59</id>
+					<value>190</value>
+				</price>
+				<price>
 					<id>288427e0-9732-11db-bbb4-0017315894a1</id>
 					<value>219</value>
+				</price>
+				<price>
+					<id>feff0696-99ab-11db-937f-000e0c431b59</id>
+					<value>170</value>
+				</price>
+				<price>
+					<id>ecdc8d57-afb7-11e1-a7d3-005056be3bd8</id>
+					<value>172</value>
+				</price>
+				<price>
+					<id>4dc0750a-691d-11e0-adb9-001cc494be80</id>
+					<value>176</value>
+				</price>
+				<price>
+					<id>1c061a1b-c3cc-4287-9381-8dbd718263ba</id>
+					<value>144</value>
 				</price>
 			</prices>
 			<amount>198</amount>
@@ -2835,12 +2334,48 @@
 			<group>07e40b11-53f8-11de-a649-000e0c431b58</group>
 			<prices>
 				<price>
+					<id>31ff32bd-65bc-11e0-894e-000e0c431b58</id>
+					<value>192</value>
+				</price>
+				<price>
+					<id>86157e21-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>188</value>
+				</price>
+				<price>
 					<id>feff0694-99ab-11db-937f-000e0c431b59</id>
 					<value>203</value>
 				</price>
 				<price>
+					<id>feff0695-99ab-11db-937f-000e0c431b59</id>
+					<value>194</value>
+				</price>
+				<price>
+					<id>86157e22-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>210</value>
+				</price>
+				<price>
+					<id>feff0693-99ab-11db-937f-000e0c431b59</id>
+					<value>206,5</value>
+				</price>
+				<price>
 					<id>288427e0-9732-11db-bbb4-0017315894a1</id>
 					<value>239</value>
+				</price>
+				<price>
+					<id>feff0696-99ab-11db-937f-000e0c431b59</id>
+					<value>184</value>
+				</price>
+				<price>
+					<id>ecdc8d57-afb7-11e1-a7d3-005056be3bd8</id>
+					<value>186</value>
+				</price>
+				<price>
+					<id>4dc0750a-691d-11e0-adb9-001cc494be80</id>
+					<value>190</value>
+				</price>
+				<price>
+					<id>1c061a1b-c3cc-4287-9381-8dbd718263ba</id>
+					<value>152</value>
 				</price>
 			</prices>
 			<amount>275</amount>
@@ -2897,12 +2432,48 @@
 			<group>07e40b11-53f8-11de-a649-000e0c431b58</group>
 			<prices>
 				<price>
+					<id>31ff32bd-65bc-11e0-894e-000e0c431b58</id>
+					<value>259</value>
+				</price>
+				<price>
+					<id>86157e21-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>255</value>
+				</price>
+				<price>
+					<id>86157e22-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>289</value>
+				</price>
+				<price>
+					<id>feff0693-99ab-11db-937f-000e0c431b59</id>
+					<value>278</value>
+				</price>
+				<price>
 					<id>feff0694-99ab-11db-937f-000e0c431b59</id>
 					<value>268</value>
 				</price>
 				<price>
+					<id>feff0695-99ab-11db-937f-000e0c431b59</id>
+					<value>262</value>
+				</price>
+				<price>
+					<id>feff0696-99ab-11db-937f-000e0c431b59</id>
+					<value>249</value>
+				</price>
+				<price>
+					<id>ecdc8d57-afb7-11e1-a7d3-005056be3bd8</id>
+					<value>253</value>
+				</price>
+				<price>
+					<id>4dc0750a-691d-11e0-adb9-001cc494be80</id>
+					<value>257</value>
+				</price>
+				<price>
 					<id>288427e0-9732-11db-bbb4-0017315894a1</id>
 					<value>299</value>
+				</price>
+				<price>
+					<id>1c061a1b-c3cc-4287-9381-8dbd718263ba</id>
+					<value>225</value>
 				</price>
 			</prices>
 			<amount>777</amount>
@@ -2962,6 +2533,679 @@
 					<measure/>
 				</propertyValue>
 			</propertiesValues>
+		</Item>
+		<Item>
+			<id>59309121-f599-11e1-a7e8-005056be3bd8</id>
+			<itemName>ГКЛВ 2500х1200х9,5мм  Gyproc  (60шт/уп)</itemName>
+			<group>c8b207ce-2700-11dd-942f-000e0c431b58</group>
+			<prices>
+				<price>
+					<id>31ff32bd-65bc-11e0-894e-000e0c431b58</id>
+					<value>292</value>
+				</price>
+				<price>
+					<id>86157e21-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>290</value>
+				</price>
+				<price>
+					<id>86157e22-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>302</value>
+				</price>
+				<price>
+					<id>feff0693-99ab-11db-937f-000e0c431b59</id>
+					<value>300</value>
+				</price>
+				<price>
+					<id>feff0694-99ab-11db-937f-000e0c431b59</id>
+					<value>297</value>
+				</price>
+				<price>
+					<id>feff0695-99ab-11db-937f-000e0c431b59</id>
+					<value>295</value>
+				</price>
+				<price>
+					<id>feff0696-99ab-11db-937f-000e0c431b59</id>
+					<value>288</value>
+				</price>
+				<price>
+					<id>ecdc8d57-afb7-11e1-a7d3-005056be3bd8</id>
+					<value>289</value>
+				</price>
+				<price>
+					<id>4dc0750a-691d-11e0-adb9-001cc494be80</id>
+					<value>291</value>
+				</price>
+				<price>
+					<id>288427e0-9732-11db-bbb4-0017315894a1</id>
+					<value>304</value>
+				</price>
+				<price>
+					<id>1c061a1b-c3cc-4287-9381-8dbd718263ba</id>
+					<value>230</value>
+				</price>
+			</prices>
+			<amount>1157</amount>
+			<minAmount>190</minAmount>
+			<description>0</description>
+			<shown>1</shown>
+			<action>0</action>
+			<propertiesValues/>
+		</Item>
+		<Item>
+			<id>ff273019-b17c-11e2-a970-005056be3574</id>
+			<itemName>ПГП пустотелая 667*500*80мм (30 шт/уп)</itemName>
+			<group>7f850512-1d18-11de-8db9-000e0c431b58</group>
+			<prices>
+				<price>
+					<id>31ff32bd-65bc-11e0-894e-000e0c431b58</id>
+					<value>174</value>
+				</price>
+				<price>
+					<id>86157e21-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>172</value>
+				</price>
+				<price>
+					<id>86157e22-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>179</value>
+				</price>
+				<price>
+					<id>feff0693-99ab-11db-937f-000e0c431b59</id>
+					<value>177</value>
+				</price>
+				<price>
+					<id>feff0694-99ab-11db-937f-000e0c431b59</id>
+					<value>176</value>
+				</price>
+				<price>
+					<id>feff0695-99ab-11db-937f-000e0c431b59</id>
+					<value>175</value>
+				</price>
+				<price>
+					<id>ecdc8d57-afb7-11e1-a7d3-005056be3bd8</id>
+					<value>163</value>
+				</price>
+				<price>
+					<id>4dc0750a-691d-11e0-adb9-001cc494be80</id>
+					<value>173</value>
+				</price>
+				<price>
+					<id>288427e0-9732-11db-bbb4-0017315894a1</id>
+					<value>185</value>
+				</price>
+				<price>
+					<id>feff0696-99ab-11db-937f-000e0c431b59</id>
+					<value>156</value>
+				</price>
+				<price>
+					<id>1c061a1b-c3cc-4287-9381-8dbd718263ba</id>
+					<value>102,67</value>
+				</price>
+			</prices>
+			<amount>1227</amount>
+			<minAmount>0</minAmount>
+			<description>0</description>
+			<shown>1</shown>
+			<action>0</action>
+			<propertiesValues/>
+		</Item>
+		<Item>
+			<id>fc361884-fff5-11e2-a99d-005056be3574</id>
+			<itemName>ГКЛ 3000х1200х12,5мм  Gyproc  (50 шт/уп)</itemName>
+			<group>c8b207ce-2700-11dd-942f-000e0c431b58</group>
+			<prices>
+				<price>
+					<id>31ff32bd-65bc-11e0-894e-000e0c431b58</id>
+					<value>266</value>
+				</price>
+				<price>
+					<id>86157e21-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>266</value>
+				</price>
+				<price>
+					<id>feff0695-99ab-11db-937f-000e0c431b59</id>
+					<value>266</value>
+				</price>
+				<price>
+					<id>86157e22-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>281</value>
+				</price>
+				<price>
+					<id>feff0693-99ab-11db-937f-000e0c431b59</id>
+					<value>274</value>
+				</price>
+				<price>
+					<id>feff0694-99ab-11db-937f-000e0c431b59</id>
+					<value>271</value>
+				</price>
+				<price>
+					<id>feff0696-99ab-11db-937f-000e0c431b59</id>
+					<value>266</value>
+				</price>
+				<price>
+					<id>ecdc8d57-afb7-11e1-a7d3-005056be3bd8</id>
+					<value>266</value>
+				</price>
+				<price>
+					<id>4dc0750a-691d-11e0-adb9-001cc494be80</id>
+					<value>266</value>
+				</price>
+				<price>
+					<id>288427e0-9732-11db-bbb4-0017315894a1</id>
+					<value>289</value>
+				</price>
+				<price>
+					<id>1c061a1b-c3cc-4287-9381-8dbd718263ba</id>
+					<value>194,4</value>
+				</price>
+			</prices>
+			<amount>1252</amount>
+			<minAmount>0</minAmount>
+			<description>0</description>
+			<shown>1</shown>
+			<action>0</action>
+			<propertiesValues/>
+		</Item>
+		<Item>
+			<id>a0cc7ac8-584c-11e4-ab17-005056be1f7b</id>
+			<itemName>Клей для пенобетона Т-112  СЕЛФОРМ ЗИМНИЙ 20кг  ОСНОВИТ </itemName>
+			<group>0472249b-07b5-11de-9846-000e0c431b58</group>
+			<prices>
+				<price>
+					<id>31ff32bd-65bc-11e0-894e-000e0c431b58</id>
+					<value>185</value>
+				</price>
+				<price>
+					<id>86157e21-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>183</value>
+				</price>
+				<price>
+					<id>86157e22-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>195</value>
+				</price>
+				<price>
+					<id>feff0693-99ab-11db-937f-000e0c431b59</id>
+					<value>191</value>
+				</price>
+				<price>
+					<id>feff0694-99ab-11db-937f-000e0c431b59</id>
+					<value>188</value>
+				</price>
+				<price>
+					<id>feff0695-99ab-11db-937f-000e0c431b59</id>
+					<value>186</value>
+				</price>
+				<price>
+					<id>feff0696-99ab-11db-937f-000e0c431b59</id>
+					<value>181</value>
+				</price>
+				<price>
+					<id>ecdc8d57-afb7-11e1-a7d3-005056be3bd8</id>
+					<value>182</value>
+				</price>
+				<price>
+					<id>4dc0750a-691d-11e0-adb9-001cc494be80</id>
+					<value>184</value>
+				</price>
+				<price>
+					<id>288427e0-9732-11db-bbb4-0017315894a1</id>
+					<value>199</value>
+				</price>
+				<price>
+					<id>1c061a1b-c3cc-4287-9381-8dbd718263ba</id>
+					<value>135</value>
+				</price>
+			</prices>
+			<amount>609</amount>
+			<minAmount>150</minAmount>
+			<description>0</description>
+			<shown>1</shown>
+			<action>0</action>
+			<propertiesValues/>
+		</Item>
+		<Item>
+			<id>989f221e-d8b5-11e2-abb7-005056be3574</id>
+			<itemName>Теплоизоляционный кладочный раствор ОСНОВИТ Т-114 ПУТФОРМ 20кг</itemName>
+			<group>0472249b-07b5-11de-9846-000e0c431b58</group>
+			<prices>
+				<price>
+					<id>31ff32bd-65bc-11e0-894e-000e0c431b58</id>
+					<value>253</value>
+				</price>
+				<price>
+					<id>86157e21-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>251</value>
+				</price>
+				<price>
+					<id>86157e22-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>267</value>
+				</price>
+				<price>
+					<id>feff0693-99ab-11db-937f-000e0c431b59</id>
+					<value>264</value>
+				</price>
+				<price>
+					<id>feff0694-99ab-11db-937f-000e0c431b59</id>
+					<value>255</value>
+				</price>
+				<price>
+					<id>feff0695-99ab-11db-937f-000e0c431b59</id>
+					<value>254</value>
+				</price>
+				<price>
+					<id>feff0696-99ab-11db-937f-000e0c431b59</id>
+					<value>249</value>
+				</price>
+				<price>
+					<id>ecdc8d57-afb7-11e1-a7d3-005056be3bd8</id>
+					<value>250</value>
+				</price>
+				<price>
+					<id>4dc0750a-691d-11e0-adb9-001cc494be80</id>
+					<value>252</value>
+				</price>
+				<price>
+					<id>288427e0-9732-11db-bbb4-0017315894a1</id>
+					<value>277</value>
+				</price>
+				<price>
+					<id>1c061a1b-c3cc-4287-9381-8dbd718263ba</id>
+					<value>188</value>
+				</price>
+			</prices>
+			<amount>61</amount>
+			<minAmount>2</minAmount>
+			<description>0</description>
+			<shown>1</shown>
+			<action>0</action>
+			<propertiesValues/>
+		</Item>
+		<Item>
+			<id>9b7e157d-a885-11e0-abe9-000e0c431b58</id>
+			<itemName>Жесткая гидроизоляция Т-63  ХАРДСКРИН 20кг ОСНОВИТ </itemName>
+			<group>0472249b-07b5-11de-9846-000e0c431b58</group>
+			<prices>
+				<price>
+					<id>31ff32bd-65bc-11e0-894e-000e0c431b58</id>
+					<value>550</value>
+				</price>
+				<price>
+					<id>86157e21-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>550</value>
+				</price>
+				<price>
+					<id>86157e22-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>570</value>
+				</price>
+				<price>
+					<id>feff0693-99ab-11db-937f-000e0c431b59</id>
+					<value>565</value>
+				</price>
+				<price>
+					<id>feff0694-99ab-11db-937f-000e0c431b59</id>
+					<value>560</value>
+				</price>
+				<price>
+					<id>feff0695-99ab-11db-937f-000e0c431b59</id>
+					<value>555</value>
+				</price>
+				<price>
+					<id>feff0696-99ab-11db-937f-000e0c431b59</id>
+					<value>550</value>
+				</price>
+				<price>
+					<id>ecdc8d57-afb7-11e1-a7d3-005056be3bd8</id>
+					<value>550</value>
+				</price>
+				<price>
+					<id>4dc0750a-691d-11e0-adb9-001cc494be80</id>
+					<value>550</value>
+				</price>
+				<price>
+					<id>288427e0-9732-11db-bbb4-0017315894a1</id>
+					<value>579</value>
+				</price>
+				<price>
+					<id>1c061a1b-c3cc-4287-9381-8dbd718263ba</id>
+					<value>428</value>
+				</price>
+			</prices>
+			<amount>64</amount>
+			<minAmount>42</minAmount>
+			<description>0</description>
+			<shown>1</shown>
+			<action>0</action>
+			<propertiesValues/>
+		</Item>
+		<Item>
+			<id>c811c1e7-a62c-11e1-b7f2-005056be3bd8</id>
+			<itemName>Элемент пола  1200х600х20мм Кнауф  (98шт/уп)</itemName>
+			<group>4204b36e-99a3-11db-937f-000e0c431b59</group>
+			<prices>
+				<price>
+					<id>31ff32bd-65bc-11e0-894e-000e0c431b58</id>
+					<value>276</value>
+				</price>
+				<price>
+					<id>86157e21-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>275</value>
+				</price>
+				<price>
+					<id>86157e22-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>292</value>
+				</price>
+				<price>
+					<id>feff0693-99ab-11db-937f-000e0c431b59</id>
+					<value>285</value>
+				</price>
+				<price>
+					<id>feff0694-99ab-11db-937f-000e0c431b59</id>
+					<value>278</value>
+				</price>
+				<price>
+					<id>feff0695-99ab-11db-937f-000e0c431b59</id>
+					<value>276</value>
+				</price>
+				<price>
+					<id>feff0696-99ab-11db-937f-000e0c431b59</id>
+					<value>274</value>
+				</price>
+				<price>
+					<id>ecdc8d57-afb7-11e1-a7d3-005056be3bd8</id>
+					<value>274</value>
+				</price>
+				<price>
+					<id>4dc0750a-691d-11e0-adb9-001cc494be80</id>
+					<value>275</value>
+				</price>
+				<price>
+					<id>288427e0-9732-11db-bbb4-0017315894a1</id>
+					<value>319</value>
+				</price>
+				<price>
+					<id>1c061a1b-c3cc-4287-9381-8dbd718263ba</id>
+					<value>234,06</value>
+				</price>
+			</prices>
+			<amount>1024</amount>
+			<minAmount>570</minAmount>
+			<description>Суперпол-Кнауф оптом — элемент пола (ЭП) оптом — представляет собой изделие заводской готовности к поэлементной сборке стяжек сборных оснований пола КНАУФ .</description>
+			<shown>1</shown>
+			<action>0</action>
+			<propertiesValues>
+				<propertyValue>
+					<property>e8287600-ad96-11e3-b114-005056be1f7c</property>
+					<value>ннннннннннн</value>
+					<measure/>
+				</propertyValue>
+				<propertyValue>
+					<property>cce0ab91-6a67-11e4-8945-005056be1f7a</property>
+					<value>Россия</value>
+					<measure/>
+				</propertyValue>
+				<propertyValue>
+					<property>86212cd6-9722-11e4-80ed-00155d37037a</property>
+					<value/>
+					<measure>мм</measure>
+				</propertyValue>
+				<propertyValue>
+					<property>98d876e7-9722-11e4-80ed-00155d37037a</property>
+					<value/>
+					<measure>мм</measure>
+				</propertyValue>
+				<propertyValue>
+					<property>c59571db-9722-11e4-80ed-00155d37037a</property>
+					<value/>
+					<measure>мм</measure>
+				</propertyValue>
+				<propertyValue>
+					<property>bbea9c1a-3a4b-11e3-88c8-005056be1f7a</property>
+					<value>33</value>
+					<measure/>
+				</propertyValue>
+				<propertyValue>
+					<property>27c97b3a-3bc1-11e3-80e1-005056be1f7a</property>
+					<value/>
+					<measure/>
+				</propertyValue>
+				<propertyValue>
+					<property>618eeb90-3bc1-11e3-80e1-005056be1f7a</property>
+					<value/>
+					<measure/>
+				</propertyValue>
+				<propertyValue>
+					<property>0569475c-1474-11e3-82b9-0050569a1080</property>
+					<value/>
+					<measure/>
+				</propertyValue>
+			</propertiesValues>
+		</Item>
+		<Item>
+			<id>d26d78eb-1325-11e4-b8f5-005056be1f7b</id>
+			<itemName>БОНУС!!!!! Клей для пенобетона Т-112  СЕЛФОРМ 20кг  ОСНОВИТ </itemName>
+			<group>0472249b-07b5-11de-9846-000e0c431b58</group>
+			<prices>
+				<price>
+					<id>31ff32bd-65bc-11e0-894e-000e0c431b58</id>
+					<value>0,01</value>
+				</price>
+				<price>
+					<id>86157e21-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>0,01</value>
+				</price>
+				<price>
+					<id>86157e22-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>0,01</value>
+				</price>
+				<price>
+					<id>feff0693-99ab-11db-937f-000e0c431b59</id>
+					<value>0,01</value>
+				</price>
+				<price>
+					<id>feff0694-99ab-11db-937f-000e0c431b59</id>
+					<value>0,01</value>
+				</price>
+				<price>
+					<id>feff0695-99ab-11db-937f-000e0c431b59</id>
+					<value>0,01</value>
+				</price>
+				<price>
+					<id>feff0696-99ab-11db-937f-000e0c431b59</id>
+					<value>0,01</value>
+				</price>
+				<price>
+					<id>ecdc8d57-afb7-11e1-a7d3-005056be3bd8</id>
+					<value>0,01</value>
+				</price>
+				<price>
+					<id>4dc0750a-691d-11e0-adb9-001cc494be80</id>
+					<value>0,01</value>
+				</price>
+				<price>
+					<id>288427e0-9732-11db-bbb4-0017315894a1</id>
+					<value>0,01</value>
+				</price>
+				<price>
+					<id>1c061a1b-c3cc-4287-9381-8dbd718263ba</id>
+					<value>109</value>
+				</price>
+			</prices>
+			<amount>0</amount>
+			<minAmount>0</minAmount>
+			<description>0</description>
+			<shown>1</shown>
+			<action>0</action>
+			<propertiesValues/>
+		</Item>
+		<Item>
+			<id>780b1596-92bd-11e2-b9a0-005056be3574</id>
+			<itemName>Плиточный клей БАЗАКС 25кг СТРОЙБРИГ</itemName>
+			<group>0472249b-07b5-11de-9846-000e0c431b58</group>
+			<prices>
+				<price>
+					<id>31ff32bd-65bc-11e0-894e-000e0c431b58</id>
+					<value>145</value>
+				</price>
+				<price>
+					<id>86157e21-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>145</value>
+				</price>
+				<price>
+					<id>86157e22-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>156</value>
+				</price>
+				<price>
+					<id>feff0693-99ab-11db-937f-000e0c431b59</id>
+					<value>153</value>
+				</price>
+				<price>
+					<id>feff0694-99ab-11db-937f-000e0c431b59</id>
+					<value>149</value>
+				</price>
+				<price>
+					<id>feff0695-99ab-11db-937f-000e0c431b59</id>
+					<value>145</value>
+				</price>
+				<price>
+					<id>feff0696-99ab-11db-937f-000e0c431b59</id>
+					<value>145</value>
+				</price>
+				<price>
+					<id>ecdc8d57-afb7-11e1-a7d3-005056be3bd8</id>
+					<value>145</value>
+				</price>
+				<price>
+					<id>4dc0750a-691d-11e0-adb9-001cc494be80</id>
+					<value>145</value>
+				</price>
+				<price>
+					<id>288427e0-9732-11db-bbb4-0017315894a1</id>
+					<value>159</value>
+				</price>
+				<price>
+					<id>1c061a1b-c3cc-4287-9381-8dbd718263ba</id>
+					<value>118</value>
+				</price>
+			</prices>
+			<amount>400</amount>
+			<minAmount>50</minAmount>
+			<description>0</description>
+			<shown>1</shown>
+			<action>0</action>
+			<propertiesValues/>
+		</Item>
+		<Item>
+			<id>848c6628-ea2a-11e3-bd50-005056be1f7b</id>
+			<itemName>ПГПВ полнотелая 667*500*80мм (30шт/уп)</itemName>
+			<group>7f850512-1d18-11de-8db9-000e0c431b58</group>
+			<prices>
+				<price>
+					<id>31ff32bd-65bc-11e0-894e-000e0c431b58</id>
+					<value>220</value>
+				</price>
+				<price>
+					<id>86157e21-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>216</value>
+				</price>
+				<price>
+					<id>86157e22-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>238</value>
+				</price>
+				<price>
+					<id>feff0693-99ab-11db-937f-000e0c431b59</id>
+					<value>233</value>
+				</price>
+				<price>
+					<id>feff0694-99ab-11db-937f-000e0c431b59</id>
+					<value>228</value>
+				</price>
+				<price>
+					<id>feff0695-99ab-11db-937f-000e0c431b59</id>
+					<value>222</value>
+				</price>
+				<price>
+					<id>feff0696-99ab-11db-937f-000e0c431b59</id>
+					<value>212</value>
+				</price>
+				<price>
+					<id>ecdc8d57-afb7-11e1-a7d3-005056be3bd8</id>
+					<value>214</value>
+				</price>
+				<price>
+					<id>4dc0750a-691d-11e0-adb9-001cc494be80</id>
+					<value>218</value>
+				</price>
+				<price>
+					<id>288427e0-9732-11db-bbb4-0017315894a1</id>
+					<value>246</value>
+				</price>
+				<price>
+					<id>1c061a1b-c3cc-4287-9381-8dbd718263ba</id>
+					<value>134,75</value>
+				</price>
+			</prices>
+			<amount>400</amount>
+			<minAmount>0</minAmount>
+			<description>0</description>
+			<shown>1</shown>
+			<action>0</action>
+			<propertiesValues/>
+		</Item>
+		<Item>
+			<id>e5c0a38f-610a-11e4-be7e-005056be1f7b</id>
+			<itemName>БОНУС!!!!! Клей для пенобетона Т-112  СЕЛФОРМ ЗИМНИЙ 20кг  ОСНОВИТ </itemName>
+			<group>0472249b-07b5-11de-9846-000e0c431b58</group>
+			<prices>
+				<price>
+					<id>31ff32bd-65bc-11e0-894e-000e0c431b58</id>
+					<value>0,01</value>
+				</price>
+				<price>
+					<id>86157e21-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>0,01</value>
+				</price>
+				<price>
+					<id>86157e22-e56b-11dc-8b6b-000e0c431b58</id>
+					<value>0,01</value>
+				</price>
+				<price>
+					<id>feff0693-99ab-11db-937f-000e0c431b59</id>
+					<value>0,01</value>
+				</price>
+				<price>
+					<id>feff0694-99ab-11db-937f-000e0c431b59</id>
+					<value>0,01</value>
+				</price>
+				<price>
+					<id>feff0695-99ab-11db-937f-000e0c431b59</id>
+					<value>0,01</value>
+				</price>
+				<price>
+					<id>feff0696-99ab-11db-937f-000e0c431b59</id>
+					<value>0,01</value>
+				</price>
+				<price>
+					<id>ecdc8d57-afb7-11e1-a7d3-005056be3bd8</id>
+					<value>0,01</value>
+				</price>
+				<price>
+					<id>4dc0750a-691d-11e0-adb9-001cc494be80</id>
+					<value>0,01</value>
+				</price>
+				<price>
+					<id>288427e0-9732-11db-bbb4-0017315894a1</id>
+					<value>0,01</value>
+				</price>
+				<price>
+					<id>1c061a1b-c3cc-4287-9381-8dbd718263ba</id>
+					<value>135</value>
+				</price>
+			</prices>
+			<amount>-2</amount>
+			<minAmount>0</minAmount>
+			<description>0</description>
+			<shown>1</shown>
+			<action>0</action>
+			<propertiesValues/>
 		</Item>
 	</Items>
 </BodyUpload>

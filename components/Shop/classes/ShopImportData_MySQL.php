@@ -11,6 +11,9 @@ class ShopImportData_MySQL {
     private $FILE_SQL = '';
     private $SQL;
     
+    private $yourUser;
+    private $yourUserData;
+    
     private $DataObject = null;
     private $constantDataSet = array();
     private $constantDataSet_MySQL = array();
@@ -21,15 +24,26 @@ class ShopImportData_MySQL {
     private $ERRORS = array();
     private $WARNINGS = array();
     
+    private $logDate = array();
+    
     public function __construct() {
         global $_SQL_HELPER;
         $this->SQL_HELPER = $_SQL_HELPER;
+        $this->getUserData();
         $this->getData_XML();
         if(count($this->ERRORS) == 0) {
             $this->getData_MySQL();
             $this->generateQueriesMySQL();
             $this->createMysqlScript();
+        } else {
+            $this->importIsNotSuccess();
         }
+    }
+    
+    private function getUserData() {
+        $this->yourUser = new UserData();
+        $this->yourUser->checkAuthorization();
+        $this->yourUserData = $this->yourUser->getUserData();
     }
     
     private function getData_MySQL() {
@@ -57,6 +71,49 @@ class ShopImportData_MySQL {
         $this->DATA = $this->DataObject->get_DATA_XML();
         $this->ERRORS = $this->DataObject->get_ERRORS();
         $this->WARNINGS = $this->DataObject->get_WARNINGS();
+        $this->addLogDate();
+    }
+    
+    private function addLogDate() {
+        $this->logDate = array();
+        $this->DATA['SystemInformation']['FullExport'] ? $this->logDate['fullExport'] = '1' : $this->logDate['fullExport'] = '0';
+        $this->logDate['importDate'] = date("Y-m-d h:i:s");
+        $this->logDate['importDate2'] = date("Y-m-d-h-i-s");
+        $this->logDate['exportDate'] = $this->DATA['SystemInformation']['ExportDateTime'];
+        $this->logDate['exportDate2'] = $this->DATA['SystemInformation']['ExportDateTime2'];
+        $this->logDate['exportUser'] = $this->DATA['SystemInformation']['user'];
+        $this->logDate['importUser'] = $this->yourUserData['login'];
+        $this->logDate['success'] = 0;
+        $this->FILE_SQL = $this->FILE.'apelsin1c_'.$this->logDate['importDate2'].'.sql';
+        $logQ = "INSERT INTO `ShopImportLogs`(`importDate`, `exportDate`, `fullExport`, `user`, `exportUser`, `success`, `scriptFile`) VALUES ("
+                . "'".$this->logDate['importDate']."',"
+                . "'".$this->logDate['exportDate']."',"
+                . "'".$this->logDate['fullExport']."',"
+                . "'".$this->logDate['importUser']."',"
+                . "'".$this->logDate['exportUser']."',"
+                . "'".$this->logDate['success']."',"
+                . "'".$this->FILE_SQL."');";
+        $this->SQL_HELPER->insert($logQ);
+    }
+    private function getScriptToSuccess() {
+        $logQ = "UPDATE `ShopImportLogs` SET `success`='1', "
+                . "`errors`='".count($this->ERRORS)."', "
+                . "`warnings`='".count($this->WARNINGS)."' "
+                . "WHERE "
+                . "`importDate` = '".$this->logDate['importDate']."' AND "
+                . "`exportDate` = '".$this->logDate['exportDate']."' AND "
+                . "`user` = '".$this->logDate['importUser']."';";
+        return $logQ;
+    }
+    private function importIsNotSuccess() {
+        $logQ = "UPDATE `ShopImportLogs` SET `success`='0', "
+                . "`errors`='".count($this->ERRORS)."', "
+                . "`warnings`='".count($this->WARNINGS)."' "
+                . "WHERE "
+                . "`importDate` = '".$this->logDate['importDate']."' AND "
+                . "`exportDate` = '".$this->logDate['exportDate']."' AND "
+                . "`user` = '".$this->logDate['importUser']."';";
+        $this->SQL_HELPER->insert($logQ);
     }
 
     private function generateQueriesMySQL() {
@@ -82,7 +139,7 @@ class ShopImportData_MySQL {
         
         $this->generateQueriesMySQL_AddDataLinks('GroupsHierarchy','ShopGroupsHierarchy',array('group','parentGroup'), 'GroupsHierarchy');
         $this->generateQueriesMySQL_AddDataLinks('PropertiesInGroups','ShopPropertiesInGroups',array('group','property','sequence'), 'PropertiesInGroups');
-        $this->generateQueriesMySQL_AddDataLinks('ItemsPropertiesValues','ShopItemsPropertiesValues',array('item','property','value','measure'), 'ItemsPropertiesValues');
+        $this->generateQueriesMySQL_AddDataLinks('ItemsPropertiesValues','ShopItemsPropertiesValues',array('id','item','property','value','measure'), 'ItemsPropertiesValues');
         $this->generateQueriesMySQL_AddDataLinks('ItemsPrices','ShopItemsPrices',array('item','price','value'), 'ItemsPrices');
     }
     
@@ -188,7 +245,7 @@ class ShopImportData_MySQL {
                 $start = true;
                 $empty = true;
             }
-            if($type != 'lost') {
+            if($type == 'lost') {
                 $query .= "`".$column."` = '".$element."' OR ";
                 $counter++;
                 $empty = false;
@@ -276,16 +333,31 @@ class ShopImportData_MySQL {
             $this->MySQL_QUERIES['AddData'][$addSetKey][] = $query;
         }
     }
-    private function createMysqlScript() {
+    private function createMysqlScript() {        
         $this->SQL = '';
+        $this->SQL .= "--\r\n";
+        $this->SQL .= "-- Export Date: ".$this->logDate['exportDate2']."\r\n";
+        $this->SQL .= "-- Export User: ".$this->logDate['exportUser']."\r\n";
+        $this->SQL .= "--\r\n";
+        $this->SQL .= "-- Import Date: ".$this->logDate['importDate2']."\r\n";
+        $this->SQL .= "-- Import User: ".$this->yourUserData['ferstName']." ".$this->yourUserData['lastName']." [".$this->yourUserData['nickname']."]\r\n";
+        $this->SQL .= "--\r\n";
+        
+        $this->SQL .= "\r\n--\r\n-- DeleteDataLinks\r\n--\r\n\r\n";
         $this->SQL .= $this->getMysqlScript('DeleteDataLinks');
+        $this->SQL .= "\r\n--\r\n-- HideData\r\n--\r\n\r\n";
         $this->SQL .= $this->getMysqlScript('HideData');
+        $this->SQL .= "\r\n--\r\n-- DeleteData\r\n--\r\n\r\n";
         $this->SQL .= $this->getMysqlScript('DeleteData');
+        $this->SQL .= "\r\n--\r\n-- UpdateData\r\n--\r\n\r\n";
         $this->SQL .= $this->getMysqlScript('UpdateData');
+        $this->SQL .= "\r\n--\r\n-- AddData\r\n--\r\n\r\n";
         $this->SQL .= $this->getMysqlScript('AddData');
+        $this->SQL .= "\r\n--\r\n-- AddDataLinks\r\n--\r\n\r\n";
         $this->SQL .= $this->getMysqlScript('AddDataLinks');
-//        $this->FILE_SQL = $this->FILE.'apelsin1c_'.date("Y-m-d-h-i-s").'.sql';
-        $this->FILE_SQL = $this->FILE.'apelsin1c_test.sql';
+        $this->SQL .= "\r\n--\r\n-- Success\r\n--\r\n\r\n";
+        $this->SQL .= $this->getScriptToSuccess();
+//        $this->FILE_SQL = $this->FILE.'apelsin1c.sql';
         file_put_contents($this->FILE_SQL, $this->SQL);
     }
     
@@ -295,7 +367,7 @@ class ShopImportData_MySQL {
             foreach ($queries as $query) {
                 $sql .= $query."\r\n";
             }
-            $sql .= "\r\n";
+//            $sql .= "\r\n";
         }
         return $sql;
     }
@@ -315,7 +387,10 @@ class ShopImportData_MySQL {
     public function get_WARNINGS() {
         return $this->WARNINGS;
     }
-
+    
+    public function getLogDate() {
+        return $this->logDate;
+    }
 
     public function TEST_DATA() {
         echo '<pre>';

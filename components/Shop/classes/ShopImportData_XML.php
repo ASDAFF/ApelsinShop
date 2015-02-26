@@ -86,10 +86,19 @@ class ShopImportData_XML {
                 $this->DATA_XML['SystemInformation']['ExportDateTime'] .= $exportDateTime['hours'][0]['#'].':';
                 $this->DATA_XML['SystemInformation']['ExportDateTime'] .= $exportDateTime['minutes'][0]['#'].':';
                 $this->DATA_XML['SystemInformation']['ExportDateTime'] .= $exportDateTime['seconds'][0]['#'];
+                $this->DATA_XML['SystemInformation']['ExportDateTime2'] = '';
+                $this->DATA_XML['SystemInformation']['ExportDateTime2'] .= $exportDateTime['year'][0]['#'].'.';
+                $this->DATA_XML['SystemInformation']['ExportDateTime2'] .= $exportDateTime['month'][0]['#'].'.';
+                $this->DATA_XML['SystemInformation']['ExportDateTime2'] .= $exportDateTime['day'][0]['#'].' ';
+                $this->DATA_XML['SystemInformation']['ExportDateTime2'] .= $exportDateTime['hours'][0]['#'].':';
+                $this->DATA_XML['SystemInformation']['ExportDateTime2'] .= $exportDateTime['minutes'][0]['#'].':';
+                $this->DATA_XML['SystemInformation']['ExportDateTime2'] .= $exportDateTime['seconds'][0]['#'];
                 $this->DATA_XML['SystemInformation']['FullExport'] = $systemInformation['FullExport'][0]['#'] == 1;
+                $this->DATA_XML['SystemInformation']['user'] = $systemInformation['user'][0]['#'];
             } else {
                 $this->DATA_XML['SystemInformation']['ExportDateTime'] = '';
                 $this->DATA_XML['SystemInformation']['FullExport'] = '';
+                $this->DATA_XML['SystemInformation']['user'] = '';
             }
         }
     }
@@ -129,6 +138,10 @@ class ShopImportData_XML {
                 $noError = false;
             }
         }
+        if(!$this->checkXmlDataInArray($systemInformation,'user')) {
+            $this->ERRORS[] = $this->getErrorTextNoBlock('SystemInformation::user');
+            $noError = false;
+        }
         return $noError;
     }
     private function getXmlData_PricesTypes() {
@@ -143,7 +156,11 @@ class ShopImportData_XML {
                         $this->xmlDataIdSet['PricesTypes'][] = $type['#']['id'][0]['#'];
                         $this->DATA_XML['PricesTypes'][$key]['id'] = $type['#']['id'][0]['#'];
                         $this->DATA_XML['PricesTypes'][$key]['typeName'] = $type['#']['typeName'][0]['#'];
+                        if($type['#']['default'][0]['#'] !== '1' && $type['#']['default'][0]['#'] !== '0') {
+                            $this->ERRORS[] = 'Некорректное значение default для типа цен <span class="WarErrTextId">'.$type['#']['id'][0]['#'].'</span>';
+                        }
                         $this->DATA_XML['PricesTypes'][$key]['default'] = $type['#']['default'][0]['#'];
+                        
                         $default += $type['#']['default'][0]['#'];
                     }
                 } else {
@@ -199,6 +216,9 @@ class ShopImportData_XML {
                         $this->DATA_XML['Properties'][$key]['propertyName'] = $property['#']['propertyName'][0]['#'];
                         $this->DATA_XML['Properties'][$key]['filterType'] = $property['#']['filterType'][0]['#'];
                         $this->DATA_XML['Properties'][$key]['valueType'] = $property['#']['valueType'][0]['#'];
+                        if($property['#']['oneOfAllValues'][0]['#'] !== '1' && $property['#']['oneOfAllValues'][0]['#'] !== '0') {
+                            $this->ERRORS[] = 'Некорректное значение oneOfAllValues для свойства <span class="WarErrTextId">'.$property['#']['id'][0]['#'].'</span>';
+                        }
                         $this->DATA_XML['Properties'][$key]['oneOfAllValues'] = $property['#']['oneOfAllValues'][0]['#'];
                         $this->addConstantDataSetValue('filterType', $property['#']['filterType'][0]['#']);
                         $this->addConstantDataSetValue('valueType', $property['#']['valueType'][0]['#']);
@@ -274,6 +294,12 @@ class ShopImportData_XML {
                         $this->DATA_XML['Groups'][$key]['groupName'] = $group['#']['groupName'][0]['#'];
                         $this->DATA_XML['Groups'][$key]['shown'] = $group['#']['shown'][0]['#'];
                         $this->DATA_XML['Groups'][$key]['showInHierarchy'] = $group['#']['showInHierarchy'][0]['#'];
+                        if($group['#']['shown'][0]['#'] != '1' && $group['#']['shown'][0]['#'] != '0') {
+                            $this->ERRORS[] = 'Неверное значение поля shown для группы <span class="WarErrTextId">'.$group['#']['id'][0]['#'].'</span>';
+                        }
+                        if($group['#']['showInHierarchy'][0]['#'] != '1' && $group['#']['showInHierarchy'][0]['#'] != '0') {
+                            $this->ERRORS[] = 'Неверное значение поля showInHierarchy для группы <span class="WarErrTextId">'.$group['#']['id'][0]['#'].'</span>';
+                        }
                     }
                 } else {
                     $this->ERRORS[] = $this->getErrorTextNoBlock('Groups::Group',$key);
@@ -370,6 +396,9 @@ class ShopImportData_XML {
                     if($this->checkXmlData_PropertiesInGroups($key,$propertiesInGroups['#'])) {
                         $this->DATA_XML['PropertiesInGroups'][$key]['group'] = $propertiesInGroups['#']['group'][0]['#'];
                         $this->DATA_XML['PropertiesInGroups'][$key]['property'] = $propertiesInGroups['#']['property'][0]['#'];
+                        if($propertiesInGroups['#']['sequence'][0]['#'] <= 0 ) {
+                            $this->ERRORS[] = 'Неверное значение поля sequence в PropertiesInGroups. Номер записи <span class="WarErrTextName">'.$key.'</span>';
+                        }
                         $this->DATA_XML['PropertiesInGroups'][$key]['sequence'] = $propertiesInGroups['#']['sequence'][0]['#'];
                         if(!in_array($propertiesInGroups['#']['group'][0]['#'],$this->xmlDataIdSet["Groups"])) {
                             $this->ERRORS[] = 'Свойство <span class="WarErrTextId">'.$propertiesInGroups['#']['property'][0]['#'].'</span> указано для группы <span class="WarErrTextId">'.$propertiesInGroups['#']['group'][0]['#'].'</span> информация о которой отсутствует';
@@ -426,12 +455,19 @@ class ShopImportData_XML {
                         }
                         $this->DATA_XML['Items'][$key]['group'] = $item['#']['group'][0]['#'];
                         $this->DATA_XML['Items'][$key]['action'] = $item['#']['action'][0]['#'];
-                        if($this->checkXmlDataInArray($item['#'], 'amount')) {
+                        
+                        if($item['#']['action'][0]['#'] != '1' && $item['#']['action'][0]['#'] != '0') {
+                            $this->ERRORS[] = 'Неверное значение поля action для товара <span class="WarErrTextId">'.$item['#']['id'][0]['#'].'</span>';
+                        }
+                        
+                        $item['#']['amount'][0]['#'] = str_replace(',', '.', $item['#']['amount'][0]['#']);
+                        if($this->checkXmlDataInArray($item['#'], 'amount') && $item['#']['amount'][0]['#'] > 0) {
                             $this->DATA_XML['Items'][$key]['amount'] = $item['#']['amount'][0]['#'];
                         } else {
                             $this->DATA_XML['Items'][$key]['amount'] = 0;
                         }
-                        if($this->checkXmlDataInArray($item['#'], 'minAmount')) {
+                        $item['#']['minAmount'][0]['#'] = str_replace(',', '.', $item['#']['minAmount'][0]['#']);
+                        if($this->checkXmlDataInArray($item['#'], 'minAmount') && $item['#']['minAmount'][0]['#'] > 0) {
                             $this->DATA_XML['Items'][$key]['minAmount'] = $item['#']['minAmount'][0]['#'];
                         } else {
                             $this->DATA_XML['Items'][$key]['minAmount'] = 0;
@@ -442,6 +478,11 @@ class ShopImportData_XML {
                             $this->DATA_XML['Items'][$key]['description'] = '';
                         }
                         $this->DATA_XML['Items'][$key]['shown'] = $item['#']['shown'][0]['#'];
+                        
+                        if($item['#']['shown'][0]['#'] != '1' && $item['#']['shown'][0]['#'] != '0') {
+                            $this->ERRORS[] = 'Неверное значение поля shown для товара <span class="WarErrTextId">'.$item['#']['id'][0]['#'].'</span>';
+                        }
+                        
                         if(isset($item['#']['prices'][0]['#']['price'])) {
                             $this->getXmlData_ItemsPrices($item['#']['id'][0]['#'],$item['#']['prices'][0]['#']['price']);
                         } else {
@@ -550,7 +591,13 @@ class ShopImportData_XML {
             if(isset($price['#'])) {
                 if($this->checkXmlData_ItemsPrices($key,$price['#'],$item)) {
                     $data['price'] = $price['#']['id'][0]['#'];
-                    $data['value'] = $price['#']['value'][0]['#'];
+                    $price['#']['value'][0]['#'] = str_replace(',', '.', $price['#']['value'][0]['#']);
+                    if($price['#']['value'][0]['#'] <= 0) {
+                        $this->ERRORS[] = 'Цена ('.$price['#']['value'][0]['#'].') для товара '.$item.' меньше или равна нулю.';
+                        $data['value'] = 0;
+                    } else {
+                        $data['value'] = $price['#']['value'][0]['#'];
+                    }
                     $this->DATA_XML['ItemsPrices'][] = $data;
                     if(!in_array($price['#']['id'][0]['#'],$this->xmlDataIdSet["PricesTypes"])) {
                         $this->ERRORS[] = 'Для товара <span class="WarErrTextId">'.$item.'</span> указан неизвестный тип цен <span class="WarErrTextId">'.$price['#']['id'][0]['#'].'</span>';
@@ -584,6 +631,7 @@ class ShopImportData_XML {
         foreach ($properties as $key => $property) {
             if(isset($property['#'])) {
                 if($this->checkXmlData_ItemsPropertiesValues($key,$property['#'],$item)) {
+                    $data['id'] = ID_GENERATOR::generateID(6,$item);
                     $data['property'] = $property['#']['property'][0]['#'];
                     if(isset($property['#']['measure'][0]['#'])) {
                         $data['measure'] = $property['#']['measure'][0]['#'];

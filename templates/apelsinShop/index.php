@@ -22,7 +22,9 @@
 <?php $ROOT->bodyStart();?>
 <div class='test'><?php $ROOT->block('test');?></div>
 <div class='content'>
-<?php $ROOT->content();?>
+<?php 
+$ROOT->content();
+?>
 </div>
 <?php $ROOT->bodyEnd();?>
 </body>

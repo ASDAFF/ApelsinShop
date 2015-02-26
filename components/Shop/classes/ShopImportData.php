@@ -18,10 +18,17 @@ class ShopImportData {
         $this->SQL_HELPER = $_SQL_HELPER;
         $this->getUserData();
         if($this->yourUser->checkAuthorization()) {
-            $this->DATA_MYSQL = new ShopImportData_MySQL();
-            $this->ERRORS = $this->DATA_MYSQL->get_ERRORS();
-            $this->WARNINGS = $this->DATA_MYSQL->get_WARNINGS();
-//            $this->DATA_MYSQL->execMysqlScript();
+            $chekQ = 'SELECT * FROM `ShopImportLogs` order by `importDate` DESC';
+            $shopImportLaastLogs = $this->SQL_HELPER->select($chekQ,1);
+            if(!isset($shopImportLaastLogs['success']) || $shopImportLaastLogs['success']==='1') {
+                $this->DATA_MYSQL = new ShopImportData_MySQL();
+                $this->ERRORS = $this->DATA_MYSQL->get_ERRORS();
+                $this->WARNINGS = $this->DATA_MYSQL->get_WARNINGS();
+//                sleep(20);
+                $this->DATA_MYSQL->execMysqlScript();
+            } else {
+                $this->ERRORS[] = 'Выгрузка уже началась';
+            }
         } else {
             $this->ERRORS[] = 'Вы не авторизовались на сайте';
         }
@@ -44,14 +51,13 @@ class ShopImportData {
     public function TEST_DATA() {
         echo '<pre>';
         var_dump($this->ERRORS);
-//        var_dump($this->WARNINGS);
+        var_dump($this->WARNINGS);
         echo '</pre>';
     }
     public function getReport() {
         $err = count($this->ERRORS);
         $war = count($this->WARNINGS);
         $out = '<div class="Import1cErrWarReport">';
-//        $out .= 'errors: ('.$err.') & warnings: ('.$war.')';
         $out .= '<h1>ERRORS ('.$err.'):</h1>';
         foreach ($this->ERRORS as $key => $error) {
             $out .= '<div class="Import1cErrWarReportElement"><span class="WarErrTextHead">error '.$this->getNumberString($key,$err)."</span> - ".$error.'</div>';
@@ -63,6 +69,17 @@ class ShopImportData {
         $out .= '<h1>errors: ('.$err.') & warnings: ('.$war.')</h1>';
         $out .= '</div>';
         return $out;
+    }
+    public function creatReportFile() {
+        $err = count($this->ERRORS);
+        $war = count($this->WARNINGS);
+        $logDate = $this->getLogDate();
+        $out = '';
+        $out .= "-- Export Date: ".$logDate['exportDate2']."\r\n";
+        $out .= "-- Export User: ".$logDate['exportUser']."\r\n";
+        $out .= "--\r\n";
+        $out .= "-- Import Date: ".$logDate['importDate2']."\r\n";
+        $out .= "-- Import User: ".$logDate['ferstName']." ".$this->yourUserData['lastName']." [".$this->yourUserData['nickname']."]\r\n";
     }
     public function getNumberString($number,$max) {
         $maxlen = strlen($max);

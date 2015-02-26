@@ -39,7 +39,6 @@ if(!$_SITECONFIG->getSiteClosed()) {
         $ROOT= new Root();
         // Подключение шаблона
         $ROOT->includeTemplate();
-
     }
 } else {
     // Перенаправить в случае если сайт закрыт
