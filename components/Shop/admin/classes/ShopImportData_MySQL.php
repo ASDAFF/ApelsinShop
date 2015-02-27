@@ -7,6 +7,7 @@
 class ShopImportData_MySQL {
     private $SQL_HELPER;
     private $QUERIES_SET_LIMIT = 50;
+    private $FILE_XML = './resources/Components/Shop/ImportFilesXML/';
     private $FILE = './resources/Components/Shop/ImportFilesMySQL/';
     private $LOG_Text = './resources/Components/Shop/ImportLogsText/';
     private $LOG_Html = './resources/Components/Shop/ImportLogsHtml/';
@@ -27,8 +28,10 @@ class ShopImportData_MySQL {
     private $WARNINGS = array();
     
     private $logDate = array();
+    private $fileName ;
     
-    public function __construct() {
+    public function __construct($fileName) {
+        $this->fileName = $fileName;
         global $_SQL_HELPER;
         $this->SQL_HELPER = $_SQL_HELPER;
         $this->getUserData();
@@ -67,7 +70,7 @@ class ShopImportData_MySQL {
     }
     
     private function getData_XML() {
-        $this->DataObject = new ShopImportData_XML();
+        $this->DataObject = new ShopImportData_XML($this->fileName);
         $this->constantDataSet = $this->DataObject->get_constantDataSet();
         $this->dataIdSet = $this->DataObject->get_xmlDataIdSet();
         $this->DATA = $this->DataObject->get_DATA_XML();
@@ -80,25 +83,31 @@ class ShopImportData_MySQL {
         $this->logDate = array();
         $this->DATA['SystemInformation']['FullExport'] ? $this->logDate['fullExport'] = '1' : $this->logDate['fullExport'] = '0';
         $this->logDate['importDate'] = date("Y-m-d h:i:s");
-        $this->logDate['importDate2'] = date("Y-m-d-h-i-s");
+        $this->logDate['importDate2'] = date("Y.m.d_h:i:s");
         $this->logDate['exportDate'] = $this->DATA['SystemInformation']['ExportDateTime'];
         $this->logDate['exportDate2'] = $this->DATA['SystemInformation']['ExportDateTime2'];
+        $this->logDate['exportDate3'] = $this->DATA['SystemInformation']['ExportDateTime3'];
         $this->logDate['exportUser'] = $this->DATA['SystemInformation']['user'];
         $this->logDate['importUser'] = $this->yourUserData['login'];
         $this->logDate['success'] = 0;
         $this->logDate['sqlFile'] = 'apelsin1c_'.$this->logDate['importDate2'].'.sql';
         $this->logDate['logFile'] = 'apelsin1c_'.$this->logDate['importDate2'].'.log';
         $this->logDate['htmlFile'] = 'apelsin1c_'.$this->logDate['importDate2'].'.html';
+        $this->logDate['xmlFile'] = 'apelsin1c_'.$this->logDate['exportDate3'].'.xml';
         $this->logDate['logText'] = $this->LOG_Text;
         $this->logDate['logHtml'] = $this->LOG_Html;
         $this->FILE_SQL = $this->FILE.$this->logDate['sqlFile'];
-        $logQ = "INSERT INTO `ShopImportLogs`(`importDate`, `exportDate`, `fullExport`, `user`, `exportUser`, `success`, `sqlFile`, `logFile`) VALUES ("
+        if (!rename($this->FILE_XML.$this->fileName, $this->FILE_XML.$this->logDate['xmlFile'])) {
+            $this->ERRORS[] = 'Неудается скопирвоать файл.';
+        }
+        $logQ = "INSERT INTO `ShopImportLogs`(`importDate`, `exportDate`, `fullExport`, `user`, `exportUser`, `success`, `xmlFile`, `sqlFile`, `logFile`) VALUES ("
                 . "'".$this->logDate['importDate']."',"
                 . "'".$this->logDate['exportDate']."',"
                 . "'".$this->logDate['fullExport']."',"
                 . "'".$this->logDate['importUser']."',"
                 . "'".$this->logDate['exportUser']."',"
                 . "'".$this->logDate['success']."',"
+                . "'".$this->logDate['xmlFile']."',"
                 . "'".$this->logDate['sqlFile']."',"
                 . "'".$this->logDate['logFile']."');";
         $this->SQL_HELPER->insert($logQ);

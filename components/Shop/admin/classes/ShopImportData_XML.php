@@ -6,7 +6,7 @@
  */
 class ShopImportData_XML {
     private $SQL_HELPER;
-    private $FILE = './resources/Components/Shop/ImportFilesXML/apelsin1c.xml';
+    private $FILE = './resources/Components/Shop/ImportFilesXML/';
     
     private $FILE_BUFFER = array();
     private $DATA_XML = array();
@@ -16,8 +16,11 @@ class ShopImportData_XML {
     
     private $constantDataSet = array();
     private $xmlDataIdSet = array();
+    private $fileName ;
     
-    public function __construct() {
+    public function __construct($fileName) {
+        $this->fileName = $fileName;
+        $this->FILE .= $this->fileName;
         global $_SQL_HELPER;
         $this->SQL_HELPER = $_SQL_HELPER;
         $this->getMysqlData();
@@ -93,6 +96,13 @@ class ShopImportData_XML {
                 $this->DATA_XML['SystemInformation']['ExportDateTime2'] .= $exportDateTime['hours'][0]['#'].':';
                 $this->DATA_XML['SystemInformation']['ExportDateTime2'] .= $exportDateTime['minutes'][0]['#'].':';
                 $this->DATA_XML['SystemInformation']['ExportDateTime2'] .= $exportDateTime['seconds'][0]['#'];
+                $this->DATA_XML['SystemInformation']['ExportDateTime3'] = '';
+                $this->DATA_XML['SystemInformation']['ExportDateTime3'] .= $exportDateTime['year'][0]['#'].'.';
+                $this->DATA_XML['SystemInformation']['ExportDateTime3'] .= $exportDateTime['month'][0]['#'].'.';
+                $this->DATA_XML['SystemInformation']['ExportDateTime3'] .= $exportDateTime['day'][0]['#'].'_';
+                $this->DATA_XML['SystemInformation']['ExportDateTime3'] .= $exportDateTime['hours'][0]['#'].':';
+                $this->DATA_XML['SystemInformation']['ExportDateTime3'] .= $exportDateTime['minutes'][0]['#'].':';
+                $this->DATA_XML['SystemInformation']['ExportDateTime3'] .= $exportDateTime['seconds'][0]['#'];
                 $this->DATA_XML['SystemInformation']['FullExport'] = $systemInformation['FullExport'][0]['#'] == 1;
                 $this->DATA_XML['SystemInformation']['user'] = $systemInformation['user'][0]['#'];
             } else {

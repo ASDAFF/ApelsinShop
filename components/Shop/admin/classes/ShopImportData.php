@@ -10,29 +10,33 @@ class ShopImportData {
     private $ERRORS = array();
     private $WARNINGS = array();
     private $START_ERRORS = array();
+    private $FILE_XML = './resources/Components/Shop/ImportFilesXML/';
     
     private $yourUser;
     private $yourUserData;
     
     private $reportText;
     private $reportHtml;
+    private $fileName ;
     
-    public function __construct() {
+    public function __construct($fileName) {
+        $this->fileName = $fileName;
         global $_SQL_HELPER;
         $this->SQL_HELPER = $_SQL_HELPER;
         $this->getUserData();
         if($this->yourUser->checkAuthorization()) {
-            $chekQ = 'SELECT * FROM `ShopImportLogs` order by `importDate` DESC';
-            $shopImportLaastLogs = $this->SQL_HELPER->select($chekQ,1);
-            if(!isset($shopImportLaastLogs['success']) || $shopImportLaastLogs['success']==='1' || $shopImportLaastLogs['errors']>'0') {
-                $this->DATA_MYSQL = new ShopImportData_MySQL();
-                $this->ERRORS = $this->DATA_MYSQL->get_ERRORS();
-                $this->WARNINGS = $this->DATA_MYSQL->get_WARNINGS();
-//                sleep(20);
-                $this->DATA_MYSQL->execMysqlScript();
-                $this->creatReportFile();
+            if(ShopImportDataCheckHelper::CheckFile($this->FILE_XML.$fileName)) {
+                if(ShopImportDataCheckHelper::CheckImportSuccess()) {
+                    $this->DATA_MYSQL = new ShopImportData_MySQL($this->fileName);
+                    $this->ERRORS = $this->DATA_MYSQL->get_ERRORS();
+                    $this->WARNINGS = $this->DATA_MYSQL->get_WARNINGS();
+                    $this->DATA_MYSQL->execMysqlScript();
+                    $this->creatReportFile();
+                } else {
+                    $this->START_ERRORS[] = 'Предыдущая выгрузка еще не закончилась';
+                }
             } else {
-                $this->START_ERRORS[] = 'Предыдущая выгрузка еще не закончилась';
+                $this->START_ERRORS[] = 'Не найден XML файл с выгрузкой';
             }
         } else {
             $this->START_ERRORS[] = 'Вы не авторизовались на сайте';
