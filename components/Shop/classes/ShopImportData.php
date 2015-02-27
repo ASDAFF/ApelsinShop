@@ -9,9 +9,13 @@ class ShopImportData {
     private $DATA_MYSQL;
     private $ERRORS = array();
     private $WARNINGS = array();
+    private $START_ERRORS = array();
     
     private $yourUser;
     private $yourUserData;
+    
+    private $reportText;
+    private $reportHtml;
     
     public function __construct() {
         global $_SQL_HELPER;
@@ -20,17 +24,18 @@ class ShopImportData {
         if($this->yourUser->checkAuthorization()) {
             $chekQ = 'SELECT * FROM `ShopImportLogs` order by `importDate` DESC';
             $shopImportLaastLogs = $this->SQL_HELPER->select($chekQ,1);
-            if(!isset($shopImportLaastLogs['success']) || $shopImportLaastLogs['success']==='1') {
+            if(!isset($shopImportLaastLogs['success']) || $shopImportLaastLogs['success']==='1' || $shopImportLaastLogs['errors']>'0') {
                 $this->DATA_MYSQL = new ShopImportData_MySQL();
                 $this->ERRORS = $this->DATA_MYSQL->get_ERRORS();
                 $this->WARNINGS = $this->DATA_MYSQL->get_WARNINGS();
 //                sleep(20);
                 $this->DATA_MYSQL->execMysqlScript();
+                $this->creatReportFile();
             } else {
-                $this->ERRORS[] = 'Выгрузка уже началась';
+                $this->START_ERRORS[] = 'Предыдущая выгрузка еще не закончилась';
             }
         } else {
-            $this->ERRORS[] = 'Вы не авторизовались на сайте';
+            $this->START_ERRORS[] = 'Вы не авторизовались на сайте';
         }
     }
     
@@ -54,33 +59,126 @@ class ShopImportData {
         var_dump($this->WARNINGS);
         echo '</pre>';
     }
-    public function getReport() {
-        $err = count($this->ERRORS);
-        $war = count($this->WARNINGS);
-        $out = '<div class="Import1cErrWarReport">';
-        $out .= '<h1>ERRORS ('.$err.'):</h1>';
-        foreach ($this->ERRORS as $key => $error) {
-            $out .= '<div class="Import1cErrWarReportElement"><span class="WarErrTextHead">error '.$this->getNumberString($key,$err)."</span> - ".$error.'</div>';
-        }
-        $out .= '<h1>WARNINGS ('.$war.'):</h1>';
-        foreach ($this->WARNINGS as $key => $warning) {
-            $out .= '<div class="Import1cErrWarReportElement"><span class="WarErrTextHead">warning '.$this->getNumberString($key,$war)."</span> - ".$warning.'</div>';
-        }
-        $out .= '<h1>errors: ('.$err.') & warnings: ('.$war.')</h1>';
-        $out .= '</div>';
-        return $out;
-    }
-    public function creatReportFile() {
-        $err = count($this->ERRORS);
-        $war = count($this->WARNINGS);
-        $logDate = $this->getLogDate();
+    
+    private function generateLogFileText($err,$war,$logDate) {
         $out = '';
         $out .= "-- Export Date: ".$logDate['exportDate2']."\r\n";
         $out .= "-- Export User: ".$logDate['exportUser']."\r\n";
-        $out .= "--\r\n";
         $out .= "-- Import Date: ".$logDate['importDate2']."\r\n";
-        $out .= "-- Import User: ".$logDate['ferstName']." ".$this->yourUserData['lastName']." [".$this->yourUserData['nickname']."]\r\n";
+        $out .= "-- Import User: ".$this->yourUserData['ferstName']." ".$this->yourUserData['lastName']." [".$this->yourUserData['nickname']."]\r\n";
+        if(count($this->ERRORS) === 0 && count($this->START_ERRORS) === 0) {
+            $out .= "-- Sql File: ".$logDate['sqlFile']."\r\n";
+        }
+        $out .= "-- Errors: (".$err.") & Warnings: (".$war.")\r\n";
+        $out .= "\r\nERRORS (".$err."):\r\n\r\n";
+        foreach ($this->ERRORS as $key => $error) {
+            $out .= $this->getNumberString($key,$err).": ".strip_tags($error)."\r\n";
+        }
+        $out .= "\r\nWARNINGS (".$war."):\r\n\r\n";
+        foreach ($this->WARNINGS as $key => $warning) {
+            $out .= $this->getNumberString($key,$war).": ".strip_tags($warning)."\r\n";
+        }
+        $out .= "\r\nerrors: (".$err.") & warnings: (".$war.")\r\n";
+        return $out;
     }
+    
+    private function generateLogFileHtml($err,$war,$logDate = null) {
+        $out = '<div class="Import1cErrWarReport">';
+            $out .= '<div class="Import1cErrWarReportInfo">';
+                if($logDate !== null) {
+                    $out .= "<div class='Import1cErrWarReportInfoElement'>Export Date: ".$logDate['exportDate2']."</div>";
+                    $out .= "<div class='Import1cErrWarReportInfoElement'>Export User: ".$logDate['exportUser']."</div>";
+                    $out .= "<div class='Import1cErrWarReportInfoElement'>Import Date: ".$logDate['importDate2']."</div>";
+                    $out .= "<div class='Import1cErrWarReportInfoElement'>Import User: ".$this->yourUserData['ferstName']." ".$this->yourUserData['lastName']." [".$this->yourUserData['nickname']."]</div>";
+                } else {
+                    $out .= "<div class='Import1cErrWarReportInfoElement'>Import Date: ".date("Y-m-d h:i:s")."</div>";
+                    $out .= "<div class='Import1cErrWarReportInfoElement'>Import User: ".$this->yourUserData['ferstName']." ".$this->yourUserData['lastName']." [".$this->yourUserData['nickname']."]</div>";
+                }
+                if(count($this->ERRORS) === 0 && count($this->START_ERRORS) === 0) {
+                    $out .= "<div class='Import1cErrWarReportInfoElement'>Sql File: ".$logDate['sqlFile']."</div>";
+                }
+                $out .= "<div class='Import1cErrWarReportInfoElement ErrorsAndWarnings'>Errors: (".$err.") & Warnings: (".$war.")</div>";
+            $out .= '</div>';
+            $out .= '<h1>ERRORS ('.$err.'):</h1>';
+            foreach ($this->ERRORS as $key => $error) {
+                $out .= '<div class="Import1cErrWarReportElement"><span class="WarErrTextHead">error '.$this->getNumberString($key,$err)."</span> - ".$error.'</div>';
+            }
+            $out .= '<h1>WARNINGS ('.$war.'):</h1>';
+            foreach ($this->WARNINGS as $key => $warning) {
+                $out .= '<div class="Import1cErrWarReportElement"><span class="WarErrTextHead">warning '.$this->getNumberString($key,$war)."</span> - ".$warning.'</div>';
+            }
+        $out .= '</div>';
+        return $out;
+    }
+    
+    private function generateStartErrors() {
+        $out = '<div class="Import1cErrWarReport">';
+        foreach ($this->START_ERRORS as $error) {
+            $out .= "<div class='Import1cErrWarReportElement'>".$error.'</div>';
+        }
+        $out .= '</div>';
+        return $out;
+    }
+    private function generateLogHtmlFile($logDate,$html) {
+        $out = "<!DOCTYPE html>";
+        $out .= "<html>";
+        $out .= "<head>";
+        $out .= "<title>Лог файл от ".$logDate['importDate2']."</title>";
+        $out .= "<meta http-equiv='Content-Type' content='text/html; charset=utf8'>";
+        $out .= "
+        <style>
+            .Import1cErrWarReport {
+                font: 10px/12px monospace;
+                color: #5f5f5f;
+            }
+            .Import1cErrWarReport h1 {
+                font: bold 14px/16px monospace;
+                margin-bottom: 5px;
+            }
+            .Import1cErrWarReport .Import1cErrWarReportElement {
+
+            }
+            .Import1cErrWarReport .Import1cErrWarReportElement .WarErrTextHead {
+                color: #000;
+                font-weight: bold;
+            }
+            .Import1cErrWarReport .Import1cErrWarReportElement .WarErrTextId {
+                color: red;
+                font-weight: bold;
+            }
+            .Import1cErrWarReport .Import1cErrWarReportElement .WarErrTextName {
+                color: blue;
+                font-weight: bold;
+            }
+        </style>
+        ";
+        $out .= "</head>";
+        $out .= "<body>";
+        $out .= $html;
+        $out .= "</body>";
+        $out .= "</html>";
+        return $out;
+    }
+    
+    private function creatReportFile() {
+        $err = count($this->ERRORS);
+        $war = count($this->WARNINGS);
+        $logDate = $this->DATA_MYSQL->getLogDate();
+        $this->reportText = $this->generateLogFileText($err,$war,$logDate);
+        $this->reportHtml = $this->generateLogFileHtml($err,$war,$logDate);
+        $fileHtml = $this->generateLogHtmlFile($logDate,$this->reportHtml);
+        file_put_contents($logDate['logText'].$logDate['logFile'], $this->reportText);
+        file_put_contents($logDate['logHtml'].$logDate['htmlFile'], $fileHtml);
+    }
+    
+    public function getReport() {
+        if(count($this->START_ERRORS) > 0) {
+            return $this->generateStartErrors();
+        } else {
+            return $this->reportHtml;
+        }
+    }
+    
     public function getNumberString($number,$max) {
         $maxlen = strlen($max);
         $numberlen = strlen($number);

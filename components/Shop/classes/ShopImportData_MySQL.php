@@ -8,6 +8,8 @@ class ShopImportData_MySQL {
     private $SQL_HELPER;
     private $QUERIES_SET_LIMIT = 50;
     private $FILE = './resources/Components/Shop/ImportFilesMySQL/';
+    private $LOG_Text = './resources/Components/Shop/ImportLogsText/';
+    private $LOG_Html = './resources/Components/Shop/ImportLogsHtml/';
     private $FILE_SQL = '';
     private $SQL;
     
@@ -84,15 +86,21 @@ class ShopImportData_MySQL {
         $this->logDate['exportUser'] = $this->DATA['SystemInformation']['user'];
         $this->logDate['importUser'] = $this->yourUserData['login'];
         $this->logDate['success'] = 0;
-        $this->FILE_SQL = $this->FILE.'apelsin1c_'.$this->logDate['importDate2'].'.sql';
-        $logQ = "INSERT INTO `ShopImportLogs`(`importDate`, `exportDate`, `fullExport`, `user`, `exportUser`, `success`, `scriptFile`) VALUES ("
+        $this->logDate['sqlFile'] = 'apelsin1c_'.$this->logDate['importDate2'].'.sql';
+        $this->logDate['logFile'] = 'apelsin1c_'.$this->logDate['importDate2'].'.log';
+        $this->logDate['htmlFile'] = 'apelsin1c_'.$this->logDate['importDate2'].'.html';
+        $this->logDate['logText'] = $this->LOG_Text;
+        $this->logDate['logHtml'] = $this->LOG_Html;
+        $this->FILE_SQL = $this->FILE.$this->logDate['sqlFile'];
+        $logQ = "INSERT INTO `ShopImportLogs`(`importDate`, `exportDate`, `fullExport`, `user`, `exportUser`, `success`, `sqlFile`, `logFile`) VALUES ("
                 . "'".$this->logDate['importDate']."',"
                 . "'".$this->logDate['exportDate']."',"
                 . "'".$this->logDate['fullExport']."',"
                 . "'".$this->logDate['importUser']."',"
                 . "'".$this->logDate['exportUser']."',"
                 . "'".$this->logDate['success']."',"
-                . "'".$this->FILE_SQL."');";
+                . "'".$this->logDate['sqlFile']."',"
+                . "'".$this->logDate['logFile']."');";
         $this->SQL_HELPER->insert($logQ);
     }
     private function getScriptToSuccess() {
@@ -367,7 +375,6 @@ class ShopImportData_MySQL {
             foreach ($queries as $query) {
                 $sql .= $query."\r\n";
             }
-//            $sql .= "\r\n";
         }
         return $sql;
     }
