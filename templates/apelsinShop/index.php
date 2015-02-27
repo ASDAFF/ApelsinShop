@@ -4,10 +4,10 @@
 <head>
     <style>
         .test {
-            height: 200px;
+            height: 30px;
             width: 100%;
-            background: blue;
-            display: none;
+            background: #ef7f1a;
+            /*display: none;*/
         }
         .test .m_block{
             float: right;
@@ -17,6 +17,7 @@
         }
     </style>
     <?php $ROOT->head();?>
+    <link rel="stylesheet" href="<?php $ROOT->templatePath();?>css/AdminPanel.css" type="text/css" />
 </head>
 <body>
 <?php $ROOT->bodyStart();?>

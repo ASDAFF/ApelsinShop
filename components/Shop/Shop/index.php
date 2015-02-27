@@ -1,3 +1,3 @@
 <?php
-$shopImportData = new ShopImportData();
-echo $shopImportData->getReport();
+//$shopImportData = new ShopImportData();
+//echo $shopImportData->getReport();
