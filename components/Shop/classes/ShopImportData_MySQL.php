@@ -90,6 +90,7 @@ class ShopImportData_MySQL {
         $this->logDate['exportUser'] = $this->DATA['SystemInformation']['user'];
         $this->logDate['importUser'] = $this->yourUserData['login'];
         $this->logDate['success'] = 0;
+        
         $this->logDate['sqlFile'] = 'apelsin1c_'.$this->logDate['importDate2'].'.sql';
         $this->logDate['logFile'] = 'apelsin1c_'.$this->logDate['importDate2'].'.log';
         $this->logDate['htmlFile'] = 'apelsin1c_'.$this->logDate['importDate2'].'.html';
@@ -100,7 +101,7 @@ class ShopImportData_MySQL {
         if (!rename($this->FILE_XML.$this->fileName, $this->FILE_XML.$this->logDate['xmlFile'])) {
             $this->ERRORS[] = 'Неудается скопирвоать файл.';
         }
-        $logQ = "INSERT INTO `ShopImportLogs`(`importDate`, `exportDate`, `fullExport`, `user`, `exportUser`, `success`, `xmlFile`, `sqlFile`, `logFile`) VALUES ("
+        $logQ = "INSERT INTO `ShopImportLogs`(`importDate`, `exportDate`, `fullExport`, `user`, `exportUser`, `success`, `xmlFile`, `sqlFile`, `logFileText`, `logFileHtml`) VALUES ("
                 . "'".$this->logDate['importDate']."',"
                 . "'".$this->logDate['exportDate']."',"
                 . "'".$this->logDate['fullExport']."',"
@@ -109,7 +110,8 @@ class ShopImportData_MySQL {
                 . "'".$this->logDate['success']."',"
                 . "'".$this->logDate['xmlFile']."',"
                 . "'".$this->logDate['sqlFile']."',"
-                . "'".$this->logDate['logFile']."');";
+                . "'".$this->logDate['logFile']."',"
+                . "'".$this->logDate['htmlFile']."');";
         $this->SQL_HELPER->insert($logQ);
     }
     private function getScriptToSuccess() {

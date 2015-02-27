@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Фев 27 2015 г., 08:45
+-- Время создания: Фев 27 2015 г., 09:13
 -- Версия сервера: 10.0.13-MariaDB
 -- Версия PHP: 5.6.1
 
@@ -903,7 +903,8 @@ CREATE TABLE IF NOT EXISTS `ShopImportLogs` (
   `warnings` int(10) unsigned NOT NULL DEFAULT '0',
   `xmlFile` varchar(200) DEFAULT NULL,
   `sqlFile` varchar(200) DEFAULT NULL,
-  `logFile` varchar(200) DEFAULT NULL
+  `logFileText` varchar(200) DEFAULT NULL,
+  `logFileHtml` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
