@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Фев 18 2015 г., 09:02
+-- Время создания: Фев 27 2015 г., 07:26
 -- Версия сервера: 10.0.13-MariaDB
 -- Версия PHP: 5.6.1
 
@@ -45,6 +45,7 @@ CREATE TABLE IF NOT EXISTS `Components` (
 INSERT INTO `Components` (`alias`, `name`, `author`, `version`, `description`, `adminDir`, `admin`) VALUES
 ('Adminpanel', 'Adminpanel', 'Compu Project', '1.0', 'Панель администрирования', 'admin', 'index.php'),
 ('Materials', 'Материалы сайта', 'Compu Project', '1.0', 'Компонент для размещение материалов на сайте.', 'admin', 'index.php'),
+('Shop', 'Магазин', 'CompuProject', '1.0', 'Компонента для работы с магазином', 'admin', 'index.php'),
 ('Users', 'Пользователи', 'Compu Project', '1.0', 'Компонент для работы с пользователями.', 'admin', 'index.php');
 
 -- --------------------------------------------------------
@@ -122,6 +123,7 @@ INSERT INTO `ComponentsElements` (`id`, `alias`, `component`, `name`, `descripti
 (103, 'MaterialsCategory', 'Materials', 'Категории материалов', 'Выводит на страницу сайта категорию материалов', 'index.php', 'print.php', 'mobile.php', 'head.php', 'bodyStart.php', 'bodyEnd.php', 'index.php'),
 (104, 'MaterialsCategoryList', 'Materials', 'Список категорий материалов', 'Выводит на страницу сайта список категорий материалов', 'index.php', 'print.php', 'mobile.php', 'head.php', 'bodyStart.php', 'bodyEnd.php', 'index.php'),
 (105, 'MaterialsBlog', 'Materials', 'Блог материалов', 'Выводит список материалов в виде блога. Отличается от обычного вывода списка материалов блочной структурой.', 'index.php', 'print.php', 'mobile.php', 'head.php', 'bodyStart.php', 'bodyEnd.php', 'index.php'),
+(201, 'Shop', 'Shop', 'Магазин', NULL, 'index.php', 'print.php', 'mobile.php', 'head.php', 'bodyStart.php', 'bodyEnd.php', 'index.php'),
 (999801, 'Accounts', 'Users', 'Аккаунт', 'Аккаунт пользователя', 'index.php', 'print.php', 'mobile.php', 'head.php', 'bodyStart.php', 'bodyEnd.php', 'index.php'),
 (999802, 'AccountSettings', 'Users', 'Настройки аккаунта', 'Настройки аккаунта пользователя', 'index.php', 'print.php', 'mobile.php', 'head.php', 'bodyStart.php', 'bodyEnd.php', 'index.php'),
 (999803, 'Registration', 'Users', 'Регистрация', 'Страница регистрации пользователя', 'index.php', 'print.php', 'mobile.php', 'head.php', 'bodyStart.php', 'bodyEnd.php', 'index.php'),
@@ -138,6 +140,13 @@ CREATE TABLE IF NOT EXISTS `CreatedModules` (
   `name` varchar(100) NOT NULL,
   `module` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `CreatedModules`
+--
+
+INSERT INTO `CreatedModules` (`id`, `name`, `module`) VALUES
+(1, 'Панель авторизации', 'authorizationUserPanel');
 
 -- --------------------------------------------------------
 
@@ -422,7 +431,7 @@ CREATE TABLE IF NOT EXISTS `MenuItems` (
   `url` text COMMENT 'ссылка которую можно указать вместо идентификатора страницы. Если указана URL то ее приоритет будет выше чем у id страницы',
   `target` int(1) unsigned NOT NULL COMMENT 'как открывать ссылку',
   `sequence` int(5) unsigned NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -552,7 +561,14 @@ CREATE TABLE IF NOT EXISTS `ModulesInBlocks` (
   `cssClasses` varchar(200) DEFAULT NULL,
   `display` tinyint(3) unsigned NOT NULL DEFAULT '1',
   `onAllPages` tinyint(3) unsigned NOT NULL DEFAULT '1'
-) ENGINE=InnoDB AUTO_INCREMENT=802 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `ModulesInBlocks`
+--
+
+INSERT INTO `ModulesInBlocks` (`id`, `module`, `block`, `sequence`, `showTitle`, `cssClasses`, `display`, `onAllPages`) VALUES
+(1, 1, 1, 1, 0, NULL, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -657,7 +673,10 @@ CREATE TABLE IF NOT EXISTS `Pages` (
 --
 
 INSERT INTO `Pages` (`alias`, `showTitle`, `cssClasses`, `componentElement`, `template`, `isMainPage`, `index`, `follow`, `archive`, `notModifiable`) VALUES
-('test', 1, NULL, 101, 'apelsinShop', 1, 1, 1, 1, 0);
+('accounts', 1, NULL, 999801, 'apelsinShop', 0, 1, 1, 1, 0),
+('account_settings', 1, NULL, 999802, 'apelsinShop', 0, 1, 1, 1, 0),
+('adminpanel', 1, NULL, 999901, 'apelsinShop', 0, 0, 0, 0, 0),
+('test', 1, NULL, 201, 'apelsinShop', 1, 1, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -695,7 +714,7 @@ CREATE TABLE IF NOT EXISTS `ParamInfo_ComponentsElements` (
   `coments` text NOT NULL,
   `table` varchar(200) DEFAULT NULL,
   `column` varchar(200) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `ParamInfo_ComponentsElements`
@@ -842,6 +861,204 @@ CREATE TABLE IF NOT EXISTS `ROOT_SETTINGS` (
 
 INSERT INTO `ROOT_SETTINGS` (`settingsName`, `superKey`, `multilanguage`, `siteClosed`, `charset`, `companyName`, `siteName`, `activated`) VALUES
 ('default', 'f1828ce9f26031573db9a3268b51041c', 1, 0, 'utf8', 'Compu Project', 'Апельсин', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `ShopGroups`
+--
+
+CREATE TABLE IF NOT EXISTS `ShopGroups` (
+  `id` varchar(200) NOT NULL,
+  `groupName` varchar(100) NOT NULL,
+  `shown` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  `showInHierarchy` tinyint(1) unsigned NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `ShopGroupsHierarchy`
+--
+
+CREATE TABLE IF NOT EXISTS `ShopGroupsHierarchy` (
+  `group` varchar(200) NOT NULL,
+  `parentGroup` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `ShopImportLogs`
+--
+
+CREATE TABLE IF NOT EXISTS `ShopImportLogs` (
+  `importDate` datetime NOT NULL,
+  `exportDate` datetime NOT NULL,
+  `fullExport` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  `user` varchar(25) NOT NULL,
+  `exportUser` varchar(200) DEFAULT NULL,
+  `success` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `errors` int(10) unsigned NOT NULL DEFAULT '0',
+  `warnings` int(10) unsigned NOT NULL DEFAULT '0',
+  `sqlFile` varchar(200) DEFAULT NULL,
+  `logFile` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `ShopItems`
+--
+
+CREATE TABLE IF NOT EXISTS `ShopItems` (
+  `id` varchar(200) NOT NULL,
+  `itemName` varchar(100) NOT NULL,
+  `group` varchar(200) NOT NULL,
+  `action` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `amount` float unsigned NOT NULL,
+  `minAmount` float unsigned NOT NULL,
+  `description` longtext,
+  `shown` tinyint(1) unsigned NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `ShopItemsPrices`
+--
+
+CREATE TABLE IF NOT EXISTS `ShopItemsPrices` (
+  `item` varchar(200) NOT NULL,
+  `price` varchar(200) NOT NULL,
+  `value` float unsigned NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `ShopItemsPropertiesValues`
+--
+
+CREATE TABLE IF NOT EXISTS `ShopItemsPropertiesValues` (
+  `id` varchar(200) NOT NULL,
+  `item` varchar(200) NOT NULL,
+  `property` varchar(200) NOT NULL,
+  `value` varchar(200) DEFAULT NULL,
+  `measure` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `ShopLogs`
+--
+
+CREATE TABLE IF NOT EXISTS `ShopLogs` (
+  `id` varchar(200) NOT NULL,
+  `user` varchar(25) NOT NULL,
+  `actionType` varchar(100) NOT NULL,
+  `time` datetime NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `logtext` longtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `ShopLogsActionType`
+--
+
+CREATE TABLE IF NOT EXISTS `ShopLogsActionType` (
+  `type` varchar(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `description` longtext
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `ShopPricesTypes`
+--
+
+CREATE TABLE IF NOT EXISTS `ShopPricesTypes` (
+  `id` varchar(200) NOT NULL,
+  `typeName` varchar(100) NOT NULL,
+  `default` tinyint(1) unsigned NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `ShopProperties`
+--
+
+CREATE TABLE IF NOT EXISTS `ShopProperties` (
+  `id` varchar(200) NOT NULL,
+  `propertyName` varchar(100) NOT NULL,
+  `filterType` varchar(100) NOT NULL,
+  `valueType` varchar(100) NOT NULL,
+  `oneOfAllValues` tinyint(1) unsigned NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `ShopPropertiesFilterType`
+--
+
+CREATE TABLE IF NOT EXISTS `ShopPropertiesFilterType` (
+  `type` varchar(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `description` longtext
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `ShopPropertiesFilterType`
+--
+
+INSERT INTO `ShopPropertiesFilterType` (`type`, `name`, `description`) VALUES
+('bool', 'да/нет', 'Представляет из себя переключатель с двумя позициями: Да или Нет'),
+('groupSelect', 'Множественный выбор', 'Позволяет выбрать несколько значений из всех известных'),
+('intRange', 'Целочисленный диапазон', 'Представляет из себя ползунок которым можно задать диапазон целых чисел'),
+('none', 'Нет фильтра', 'По данному полю поиск производиться не будет.'),
+('select', 'Выпадающий список', 'Позволяет выбрать одно значение из всех доступных'),
+('text', 'Текстовое поле', 'Текстовое поля для ввода текста для поиска');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `ShopPropertiesInGroups`
+--
+
+CREATE TABLE IF NOT EXISTS `ShopPropertiesInGroups` (
+  `group` varchar(200) NOT NULL,
+  `property` varchar(200) NOT NULL,
+  `sequence` int(3) unsigned NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `ShopPropertiesValueType`
+--
+
+CREATE TABLE IF NOT EXISTS `ShopPropertiesValueType` (
+  `type` varchar(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `description` longtext
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `ShopPropertiesValueType`
+--
+
+INSERT INTO `ShopPropertiesValueType` (`type`, `name`, `description`) VALUES
+('bool', 'Белевое значение', 'Белевое значение'),
+('float', 'Десятичное число', 'Десятичное число'),
+('int', 'Целое число', 'Целое число'),
+('text', 'Текст', 'Большой объем текста с поддержкой HTML тегов'),
+('varchar', 'Строка', 'Строка длинной до 200 символов');
 
 -- --------------------------------------------------------
 
@@ -1059,7 +1276,14 @@ CREATE TABLE IF NOT EXISTS `TemplateBlocks` (
   `block` varchar(50) NOT NULL,
   `template` varchar(50) NOT NULL,
   `description` text
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `TemplateBlocks`
+--
+
+INSERT INTO `TemplateBlocks` (`id`, `block`, `template`, `description`) VALUES
+(1, 'test', 'apelsinShop', NULL);
 
 -- --------------------------------------------------------
 
@@ -1617,6 +1841,84 @@ ALTER TABLE `ROOT_SETTINGS`
  ADD PRIMARY KEY (`settingsName`), ADD UNIQUE KEY `settingsName_UNIQUE` (`settingsName`);
 
 --
+-- Индексы таблицы `ShopGroups`
+--
+ALTER TABLE `ShopGroups`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `ShopGroupsHierarchy`
+--
+ALTER TABLE `ShopGroupsHierarchy`
+ ADD PRIMARY KEY (`group`,`parentGroup`), ADD UNIQUE KEY `UNIQUE_group` (`group`), ADD KEY `fk_ShopGroupsHierarchy_2_idx` (`parentGroup`);
+
+--
+-- Индексы таблицы `ShopImportLogs`
+--
+ALTER TABLE `ShopImportLogs`
+ ADD PRIMARY KEY (`importDate`), ADD KEY `fk_ShopImportLogs_1_idx` (`user`);
+
+--
+-- Индексы таблицы `ShopItems`
+--
+ALTER TABLE `ShopItems`
+ ADD PRIMARY KEY (`id`), ADD KEY `fk_ShopItems_1_idx` (`group`);
+
+--
+-- Индексы таблицы `ShopItemsPrices`
+--
+ALTER TABLE `ShopItemsPrices`
+ ADD PRIMARY KEY (`item`,`price`), ADD KEY `fk_ShopItemsPrices_2_idx` (`price`);
+
+--
+-- Индексы таблицы `ShopItemsPropertiesValues`
+--
+ALTER TABLE `ShopItemsPropertiesValues`
+ ADD PRIMARY KEY (`id`), ADD KEY `fk_ShopItemsPropertiesValues_1_idx` (`property`), ADD KEY `fk_ShopItemsPropertiesValues_2_idx` (`item`);
+
+--
+-- Индексы таблицы `ShopLogs`
+--
+ALTER TABLE `ShopLogs`
+ ADD PRIMARY KEY (`id`), ADD KEY `fk_ShopLogs_1_idx` (`user`), ADD KEY `fk_ShopLogs_2_idx` (`actionType`);
+
+--
+-- Индексы таблицы `ShopLogsActionType`
+--
+ALTER TABLE `ShopLogsActionType`
+ ADD PRIMARY KEY (`type`);
+
+--
+-- Индексы таблицы `ShopPricesTypes`
+--
+ALTER TABLE `ShopPricesTypes`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `ShopProperties`
+--
+ALTER TABLE `ShopProperties`
+ ADD PRIMARY KEY (`id`), ADD KEY `fk_ShopProperties_1_idx` (`filterType`), ADD KEY `fk_ShopProperties_2_idx` (`valueType`);
+
+--
+-- Индексы таблицы `ShopPropertiesFilterType`
+--
+ALTER TABLE `ShopPropertiesFilterType`
+ ADD PRIMARY KEY (`type`);
+
+--
+-- Индексы таблицы `ShopPropertiesInGroups`
+--
+ALTER TABLE `ShopPropertiesInGroups`
+ ADD PRIMARY KEY (`group`,`property`), ADD KEY `fk_ShopPropertiesInGroups_2_idx` (`property`);
+
+--
+-- Индексы таблицы `ShopPropertiesValueType`
+--
+ALTER TABLE `ShopPropertiesValueType`
+ ADD PRIMARY KEY (`type`);
+
+--
 -- Индексы таблицы `Sliders`
 --
 ALTER TABLE `Sliders`
@@ -1759,7 +2061,7 @@ MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT для таблицы `MenuItems`
 --
 ALTER TABLE `MenuItems`
-MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Идентификатор элемента меню',AUTO_INCREMENT=106;
+MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Идентификатор элемента меню';
 --
 -- AUTO_INCREMENT для таблицы `ModulesDepends`
 --
@@ -1769,12 +2071,12 @@ MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT для таблицы `ModulesInBlocks`
 --
 ALTER TABLE `ModulesInBlocks`
-MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=802;
+MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT для таблицы `ParamInfo_ComponentsElements`
 --
 ALTER TABLE `ParamInfo_ComponentsElements`
-MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT для таблицы `PluginDepends`
 --
@@ -1794,7 +2096,7 @@ MODIFY `sequence` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 -- AUTO_INCREMENT для таблицы `TemplateBlocks`
 --
 ALTER TABLE `TemplateBlocks`
-MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT для таблицы `TemplateDependence`
 --
@@ -2011,6 +2313,60 @@ ADD CONSTRAINT `fk_PluginOnPage_2` FOREIGN KEY (`page`) REFERENCES `Pages` (`ali
 --
 ALTER TABLE `PluginParam`
 ADD CONSTRAINT `fk_PluginParam_1` FOREIGN KEY (`plugin`) REFERENCES `PluginOnPage` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `ShopGroupsHierarchy`
+--
+ALTER TABLE `ShopGroupsHierarchy`
+ADD CONSTRAINT `fk_ShopGroupsHierarchy_1` FOREIGN KEY (`group`) REFERENCES `ShopGroups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `fk_ShopGroupsHierarchy_2` FOREIGN KEY (`parentGroup`) REFERENCES `ShopGroups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `ShopImportLogs`
+--
+ALTER TABLE `ShopImportLogs`
+ADD CONSTRAINT `fk_ShopImportLogs_1` FOREIGN KEY (`user`) REFERENCES `Users` (`login`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `ShopItems`
+--
+ALTER TABLE `ShopItems`
+ADD CONSTRAINT `fk_ShopItems_1` FOREIGN KEY (`group`) REFERENCES `ShopGroups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `ShopItemsPrices`
+--
+ALTER TABLE `ShopItemsPrices`
+ADD CONSTRAINT `fk_ShopItemsPrices_1` FOREIGN KEY (`item`) REFERENCES `ShopItems` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `fk_ShopItemsPrices_2` FOREIGN KEY (`price`) REFERENCES `ShopPricesTypes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `ShopItemsPropertiesValues`
+--
+ALTER TABLE `ShopItemsPropertiesValues`
+ADD CONSTRAINT `fk_ShopItemsPropertiesValues_1` FOREIGN KEY (`item`) REFERENCES `ShopItems` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `fk_ShopItemsPropertiesValues_2` FOREIGN KEY (`property`) REFERENCES `ShopProperties` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `ShopLogs`
+--
+ALTER TABLE `ShopLogs`
+ADD CONSTRAINT `fk_ShopLogs_1` FOREIGN KEY (`user`) REFERENCES `Users` (`login`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `fk_ShopLogs_2` FOREIGN KEY (`actionType`) REFERENCES `ShopLogsActionType` (`type`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `ShopProperties`
+--
+ALTER TABLE `ShopProperties`
+ADD CONSTRAINT `fk_ShopProperties_1` FOREIGN KEY (`filterType`) REFERENCES `ShopPropertiesFilterType` (`type`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `fk_ShopProperties_2` FOREIGN KEY (`valueType`) REFERENCES `ShopPropertiesValueType` (`type`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `ShopPropertiesInGroups`
+--
+ALTER TABLE `ShopPropertiesInGroups`
+ADD CONSTRAINT `fk_ShopPropertiesInGroups_1` FOREIGN KEY (`group`) REFERENCES `ShopGroups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `fk_ShopPropertiesInGroups_2` FOREIGN KEY (`property`) REFERENCES `ShopProperties` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `Sliders`
