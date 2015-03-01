@@ -415,3 +415,41 @@
 .AP_FormTable td.FormTable_Input .checkboxGroup > label > input[type=checkbox] {
     vertical-align: middle;
 }
+
+
+
+
+
+
+
+
+
+
+/*кнопка submit в админке*/
+input[type=submit], input[type=button] {
+    font: 0.95em 'Open Sans',Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    color: #1b7fcc;
+    padding: 5px 10px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+    border: none;
+    background: #e2e2e2;
+    background: -moz-linear-gradient(top, #e2e2e2 0%, #dbdbdb 50%, #d1d1d1 51%, #fefefe 100%);
+    background: -webkit-linear-gradient(top, #e2e2e2 0%,#dbdbdb 50%,#d1d1d1 51%,#fefefe 100%);
+    background: -o-linear-gradient(top, #e2e2e2 0%,#dbdbdb 50%,#d1d1d1 51%,#fefefe 100%);
+    background: -ms-linear-gradient(top, #e2e2e2 0%,#dbdbdb 50%,#d1d1d1 51%,#fefefe 100%);
+    box-shadow: 0px 1px 3px rgba(0,0,0,0.5);
+    text-shadow: 0px 1px 0px #fff;
+}
+input[type=submit]:hover, input[type=button]:hover {
+    box-shadow: inset 0px 1px 5px rgba(0,0,0,0.5);
+}
+input[type=file] {
+    box-shadow: inset 0px 1px 5px rgba(0,0,0,0.5);
+    background: rgb(245,250,255);
+}

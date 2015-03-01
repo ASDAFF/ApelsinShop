@@ -128,7 +128,7 @@ class ShopImportData {
         $out .= "<html>";
         $out .= "<head>";
         $out .= "<title>Лог файл от ".$logDate['importDate2']."</title>";
-        $out .= "<meta http-equiv='Content-Type' content='text/html; charset=utf8'>";
+        $out .= "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>";
         $out .= "
         <style>
             .Import1cErrWarReport {

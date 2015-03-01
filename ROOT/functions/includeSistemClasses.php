@@ -28,5 +28,6 @@ function includeSistemClasses() {
     include_once './ROOT/classes/SiteMap.php';
     include_once './ROOT/classes/HtmlTemplate.php';
     include_once './ROOT/classes/ID_GENERATOR.php';
+    include_once './ROOT/classes/DownloadFile.php';
 }
 ?>

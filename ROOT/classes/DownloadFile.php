@@ -15,6 +15,7 @@ class DownloadFile {
     protected $fileSize;       // допустимый размер загружаемого файла setFileSize()
     protected $extension;      //новое расширение через setExtension()
     protected $saveNameFile;   // название сохраненного файлa
+    protected $fileName;        // название сохраненного файлa
     protected $blacklist;
     protected $file;           // название загружаемого файла (в $_FILES)
     protected $type;           // мим-тип загружаемого файла (в $_FILES)
@@ -119,7 +120,8 @@ class DownloadFile {
                     $this->createdDir();
                     if ($this->checkType($this->getAccess($access))) {
                         // новое название
-                        $this->saveNameFile = $this->dirUpload.$this->newNameFile.".".$this->getExtensionType($extension);
+                        $this->fileName = $this->newNameFile.".".$this->getExtensionType($extension);
+                        $this->saveNameFile = $this->dirUpload.$this->fileName;
                         // загрузка
                         if ($this->checkSizeFile($fileSize)) {
                             $this->upload();
@@ -331,6 +333,14 @@ class DownloadFile {
             $this->errors[] = 'Непредвиденная ошибка';
         }
     }
+    
+    public function getFaveNameFile() {
+        return $this->saveNameFile;
+    }
+    
+    public function getFileName() {
+        return $this->fileName;
+    }
 
     /**
     * Возвращает текст сообщения (ошибки)
@@ -340,5 +350,13 @@ class DownloadFile {
         for ($i = 0; $i < count($this->errors); $i++) {
             echo $this->errors[$i].'<br>';  
         }
+    }
+
+    /**
+    * Возвращает текст массив ошибок
+    * @return type array
+    */
+    public function returnError() {
+        return $this->errors;
     }
 }
