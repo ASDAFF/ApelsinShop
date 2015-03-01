@@ -1,7 +1,7 @@
 <?php
 class InputHelper {
 
-    public static function checkbox($name,$id,$class,$mandatory,$value,$JSevents=null) {
+    public static function checkbox($name,$id,$class,$mandatory,$value,$checked=null,$JSevents=null) {
         if($mandatory) {
             $required = " required ";
         } else {
@@ -10,8 +10,13 @@ class InputHelper {
         if($JSevents==null) {
             $JSevents="";
         }
+        if($checked!==null && $checked !== false && $checked !== '0' && $checked !== '') {
+            $checked = 'checked';
+        } else {
+            $checked='';
+        }
         $out = '<input type="checkbox" class="'.$class.'" name="'.$name.'" value="'.
-                $value.'" id="'.$id.'" '.
+                $value.'" id="'.$id.'" '.$checked.' '.
                 $required.' '.$JSevents.' autocomplete="off" />';
         return $out;
     }
@@ -179,13 +184,18 @@ class InputHelper {
         $file = '<input type="file" class="'.$class.'" name="'.$name.'" id="'.$id.'" '.$required.$acceptHtml.$multipleHtml.'  autocomplete="off">';
         return $file;
     }
-    
-    public static function createFormRow($input,$mandatory,$text,$info=null) {
+
+    public static function createFormRow($input,$mandatory,$text,$info=null,$id=null) {
         $mandatoryText = "";
         if($mandatory) {
             $mandatoryText = '* ';
         }
-        $out =  '<tr>';
+        if($id==null) {
+            $id="";
+        } else {
+            $id = 'id="'.$id.'"';
+        }
+        $out =  '<tr '.$id.'>';
         $out .=  '<td class="FormTable_Text">';
         $out .=  '<div class="text">'.$mandatoryText.$text.'</div>';
         if($info != null && $info != "") {
