@@ -46,6 +46,7 @@
 <body>
 <?php $ROOT->bodyStart();?>
 <div class='test'><?php $ROOT->block('test');?></div>
+<div class='ShopNavigationPanel'><?php $ROOT->block('ShopNavigationPanel');?></div>
 <div class='content'>
 <?php 
 $ROOT->content();
