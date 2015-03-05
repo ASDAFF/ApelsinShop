@@ -16,11 +16,8 @@ class MysqliHelper {
      *      charset - Кодировка.
      */
     public function __construct() {
-        global $_DBSETTINGS;
         $this->error = null;
-        $this->mysqli = new mysqli($_DBSETTINGS['host'], $_DBSETTINGS['user'], 
-                $_DBSETTINGS['password'], $_DBSETTINGS['db_name']);
-        $this->mysqli->set_charset($_DBSETTINGS['charset']);
+        $this->mysqli = MySqliConnectHelper::getConection();
         if (mysqli_connect_errno()) {
             $this->error = "Ошибка подключения к базе данных : ".mysqli_connect_error();
             $this->error .= "<br>Обратитесь к администратору.";
@@ -81,7 +78,6 @@ class MysqliHelper {
         }
         $this->mysqli->query($query);
         return $this->mysqli->error==null;
-//        return $this->mysqli->error;
     }
     
     public function escapeString($string) {
@@ -101,18 +97,6 @@ class MysqliHelper {
      */
     public function __destruct() {
         $this->mysqli->close();
-    }
-    
-    
-    public function sqlFileExec($scriptFile) {
-        global $_DBSETTINGS;
-        $command = 'mysql'
-        . ' --host=' . $_DBSETTINGS['host']
-        . ' --user=' . $_DBSETTINGS['user']
-        . ' --password=' . $_DBSETTINGS['password']
-        . ' --database=' . $_DBSETTINGS['db_name']
-        . ' --execute="SOURCE '.$scriptFile.'" 2>&1';
-        return shell_exec($command);
     }
 }
 

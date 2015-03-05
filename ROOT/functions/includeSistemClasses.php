@@ -3,6 +3,7 @@ function includeSistemClasses() {
     include_once './ROOT/configure.php';
     include_once './ROOT/classes/SiteConfig.php';
     
+    include_once './ROOT/classes/MySqliConnectHelper.php';
     include_once './ROOT/classes/MySqlHelper.php';
     include_once './ROOT/classes/MysqliHelper.php';
     include_once './ROOT/classes/LangHelper.php';

@@ -4,7 +4,15 @@ class MySqlHelper {
     
     public function __construct($query) {
         $this->data = array();
-        $mysqli = MySqliConnectHelper::getConection();
+        global $_DBSETTINGS;
+        $mysqli = new mysqli($_DBSETTINGS['host'], $_DBSETTINGS['user'], 
+                $_DBSETTINGS['password'], $_DBSETTINGS['db_name']);
+        $mysqli->set_charset($_DBSETTINGS['charset']);
+        if (mysqli_connect_errno()) {
+            echo "Ошибка подключения к базе данных : ".mysqli_connect_error();
+            echo "<br>Обратитесь к администратору.";
+            exit();
+        }
         $result = $mysqli->query($query);
         $i=0;
         if($result!=null) {
@@ -53,7 +61,14 @@ class MySqlInserHelper {
     public function __construct($query) {
         global $_DBSETTINGS;
         $this->query = $query;
-        $this->mysqli = MySqliConnectHelper::getConection();
+        $this->mysqli = new mysqli($_DBSETTINGS['host'], $_DBSETTINGS['user'], 
+                $_DBSETTINGS['password'], $_DBSETTINGS['db_name']);
+        $this->mysqli->set_charset($_DBSETTINGS['charset']);
+        if (mysqli_connect_errno()) {
+            echo "Ошибка подключения к базе данных : ".mysqli_connect_error();
+            echo "<br>Обратитесь к администратору.";
+            exit();
+        }
     }
     
     public function insert() {
