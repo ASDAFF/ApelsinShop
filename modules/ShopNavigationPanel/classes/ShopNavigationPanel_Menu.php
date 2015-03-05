@@ -17,7 +17,7 @@ class ShopNavigationPanel_Menu {
     }
     
     private function generateHTML() {
-        if(!ShopPageInfoHelper::isShopPageError() && ShopPageInfoHelper::shopPageUrlElement() !== NULL) {
+        if(ShopPageInfoHelper::isShopPage() && !ShopPageInfoHelper::isShopPageError() && ShopPageInfoHelper::shopPageUrlElement() !== NULL) {
             $this->HTML = $this->generateMenu();
         } else {
             $this->HTML = $this->generateRootMenu();

@@ -121,10 +121,14 @@ class ShopGroupsHelper {
      */
     public function getGroupNode($groupID) {
         $data = $this->groupsTree;
-        foreach ($this->groupPath[$groupID] as $child) {
-            $data = $this->getChildGroupNode($data,$child);
+        if(isset($this->groupPath[$groupID])) {
+            foreach ($this->groupPath[$groupID] as $child) {
+                $data = $this->getChildGroupNode($data,$child);
+            }
+            return $this->getChildGroupNode($data,$groupID);
+        } else {
+            return NULL;
         }
-        return $this->getChildGroupNode($data,$groupID);
     }
     
     /**
@@ -133,7 +137,11 @@ class ShopGroupsHelper {
      * @return array - информация о группе
      */
     public function getGroupInfo($groupID) {
-        return $this->groups[$groupID];
+        if(isset($this->groupPath[$groupID])) {
+            return $this->groups[$groupID];
+        } else {
+            return NULL;
+        }
     }
     
     /**
@@ -151,12 +159,13 @@ class ShopGroupsHelper {
      * @return string - ID родительской группы
      */
     public function getGroupParentID($groupID) {
-        $key = count($this->groupPath[$groupID]);
-        if($key-- != 0) {
-            return $this->groupPath[$groupID][0];
-        } else {
-            return NULL;
+        if(isset($this->groupPath[$groupID])) {
+            $key = count($this->groupPath[$groupID]);
+            if($key-- != 0) {
+                return $this->groupPath[$groupID][0];
+            }
         }
+        return NULL;
     }
     
     /**
@@ -184,8 +193,11 @@ class ShopGroupsHelper {
      */
     public function getGroupNodeChildren($groupID) {
         $node = $this->getGroupNode($groupID);
-//        foreach ()
-        return array_keys($node["children"]);
+        if($node !== NULL) {
+            return array_keys($node["children"]);
+        } else {
+            return NULL;
+        }
     }
     
     
