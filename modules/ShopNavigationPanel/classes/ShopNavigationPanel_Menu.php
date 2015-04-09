@@ -10,34 +10,22 @@ class ShopNavigationPanel_Menu {
     
     private $shopGroupsHelper;
     private $HTML;
+    private $urlHelper;
     
     public function __construct($shopGroupsHelper) {
         $this->shopGroupsHelper = $shopGroupsHelper;
+        $this->urlHelper = new UrlHelper();
         $this->generateHTML();
     }
     
     private function generateHTML() {
-        if(ShopPageInfoHelper::isShopPage() && !ShopPageInfoHelper::isShopPageError() && ShopPageInfoHelper::shopPageUrlElement() !== NULL) {
-            $this->HTML = $this->generateMenu();
+        $this->HTML = '<div class="ShopNavigationPanel_Menu">';
+        if(ShopPageInfoHelper::isShopPage() && !ShopPageInfoHelper::isShopPageError() && ShopPageInfoHelper::shopPageGroupId() !== NULL) {
+            $this->HTML .= $this->generateMenu();
         } else {
-            $this->HTML = $this->generateRootMenu();
+            $this->HTML .= $this->generateRootMenu();
         }
-    }
-    
-    private function getGroupIcon($groupID) {
-        $background = $this->getGroupIconIteration($groupID);
-        if($background === '') {
-            $background = BackgroundGeneratorHelper::getBackgroundStyleImg(self::iconPath, self::defaultIcon);
-        }
-        return $background;
-    }
-    private function getGroupIconIteration($groupID) {
-        $background = BackgroundGeneratorHelper::getBackgroundStyleImg(self::iconPath, $groupID);
-        $parentGroup = $this->shopGroupsHelper->getGroupParentID($groupID);
-        if($background === '' && $parentGroup != null) {
-            $background = $this->getGroupIconIteration($parentGroup);
-        }
-        return $background;
+        $this->HTML .= '</div>';
     }
     
     private function generateRootMenu() {
@@ -55,12 +43,14 @@ class ShopNavigationPanel_Menu {
         $group = $this->shopGroupsHelper->getGroupInfo($groupID);
         if($group['shown'] > 0) {
             if($group['showInHierarchy'] > 0) {
-                $bacground = $this->getGroupIcon($groupID);
+                $bacground = ShopGroupsIcons::getGroupIcon_Menu_Background($groupID);
                 $out .= '<li class="SNPRootGroupsMenuElement">';
-                    $out .= '<div class="ShopGroupIcon" '.$bacground.'></div>';
-                    $out .= '<div class="ShopGroupName">';
-                        $out .= '<div>'.$group['groupName'].'</div>';
-                    $out .= '</div>';
+                    $out .= '<a href="'.ShopGroupsUrlHelper::getUrl(array('catalog',$group['id'])).'">';
+                        $out .= '<div class="ShopGroupIcon" '.$bacground.'></div>';
+                        $out .= '<div class="ShopGroupName">';
+                            $out .= '<div>'.$group['groupName'].'</div>';
+                        $out .= '</div>';
+                    $out .= '</a>';
                 $out .= '</li>';
             } else {
                 foreach ($this->shopGroupsHelper->getGroupNodeChildren($group['id']) as $id) {
@@ -72,25 +62,10 @@ class ShopNavigationPanel_Menu {
     }
     
     private function generateMenu() {
-        $thisGroup = ShopPageInfoHelper::shopPageUrlElement();
+        $thisGroup = ShopPageInfoHelper::shopPageGroupId();
         $out = '';
-        $out .= $this->generateThisGroupPanel($thisGroup);
+        $out .= ShopNavigationPanel_ThisGroupIconPanel::getPanelBlock($thisGroup);
         $out .= $this->generateThisGroupMenu($thisGroup);
-        return $out;
-    }
-    
-    private function generateThisGroupPanel($thisGroup) {
-        $bacground = $this->getGroupIcon($thisGroup);
-        $group = $this->shopGroupsHelper->getGroupInfo($thisGroup);
-        $out = '';
-        $out .= '<div class="ThisGroupPanel">';
-            $out .= '<div class="ThisGroup">';
-                $out .= '<div class="ShopGroupIcon" '.$bacground.'></div>';
-                $out .= '<div class="ShopGroupName">';
-                    $out .= '<div>'.$group['groupName'].'</div>';
-                $out .= '</div>';
-            $out .= '</div>';
-        $out .= '</div>';
         return $out;
     }
     
@@ -110,9 +85,11 @@ class ShopNavigationPanel_Menu {
         if($group['shown'] > 0) {
             if($group['showInHierarchy'] > 0) {
                 $out .= '<li class="SNPRootGroupsMenuElement">';
-                    $out .= '<div class="ShopGroupName">';
-                        $out .= '<div>'.$group['groupName'].'</div>';
-                    $out .= '</div>';
+                    $out .= '<a href="'.$this->urlHelper->chengeParams(array('catalog',$group['id'])).'">';
+                        $out .= '<div class="ShopGroupName">';
+                            $out .= '<div>'.$group['groupName'].'</div>';
+                        $out .= '</div>';
+                    $out .= '</a>';
                 $out .= '</li>';
             } else {
                 foreach ($this->shopGroupsHelper->getGroupNodeChildren($group['id']) as $id) {

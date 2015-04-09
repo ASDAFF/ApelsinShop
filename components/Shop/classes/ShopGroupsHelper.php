@@ -150,7 +150,12 @@ class ShopGroupsHelper {
      * @return type array - массив родительских элементов группы
      */
     public function getGroupPath($groupID) {
-        return $this->groupPath[$groupID];
+        if(isset($this->groupPath[$groupID])) {
+            return $this->groupPath[$groupID];
+        } else {
+            return array();
+        }
+        
     }
     
     /**
@@ -183,7 +188,12 @@ class ShopGroupsHelper {
      * @return type array - массив всех дочерних элементов группы
      */
     public function getGroupChildren($groupID) {
-        return $this->groupChildren[$groupID];
+        if(isset($this->groupChildren[$groupID])) {
+            return $this->groupChildren[$groupID];
+        } else {
+            return array();
+        }
+        
     }
     
     /**
@@ -198,6 +208,14 @@ class ShopGroupsHelper {
         } else {
             return NULL;
         }
+    }
+    
+    /**
+     * Получает массив всех групп
+     * @return type array - массив всех групп
+     */
+    public function getGroups() {
+        return array_keys($this->groups);
     }
     
     

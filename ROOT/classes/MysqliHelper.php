@@ -98,6 +98,17 @@ class MysqliHelper {
     public function __destruct() {
         $this->mysqli->close();
     }
+    
+    public function sqlFileExec($scriptFile) {
+        global $_DBSETTINGS;
+        $command = 'mysql'
+        . ' --host=' . $_DBSETTINGS['host']
+        . ' --user=' . $_DBSETTINGS['user']
+        . ' --password=' . $_DBSETTINGS['password']
+        . ' --database=' . $_DBSETTINGS['db_name']
+        . ' --execute="SOURCE '.$scriptFile.'" 2>&1';
+        return shell_exec($command);
+    }
 }
 
 ?>

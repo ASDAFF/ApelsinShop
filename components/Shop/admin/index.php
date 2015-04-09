@@ -6,7 +6,7 @@ function createdDir($dirUpload) {
     }
 }
 $path = './resources/Components/Shop/';
-$dirs = array('ImportFilesMySQL', 'ImportFilesXML', 'ImportFilesXML', 'ImportLogsText');
+$dirs = array('ImportFilesMySQL', 'ImportFilesXML', 'ImportLogsHtml', 'ImportLogsText');
 foreach ($dirs as $value) {
     createdDir($path.$value);
 }
@@ -16,4 +16,3 @@ $mainPanelUI->addElement('restartImportShop', 'Повторный запуск �
 $mainPanelUI->addElement('removeUnloadingShop', 'Удалить выгрузку (backUp)', 'removeUnloadingShopUI.php');
 $mainPanelUI->addElement('viewLogsShop', 'Просмотр логов', 'viewLogsShopUI.php');
 $mainPanelUI->getUI();
-

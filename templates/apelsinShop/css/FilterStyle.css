@@ -1,0 +1,102 @@
+.ShopPropertiesFilterBlock {
+    clear: both;
+    padding-bottom: 5px;
+}
+
+/** ~~~~~ FilterType_groupSelect ~~~~~ **/
+.ShopPropertiesFilter_GroupSelectElement {
+    height: 18px;
+    width: 200px;
+    padding: 0px;
+    float: left;
+}
+
+/* Cначала обозначаем стили для IE8 и более старых версий 
+т.е. здесь мы немного облагораживаем стандартный чекбокс. */  
+.FilterType_groupSelect {  
+    vertical-align: top;  
+    margin: 0 2px 0 0;  
+    width: 14px;  
+    height: 14px;  
+}  
+/* Это для всех браузеров, кроме совсем старых, которые не поддерживают 
+селекторы с плюсом. Показываем, что label кликабелен. */  
+.FilterType_groupSelect + label {  
+    cursor: pointer; 
+    font: 14px/14px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    color: #4d4d4d;
+}  
+  
+/* Далее идет оформление чекбокса в современных браузерах, а также IE9 и выше. 
+Благодаря тому, что старые браузеры не поддерживают селекторы :not и :checked, 
+в них все нижеследующие стили не сработают. */  
+  
+/* Прячем оригинальный чекбокс. */  
+.FilterType_groupSelect:not(checked) {  
+    position: absolute;  
+    opacity: 0;  
+}  
+.FilterType_groupSelect:not(checked) + label { 
+    position: relative; /* будем позиционировать псевдочекбокс относительно label */  
+    padding: 0 0 0 30px; /* оставляем слева от label место под псевдочекбокс */  
+}  
+/* Оформление первой части чекбокса в выключенном состоянии (фон). */  
+.FilterType_groupSelect:not(checked) + label:before { 
+    content: '';  
+    position: absolute; 
+    left: 0;  
+    width: 25px;  
+    height: 14px;
+    /*border-radius: 7px;*/  
+    background: #CDD1DA;  
+    box-shadow: inset 0 2px 3px rgba(0,0,0,.2);
+}  
+/* Оформление второй части чекбокса в выключенном состоянии (переключатель). */  
+.FilterType_groupSelect:not(checked) + label:after { 
+    content: '';  
+    position: absolute;
+    top: 1px;  
+    left: 2px;  
+    width: 10px;  
+    height: 10px; 
+    /*  border-radius: 5px;  */
+    background: #FFF;  
+    box-shadow: 0 2px 5px rgba(0,0,0,.3);  
+    transition: all .2s; /* анимация, чтобы чекбокс переключался плавно */  
+}  
+/* Меняем фон чекбокса, когда он включен. */  
+.FilterType_groupSelect:checked + label:before { 
+    /*background: #9FD468;*/  
+    background: #ef7f1a;
+}  
+/* Сдвигаем переключатель чекбокса, когда он включен. */  
+.FilterType_groupSelect:checked + label:after { 
+    left: 13px;  
+}  
+/* Показываем получение фокуса. */  
+.FilterType_groupSelect:focus + label:before { 
+    box-shadow: 0 0 0 3px rgba(255,255,0,.5);  
+}  
+
+.FilterType_groupSelect:checked + label { 
+    color: #ef7f1a;
+}
+
+
+
+
+input[type=submit].ShopPropertiesFilterFormSubmit {
+    width: 40px;  
+    height: 20px;
+    background: #FFF;
+    box-shadow: 0 2px 5px rgba(0,0,0,.3);   
+    border-radius: 0;  
+    cursor: pointer; 
+    font: bold 12px/20px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    color: #4d4d4d;
+    padding: 0px;
+    color: #ef7f1a;
+}
+input[type=submit].ShopPropertiesFilterFormSubmit:hover {
+    box-shadow: inset 0 2px 3px rgba(0,0,0,.2);
+}

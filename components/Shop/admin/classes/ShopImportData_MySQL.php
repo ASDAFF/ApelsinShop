@@ -83,7 +83,7 @@ class ShopImportData_MySQL {
         $this->logDate = array();
         $this->DATA['SystemInformation']['FullExport'] ? $this->logDate['fullExport'] = '1' : $this->logDate['fullExport'] = '0';
         $this->logDate['importDate'] = date("Y-m-d h:i:s");
-        $this->logDate['importDate2'] = date("Y.m.d_h:i:s");
+        $this->logDate['importDate2'] = date("Y.m.d_h.i.s");
         $this->logDate['exportDate'] = $this->DATA['SystemInformation']['ExportDateTime'];
         $this->logDate['exportDate2'] = $this->DATA['SystemInformation']['ExportDateTime2'];
         $this->logDate['exportDate3'] = $this->DATA['SystemInformation']['ExportDateTime3'];
@@ -207,13 +207,12 @@ class ShopImportData_MySQL {
             $this->MySQL_QUERIES['DeleteDataLinks'][$deleteSetKey][] = $query;
         }
     }
-    private function generateQueriesMySQL_AddDataLinks($addSetKey,$table,$columns, $importSetKey) {
+    private function generateQueriesMySQL_AddDataLinks($addSetKey, $table, $columns, $importSetKey) {
         $this->MySQL_QUERIES['AddDataLinks'][$addSetKey] = array();
         $counter = 0;
         $start = false;
         $empty = true;
-        
-        $queryStart = "INSERT INTO `".$table."` (";
+        $queryStart = "INSERT IGNORE INTO `".$table."` (";
         foreach ($columns as $column) {
             $queryStart .= "`".$column."`, ";
         }
@@ -352,7 +351,7 @@ class ShopImportData_MySQL {
             $this->MySQL_QUERIES['AddData'][$addSetKey][] = $query;
         }
     }
-    private function createMysqlScript() {        
+    private function createMysqlScript() {
         $this->SQL = '';
         $this->SQL .= "--\r\n";
         $this->SQL .= "-- Export Date: ".$this->logDate['exportDate2']."\r\n";
@@ -377,7 +376,7 @@ class ShopImportData_MySQL {
         $this->SQL .= "\r\n--\r\n-- Success\r\n--\r\n\r\n";
         $this->SQL .= $this->getScriptToSuccess();
 //        $this->FILE_SQL = $this->FILE.'apelsin1c.sql';
-        file_put_contents($this->FILE_SQL, $this->SQL);
+        $rez = file_put_contents($this->FILE_SQL, $this->SQL);
     }
     
     private function getMysqlScript($key) {

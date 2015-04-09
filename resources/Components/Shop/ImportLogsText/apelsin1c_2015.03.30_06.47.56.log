@@ -1,0 +1,20 @@
+-- Export Date: 
+-- Export User: 
+-- Import Date: 2015.03.30_06.47.56
+-- Import User: Максим Зайцев [RayMefise]
+-- Errors: (6) & Warnings: (1)
+
+ERRORS (6):
+
+#0: Отсутствует блок SystemInformation.
+#1: Отсутствует блок PricesTypes.
+#2: Отсутствует блок Properties.
+#3: Отсутствует блок Groups.
+#4: Отсутствует блок PropertiesInGroups.
+#5: Отсутствует блок Items.
+
+WARNINGS (1):
+
+#0: Отсутствует блок GroupsHierarchy.
+
+errors: (6) & warnings: (1)

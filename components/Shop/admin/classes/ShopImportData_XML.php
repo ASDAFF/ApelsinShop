@@ -100,8 +100,8 @@ class ShopImportData_XML {
                 $this->DATA_XML['SystemInformation']['ExportDateTime3'] .= $exportDateTime['year'][0]['#'].'.';
                 $this->DATA_XML['SystemInformation']['ExportDateTime3'] .= $exportDateTime['month'][0]['#'].'.';
                 $this->DATA_XML['SystemInformation']['ExportDateTime3'] .= $exportDateTime['day'][0]['#'].'_';
-                $this->DATA_XML['SystemInformation']['ExportDateTime3'] .= $exportDateTime['hours'][0]['#'].':';
-                $this->DATA_XML['SystemInformation']['ExportDateTime3'] .= $exportDateTime['minutes'][0]['#'].':';
+                $this->DATA_XML['SystemInformation']['ExportDateTime3'] .= $exportDateTime['hours'][0]['#'].'.';
+                $this->DATA_XML['SystemInformation']['ExportDateTime3'] .= $exportDateTime['minutes'][0]['#'].'.';
                 $this->DATA_XML['SystemInformation']['ExportDateTime3'] .= $exportDateTime['seconds'][0]['#'];
                 $this->DATA_XML['SystemInformation']['FullExport'] = $systemInformation['FullExport'][0]['#'] == 1;
                 $this->DATA_XML['SystemInformation']['user'] = $systemInformation['user'][0]['#'];
@@ -482,7 +482,7 @@ class ShopImportData_XML {
                         } else {
                             $this->DATA_XML['Items'][$key]['minAmount'] = 0;
                         }
-                        if($this->checkXmlDataInArray($item['#'], 'description')) {
+                        if($this->checkXmlDataInArray($item['#'], 'description') && $item['#']['description'][0]['#']!==NULL && $item['#']['description'][0]['#']!=='0') {
                             $this->DATA_XML['Items'][$key]['description'] = $item['#']['description'][0]['#'];
                         } else {
                             $this->DATA_XML['Items'][$key]['description'] = '';
@@ -640,7 +640,7 @@ class ShopImportData_XML {
         $data['item'] = $item;
         foreach ($properties as $key => $property) {
             if(isset($property['#'])) {
-                if($this->checkXmlData_ItemsPropertiesValues($key,$property['#'],$item)) {
+                if($this->checkXmlData_ItemsPropertiesValues($key, $property['#'], $item)) {
                     $data['id'] = ID_GENERATOR::generateID(6,$item);
                     $data['property'] = $property['#']['property'][0]['#'];
                     if(isset($property['#']['measure'][0]['#'])) {
@@ -648,15 +648,15 @@ class ShopImportData_XML {
                     } else {
                         $data['measure'] = '';
                     }
-                    $this->DATA_XML['ItemsPropertiesValues'][] = $data;
                     if(!in_array($property['#']['property'][0]['#'],$this->xmlDataIdSet["Properties"])) {
                         $this->ERRORS[] = 'Для товара <span class="WarErrTextId">'.$item.'</span> указано значение неизвестного свойства <span class="WarErrTextId">'.$property['#']['property'][0]['#'].'</span>';
                     }
                     if(!$this->checkXmlDataInArray($property['#'], 'value')) {
                         $data['value'] = '';
-//                        $this->WARNINGS[] = 'Для товара <span class="WarErrTextId">'.$item.'</span> указано пустое значения для свойства <span class="WarErrTextId">'.$property['#']['property'][0]['#'].'</span>';
+                        $this->WARNINGS[] = 'Для товара <span class="WarErrTextId">'.$item.'</span> указано пустое значения для свойства <span class="WarErrTextId">'.$property['#']['property'][0]['#'].'</span>';
                     } else {
                         $data['value'] = $property['#']['value'][0]['#'];
+                        $this->DATA_XML['ItemsPropertiesValues'][] = $data;
                     }
                 }
             } else {

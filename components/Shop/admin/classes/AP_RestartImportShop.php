@@ -92,12 +92,14 @@ class AP_RestartImportShop {
                 // делаем запись в логи 
                 $this->recordActionLog();
                 // делаем бэкап и получаем отчет
-                if(ShopImportDataCheckHelper::CheckFile($this->dirName.$fileName)) {
-                    if(ShopImportDataCheckHelper::CheckImportSuccess()) {
+//                if(ShopImportDataCheckHelper::CheckFile($this->dirName.$fileName)) {
+//                    if(ShopImportDataCheckHelper::CheckImportSuccess()) {
                         $shopImportData = new ShopImportData($fileName);
                         $this->form .= $shopImportData->getReport();
-                    }
-                }
+//                    } else {
+//                        
+//                    }
+//                }
             } else {
                 $this->form .= "Выберите файл для выгрузки.";
             } 

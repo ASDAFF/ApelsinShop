@@ -16,6 +16,7 @@ class ShopPageInfoHelper {
     static private $shopPage;
     static private $pageUrlType;
     static private $pageUrlElement;
+    static private $groupId;
     static private $pageUrlError = false;
     
 //    static private $SQL_DATA;
@@ -58,7 +59,7 @@ class ShopPageInfoHelper {
     }
     
     private function getUrlPageInfo() {
-        if(isset(self::$URL_PARAMS[0])) {
+        if(isset(self::$URL_PARAMS[0]) && (self::$URL_PARAMS[0]=='catalog' || self::$URL_PARAMS[0]=='item')) {
             switch (self::$URL_PARAMS[0]) {
                 case 'catalog':
                     self::$pageUrlType = 'catalog';
@@ -66,15 +67,20 @@ class ShopPageInfoHelper {
                 case 'item':
                     self::$pageUrlType = 'item';
                     break;
-                default:
-                    self::$pageUrlType = 'catalog';
-                    break;
             }
             if(isset(self::$URL_PARAMS[1])) {
                 self::$pageUrlElement = self::$URL_PARAMS[1];
+                if(self::$pageUrlType === 'catalog') {
+                    self::$groupId = self::$URL_PARAMS[1];
+                } else {
+                    $query = "SELECT `group` FROM `ShopItems` WHERE `id`='".self::$URL_PARAMS[1]."';";
+                    $rezult = self::$SQL_HELPER->select($query,1);
+                    self::$groupId = $rezult['group'];
+                }
             } else {
-                if(self::$pageUrlType != 'catalog') {
+                if(self::$pageUrlType === 'catalog') {
                     self::$pageUrlElement = null;
+                    self::$groupId = null;
                 } else {
                     self::$pageUrlError = true;
                 }
@@ -100,6 +106,11 @@ class ShopPageInfoHelper {
     public static function shopPageUrlElement() {
         self::createObject();
         return self::$pageUrlElement;
+    }
+    
+    public static function shopPageGroupId() {
+        self::createObject();
+        return self::$groupId;
     }
 
 

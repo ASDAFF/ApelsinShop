@@ -2,6 +2,10 @@
 <?php global $ROOT;?>
 <html>
 <head>
+    <?php $ROOT->head();?>
+    <link rel="stylesheet" href="<?php $ROOT->templatePath();?>css/AdminPanel.css" type="text/css" />
+    <link rel="stylesheet" href="./templates/apelsinShop/css/FilterStyle.css" type="text/css" />
+    <link rel="stylesheet" href="./templates/apelsinShop/css/Test.css" type="text/css" />
     <style>
         .Import1cErrWarReport {
             font: 10px/12px monospace;
@@ -39,9 +43,17 @@
         .content {
             clear: both;
         }
+/*        body {
+            background: #ef7f1a;
+        }*/
+/*input[type=radio],
+input[type=checkbox] {
+	display: none;
+}
+.FilterType_groupSelect {
+    width: 200px;
+}*/
     </style>
-    <?php $ROOT->head();?>
-    <link rel="stylesheet" href="<?php $ROOT->templatePath();?>css/AdminPanel.css" type="text/css" />
 </head>
 <body>
 <?php $ROOT->bodyStart();?>
