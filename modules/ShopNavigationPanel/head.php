@@ -7,6 +7,8 @@ include_once './components/Shop/classes/ShopGroupsIcons.php';
 include_once './components/Shop/classes/ShopGroupsPathPanelHelper.php';
 include_once './components/Shop/classes/ShopPropertiesFilterType.php';
 include_once './components/Shop/classes/ShopPropertiesFilterSerchArray.php';
+include_once './components/Shop/classes/ShopHelperSQL.php';
+include_once './components/Shop/classes/ShopGroupsItemList.php';
 
 include_once './modules/ShopNavigationPanel/classes/ShopNavigationPanel.php';
 include_once './modules/ShopNavigationPanel/classes/ShopNavigationPanel_Menu.php';

@@ -187,7 +187,7 @@ class ShopPropertiesFilterType {
         foreach ($filterData as $key => $val) {
             $out .= '<div class="ShopPropertiesFilter_GroupSelectElement">';
             $out .= InputHelper::checkbox($filterId.'['.$key.']', $filterId.'_'.$key, 'ShopPropertiesFilter FilterType_groupSelect', FALSE, $val, ($value!==NULL && in_array($val,$value)), NULL);
-            $out .= ' <label for="'.$filterId.'_'.$key.'">'.$val.'</label>';
+            $out .= ' <label for="'.$filterId.'_'.$key.'">'.TextGenerator::shortenRusTextForLen($val, 25, 5, 6).'</label>';
             $out .= '</div>';
         }
         return $out;
@@ -274,33 +274,55 @@ class ShopPropertiesFilterType {
         $out .= InputHelper::paternTextBox('ItemPrise_max', 'ItemPrise_max', 'ShopPropertiesFilter FilterType_intRange MAXintRange ItemPrise_max', $maxlength, FALSE, "Максимальное значение", $pattern, $value["max"], NULL);
         return self::getFilterBlock($out);
     }
+    private static function getMainFilters_Action($groupID) {
+        $value = self::getSearchFilterElementData($groupID,'Action');
+        if($value === NULL) {
+            $value = 'all';
+        }
+        $actionArray = array();
+        $actionArray[0]['text'] = 'Любой товар';
+        $actionArray[0]['value'] = 'all';
+        $actionArray[1]['text'] = 'Только товар по акции';
+        $actionArray[1]['value'] = '1';
+        $actionArray[2]['text'] = 'Только товар без акции';
+        $actionArray[2]['value'] = '0';
+        $out = '';
+        $out .= "Акции на твоар ";
+        $out .= InputHelper::select('Action', 'Action', $actionArray, true, $value);
+        return self::getFilterBlock($out);
+    }
     
     private static function getMainFilters_Subgroup($groupID) {
-        $value = self::getSearchFilterElementData($groupID,'Subgroup');
-        if($groupID === NULL) {
-            $children = self::$shopGroupsHelper->getGroups();
+        if($groupID !== NULL) {
+            $value = self::getSearchFilterElementData($groupID,'Subgroup');
+//            if($groupID === NULL) {
+                $children = self::$shopGroupsHelper->getGroups();
+//            } else {
+//                $children = self::$shopGroupsHelper->getGroupChildren($groupID);
+//            }
+            if($value===NULL) {
+                $value = $groupID;
+            }
+            $groupsArray = array();
+            foreach ($children as $group) {
+                $i = count($groupsArray);
+                $groupsArray[$i]['value'] = $group;
+                $gr = self::$shopGroupsHelper->getGroupInfo($group);
+                $groupsArray[$i]['text'] = $gr['groupName'];
+            }
+            $out = '';
+            $out .= "Поиск по каталогу ";
+            $out .= InputHelper::select('Subgroup', 'Subgroup', $groupsArray, true, $value);
+            return self::getFilterBlock($out);
         } else {
-            $children = self::$shopGroupsHelper->getGroupChildren($groupID);
+            return '';
         }
-        if($value===NULL) {
-            $value = $groupID;
-        }
-        $groupsArray = array();
-        foreach ($children as $group) {
-            $i = count($groupsArray);
-            $groupsArray[$i]['value'] = $group;
-            $gr = self::$shopGroupsHelper->getGroupInfo($group);
-            $groupsArray[$i]['text'] = $gr['groupName'];
-        }
-        $out = '';
-        $out .= "Поиск по каталогу ";
-        $out .= InputHelper::select('Subgroup', 'Subgroup', $groupsArray, true, $value);
-        return self::getFilterBlock($out);
     }
     
     private static function getMainFilters($groupID) {
         $out = '';
         $out .= self::getMainFilters_ItemName($groupID);
+        $out .= self::getMainFilters_Action($groupID);
         $out .= self::getMainFilters_ItemPrise($groupID);
         $out .= self::getMainFilters_Subgroup($groupID);
         return $out;
@@ -347,7 +369,7 @@ class ShopPropertiesFilterType {
         }
     }
     private static function getSearchFilterElementData($groupID,$propertyID) {
-        $data = ShopPropertiesFilterSerchArray::getArrayGroup($groupID);
+        $data = ShopPropertiesFilterSerchArray::getArrayGroupProperties($groupID);
         if(isset($data[$propertyID]['value'])) {
             return $data[$propertyID]['value'];
         } else {
@@ -366,6 +388,7 @@ class ShopPropertiesFilterType {
         if(isset($_POST['ShopPropertiesFilterFormSubmit']) && $_POST['ShopPropertiesFilterFormSubmit']!=='') {
             self::$searchFilterDataArray[$groupID] = array();
             self::addSearchFilterData($groupID, 'ItemName', 'main', self::getPostValue('ItemName', NULL));
+            self::addSearchFilterData($groupID, 'Action', 'main', self::getPostValue('Action', NULL));
             $itemPrise_min = self::getPostValue('ItemPrise_min', NULL);
             $itemPrise_max = self::getPostValue('ItemPrise_max', NULL);
             $itemPriseValue = array();
@@ -400,9 +423,11 @@ class ShopPropertiesFilterType {
                 }
             }
             ShopPropertiesFilterSerchArray::setArrayGroup($groupID, self::$searchFilterDataArray[$groupID]);
-            echo '<pre>';
-            var_dump(ShopPropertiesFilterSerchArray::getArrayGroup($groupID));
-            echo '</pre><hr>';
+//            echo '<pre>';
+//            var_dump(ShopPropertiesFilterSerchArray::getArrayGroup($groupID));
+//            echo '</pre><hr>';
+        } else {
+            ShopPropertiesFilterSerchArray::setArrayGroup($groupID, array());
         }
     }
     
