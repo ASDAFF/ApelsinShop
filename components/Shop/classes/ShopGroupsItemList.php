@@ -38,6 +38,10 @@ class ShopGroupsItemList {
     
     private function generateHTML() {
         $this->HTML = "<div class='ShopItemsList'>";
+        $this->HTML .= "Найдено товаров: ".ShopPropertiesFilterSerchArray::getArrayGroupAmauntOfItems($this->groupID);
+        $this->HTML .= "<hr>";
+        $this->HTML .= $this->getPageNavigator();
+        $this->HTML .= "<hr>";
         foreach ($this->itemsList as $item) {
             $this->HTML .= $this->getItemHTML($item);
         }

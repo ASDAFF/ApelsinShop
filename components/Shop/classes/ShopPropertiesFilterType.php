@@ -423,11 +423,10 @@ class ShopPropertiesFilterType {
                 }
             }
             ShopPropertiesFilterSerchArray::setArrayGroup($groupID, self::$searchFilterDataArray[$groupID]);
-//            echo '<pre>';
-//            var_dump(ShopPropertiesFilterSerchArray::getArrayGroup($groupID));
-//            echo '</pre><hr>';
         } else {
-            ShopPropertiesFilterSerchArray::setArrayGroup($groupID, array());
+            If(count(ShopPropertiesFilterSerchArray::getArrayGroupProperties($groupID)) === 0) {
+                ShopPropertiesFilterSerchArray::setArrayGroup($groupID, array());
+            }
         }
     }
     

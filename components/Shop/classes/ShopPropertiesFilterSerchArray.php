@@ -16,6 +16,7 @@ class ShopPropertiesFilterSerchArray {
     }
     
     private static function createObject() {
+//        self::clearFilterData();
         if(!isset(self::$object)) {
             self::$object = new ShopPropertiesFilterSerchArray();
         }
@@ -33,21 +34,21 @@ class ShopPropertiesFilterSerchArray {
     
 
     public static function setArrayGroup($groupID, $array) {
-//        $_SESSION['ShopPropertiesFilter'] = array();
         self::createObject();        
         $groupID = self::getGroupID($groupID);
         if(is_array($array)) {
             $_SESSION['ShopPropertiesFilter'][$groupID]['Properties'] = $array;
             $amauntOfPage = ShopHelperSQL::getAmountOfPages($groupID, $array);
-//            var_dump($amauntOfPage);
+            $amauntOfItems = ShopHelperSQL::getAmountOfItems($groupID, $array);
             $_SESSION['ShopPropertiesFilter'][$groupID]['SQL'] = array();
             for ($page = 1; $page <= $amauntOfPage; $page++) {
                 $_SESSION['ShopPropertiesFilter'][$groupID]['SQL'][$page] = ShopHelperSQL::generateSQL($groupID, $array, $page);
             }
             $_SESSION['ShopPropertiesFilter'][$groupID]['AmauntOfPage'] = $amauntOfPage;
-//            echo '<h1>SQL</h1><pre>';
-//            var_dump($_SESSION['ShopPropertiesFilter'][$groupID]['SQL']);
-//            echo '</pre><h1>SQL end</h1>';
+            $_SESSION['ShopPropertiesFilter'][$groupID]['AmountOfItems'] = $amauntOfItems;
+            echo '<pre>';
+            var_dump($_SESSION['ShopPropertiesFilter'][$groupID]['SQL']);
+            echo '</pre>';
         }
     }
     public static function issetGroupData($groupID) {
@@ -92,5 +93,19 @@ class ShopPropertiesFilterSerchArray {
         } else {
             return ShopHelperSQL::getAmountOfPages($groupID, array());
         }
+    }
+    
+    public static function getArrayGroupAmauntOfItems($groupID) {
+        self::createObject();
+        $groupID = self::getGroupID($groupID);
+        if(isset($_SESSION['ShopPropertiesFilter'][$groupID]['AmountOfItems'])) {
+            return $_SESSION['ShopPropertiesFilter'][$groupID]['AmountOfItems'];
+        } else {
+            return ShopHelperSQL::getAmountOfItems($groupID, array());
+        }
+    }
+    
+    public static function clearFilterData() {
+        $_SESSION['ShopPropertiesFilter'] = array();
     }
 }

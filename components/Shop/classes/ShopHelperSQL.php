@@ -2,7 +2,7 @@
 /**
  * Description of ShopHelperSQL
  *
- * @author maxim
+ * @author Максим
  */
 class ShopHelperSQL {
     static private $object;
@@ -40,13 +40,32 @@ class ShopHelperSQL {
         return $groupID === '' || $groupID === NULL || $groupID === 'root';
     }
     
+    private static function getPriceTypeID() {
+        $query = "SELECT `id` FROM `ShopPricesTypes` WHERE `default`='1' LIMIT 1";
+        $rezult = self::$SQL_HELPER->select($query,1);
+        return $rezult['id'];
+    }
+    
+    private static function generateLimitSQL($page = NULL) {
+        if($page !== NULL) {
+            return " LIMIT ".(($page-1)*self::$itemOnPage).", ".self::$itemOnPage;
+        } else {
+            return "";
+        }
+    }
+    
+    private static function generateOrderBySQL() {
+        return " ORDER BY priceValue DESC ";
+    }
+
+
     /**
-     * Часть запроса для фильтров. Генерирует отсеивание по группам.
-     * @param type $groupID
-     * @param type $array
-     * @return string 
+     * Генерирует отсеивание по принадлежности к группе.
+     * @param string $groupID - группа
+     * @param array $array - параметры отсеивания
+     * @return string - SQL
      */
-    private static function generateSerchSQL_whereGroup($groupID, $array) {
+    private static function generateWhereSQL_Group($groupID, $array) {
         $sql = '';
         if(!self::isRootGroup($groupID)) {
             $serchGroup = self::checkArrayValues($array,'Subgroup') ? self::getArrayValues($array,'Subgroup') : $groupID;
@@ -55,232 +74,207 @@ class ShopHelperSQL {
                 $sql .= "`group`='".$group."' OR ";
             }
             if($sql !== '') {
-                $sql = " AND (".substr($sql, 0,  strlen($sql)-4).")";
+                $sql = " AND (". mb_substr($sql, 0,   mb_strlen($sql)-4).") ";
             }
         }
         return $sql;
     }
     
     /**
-     * Часть запроса для фильтров. Генерирует отсеивание по принадлежности к акционному товару.
-     * @param type $array
-     * @return type
+     * Генерирует отсеивание по принадлежности к акционному товару.
+     * @param array $array - параметры отсеивания
+     * @return string - SQL
      */
-    private static function generateSerchSQL_whereOnlyAction($array) {
+    private static function generateWhereSQL_Action($array) {
         if(self::checkArrayValues($array,'Action') && ($value = self::getArrayValues($array,'Action')) !== 'all') {
             return " AND `action`='".$value."' ";
+        } else {
+            return "";
         }
     }
     
-    private static function generateSerchSQL_whereItemName($array) {
+    /**
+     * Генерирует отсеивание по соответствию имени.
+     * @param array $array - параметры отсеивания
+     * @return string - SQL
+     */
+    private static function generateWhereSQL_ItemName($array) {
         $sql = '';
         if(self::checkArrayValues($array,'ItemName')) {
-//            $sql = self::generateSerchSQL_wherePropertyTextString('ItemName', self::getArrayValues($array,'ItemName'), 'itemName');
-            
             $itemNameText =  preg_replace('/ {2,}/',' ',self::getArrayValues($array,'ItemName'));
             $itemNames = explode(" ",trim($itemNameText));
             foreach ($itemNames as $name) {
-                $sql .= "LOWER(SI.`itemName`) LIKE '%".strtolower($name)."%' OR ";
+                $sql .= "LOWER(`itemName`) LIKE '%".mb_strtolower($name)."%' OR ";
             }
             if($sql !== '') {
-                $sql = " (".substr($sql, 0,  strlen($sql)-4).") ";
+                $sql = " AND (". mb_substr($sql, 0,  mb_strlen ($sql)-4).") ";
             }
         }
         return $sql;
     }
     
-    private static function generateSerchSQL_wherePropertyTextString($property, $value) {
-        $sql = '';
-        $itemNameText =  preg_replace('/ {2,}/',' ',$value);
-        $itemNames = explode(" ",trim($itemNameText));
-        foreach ($itemNames as $name) {
-            $sql .= "LOWER(SIPV.`value`) LIKE '%".strtolower($name)."%' OR ";
-        }
-        if($sql !== '') {
-            $sql = "(SIPV.`property`='".$property."' AND (".substr($sql, 0,  strlen($sql)-4).")) OR ";
-        }
-        return $sql;
-    }
-    
-    private static function generateSerchSQL_wherePropertyDefaultString($property,$value) {
-        return "(SIPV.`property`='".$property."' AND SIPV.`value`='".$value."') OR ";
-    }
-    
-    private static function generateSerchSQL_wherePropertyIntRangeString($property,$value) {
-        $sql = '';
-        $minValue = $maxValue = NULL;
-        if(isset($value['min'])) {
-            $minValue = $value['min'];
-        }
-        if(isset($value['max'])) {
-            $maxValue = $value['max'];
-        }
-        if($minValue !== NULL && $maxValue !== NULL) {
-            if($minValue < $maxValue) {
-                $sql .= "(SIPV.`property`='".$property."' AND ";
-                $sql .= "SIPV.`value` >= '".$minValue."' AND ";
-                $sql .= "SIPV.`value` <= '".$maxValue."') OR ";
-            } else if($maxValue < $minValue){
-                $sql .= "(SIPV.`property`='".$property."' AND ";
-                $sql .= "SIPV.`value` >= '".$maxValue."' AND ";
-                $sql .= "SIPV.`value` <= '".$minValue."') OR ";
-            } else {
-                $sql .= "(SIPV.`property`='".$property."' AND ";
-                $sql .= "SIPV.`value` = '".$minValue."') OR ";
-            }
-        } else {
-            if($minValue !== NULL) {
-                $sql .= "(SIPV.`property`='".$property."' AND ";
-                $sql .= "SIPV.`value` >= '".$minValue."') OR ";
-            } else if($maxValue !== NULL){
-                $sql .= "(SIPV.`property`='".$property."' AND ";
-                $sql .= "SIPV.`value` <= '".$maxValue."') OR ";
-            }
-        }
-        return $sql;
-    }
-    
-    private static function generateSerchSQL_whereProperty($array) {
-        $sql = '';
-        foreach ($array as $key => $property) {
-            if(self::checkArrayValues($array, $key)) {
-                switch (self::getArrayTypes($array, $key)) {
-                    case 'bool':
-                        $sql .= self::generateSerchSQL_wherePropertyDefaultString($key, self::getArrayValues($array,$key));
-                        break;
-                    case 'groupSelect':
-                        $valueArray = self::getArrayValues($array,$key);
-                        if($valueArray !== NULL && is_array($valueArray)) {
-                            foreach ($valueArray as $value) {
-                                $sql .= self::generateSerchSQL_wherePropertyDefaultString($key, $value);
-                            }
-                        }
-                        break;
-                    case 'intRange':
-                        $sql .= self::generateSerchSQL_wherePropertyIntRangeString($key, self::getArrayValues($array,$key));
-                        break;
-                    case 'select':
-                        $sql .= self::generateSerchSQL_wherePropertyDefaultString($key, self::getArrayValues($array,$key));
-                        break;
-                    case 'text':
-                        $sql .= self::generateSerchSQL_wherePropertyTextString($key, self::getArrayValues($array,$key));
-                        break;
-                }
-            }
-        }
-        if($sql !== '') {
-            $sql = substr($sql, 0,  strlen($sql)-4);
-            $sql = " (".$sql.") ";
-        }
-        return $sql;
-    }
-    
-    private static function generateSerchSQL_whereItemName_whereProperty($array) {
-        $itemName = self::generateSerchSQL_whereItemName($array);
-        $property = self::generateSerchSQL_whereProperty($array);
-//        var_dump($property);
-        $sql = '';
-        $sql .= $itemName;
-        if($itemName !== '' && $property !== '') {
-            $sql .= ' AND ';
-        }
-        $sql .= $property;
-        if($sql !== '') {
-//            $sql = substr($sql, 0,  strlen($sql)-4);
-        } else {
-            $sql = ' 1 ';
-        }
-//        var_dump($sql);
-        return $sql;
-    }
-    
-    private static function generateSerchSQL_wherePrice($array) {
-        $sql = '';
+    /**
+     * Генерирует отсеивание по диапазону цен.
+     * @param array $array - параметры отсеивания
+     * @return string - SQL
+     */
+    private static function generateWhereSQL_Price($array, $columnPrefix = '') {
         $value = self::getArrayValues($array, 'ItemPrise');
-        $minPrise = $maxPrise = NULL;
-        if(isset($value['min'])) {
-            $minPrise = $value['min'];
+        if($columnPrefix !== '') {
+            $columnPrefix .= '.';
         }
-        if(isset($value['max'])) {
-            $maxPrise = $value['max'];
+        $sql = " ".$columnPrefix."`price` = '".self::getPriceTypeID()."' ";
+        if(isset($value['min']) && isset($value['max'])) {
+            $sql .= " AND ".$columnPrefix."`value` >= '".min($value['min'], $value['max'])."' AND ".
+                    $columnPrefix."`value` <= '".max($value['min'], $value['max'])."' ";
+        } else if(isset($value['min']) && !isset($value['max'])) {
+            $sql .= " AND ".$columnPrefix."`value` >= '".$value['min']."' ";
+        } else if(!isset($value['min']) && isset($value['max'])) {
+            $sql .= " AND ".$columnPrefix."`value` <= '".$value['max']."' ";
         }
-        if($minPrise !== NULL && $maxPrise !== NULL) {
-            if($minPrise < $maxPrise) {
-                $sql .= " AND SIP.`value` >= '".$minPrise."' ";
-                $sql .= " AND SIP.`value` <= '".$maxPrise."' ";
-            } else if($maxPrise < $minPrise){
-                $sql .= " AND SIP.`value` >= '".$maxPrise."' ";
-                $sql .= " AND SIP.`value` <= '".$minPrise."' ";
-            } else {
-                $sql .= " AND SIP.`value` = '".$minPrise."' ";
+        return $sql;
+    }
+    
+    private static function generateWhereSQL_PropertyValue_bool($array, $valuesID) {
+        return " AND t2.`value` = '".self::getArrayValues($array, $valuesID)."' ";
+    }
+    
+    private static function generateWhereSQL_PropertyValue_groupSelect($array, $valuesID) {
+        $sql = '';
+        foreach (self::getArrayValues($array, $valuesID) as $value) {
+            $sql .= "t2.`value` = '".$value."' OR ";
+        }
+        if($sql !== '') {
+            $sql = " AND (". mb_substr($sql, 0,  mb_strlen ($sql)-4).") ";
+        }
+        return $sql;
+    }
+    
+    private static function generateWhereSQL_PropertyValue_intRange($array, $valuesID) {
+        $value = self::getArrayValues($array, $valuesID);
+        if(isset($value['min']) && isset($value['max'])) {
+            return " AND t2.`value` >= '".min($value['min'], $value['max'])."' AND t2.`value` <= '".max($value['min'], $value['max'])."' ";
+        } else if(isset($value['min']) && !isset($value['max'])) {
+            return " AND t2.`value` >= '".$value['min']."' ";
+        } else if(!isset($value['min']) && isset($value['max'])) {
+            return " AND t2.`value` <= '".$value['max']."' ";
+        }
+        return "";
+    }
+    
+    private static function generateWhereSQL_PropertyValue_select($array, $valuesID) {
+        return " AND t2.`value` = '".self::getArrayValues($array, $valuesID)."' ";
+    }
+    
+    private static function generateWhereSQL_PropertyValue_text($array, $valuesID) {
+        $sql = '';
+        if(self::checkArrayValues($array, $valuesID)) {
+            $textString =  preg_replace('/ {2,}/',' ',self::getArrayValues($array, $valuesID));
+            $explodeText = explode(" ",trim($textString));
+            foreach ($explodeText as $word) {
+                $sql .= "LOWER(t2.`value`) LIKE '%".mb_strtolower($word)."%' OR ";
             }
-        } else {
-            if($minPrise !== NULL) {
-                $sql .= " AND SIP.`value` >= '".$minPrise."' ";
-            } else if($maxPrise !== NULL){
-                $sql .= " AND SIP.`value` <= '".$maxPrise."' ";
+            if($sql !== '') {
+                $sql = " AND (". mb_substr($sql, 0,  mb_strlen ($sql)-4).") ";
             }
         }
         return $sql;
     }
     
-    private static function generateSerchSQL_getPriceTypeID() {
-        $query = "SELECT `id` FROM `ShopPricesTypes` WHERE `default`='1' LIMIT 1";
-        $rezult = self::$SQL_HELPER->select($query,1);
-        return $rezult['id'];
+    private static function generateWhereSQL_PropertyValue($array, $valuesID) {
+        switch (self::getArrayTypes($array, $valuesID)) {
+                case 'bool':
+                    $sql = self::generateWhereSQL_PropertyValue_bool($array, $valuesID);
+                    break;
+                case 'groupSelect':
+                    $sql = self::generateWhereSQL_PropertyValue_groupSelect($array, $valuesID);
+                    break;
+                case 'intRange':
+                    $sql = self::generateWhereSQL_PropertyValue_intRange($array, $valuesID);
+                    break;
+                case 'select':
+                    $sql = self::generateWhereSQL_PropertyValue_select($array, $valuesID);
+                    break;
+                case 'text':
+                    $sql = self::generateWhereSQL_PropertyValue_text($array, $valuesID);
+                    break;
+                default :
+                    $sql = "";
+                    break;
+        }
+        return $sql;
     }
     
-    private static function generateCountSQL_RootGroup($groupID, $array) {
-        $whereName = self::generateSerchSQL_whereItemName($array);
-        if($whereName !== '') {
-            $whereName = " AND ".$whereName;
+    private static function generateWhereSQL_Property($baseSQL, $array, $valuesID) {
+        if(self::checkArrayValues($array, $valuesID) && self::getArrayTypes($array, $valuesID) !== 'main') {
+            $sql = "
+                SELECT t1.`id` FROM (
+                    $baseSQL
+                ) as t1
+                INNER JOIN `ShopItemsPropertiesValues` as t2
+                on t1.`id` = t2.`item`
+                WHERE t2.`property`='".$valuesID."' 
+                ".self::generateWhereSQL_PropertyValue($array, $valuesID).
+                "GROUP BY `item`
+            ";
+            return $sql;
+        } else {
+            return $baseSQL;
         }
-        $sql = '';
-        $sql .= "SELECT
-            count(SI.`id`) as amount
-            FROM `ShopItems` as SI 
-            LEFT JOIN `ShopItemsPrices`  as SIP
-            on SI.`id` = SIP.`item`
-            WHERE
-            `shown`='1' ".
-            self::generateSerchSQL_whereOnlyAction($array).
-            " AND SIP.`price` = '".self::generateSerchSQL_getPriceTypeID()."' ".
-            self::generateSerchSQL_wherePrice($array).$whereName;
+    }
+    
+    
+    private static function generateBaseSQL_NotRootGroup($groupID, $array) {
+        $sql = "
+            SELECT
+            t1.`id`
+            FROM (
+                SELECT 
+                `id` 
+                FROM `ShopItems` 
+                WHERE `shown` = '1'
+                ".self::generateWhereSQL_Group($groupID, $array)."
+                ".self::generateWhereSQL_Action($array)."
+                ".self::generateWhereSQL_ItemName($array)."
+            ) as t1
+            LEFT JOIN `ShopItemsPrices` as t2
+            on t1.`id` = t2.`item`
+            WHERE ".self::generateWhereSQL_Price($array,'t2')." 
+        ";
+        foreach (array_keys($array) as $valuesID) {
+            $sql = self::generateWhereSQL_Property($sql, $array, $valuesID);
+        }
+        return $sql;
+    }
+
+    private static function generateCountSQL_RootGroup($groupID, $array) {
+        if(self::checkArrayValues($array,'ItemPrise')) {
+            $sql = "
+                SELECT
+                COUNT(t1.`id`) as amount
+                FROM (
+                    SELECT `id` FROM `ShopItems` WHERE `shown` = '1'"
+                    .self::generateWhereSQL_Action($array)
+                    .self::generateWhereSQL_ItemName($array)."
+                ) as t1
+                LEFT JOIN `ShopItemsPrices` as t2
+                on t1.`id` = t2.`item`
+                WHERE ".self::generateWhereSQL_Price($array,'t2').";
+            ";
+        } else {
+            $sql = "SELECT count(`id`) as amount FROM `ShopItems` WHERE `shown` = '1'"
+                .self::generateWhereSQL_Action($array)
+                .self::generateWhereSQL_ItemName($array).";
+            ";
+        }
         return $sql;
     }
     
     private static function generateCountSQL_NotRootGroup($groupID, $array) {
-        $sql = '';
-        $sql .= "SELECT
-            count(SI.`id`) as amount
-            FROM(
-                SELECT
-                SI.`id`, 
-                SI.`itemName`
-                FROM(
-                    SELECT 
-                    `id`, 
-                    `itemName`
-                    FROM `ShopItems` 
-                    WHERE `shown`='1'".
-                    self::generateSerchSQL_whereGroup($groupID, $array).
-                    self::generateSerchSQL_whereOnlyAction($array).
-                ") as SI 
-                LEFT JOIN 
-                `ShopItemsPropertiesValues` as SIPV
-                on SI.`id` = SIPV.`item`
-                where ".
-                self::generateSerchSQL_whereItemName_whereProperty($array).
-                "GROUP BY SI.`id`
-            ) as SI 
-            LEFT JOIN 
-            `ShopItemsPrices`  as SIP
-            on SI.`id` = SIP.`item`
-            where SIP.`price` = '".self::generateSerchSQL_getPriceTypeID()."' ".
-            self::generateSerchSQL_wherePrice($array);
+        $sql = "SELECT COUNT(t1.`id`) as amount FROM (".self::generateBaseSQL_NotRootGroup($groupID, $array).") as t1;";
         return $sql;
     }
-    
+        
     private static function generateCountSQL($groupID, $array) {
         self::createObject();
         if(self::isRootGroup($groupID)) {
@@ -289,91 +283,75 @@ class ShopHelperSQL {
             return self::generateCountSQL_NotRootGroup($groupID, $array);
         }
     }
+
+    private static function generateSQL_RootGroup($groupID, $array, $page=NULL) {
+        $sql = "
+            SELECT
+            t1.`id`, 
+            t1.`itemName`, 
+            t1.`group`, 
+            t1.`action`, 
+            t1.`amount`, 
+            t1.`minAmount`,
+            t1.`description`,
+            t2.`value` as priceValue
+            FROM (
+                SELECT 
+                `id`, 
+                `itemName`, 
+                `group`, 
+                `action`, 
+                `amount`, 
+                `minAmount`,
+                `description` 
+                FROM `ShopItems` 
+                WHERE `shown` = '1'
+                ".self::generateWhereSQL_Action($array)."
+                ".self::generateWhereSQL_ItemName($array)."
+            ) as t1
+            LEFT JOIN `ShopItemsPrices` as t2
+            on t1.`id` = t2.`item`
+            WHERE ".self::generateWhereSQL_Price($array,'t2')."
+            ".self::generateOrderBySQL().self::generateLimitSQL($page).";
+        ";
+        return $sql;
+    }
     
     private static function generateSQL_NotRootGroup($groupID, $array, $page=NULL) {
-        $sql = '';
-        $sql .= "SELECT
-            SI.`id`, 
-            SI.`itemName`, 
-            SI.`group`, 
-            SI.`action`, 
-            SI.`amount`, 
-            SI.`minAmount`,
-            SI.`description`,
-            SIP.`value` as priceValue
-            FROM(
+        $sql = self::generateBaseSQL_NotRootGroup($groupID, $array);
+        $sql = "
+            SELECT
+            t1.`id`, 
+            t1.`itemName`, 
+            t1.`group`, 
+            t1.`action`, 
+            t1.`amount`, 
+            t1.`minAmount`,
+            t1.`description`,
+            t2.`value` as priceValue
+            FROM (
                 SELECT
-                SI.`id`, 
-                SI.`itemName`, 
-                SI.`group`, 
-                SI.`action`, 
-                SI.`amount`, 
-                SI.`minAmount`,
-                SI.`description`
-                FROM(
-                    SELECT 
-                    `id`, 
-                    `itemName`, 
-                    `group`, 
-                    `action`, 
-                    `amount`, 
-                    `minAmount`,
-                    `description`
-                    FROM `ShopItems` 
-                    WHERE `shown`='1'".
-                    self::generateSerchSQL_whereGroup($groupID, $array).
-                    self::generateSerchSQL_whereOnlyAction($array).
-                ") as SI 
-                LEFT JOIN 
-                `ShopItemsPropertiesValues` as SIPV
-                on SI.`id` = SIPV.`item`
-                where ".
-                self::generateSerchSQL_whereItemName_whereProperty($array).
-                "GROUP BY SI.`id`
-            ) as SI 
-            LEFT JOIN 
-            `ShopItemsPrices`  as SIP
-            on SI.`id` = SIP.`item`
-            where SIP.`price` = '".self::generateSerchSQL_getPriceTypeID()."' ".
-            self::generateSerchSQL_wherePrice($array).
-            "ORDER BY priceValue DESC";
-        if($page !== NULL) {
-            $sql .= " LIMIT ".(($page-1)*self::$itemOnPage).", ".self::$itemOnPage;
-        }
+                t2.`id`, 
+                t2.`itemName`, 
+                t2.`group`, 
+                t2.`action`, 
+                t2.`amount`, 
+                t2.`minAmount`,
+                t2.`description`
+                FROM (
+                ".self::generateBaseSQL_NotRootGroup($groupID, $array)."
+                ) as t1
+                INNER JOIN `ShopItems` as t2
+                on t1.`id` = t2.`id`
+            ) as t1
+            LEFT JOIN `ShopItemsPrices` as t2
+            on t1.`id` = t2.`item`
+            WHERE ".self::generateWhereSQL_Price($array,'t2')."
+            ".self::generateOrderBySQL().self::generateLimitSQL($page).";
+        ";
         return $sql;
     }
-    
-    private static function generateSQL_RootGroup($groupID, $array, $page=NULL) {
-        $whereName = self::generateSerchSQL_whereItemName($array);
-        if($whereName !== '') {
-            $whereName = " AND ".$whereName;
-        }
-        $sql = '';
-        $sql .= "SELECT
-            SI.`id`, 
-            SI.`itemName`, 
-            SI.`group`, 
-            SI.`action`, 
-            SI.`amount`, 
-            SI.`minAmount`,
-            SI.`description`,
-            SIP.`value` as priceValue
-            FROM `ShopItems` as SI 
-            LEFT JOIN `ShopItemsPrices`  as SIP
-            on SI.`id` = SIP.`item`
-            WHERE
-            `shown`='1' ".
-            self::generateSerchSQL_whereOnlyAction($array).
-            " AND SIP.`price` = '".self::generateSerchSQL_getPriceTypeID()."' ".
-            self::generateSerchSQL_wherePrice($array).$whereName.
-            "ORDER BY priceValue DESC";
-        if($page !== NULL) {
-            $sql .= " LIMIT ".(($page-1)*self::$itemOnPage).", ".self::$itemOnPage;
-        }
-        
-        return $sql;
-    }
-    
+
     public static function generateSQL($groupID, $array, $page=NULL) {
         self::createObject();
         if(self::isRootGroup($groupID)) {
@@ -384,9 +362,14 @@ class ShopHelperSQL {
     }
     
     public static function getAmountOfPages($groupID, $array) {
+        $allItems = self::getAmountOfItems($groupID, $array);
+        $allPages = ceil($allItems / self::$itemOnPage);
+        return $allPages !== 0 ? $allPages : 1;
+    }
+    
+    public static function getAmountOfItems($groupID, $array) {
         $countSQL = self::generateCountSQL($groupID, $array);
         $rezult = self::$SQL_HELPER->select($countSQL,1);
-        $allItems = isset($rezult['amount']) ? $rezult['amount'] : 0;
-        return ceil($allItems / self::$itemOnPage);
+        return isset($rezult['amount']) ? $rezult['amount'] : 0;
     }
 }
