@@ -60,7 +60,7 @@ input[type=checkbox] {
 <div class='test'><?php $ROOT->block('test');?></div>
 <div class='ShopNavigationPanel'><?php $ROOT->block('ShopNavigationPanel');?></div>
 <div class='content'>
-<?php 
+<?php
 $ROOT->content();
 ?>
 </div>

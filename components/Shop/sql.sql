@@ -573,3 +573,55 @@ LEFT JOIN
 `ShopItemsPrices`  as SIP
 on SI.`id` = SIP.`item`
 where SIP.`price` = '288427e0-9732-11db-bbb4-0017315894a1'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SELECT COUNT(t1.`id`) as amount 
+FROM (
+    SELECT t1.`id` 
+    FROM (
+        SELECT t1.`id` 
+        FROM (
+            SELECT t1.`id`
+            FROM (
+                SELECT `id` 
+                FROM `ShopItems` 
+                WHERE `shown` = '1' AND (`group`='27566c6a-9ed8-11e3-96ad-005056be1f7b')
+            ) as t1
+            LEFT JOIN `ShopItemsPrices` as t2
+            on t1.`id` = t2.`item`
+            WHERE  t2.`price` = '288427e0-9732-11db-bbb4-0017315894a1'
+        ) as t1
+        INNER JOIN `ShopItemsPropertiesValues` as t2
+        on t1.`id` = t2.`item`
+        WHERE t2.`property`='e765ba75-107d-11e3-8a5d-0050569a1080' AND t2.`value` >= 9.5 AND t2.`value` <= 18 GROUP BY `item`
+    ) as t1
+    INNER JOIN `ShopItemsPropertiesValues` as t2
+    on t1.`id` = t2.`item`
+    WHERE t2.`property`='1ea6fcc4-d206-11e4-9be0-005056be1f7c' AND t2.`value` >= 0 AND t2.`value` <= 3 GROUP BY `item`
+) as t1;
+
+
+
+
+
+
+
+
+
+
+
+
+

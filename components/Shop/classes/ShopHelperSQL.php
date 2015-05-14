@@ -125,12 +125,12 @@ class ShopHelperSQL {
         }
         $sql = " ".$columnPrefix."`price` = '".self::getPriceTypeID()."' ";
         if(isset($value['min']) && isset($value['max'])) {
-            $sql .= " AND ".$columnPrefix."`value` >= '".min($value['min'], $value['max'])."' AND ".
-                    $columnPrefix."`value` <= '".max($value['min'], $value['max'])."' ";
+            $sql .= " AND ".$columnPrefix."`value` >= ".min($value['min'], $value['max'])." AND ".
+                    $columnPrefix."`value` <= ".max($value['min'], $value['max'])." ";
         } else if(isset($value['min']) && !isset($value['max'])) {
-            $sql .= " AND ".$columnPrefix."`value` >= '".$value['min']."' ";
+            $sql .= " AND ".$columnPrefix."`value` >= ".$value['min']." ";
         } else if(!isset($value['min']) && isset($value['max'])) {
-            $sql .= " AND ".$columnPrefix."`value` <= '".$value['max']."' ";
+            $sql .= " AND ".$columnPrefix."`value` <= ".$value['max']." ";
         }
         return $sql;
     }
@@ -153,11 +153,11 @@ class ShopHelperSQL {
     private static function generateWhereSQL_PropertyValue_intRange($array, $valuesID) {
         $value = self::getArrayValues($array, $valuesID);
         if(isset($value['min']) && isset($value['max'])) {
-            return " AND t2.`value` >= '".min($value['min'], $value['max'])."' AND t2.`value` <= '".max($value['min'], $value['max'])."' ";
+            return " AND t2.`value` >= ".min($value['min'], $value['max'])." AND t2.`value` <= ".max($value['min'], $value['max'])." ";
         } else if(isset($value['min']) && !isset($value['max'])) {
-            return " AND t2.`value` >= '".$value['min']."' ";
+            return " AND t2.`value` >= ".$value['min']." ";
         } else if(!isset($value['min']) && isset($value['max'])) {
-            return " AND t2.`value` <= '".$value['max']."' ";
+            return " AND t2.`value` <= ".$value['max']." ";
         }
         return "";
     }

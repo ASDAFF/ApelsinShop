@@ -200,10 +200,12 @@ class ShopPropertiesFilterType {
         $max_v = self::getmaxValue($filterData);
         $value = self::getSearchFilterElementData($groupID,$propertyID);
         if(!isset($value["min"]) || $value["min"]===NULL || $value["min"]==='') {
-            $value["min"] = $min_v;
+//            $value["min"] = $min_v;
+            $value["min"] = NULL;
         }
         if(!isset($value["max"]) || $value["max"]===NULL || $value["max"]==='') {
-            $value["max"] = $max_v;
+//            $value["max"] = $max_v;
+            $value["max"] = NULL;
         }
         $maxlength = self::getIntRangeMaxlength($min_v,$max_v);
         if(self::$allGroupPropertiesData[$groupID][$propertyID]['valueType'] === 'int') {
@@ -213,9 +215,9 @@ class ShopPropertiesFilterType {
         }
         $out = '';
         $out .= self::getFilterName($groupID, $propertyID)." от ";
-        $out .= InputHelper::paternTextBox($filterId.'_min', $filterId.'_min', 'ShopPropertiesFilter FilterType_intRange MINintRange', $maxlength, FALSE, "Минимальное значение", $pattern, $value["min"], NULL);
+        $out .= InputHelper::paternTextBox($filterId.'_min', $filterId.'_min', 'ShopPropertiesFilter FilterType_intRange MINintRange', $maxlength, FALSE, "Минимальное значение", $pattern, min($value["min"],$value["max"]), NULL);
         $out .= " до ";
-        $out .= InputHelper::paternTextBox($filterId.'_max', $filterId.'_max', 'ShopPropertiesFilter FilterType_intRange MAXintRange', $maxlength, FALSE, "Максимальное значение", $pattern, $value["max"], NULL);
+        $out .= InputHelper::paternTextBox($filterId.'_max', $filterId.'_max', 'ShopPropertiesFilter FilterType_intRange MAXintRange', $maxlength, FALSE, "Максимальное значение", $pattern, max($value["min"],$value["max"]), NULL);
         $out .= " (от ".$min_v." до ".$max_v.")";
         return $out;
     }
@@ -295,11 +297,7 @@ class ShopPropertiesFilterType {
     private static function getMainFilters_Subgroup($groupID) {
         if($groupID !== NULL) {
             $value = self::getSearchFilterElementData($groupID,'Subgroup');
-//            if($groupID === NULL) {
-                $children = self::$shopGroupsHelper->getGroups();
-//            } else {
-//                $children = self::$shopGroupsHelper->getGroupChildren($groupID);
-//            }
+            $children = self::$shopGroupsHelper->getGroupChildren($groupID);
             if($value===NULL) {
                 $value = $groupID;
             }

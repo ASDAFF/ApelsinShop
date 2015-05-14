@@ -46,9 +46,10 @@ class ShopPropertiesFilterSerchArray {
             }
             $_SESSION['ShopPropertiesFilter'][$groupID]['AmauntOfPage'] = $amauntOfPage;
             $_SESSION['ShopPropertiesFilter'][$groupID]['AmountOfItems'] = $amauntOfItems;
-            echo '<pre>';
-            var_dump($_SESSION['ShopPropertiesFilter'][$groupID]['SQL']);
-            echo '</pre>';
+//            echo '<pre>';
+//            var_dump($_SESSION['ShopPropertiesFilter'][$groupID]['SQL']);
+//            var_dump($_SESSION['ShopPropertiesFilter'][$groupID]['Properties']);
+//            echo '</pre>';
         }
     }
     public static function issetGroupData($groupID) {

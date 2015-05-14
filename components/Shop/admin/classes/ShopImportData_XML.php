@@ -222,14 +222,19 @@ class ShopImportData_XML {
                 if(isset($property['#'])) {
                     if($this->checkXmlData_Properties($key,$property['#'])) {
                         $this->xmlDataIdSet['Properties'][] = $property['#']['id'][0]['#'];
-                        $this->DATA_XML['Properties'][$key]['id'] = $property['#']['id'][0]['#'];
-                        $this->DATA_XML['Properties'][$key]['propertyName'] = $property['#']['propertyName'][0]['#'];
-                        $this->DATA_XML['Properties'][$key]['filterType'] = $property['#']['filterType'][0]['#'];
-                        $this->DATA_XML['Properties'][$key]['valueType'] = $property['#']['valueType'][0]['#'];
+//                        $this->DATA_XML['Properties'][$key]['id'] = $property['#']['id'][0]['#'];
+//                        $this->DATA_XML['Properties'][$key]['propertyName'] = $property['#']['propertyName'][0]['#'];
+//                        $this->DATA_XML['Properties'][$key]['filterType'] = $property['#']['filterType'][0]['#'];
+//                        $this->DATA_XML['Properties'][$key]['valueType'] = $property['#']['valueType'][0]['#'];
+                        $this->DATA_XML['Properties'][$property['#']['id'][0]['#']]['id'] = $property['#']['id'][0]['#'];
+                        $this->DATA_XML['Properties'][$property['#']['id'][0]['#']]['propertyName'] = $property['#']['propertyName'][0]['#'];
+                        $this->DATA_XML['Properties'][$property['#']['id'][0]['#']]['filterType'] = $property['#']['filterType'][0]['#'];
+                        $this->DATA_XML['Properties'][$property['#']['id'][0]['#']]['valueType'] = $property['#']['valueType'][0]['#'];
                         if($property['#']['oneOfAllValues'][0]['#'] !== '1' && $property['#']['oneOfAllValues'][0]['#'] !== '0') {
                             $this->ERRORS[] = 'Некорректное значение oneOfAllValues для свойства <span class="WarErrTextId">'.$property['#']['id'][0]['#'].'</span>';
                         }
-                        $this->DATA_XML['Properties'][$key]['oneOfAllValues'] = $property['#']['oneOfAllValues'][0]['#'];
+//                        $this->DATA_XML['Properties'][$key]['oneOfAllValues'] = $property['#']['oneOfAllValues'][0]['#'];
+                        $this->DATA_XML['Properties'][$property['#']['id'][0]['#']]['oneOfAllValues'] = $property['#']['oneOfAllValues'][0]['#'];
                         $this->addConstantDataSetValue('filterType', $property['#']['filterType'][0]['#']);
                         $this->addConstantDataSetValue('valueType', $property['#']['valueType'][0]['#']);
                         if(!in_array($property['#']['filterType'][0]['#'],$this->DATA_MYSQL['PropertiesFilterType'])) {
@@ -240,7 +245,7 @@ class ShopImportData_XML {
                         }
                     }
                 } else {
-                    $this->ERRORS[] = $this->getErrorTextNoBlock('Properties::property',$key);
+                    $this->ERRORS[] = $this->getErrorTextNoBlock('Properties::property',$property['#']['id'][0]['#']);
                 }
             }
         }
@@ -655,7 +660,11 @@ class ShopImportData_XML {
                         $data['value'] = '';
                         $this->WARNINGS[] = 'Для товара <span class="WarErrTextId">'.$item.'</span> указано пустое значения для свойства <span class="WarErrTextId">'.$property['#']['property'][0]['#'].'</span>';
                     } else {
-                        $data['value'] = $property['#']['value'][0]['#'];
+                        if($this->DATA_XML['Properties'][$data['property']]['valueType'] === 'float') {
+                            $data['value'] = str_replace(",",".",$property['#']['value'][0]['#']);
+                        } else {
+                            $data['value'] = $property['#']['value'][0]['#'];
+                        }
                         $this->DATA_XML['ItemsPropertiesValues'][] = $data;
                     }
                 }
