@@ -11,182 +11,224 @@
  * @author olga
  */
 class ResizeImage {
+     
+    private $image;        // дескриптор загруженного изображения 
+    private $origWidth;    // ширина загруженного изображения
+    private $origHeight;   // высота загруженного изображения
+    private $resizeWidth;  // новая ширина 
+    private $resizeHeight; // новая высота
+    private $ext;          // расширение
+    private $newImage;     //для измененного изображения
     
-    private $ext;
-    private $image;
-    private $newImage;
-    private $origWidth;
-    private $origHeight;
-    private $resizeWidth;
-    private $resizeHeight;
-
     /**
-     * 
-     * @param type $filename - изображение
+     * Конструктор
+     * @param type $fileName - изображение
      */
-    public function __construct( $filename ) {
-        if(file_exists($filename)) {
-            $this->setImage( $filename );
+    public function __construct($fileName) {  
+        if (file_exists($fileName)) {
+            // открываем изображение 
+            $this->openImage($fileName); 
         } else {
-            echo 'Hе найденo, попробуйте другое изображение';
-        }
-    }
-
+            echo 'Изображение не найденo, выберите другое';
+        }  
+    } 
+    
     /**
-     *  Получить расширение файла  
-     * @param string $filename
+     * Ресайз
+     * @param  int $newWidth -  максимальная ширина изображения
+     * @param  int $newHeight - максимальная высота изображения
+     * @param  string $option - соотношение длины-ширины
      */
-    private function setImage( $filename ) {
-        $size = getimagesize($filename);
-        $this->ext = $size['mime'];
-        switch($this->ext) {
-            // JPG
-            case 'image/jpg':
-            case 'image/jpeg':
-                $this->image = imagecreatefromjpeg($filename);
-                break;
-            // GIF
-            case 'image/gif':
-                $this->image = @imagecreatefromgif($filename);
-                break;
-            // PNG
-            case 'image/png':
-                $this->image = @imagecreatefrompng($filename);
-                break;
-            default:
-                throw new Exception("File is not an image, please use another file type.", 1);
+    public function resizeTo($newWidth, $newHeight, $option = 'default' ) {  
+        // получаем оптимальную ширину и высоту (зависит от параметра $option) 
+        $this->getDimensions($newWidth, $newHeight, strtolower($option)); 
+        // создаем холст изображения с измененными сторонами
+        $this->newImage = imagecreatetruecolor($newWidth, $newHeight);
+        if ($this->ext == 'image/png') {
+            // отключаем режим сопряжения цветов (убираем черный фон)
+            imagealphablending($this->newImage, false);
+            // сохраняем альфа канал в выходной файл
+            imagesavealpha($this->newImage, true);
         }
-        $this->origWidth = imagesx($this->image);
-        $this->origHeight = imagesy($this->image);
+        if ($this->ext == 'image/gif') {
+            // получаем прозрачный цвет
+            $transparent_source_index = imagecolortransparent($this->image);
+            // проверяем наличие прозрачности
+            if ($transparent_source_index !== -1) {
+                // получаем цвет, соответствующий заданному индексу.
+                $transparent_color = imagecolorsforindex($this->image, $transparent_source_index);
+                //Добавляем цвет в палитру нового изображения 
+                $transparent_destination_index = imagecolorallocate($this->newImage, $transparent_color['red'], $transparent_color['green'], $transparent_color['blue']);
+                 // устанавливаем его как прозрачный
+                imagecolortransparent($this->newImage, $transparent_destination_index);
+                //На всякий случай заливаем фон этим цветом
+                imagefill($this->newImage, 0, 0, $transparent_destination_index);
+            }
+        }    
+        // Если параметр $option = 'crop'(обрезка), то создаем соответствующий холст
+        if ($option == 'crop') {
+            // Находим центр - это необходимо для обрезки
+            $cropStartX = ( $this->resizeWidth / 2) - ( $newWidth /2 );  
+            $cropStartY = ( $this->resizeHeight/ 2) - ( $newHeight/2 );  
+            imagecopyresampled($this->newImage, $this->image , 0, 0, $cropStartX, $cropStartY, $this->resizeWidth, $this->resizeHeight, $this->origWidth, $this->origHeight);
+        } else {
+            imagecopyresampled($this->newImage, $this->image, 0, 0, 0, 0, $this->resizeWidth, $this->resizeHeight, $this->origWidth, $this->origHeight);  
+        }
     }
-
+    
     /**
      * Сохранить изображение
      * @param  String[type] $savePath - путь для сохранения нового изображения
      * @param  string $imageQuality -   качество сохраняемого нового изображения
      * @return сохраненное изображение
      */
-    public function saveImage($savePath, $imageQuality="100", $download = false) {
-        switch($this->ext) {
-            case 'image/jpg':
-            case 'image/jpeg':
-                if (imagetypes() & IMG_JPG) {
-                    imagejpeg($this->newImage, $savePath, $imageQuality);
-                }
-                break;
-
-            case 'image/gif':
+    public function saveImage($savePath, $imageQuality="100", $download = false) {  
+        // получаем расширение
+        switch ($this->ext) {  
+            case 'image/jpeg':   
+                if (imagetypes() & IMG_JPG) {  
+                    imagejpeg($this->newImage, $savePath, $imageQuality);  
+                }  
+                break;   
+            case 'image/png':  
+                // переводим шкалу качества с 0 - 100 в 0 - 9  
+                $scaleQuality = round(($imageQuality/100) * 9); 
+                // инвертируем качество.   
+                $invertScaleQuality = 9 - $scaleQuality;  
+                if (imagetypes() & IMG_PNG) {  
+                    imagepng($this->newImage, $savePath, $invertScaleQuality);  
+                }  
+                break;  
+            case 'image/gif':    
                 if (imagetypes() & IMG_GIF) {
-                    imagegif($this->newImage, $savePath);
+                    imagegif($this->newImage, $savePath, $imageQuality);
                 }
-                break;
-
-            case 'image/png':
-                $invertScaleQuality = 9 - round(($imageQuality/100) * 9);
-                if (imagetypes() & IMG_PNG) {
-                    imagepng($this->newImage, $savePath, $invertScaleQuality);
-                }
-                break;
-        }
-        if($download) {
+                break; 
+            default:  
+                echo 'Выбранный файл не является изображением'; 
+                break;  
+        } 
+        if ($download) {
             header('Content-Description: File Transfer');
             header("Content-type: application/octet-stream");
             header("Content-disposition: attachment; filename= ".$savePath."");
             readfile($savePath);
-        }
-        imagedestroy($this->newImage);
-    }
-
-    /**
-     * Ресайз
-     * @param  int $width -  максимальная ширина изображения
-     * @param  int $height - максимальная высота изображения
-     * @param  string $resizeOption - соотношение длины-ширины
-     * @return 
-     */
-    public function resizeTo( $width, $height, $resizeOption = 'default' ) {
-        switch(strtolower($resizeOption)) {
-            case 'exact': 
-                $this->resizeWidth = $width;
-                $this->resizeHeight = $height;
-                break;
-            case 'maxwidth':
-                $this->resizeWidth  = $width;
-                $this->resizeHeight = $this->resizeHeightByWidth($width);
-                break;
-            case 'maxheight':
-                $this->resizeWidth  = $this->resizeWidthByHeight($height);
-                $this->resizeHeight = $height;
-                break;
-            case 'crop': 
-                $heightRatio = $this->origHeight / $height;  
-                $widthRatio  = $this->origWidth /  $height;  
-                if ($heightRatio < $widthRatio) {  
-                    $optimalRatio = $heightRatio;  
-                } else {  
-                    $optimalRatio = $widthRatio;  
-                }  
-                $this->resizeWidth = $height / $optimalRatio;  
-                $this->resizeHeight  = $width  / $optimalRatio;  
-            default:
-                if($this->origWidth > $width || $this->origHeight > $height) {
-                    if ( $this->origWidth > $this->origHeight ) {
-                     $this->resizeHeight = $this->resizeHeightByWidth($width);
-                             $this->resizeWidth  = $width;
-                    } else if( $this->origWidth < $this->origHeight ) {
-                            $this->resizeWidth  = $this->resizeWidthByHeight($height);
-                            $this->resizeHeight = $height;
-                    }  else {
-                            $this->resizeWidth = $width;
-                            $this->resizeHeight = $height;	
-                    }
-                } else {
-                    $this->resizeWidth = $width;
-                    $this->resizeHeight = $height;
-                }
-                break;
-        }
-
-        $this->newImage = imagecreatetruecolor($this->resizeWidth, $this->resizeHeight);
-        imagecopyresampled($this->newImage, $this->image, 0, 0, 0, 0, $this->resizeWidth, $this->resizeHeight, $this->origWidth, $this->origHeight);
-        // Если параметр $option = 'crop'(обрезка), то создаем соответствующий холст
-        if ($resizeOption == 'crop') {  
-            $this->crop($this->resizeWidth, $this->resizeHeight, $width, $height);  
         } 
+        // освобождаем память, уничтожая переменную с изображением
+        imagedestroy($this->newImage);
     }
     
     /**
-     * Oбрезкa
-     * @param type $optimalWidth
-     * @param type $optimalHeight
+     * Открыть файл. Получить дескриптор, ширину и высоту   
+     * @param string $file
+     */
+    private function openImage($file) {  
+        // получаем расширение файла  
+        $size = getimagesize($file);
+        $this->ext = $size['mime'];
+        switch($this->ext) {  
+            case 'image/jpeg':   
+                $this->image = @imagecreatefromjpeg($file);  
+                break;   
+            case 'image/png':  
+                $this->image = @imagecreatefrompng($file);  
+                break; 
+            case 'image/gif': 
+                $this->image = @imagecreatefromgif($file);  
+                break; 
+            default:  
+                echo 'Выбранный файл не является изображением'; 
+                break;  
+        }  
+        // сохраняем ширину и высоту 
+        $this->origWidth = imagesx($this->image);
+        $this->origHeight = imagesy($this->image);  
+    }
+    
+    /**
+     * Получить параметры ресайза
+     * @param  int $newWidth -  максимальная ширина изображения
+     * @param  int $newHeight - максимальная высота изображения
+     * @param  string $option - соотношение длины-ширины
+     */
+    private function getDimensions($newWidth, $newHeight, $option = 'default' ) {  
+        switch ($option) {  
+            case 'exact':  
+                $this->resizeWidth = $newWidth;  
+                $this->resizeHeight = $newHeight;  
+                break;  
+            case 'maxheight':  
+                $this->resizeWidth = $this->getSizeByFixedHeight($newHeight);  
+                $this->resizeHeight = $newHeight;  
+                break;  
+            case 'maxwidth':  
+                $this->resizeWidth = $newWidth;  
+                $this->resizeHeight = $this->getSizeByFixedWidth($newWidth);  
+                break;  
+            case 'crop':  
+                $this->getOptimalCrop($newWidth, $newHeight);  
+                break; 
+            default:  
+                $this->getSizeByAuto($newWidth, $newHeight);  
+                break;   
+        }    
+    }
+    
+    /**
+     * Вычисление новой высоты
+     * @param type $newHeight
+     * @return type
+     */
+    private function getSizeByFixedHeight($newHeight) {  
+        return floor(($this->origWidth/$this->origHeight) * $newHeight);
+    }
+
+    /**
+     * Вычисление новой ширины
+     * @param type $newWidth
+     * @return type
+     */
+    private function getSizeByFixedWidth($newWidth) {  
+        return floor(($this->origHeight/$this->origWidth) * $newWidth);
+    }  
+
+    /**
+     * Автоподгонка размеров
      * @param type $newWidth
      * @param type $newHeight
      */
-    private function crop($optimalWidth, $optimalHeight, $newWidth, $newHeight) {  
-        // Находим центр - это необходимо для обрезки
-        $cropStartX = ( $optimalWidth / 2) - ( $newWidth /2 );  
-        $cropStartY = ( $optimalHeight/ 2) - ( $newHeight/2 ); 
-        $crop = $this->newImage;  
-        // Теперь обрезаем от центра до указанного размера 
-        $this->newImage = imagecreatetruecolor($newWidth , $newHeight);  
-        imagecopyresampled($this->newImage, $crop , 0, 0, $cropStartX, $cropStartY, $newWidth, $newHeight , $newWidth, $newHeight);
-    }
+    private function getSizeByAuto($newWidth, $newHeight) { 
+        if($this->origWidth > $newWidth || $this->origHeight > $newHeight) {
+            if ( $this->origWidth > $this->origHeight ) {
+             $this->resizeHeight = $this->getSizeByFixedWidth($newWidth);
+                $this->resizeWidth  = $newWidth;
+            } else if( $this->origWidth < $this->origHeight ) {
+                $this->resizeWidth  = $this->getSizeByFixedHeight($newHeight);
+                $this->resizeHeight = $newHeight;
+            } else {
+                $this->resizeWidth = $newWidth;
+                $this->resizeHeight = $newHeight;	
+            }
+        } else {
+            $this->resizeWidth = $newWidth;
+            $this->resizeHeight = $newHeight;
+        }
+    }  
 
     /**
-     * Максимальная ширина при сохранинии соотношения сторон
-     * @param  int $width - Максимальная ширина
-     * @return 
+     * Вычисление размеров для обрезки
+     * @param type $newWidth
+     * @param type $newHeight
      */
-    private function resizeHeightByWidth($width) {
-        return floor(($this->origHeight/$this->origWidth)*$width);
-    }
-
-    /**
-     * Максимальная высота при сохранинии соотношения сторон
-     * @param  int $height - MМаксимальная высота
-     * @return 
-     */
-    private function resizeWidthByHeight($height) {
-        return floor(($this->origWidth/$this->origHeight)*$height);
+    private function getOptimalCrop($newWidth, $newHeight) {  
+        $heightRatio = $this->origHeight / $newHeight;  
+        $widthRatio  = $this->origWidth /  $newWidth;  
+        if ($heightRatio < $widthRatio) {  
+            $optimalRatio = $heightRatio;  
+        } else {  
+            $optimalRatio = $widthRatio;  
+        }  
+        $this->resizeHeight = $this->origHeight / $optimalRatio;  
+        $this->resizeWidth  = $this->origWidth  / $optimalRatio;   
     }
 }

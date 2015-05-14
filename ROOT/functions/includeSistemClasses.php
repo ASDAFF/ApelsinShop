@@ -28,8 +28,10 @@ function includeSistemClasses($path = './ROOT/') {
     include_once $path.'classes/ErrorHelper.php';
     include_once $path.'classes/SiteMap.php';
     include_once $path.'classes/HtmlTemplate.php';
+    include_once $path.'classes/ResizeImage.php';
     include_once $path.'classes/DownloadFile.php';
     include_once $path.'classes/DownloadImage.php';
+    include_once $path.'classes/pclzip.lib.php';
     
     include_once $path.'classes/ID_GENERATOR.php';
     include_once $path.'classes/BackgroundGeneratorHelper.php';

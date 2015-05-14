@@ -15,4 +15,7 @@ $mainPanelUI->addElement('importUnloadingShop', 'Импортировать вы
 $mainPanelUI->addElement('restartImportShop', 'Повторный запуск импорта', 'restartImportShopUI.php');
 $mainPanelUI->addElement('removeUnloadingShop', 'Удалить выгрузку (backUp)', 'removeUnloadingShopUI.php');
 $mainPanelUI->addElement('viewLogsShop', 'Просмотр логов', 'viewLogsShopUI.php');
+$mainPanelUI->addElement('uploadImagesItemsShop', 'Залить изображения товаров и иконки групп', 'uploadImagesItemsShopUI.php');
+$mainPanelUI->addElement('changeProductShop', 'Изменение товара', 'changeProductShopUI.php');
+$mainPanelUI->addElement('changeGroupShop', 'Изменение группы', 'changeGroupShopUI.php');
 $mainPanelUI->getUI();

@@ -458,7 +458,9 @@ input[type=file] {
 }
 
 /*Просмотр логов*/ 
-.viewLogsShopWrapper {
+.viewLogsShopWrapper, 
+.uploadImagesItemsShop, 
+.listImagesItemsAndIconsShop {
     width: 958px;
     height: 130px;
     margin: 10px auto;
@@ -466,12 +468,10 @@ input[type=file] {
     text-shadow: 0px 1px 0px rgba(255,255,255, 1);
     background: #eee;
     color: #2d2d2d;
-    border: 1px solid limegreen;
 }
 .leftViewLogsShopContent {
     width: 9px;
     height: 100%;
-    background: limegreen;
     float: left;
 }
 .leftViewLogsShopContent.blueViewLogsShop { 
@@ -490,7 +490,7 @@ input[type=file] {
 }
 .greenViewLogsShopWrapper { border: 1px solid rgb(24, 213, 24); }
 .greenExportViewLogsShop { color: green; }
-.orangeExportViewLogsShop{ color: orange; }
+.orangeExportViewLogsShop { color: orange;}
 .errorExportViewLogsShop, .warningExportViewLogsShop { 
     color: red; 
     font-weight: bolder;
@@ -524,7 +524,8 @@ input[type=file] {
         width: 9px;
         height: 130px;
         position: relative;
-        cursor: pointer;
+        /*по наведении блок появляется*/
+        /*cursor: pointer;*/
     }
     .helpViewLogsShop span {
         margin-left: 10px;
@@ -536,8 +537,23 @@ input[type=file] {
         position: absolute; 
         top:  5px;
         left: 5px;
+        /*по наведении блок появляется*/
+        /*display: none;*/
     }
+    /*по наведении блок появляется*/
+/*    .helpViewLogsShop:hover span {
+        display: block;
+    }*/
 
+fieldset { 
+    border:1px dotted #ef7f1a; 
+}
+legend {
+    color: #ef7f1a; 
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+}
 .mainViewLogsShopContent {
     width: 606px;
     height: 92px;
@@ -599,3 +615,189 @@ input[type=file] {
     .rightMiddleSmallViewLogsShop:hover {
        background: #ccc;
     }
+    
+/*Распаковка архива*/
+.uploadImagesItemsShop {
+    /*наследует от .viewLogsShopWrapper*/
+    height: 120px;
+    border: 1px solid #bbb;
+}
+    .uploadImagesItemsShop > div {
+        margin: 0 auto;
+        float: left;
+        padding: 10px 0;
+        width: 958px;
+        height: 20px;
+        text-align: center;
+    }.uploadImagesItemsShop > div > p {
+        margin: 0;
+        padding: 0px;
+        text-align: center;
+    }
+.uploadImagesItemsShop > div:first-child,  .listImagesItemsAndIconsShop > p:first-child {
+    font-size: 20px;
+    font-weight: bold;
+    background: #bbb;
+    color: #fff;
+    padding: 0;
+    height: 40px;
+    text-shadow: none;
+}
+    .uploadImagesItemsShop > div:first-child > p {
+        float: left;
+        padding: 10px;
+        width: 888px;
+    }
+    .uploadImagesItemsShop > div:first-child > p:last-child {
+        width: 30px;
+        cursor: pointer;
+    }
+    .uploadImagesItemsShop .viewLogsShopImage {
+        background: url('../img/icons/view_w_20.png') center center no-repeat;
+    }
+    .uploadImagesItemsShop .viewLogsShopImage:hover {
+        background: url('../img/icons/view_b_20.png') center center no-repeat;
+    }
+    
+
+.uploadImagesItemsShop > div > p > span ,
+.listImagesItemsAndIconsShop > div > p > span {
+    font-weight: bolder;
+}
+.blueUploadImagesItemsShop {
+    color: #1b7fcc;
+}
+.purplUploadImagesItemsShop {
+    color: purple;
+}
+.pinkUploadImagesItemsShop {
+    color: palevioletred;
+}
+.listImagesItemsAndIconsShop {
+    /* наследует от .viewLogsShopWrapper */
+    display: none;
+    margin-top: 10px;
+    border: 1px solid #bbb;
+    height: 100%;
+}
+    .listImagesItemsAndIconsShop > p {
+        margin: 0;
+        padding: 10px;
+        text-align: center;
+        display: block;
+    }
+    .listImagesItemsAndIconsShop > p:first-child {
+        /* наследует от .uploadImagesItemsShop > div:first-child */
+        padding: 10px;
+        height: 20px;
+        float: none;
+    }
+    .collumnsUploadImagesItemsShop {
+        width:100%; 
+        padding: 10px;
+        text-align: left;
+        column-count: 3;   
+        -moz-column-count: 3;  
+        -webkit-column-count: 3;  
+        column-gap: 10px; 
+        -moz-column-gap: 10px;
+        -webkit-column-gap: 10px;
+        column-rule: 1px solid #bbb; 
+        -moz-column-rule: 1px solid #bbb;
+        -webkit-column-rule: 1px solid #bbb;
+    }
+
+/*Редактироваь товары и группы*/
+.listItemsShopItems {
+    width: 960px;
+    margin: 0px auto;
+}
+    .listItemsShopItems .wrapperItemsShopItems {
+        width: 958px;
+        margin: 10px 0;
+        border: 1px solid #bbb;
+        height: 68px;
+        font: 12px/34px "Verdana", sans-serif;
+        text-align: center;
+        background: #eee;
+    }
+    .listItemsShopItems .wrapperItemsShopItems.groupShop  {
+        height: 82px;
+    }
+        .wrapperItemsShopItems .blockGorizontConteinerShopItems {
+            width: 100%;
+            height: 34px;
+        }
+        .wrapperItemsShopItems .blockGorizontConteinerShopItems:first-child {
+            background: #bbb;
+            color: #fff;
+            text-shadow: none;
+        }
+        .wrapperItemsShopItems.groupShop .blockGorizontConteinerShopItems:first-child {
+            height: 48px;
+            line-height: 48px;
+        }
+        .wrapperItemsShopItems .leftBlockGorizontShopItems {
+            font-weight: bold;
+            width: 858px;
+            height: inherit;
+            float: left;
+        }
+
+.blockGorizontConteinerShopItems .rightBlockGorizontShopItems {
+    width: 99px;
+    float: right;
+    font-weight: normal;
+    border-left: 1px solid #aaa;
+    cursor: pointer;
+    background: rgb(24, 213, 24);
+    color: #fff;
+}
+    .wrapperItemsShopItems.groupShop .blockGorizontConteinerShopItems:first-child .rightBlockGorizontShopItems > div {
+        height: 23.5px;
+        border-bottom: 1px solid #aaa;
+        font: 10px/11px "Verdana", sans-serif;
+    }
+
+    .blockGorizontConteinerShopItems:first-child .rightBlockGorizontShopItems.showShopItems,
+    .blockGorizontConteinerShopItems:first-child .rightBlockGorizontShopItems .showShopItems {
+    background: #ff5600;
+    }
+    .blockGorizontConteinerShopItems:first-child .rightBlockGorizontShopItems.hideShopItems,
+    .blockGorizontConteinerShopItems:first-child .rightBlockGorizontShopItems .hideShopItems  {
+        background: #FD2661;
+    }
+    .blockGorizontConteinerShopItems:first-child .rightBlockGorizontShopItems.showShopItems:hover,
+    .blockGorizontConteinerShopItems:first-child .rightBlockGorizontShopItems .showShopItems:hover {
+        background: #E55004;
+    }
+    .blockGorizontConteinerShopItems:first-child .rightBlockGorizontShopItems.hideShopItems:hover ,
+    .blockGorizontConteinerShopItems:first-child .rightBlockGorizontShopItems .hideShopItems:hover {
+        background: #de0052;
+    }
+    .blockGorizontConteinerShopItems .rightBlockGorizontShopItems a {
+        color: #fff;
+        text-decoration: none;
+    }
+    .blockGorizontConteinerShopItems:last-child .rightBlockGorizontShopItems {
+        border-top: 1px solid #aaa;
+    }
+    .wrapperItemsShopItems.groupShop .blockGorizontConteinerShopItems:last-child .rightBlockGorizontShopItems.forGroup {
+        border-top: none;
+    }
+    .blockGorizontConteinerShopItems:last-child .rightBlockGorizontShopItems:hover {
+        background: green;
+    }
+.itemsName {
+    font-size: 15px;
+}
+
+.colorInput {
+    background: #c1f2c4;
+}
+
+.changeProductShopEdit {
+    color: rgb(250, 133, 3);
+    font-weight: bolder;
+    font-size: 16px;
+}

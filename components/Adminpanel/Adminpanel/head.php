@@ -1,4 +1,6 @@
 <script type="text/javascript" src="./components/Adminpanel/js/contactsUnitsDayoff.js"></script>
+<script type="text/javascript" src="./components/Adminpanel/js/listImagesItems.js"></script>
+<script type="text/javascript" src="./components/Adminpanel/js/showHideItems.js"></script>
 
 <?php
 include_once './components/Adminpanel/classes/AdminPanel_ROOT.php';

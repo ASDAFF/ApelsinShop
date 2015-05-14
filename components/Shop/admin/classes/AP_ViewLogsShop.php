@@ -35,7 +35,7 @@ class AP_ViewLogsShop {
      * Генерирование ссылки для просмотра файла
      */
     private function generateA($name, $href, $class) {
-        $this->html .= '<a class="rightMiddleSmallViewLogsShop '.$class.' href="'.$href.'" target="_blank" title="'.$name.'">';
+        $this->html .= '<a class="rightMiddleSmallViewLogsShop '.$class.'" href="'.$href.'" target="_blank" title="'.$name.'">';
             $this->html .= '<span class="viewLogsShopImage"></span>';
         $this->html .= '</a>';
     }
@@ -115,7 +115,7 @@ class AP_ViewLogsShop {
                     $this->html .= '</div>';
                 $this->html .= '</div>';
                 $this->html .= '<div class="topViewLogsShopContent">';
-                    $this->html .= '<div class="topViewLogsShopHeader">Файл XML apelsin 23.45.6789 23:12:56.xml</div>';
+                    $this->html .= '<div class="topViewLogsShopHeader">Файл XML "'.$row['xmlFile'].'"</div>';
                     $this->generateA('Файл XML '.$row['xmlFile'], $this->dirXML.$row['xmlFile'], '');
                 $this->html .= '</div>';
                 $this->html .= '<div class="mainViewLogsShopContent">';
