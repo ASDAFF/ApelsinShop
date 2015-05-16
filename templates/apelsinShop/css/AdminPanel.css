@@ -800,4 +800,18 @@ legend {
     color: rgb(250, 133, 3);
     font-weight: bolder;
     font-size: 16px;
+    text-align: center;
+}
+
+.prefixText {
+    float: left;
+    width: 100px;
+}
+.prefixText p {
+    line-height: 20px;
+    margin: 0;
+    padding: 0 5px;
+}
+.prefixText .prefixs {
+    float: left;
 }

@@ -18,4 +18,6 @@ $mainPanelUI->addElement('viewLogsShop', 'Просмотр логов', 'viewLog
 $mainPanelUI->addElement('uploadImagesItemsShop', 'Залить изображения товаров и иконки групп', 'uploadImagesItemsShopUI.php');
 $mainPanelUI->addElement('changeProductShop', 'Изменение товара', 'changeProductShopUI.php');
 $mainPanelUI->addElement('changeGroupShop', 'Изменение группы', 'changeGroupShopUI.php');
+$mainPanelUI->addElement('scalarUnitsShop', 'Скалярные единицы измерения', 'scalarUnitsShopUI.php');
+$mainPanelUI->addElement('prefixesScalarUnitsShop', 'Префиксы скалярных единиц измерения', 'prefixesScalarUnitsShopUI.php');
 $mainPanelUI->getUI();
