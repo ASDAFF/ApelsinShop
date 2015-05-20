@@ -40,12 +40,6 @@ class ShopHelperSQL {
         return $groupID === '' || $groupID === NULL || $groupID === 'root';
     }
     
-    private static function getPriceTypeID() {
-        $query = "SELECT `id` FROM `ShopPricesTypes` WHERE `default`='1' LIMIT 1";
-        $rezult = self::$SQL_HELPER->select($query,1);
-        return $rezult['id'];
-    }
-    
     private static function generateLimitSQL($page = NULL) {
         if($page !== NULL) {
             return " LIMIT ".(($page-1)*self::$itemOnPage).", ".self::$itemOnPage;
@@ -123,7 +117,7 @@ class ShopHelperSQL {
         if($columnPrefix !== '') {
             $columnPrefix .= '.';
         }
-        $sql = " ".$columnPrefix."`price` = '".self::getPriceTypeID()."' ";
+        $sql = " ".$columnPrefix."`price` = '".ShopGroupPriceType::getPriceTypeID()."' ";
         if(isset($value['min']) && isset($value['max'])) {
             $sql .= " AND ".$columnPrefix."`value` >= ".min($value['min'], $value['max'])." AND ".
                     $columnPrefix."`value` <= ".max($value['min'], $value['max'])." ";
