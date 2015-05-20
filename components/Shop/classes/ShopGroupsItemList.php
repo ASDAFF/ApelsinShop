@@ -3,6 +3,7 @@ class ShopGroupsItemList {
     private $SQL_HELPER;
     private $groupID;
     private $page;
+    private $urlHelper;
     private $itemsList;
     private $HTML;
     
@@ -10,6 +11,7 @@ class ShopGroupsItemList {
         global $_SQL_HELPER;
         $this->SQL_HELPER = $_SQL_HELPER;
         $this->page = $page;
+        $this->urlHelper = new UrlHelper();
         $this->setGroupID();
         $this->getPageData();
         $this->generateHTML();
@@ -50,9 +52,10 @@ class ShopGroupsItemList {
     }
     
     private function getItemHTML($item) {
+        $itemURL = $this->urlHelper->chengeParams(array('item',$item['id']));
         $out = '';
         $out .= "<div class='ShopItemElement'>";
-        $out .= "<div class='ShopItemElement_ID'>".$item['id']."</div>";
+        $out .= "<div class='ShopItemElement_ID'><a href='".$itemURL."'>".$item['id']."</a></div>";
         $out .= "<div class='ShopItemElement_ItemName'>".$item['itemName']."</div>";
         if($item['action'] === 1) {
             $out .= "<div class='ShopItemElement_Action'>Акция</div>";
@@ -62,37 +65,10 @@ class ShopGroupsItemList {
         $out .= "<hr>";
         return $out;
     }
-    private function getPageNavigatorElementURl($page) {
-        if( $this->groupID !== 'root' ) {
-            return ShopGroupsUrlHelper::getUrl(array('catalog', $this->groupID, 'p', $page));
-        } else {
-            return ShopGroupsUrlHelper::getUrl(array('p', $page));
-        }
-    }
     
     private function getPageNavigator() {
-        $amauntOfPage = ShopPropertiesFilterSerchArray::getArrayGroupAmauntOfPage($this->groupID);
-        $out = "<ul class='ShopItemsListNav'>";
-        for ($i = 1; $i <= $amauntOfPage; $i++) {
-            if($this->page == $i) {
-                $out .= $this->getPageNavigator_ThisPage($i);
-            } else {
-                $out .= $this->getPageNavigator_OtherPage($i);
-            }
-        }
-        $out .= "</ul>";
-        return $out;
-    }
-    private function getPageNavigator_ThisPage($page) {
-        $out = "<li class='ShopItemsListNavElement ThisPageNavElement'>";
-        $out .= $page;
-        $out .= "</li>";
-        return $out;
-    }
-    private function getPageNavigator_OtherPage($page) {
-        $out = "<li class='ShopItemsListNavElement'>";
-        $out .= "<a href='".$this->getPageNavigatorElementURl($page)."'>".$page."</a>";
-        $out .= "</li>";
+        $shopGroupsPageNavigator = new ShopGroupsPageNavigator($this->groupID, $this->page);
+        $out = $shopGroupsPageNavigator->getHtml();
         return $out;
     }
     

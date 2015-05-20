@@ -21,8 +21,11 @@ class ShopMainClass {
             }
             $shopGroupsItemList = new ShopGroupsItemList($this->page);
             $this->HTML = $shopGroupsItemList->getHtml();
+        } else if(isset($this->params[0]) && $this->params[0] === 'item') {
+            $shopItem = new ShopItem();
+            $this->HTML = $shopItem->getHtml();
         } else {
-            $this->HTML = "в разработке";
+            $this->HTML = "Некорректная URL, позже здесь будет нормальный обработчик ошибки";
         }
     }
     

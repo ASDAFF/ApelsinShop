@@ -27,7 +27,6 @@ class ShopGroupsPathPanelHelper {
         if($thisGroup == null || $thisGroup == '') {
             return '';
         }
-//        echo $thisGroup;
         $group = self::$shopGroupsHelper->getGroupInfo($thisGroup);
         $out = '';
         $groupsPath = self::$shopGroupsHelper->getGroupPath($group['id']);
@@ -44,9 +43,17 @@ class ShopGroupsPathPanelHelper {
                         $out .= '</li>';
                     }
                 }
-                $out .= '<li class="ThisGroupPathElement">';
-                $out .= $group['groupName'];
-                $out .= '</li>';
+                if(ShopPageInfoHelper::isItGroupPage()) {
+                    $out .= '<li class="ThisGroupPathElement">';
+                    $out .= $group['groupName'];
+                    $out .= '</li>';
+                } else {
+                    $out .= '<li class="ThisGroupPathElement">';
+                    $out .= '<a href="'.ShopGroupsUrlHelper::getUrl(array('catalog',$group['id'])).'">';
+                    $out .= $group['groupName'];
+                        $out .= '</a>';
+                    $out .= '</li>';
+                }
             $out .= '</ul>';
         $out .= '</div>';
         return $out;

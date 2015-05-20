@@ -18,6 +18,7 @@ class ShopPageInfoHelper {
     static private $pageUrlElement;
     static private $groupId;
     static private $pageUrlError = false;
+    static private $groupPage = false;
     
 //    static private $SQL_DATA;
     
@@ -63,9 +64,11 @@ class ShopPageInfoHelper {
             switch (self::$URL_PARAMS[0]) {
                 case 'catalog':
                     self::$pageUrlType = 'catalog';
+                    self::$groupPage = true;
                     break;
                 case 'item':
                     self::$pageUrlType = 'item';
+                    self::$groupPage = false;
                     break;
             }
             if(isset(self::$URL_PARAMS[1])) {
@@ -111,6 +114,11 @@ class ShopPageInfoHelper {
     public static function shopPageGroupId() {
         self::createObject();
         return self::$groupId;
+    }
+    
+    public static function isItGroupPage() {
+        self::createObject();
+        return self::$groupPage;
     }
 
 

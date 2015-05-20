@@ -14,6 +14,8 @@ include_once './components/Shop/classes/ShopPropertiesFilterSerchArray.php';
 include_once './components/Shop/classes/ShopHelperSQL.php';
 include_once './components/Shop/classes/ShopGroupsItemList.php';
 include_once './components/Shop/classes/ShopMainClass.php';
+include_once './components/Shop/classes/ShopItem.php';
+include_once './components/Shop/classes/ShopGroupsPageNavigator.php';
 
 include_once './modules/ShopNavigationPanel/classes/ShopNavigationPanel.php';
 include_once './modules/ShopNavigationPanel/classes/ShopNavigationPanel_Menu.php';
