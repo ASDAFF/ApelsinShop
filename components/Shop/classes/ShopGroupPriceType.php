@@ -13,6 +13,7 @@
  */
 class ShopGroupPriceType {
     static private $SQL_HELPER;
+    static private $object;
     
     private function __construct() {
         global $_SQL_HELPER;
