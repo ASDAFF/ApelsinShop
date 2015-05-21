@@ -1,0 +1,193 @@
+/** СИСТЕМНЫЕ СТИЛИ **/
+root {  display: block; }
+* { padding: 0px; margin: 0px; }
+img { border: none; vertical-align:bottom; }
+.clear { clear: both; }
+
+/** СТИЛИ ТЕГОВ **/
+body {
+    color: #5f5f5f;
+}
+a {
+    text-decoration: none;
+    color: #5f5f5f;
+}
+p a {
+    border-bottom: 1px dashed #5f5f5f;
+}
+p a:hover {
+    color: #ef7f1a;
+}
+/*ul {
+    list-style: none;
+    margin-left: 0;
+}
+ul li:before {
+      content: "\00BB";
+      padding-right: 10px;
+}*/
+
+/** ОСНОВНЫЕ БЛОКИ САЙТА **/
+.Wraper {
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
+    min-width: 960px;
+}
+.Wraper .HeadWraper {
+    width: 100%;
+    height: 100px;
+}
+.Wraper .HeadWraper .HeadWraperBlock {
+    margin: 0 auto;
+    width: 960px;
+    height: 100px;
+}
+.Wraper .HeadWraper .HeadWraperBlock .SiteLogo {
+    float: left;
+    background: url('../img/SiteLogo.png') center center no-repeat;
+    width: 200px;
+    height: 100px;
+}
+.Wraper .HeadWraper .HeadWraperBlock .LeftHeadWraper {
+    float: right;
+    width: 760px; /* 960px - 200px */
+    height: 100px;
+}
+.Wraper .HeadWraper .HeadWraperBlock .LeftHeadWraper .LeftHeadBlock {}
+.Wraper .HeadWraper .HeadWraperBlock .LeftHeadWraper .LeftHeadBlock .LeftTopHeadWraper {
+    height: 35px; /* 50px */
+    padding: 10px 0px 5px 0px;
+}
+.Wraper .HeadWraper .HeadWraperBlock .LeftHeadWraper .LeftHeadBlock .LeftTopHeadWraper .LeftTopHeadBlock {
+    height: 35px;
+}
+.Wraper .HeadWraper .HeadWraperBlock .LeftHeadWraper .LeftHeadBlock .LeftBottomHeadWraper {
+    height: 35px; /* 50px */
+    padding: 5px 0px 10px 0px;
+}
+.Wraper .HeadWraper .HeadWraperBlock .LeftHeadWraper .LeftHeadBlock .LeftBottomHeadWraper .LeftBottomHeadBlock {
+    height: 35px;
+}
+.Wraper .MenuWraper {
+    border-top: 1px solid #ef7f1a;
+    border-bottom: 1px solid #ef7f1a;
+    height: 30px;
+}
+.Wraper .MenuWraper .MenuBlock {
+    margin: 0 auto;
+    width: 960px;
+    height: 30px;
+}
+.Wraper .BeforeContentWraper {
+    border-bottom: 1px solid #ef7f1a;
+}
+.Wraper .BeforeContentWraper .BeforeContentBlock {
+    margin: 0 auto;
+    width: 960px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+.Wraper .BeforeContentButtonWraper {
+    height: 15px;
+}
+.Wraper .BeforeContentButtonWraper .BeforeContentButtonBlock {
+    margin: 0 auto;
+    width: 100px;
+    height: 15px;
+    background: #ef7f1a;
+    position: relative;
+}
+.Wraper .BeforeContentButtonWraper .BeforeContentButtonBlock:before   {
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: 15px solid #ef7f1a; 
+    border-left: 15px solid transparent;
+    position: absolute;
+    top: 0;
+    left: -15px;
+}
+.Wraper .BeforeContentButtonWraper .BeforeContentButtonBlock:after   {
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: 15px solid #ef7f1a; 
+    border-right: 15px solid transparent;
+    position: absolute;
+    top: 0;
+    right: -15px;	
+}
+.Wraper .BeforeContentButtonWraper .BeforeContentButtonBlock .BeforeContentButton {
+    cursor: pointer;
+    width: 100px;
+    height: 15px;
+}
+.Wraper .BeforeContentButtonWraper .BeforeContentButtonBlock .BeforeContentButton .BeforeContentButtonText {
+    background: url('../img/arrowHideShow.png') top left no-repeat;
+    margin: 0 auto;
+    width: 90px;
+    height: 15px;
+    font:  11px/15px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+}
+.Wraper .BeforeContentButtonWraper .BeforeContentButtonBlock .BeforeContentButton .BeforeContentButtonText.HideText {
+    background-position: 0px 0px;
+}
+.Wraper .BeforeContentButtonWraper .BeforeContentButtonBlock .BeforeContentButton .BeforeContentButtonText.HideText:after{
+    content: "Скрыть";
+}
+.Wraper .BeforeContentButtonWraper .BeforeContentButtonBlock .BeforeContentButton .BeforeContentButtonText.ShowText {
+    background-position: 0px -15px;
+}
+.Wraper .BeforeContentButtonWraper .BeforeContentButtonBlock .BeforeContentButton .BeforeContentButtonText.ShowText:after {
+    content: "Показать";
+}
+.Wraper .ContentWraper {}
+.Wraper .ContentWraper .ContentBlock {}
+.Wraper .ContentWraper .ContentBlock .ContentTopWraper {}
+.Wraper .ContentWraper .ContentBlock .ContentTopWraper .ContentTopBlock {}
+.Wraper .ContentWraper .ContentBlock .ContentMainWraper {}
+.Wraper .ContentWraper .ContentBlock .ContentMainWraper .ContentMainBlock {
+    margin: 0 auto;
+    width: 960px;
+}
+.Wraper .ContentWraper .ContentBlock .ContentBottomWraper {}
+.Wraper .ContentWraper .ContentBlock .ContentBottomWraper .ContentBottomBlock {}
+.Wraper .AfterContentWraper {}
+.Wraper .AfterContentWraper .AfterContentBlock {}
+.Wraper .FutterWraper {
+    border-top: 1px solid #ef7f1a;
+}
+.Wraper .FutterWraper .FutterBlock {
+    margin: 0 auto;
+    width: 960px;
+    font: 11px/15px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    text-shadow: 0 1px 0px rgba(255,255,255,0.5);
+}
+.Wraper .FutterWraper .FutterBlock a {
+    border: none;
+    font-weight: bold;
+    color: #ef7f1a;
+}
+.Wraper .FutterWraper .FutterBlock a:hover {
+    border-bottom: 1px dashed #ef7f1a;
+}
+.Wraper .FutterWraper .FutterBlock .FutterLeftWraper {
+    float: left;
+    width: 760px;
+}
+.Wraper .FutterWraper .FutterBlock .FutterLeftWraper .FutterLeftBlock {
+    text-align: left;
+    padding: 40px 0px 40px 0px;
+}
+.Wraper .FutterWraper .FutterBlock .FutterRightWraper {
+    float: right;
+    width: 200px;
+}
+.Wraper .FutterWraper .FutterBlock .FutterRightWraper .FutterRightBlock {
+    text-align: right;
+    padding: 40px 0px 40px 0px;
+}

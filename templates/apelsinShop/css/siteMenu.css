@@ -1,0 +1,31 @@
+/** МЕНЮ **/
+.horizontal_1_lvl {
+    display: block;
+    list-style-type: none;
+}
+.horizontal_1_lvl.mainMenu {
+    height: 30px;
+    border-left: rgba(255,255,255,0.4) 1px solid;
+}
+.horizontal_1_lvl.mainMenu li {
+    font: bold 16px/30px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    float: left;
+    text-align: center;
+    position: relative;
+    border-right: 1px solid #FFFFFF;
+    vertical-align: middle;
+    cursor: pointer;
+}
+.horizontal_1_lvl.mainMenu li a {
+    display: block;
+    text-decoration: none;
+    text-shadow: none;
+    padding: 0px 10px 0px 10px;
+    background: none;
+    color: #8B8B8B;
+}
+.horizontal_1_lvl.mainMenu  li a:hover,
+.horizontal_1_lvl.mainMenu  li.thisPage a {
+    background: #ef7f1a;
+    color: #FFFFFF;
+}

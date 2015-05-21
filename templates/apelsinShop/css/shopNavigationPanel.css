@@ -1,0 +1,45 @@
+.ShopNavigationPanel {}
+
+.ShopNavigationPanel .ThisGroupPathPanel {}
+.ShopNavigationPanel .ThisGroupPathPanel ul.ThisGroupPath {
+    list-style: none;
+    margin-left: 0;
+    height: 30px;
+}
+.ShopNavigationPanel .ThisGroupPathPanel ul.ThisGroupPath li.ThisGroupPathElement {
+    height: 10px;
+    display: block;
+    float: left;
+    font: bold 10px/10px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    text-transform: uppercase;
+    padding: 10px 0px 10px 0px;
+}
+.ShopNavigationPanel .ThisGroupPathPanel ul.ThisGroupPath li.ThisGroupPathElement:before {
+    content: "\00BB";
+    padding: 0px 2px 0px 2px;
+}
+.ShopNavigationPanel .ThisGroupPathPanel ul.ThisGroupPath li.ThisGroupPathElement.RootElement {}
+.ShopNavigationPanel .ThisGroupPathPanel ul.ThisGroupPath li.ThisGroupPathElement a {
+    color: #ef7f1a;
+}
+
+.ShopNavigationPanel .ShopNavigationPanel_Menu {
+    /*clear: both;*/
+}
+.ShopNavigationPanel .ShopNavigationPanel_Menu .ThisGroupIconPanelBlock {}
+.ShopNavigationPanel .ShopNavigationPanel_Menu .ThisGroupIconPanelBlock .ThisGroupIconPanel {}
+.ShopNavigationPanel .ShopNavigationPanel_Menu .ThisGroupIconPanelBlock .ThisGroupIconPanel .ShopGroupIcon {}
+.ShopNavigationPanel .ShopNavigationPanel_Menu .ThisGroupIconPanelBlock .ThisGroupIconPanel .ShopGroupName {}
+.ShopNavigationPanel .ShopNavigationPanel_Menu .ThisGroupIconPanelBlock .ThisGroupIconPanel .ShopGroupName div {}
+
+.ShopNavigationPanel .ShopNavigationPanel_Menu ul.SNPRootGroupsMenu {}
+.ShopNavigationPanel .ShopNavigationPanel_Menu ul.SNPRootGroupsMenu li.SNPRootGroupsMenuElement {}
+.ShopNavigationPanel .ShopNavigationPanel_Menu ul.SNPRootGroupsMenu li.SNPRootGroupsMenuElement a {}
+.ShopNavigationPanel .ShopNavigationPanel_Menu ul.SNPRootGroupsMenu li.SNPRootGroupsMenuElement .ShopGroupIcon {}
+.ShopNavigationPanel .ShopNavigationPanel_Menu ul.SNPRootGroupsMenu li.SNPRootGroupsMenuElement .ShopGroupName {}
+
+.ShopNavigationPanel .ShopNavigationPanel_Filter {}
+.ShopNavigationPanel .ShopNavigationPanel_Filter .ShopPropertiesFilterForm {}
+.ShopNavigationPanel .ShopNavigationPanel_Filter .ShopPropertiesFilterForm .ShopPropertiesFilterBlock {}
+.ShopNavigationPanel .ShopNavigationPanel_Filter .ShopPropertiesFilterForm .ShopPropertiesFilterBlock .ShopPropertiesFilter {}
+.ShopNavigationPanel .ShopNavigationPanel_Filter .ShopPropertiesFilterForm .ShopPropertiesFilterFormSubmit {}

@@ -37,7 +37,7 @@ class Menu {
             MeIt.`target`, MeItPa.`parent`
             from (
                 select
-                MeItPa.`menuItem`, MeItPa.`page`, MeItPa.`postfix`,
+                MeIt.`id` as menuItem, MeItPa.`page`, MeItPa.`postfix`,
                 MeIt.`url`, MeIt.`sequence`, MeIt.`target`
                 from (
                     select 
