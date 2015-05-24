@@ -3,6 +3,7 @@
 <html>
 <head>
     <?php $ROOT->head();?>
+    <link rel="shortcut icon" href="<?php $ROOT->templatePath();?>favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="<?php $ROOT->templatePath();?>css/main.css" type="text/css" />
     <link rel="stylesheet" href="<?php $ROOT->templatePath();?>css/modules.css" type="text/css" />
     <link rel="stylesheet" href="<?php $ROOT->templatePath();?>css/siteMenu.css" type="text/css" />
