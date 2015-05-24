@@ -7,7 +7,7 @@
 class ShopGroupsPageNavigator {
     private $HTML;
     private $groupID;
-    private $maxPageOnNavigator = 10;
+    private $maxPageOnNavigator = 4;
     
     private $prePage;
     private $prePageChange;
@@ -59,6 +59,7 @@ class ShopGroupsPageNavigator {
     
     private function generatePageNavigator() {
 //        $this->amauntOfPage = ShopPropertiesFilterSerchArray::getArrayGroupAmauntOfPage($this->groupID);
+        $this->HTML .= "<div class='ShopItemsListNavBlock'>";
         $this->HTML .= "<ul class='ShopItemsListNav'>";
         if((int) $this->startPage !== 1) {
             $this->HTML .= $this->generatePageNavigator_FerstPage();
@@ -74,11 +75,14 @@ class ShopGroupsPageNavigator {
             $this->HTML .= $this->generatePageNavigator_LastPage();
         }
         $this->HTML .= "</ul>";
+        $this->HTML .= "</div>";
     }
     
     private function generatePageNavigator_ThisPage($page) {
         $out = "<li class='ShopItemsListNavElement ThisPage'>";
+        $out .= "<div>";
         $out .= $page;
+        $out .= "</div>";
         $out .= "</li>";
         return $out;
     }

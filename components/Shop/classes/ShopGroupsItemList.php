@@ -6,6 +6,8 @@ class ShopGroupsItemList {
     private $urlHelper;
     private $itemsList;
     private $HTML;
+    private $imageItemPath = './resources/Components/Shop/Image/ItemsImage/';
+    private $defaultImageItemPath = './resources/Components/Shop/Image/ItemsImage/defaultIcon_100x100.png';
     
     public function __construct($page=1) {
         global $_SQL_HELPER;
@@ -38,31 +40,42 @@ class ShopGroupsItemList {
         }
     }
     
+    private function getItemImage($itemId) {
+        $imageName = $itemId."_100x100";
+        $background = BackgroundGeneratorHelper::getBackgroundStyleImg($this->imageItemPath, $imageName, $this->defaultImageItemPath);
+        return '<div class="ShopItemElement_Image" '.$background.'></div>';
+    }
+    
     private function generateHTML() {
-        $this->HTML = "<div class='ShopItemsList'>";
-        $this->HTML .= "Найдено товаров: ".ShopPropertiesFilterSerchArray::getArrayGroupAmauntOfItems($this->groupID);
-        $this->HTML .= "<hr>";
-        $this->HTML .= $this->getPageNavigator();
-        $this->HTML .= "<hr>";
-        foreach ($this->itemsList as $item) {
-            $this->HTML .= $this->getItemHTML($item);
-        }
+        $this->HTML = "<div class='ShopItemsListBlock'>";
+            $this->HTML .= $this->getPageNavigator();
+            $this->HTML .= "<div class='ShopItemsList'>";
+            foreach ($this->itemsList as $item) {
+                $this->HTML .= $this->getItemHTML($item);
+            }
+            $this->HTML .= "</div>";
+            $this->HTML .= $this->getPageNavigator();
+            $this->HTML .= "<div class='ItemsFound'>";
+            $this->HTML .= "Найдено товаров: ".ShopPropertiesFilterSerchArray::getArrayGroupAmauntOfItems($this->groupID);
+            $this->HTML .= "</div>";
         $this->HTML .= "</div>";
-        $this->HTML .= $this->getPageNavigator();
     }
     
     private function getItemHTML($item) {
         $itemURL = $this->urlHelper->chengeParams(array('item',$item['id']));
+        $item['action'] === 1 ? $itemClass = 'ActionItem' : $itemClass = 'NormalItem';
         $out = '';
-        $out .= "<div class='ShopItemElement'>";
-        $out .= "<div class='ShopItemElement_ID'><a href='".$itemURL."'>".$item['id']."</a></div>";
-        $out .= "<div class='ShopItemElement_ItemName'>".$item['itemName']."</div>";
-        if($item['action'] === 1) {
-            $out .= "<div class='ShopItemElement_Action'>Акция</div>";
+        $out .= "<div class='ShopItemElement ".$itemClass."'>";
+        if($item['action'] == 1) {
+            $out .= "<div class='ActionItemLable'></div>";
         }
-        $out .= "<div class='ShopItemElement_PriceValue'>".$item['priceValue']."</div>";
+        $out .= "<a href='".$itemURL."'>";
+            $out .= $this->getItemImage($item['id']);
+            $out .= "<div class='ShopItemElement_ItemName'><div>".$item['itemName']."</div></div>";
+            $out .= ShopItemAmountScale::getAmountScale($item['amount'], $item['minAmount']);
+            $out .= "<div class='ShopItemElement_PriceValue'>".$item['priceValue']."</div>";
+        $out .= "</a>";
         $out .= "</div>";
-        $out .= "<hr>";
         return $out;
     }
     

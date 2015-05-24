@@ -1,0 +1,145 @@
+.ShopItemsListBlock {}
+.ShopItemsListBlock .ItemsFound {
+    font:  bold 13px/20px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    text-align: right;
+    margin-bottom: 20px;
+}
+.ShopItemsListBlock .ShopItemsListNavBlock {
+    height: 26px;
+    text-align: center;
+    clear: both;
+    margin: 5px 0px 5px 0px;
+}
+.ShopItemsListBlock .ShopItemsListNavBlock ul.ShopItemsListNav {
+    clear: both;
+    list-style: none;
+    margin-left: 0;
+    width: auto;
+    text-align: center;
+    display: inline-block;
+}
+.ShopItemsListBlock .ShopItemsListNavBlock ul.ShopItemsListNav li.ShopItemsListNavElement {
+  display: inline;
+}
+.ShopItemsListBlock .ShopItemsListNavBlock ul.ShopItemsListNav li.ShopItemsListNavElement div, 
+.ShopItemsListBlock .ShopItemsListNavBlock ul.ShopItemsListNav li.ShopItemsListNavElement a {
+    float: left;
+    display: block;
+    height: 20px;
+    width: 20px;
+    padding: 0px;
+    font:  10px/20px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    text-align: center;
+    border: 1px #C3C3C3 solid;
+    border-radius: 5px;
+    margin: 2px;
+}
+.ShopItemsListBlock .ShopItemsListNavBlock ul.ShopItemsListNav li.ShopItemsListNavElement.FerstPage div,
+.ShopItemsListBlock .ShopItemsListNavBlock ul.ShopItemsListNav li.ShopItemsListNavElement.FerstPage a  {
+    width: 60px;
+}
+.ShopItemsListBlock .ShopItemsListNavBlock ul.ShopItemsListNav li.ShopItemsListNavElement.OtherPage div,
+.ShopItemsListBlock .ShopItemsListNavBlock ul.ShopItemsListNav li.ShopItemsListNavElement.OtherPage a {}
+.ShopItemsListBlock .ShopItemsListNavBlock ul.ShopItemsListNav li.ShopItemsListNavElement.LastPage div,
+.ShopItemsListBlock .ShopItemsListNavBlock ul.ShopItemsListNav li.ShopItemsListNavElement.LastPage a {
+    width: 60px;
+}
+.ShopItemsListBlock .ShopItemsListNavBlock ul.ShopItemsListNav li.ShopItemsListNavElement.ThisPage div,
+.ShopItemsListBlock .ShopItemsListNavBlock ul.ShopItemsListNav li.ShopItemsListNavElement.ThisPage a {
+    background: #ef7f1a;
+    border: 1px #ef7f1a solid;
+    color: #fff;
+}
+.ShopItemsListBlock .ShopItemsListNavBlock ul.ShopItemsListNav li.ShopItemsListNavElement div,:hover
+.ShopItemsListBlock .ShopItemsListNavBlock ul.ShopItemsListNav li.ShopItemsListNavElement a:hover {
+    background: #ef7f1a;
+    border: 1px #ef7f1a solid;
+    color: #fff;
+}
+
+.ShopItemsListBlock .ShopItemsList {
+    clear: both;
+}
+.ShopItemsListBlock .ShopItemsList .ShopItemElement {
+    float: left;
+    width: 158px;
+    padding: 10px 0px 10px 0px;
+    border: 1px transparent solid;
+    position: relative;
+}
+.ShopItemsListBlock .ShopItemsList .ShopItemElement:hover {
+    border: 1px #C3C3C3 solid;
+}
+.ShopItemsListBlock .ShopItemsList .ShopItemElement.NormalItem {}
+.ShopItemsListBlock .ShopItemsList .ShopItemElement.ActionItem {}
+.ShopItemsListBlock .ShopItemsList .ShopItemElement a {}
+.ShopItemsListBlock .ShopItemsList .ShopItemElement .ActionItemLable {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 999;
+    height: 50px;
+    width: 50px;
+    background: url('../img/ActionItemLable.png') top left no-repeat;
+}
+.ShopItemsListBlock .ShopItemsList .ShopItemElement .ShopItemElement_Image {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+}
+.ShopItemsListBlock .ShopItemsList .ShopItemElement .ShopItemElement_ItemName {
+    width: 140px;
+    height: 60px;
+    margin: 0 auto;
+    font:  10px/10px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+}
+.ShopItemsListBlock .ShopItemsList .ShopItemElement .ShopItemElement_ItemName div {
+    height: 60px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+.ShopItemsListBlock .ShopItemsList .ShopItemElement .ShopItemAmount {
+    margin: 5px auto;
+    height: 5px;
+    width: 30px;
+    background: #C3C3C3;
+}
+.ShopItemsListBlock .ShopItemsList .ShopItemElement .ShopItemAmount .ShopItemAmountScale {
+    height: 5px;
+    background: #00cf00;
+}
+.ShopItemsListBlock .ShopItemsList .ShopItemElement .ShopItemElement_PriceValue {
+    height: 20px;
+    width: 140px;
+    margin: 0 auto;
+    font:  bold 14px/20px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    text-align: center;
+}
+.ShopItemsListBlock .ShopItemsList .ShopItemElement .ShopItemElement_PriceValue:after {
+    content: ' руб.'
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.ShopItemElement_Amount {
+    height: 5px;
+    width: 30px;
+    background: #C3C3C3;
+}
+
+.ShopItemElement_Amount .ShopItemElement_AmountScale {
+    height: 5px;
+    background: #00cf00;
+}

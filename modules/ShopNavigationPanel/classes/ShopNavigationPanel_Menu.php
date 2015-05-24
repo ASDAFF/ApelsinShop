@@ -71,7 +71,7 @@ class ShopNavigationPanel_Menu {
     
     private function generateThisGroupMenu($thisGroup) {
         $out = '';
-        $out .= '<ul class="SNPRootGroupsMenu">';
+        $out .= '<ul class="SNPGroupsMenu">';
         foreach ($this->shopGroupsHelper->getGroupNodeChildren($thisGroup) as $id) {
             $out .= $this->generateThisGroupMenuElement($id);
         }
@@ -84,7 +84,7 @@ class ShopNavigationPanel_Menu {
         $group = $this->shopGroupsHelper->getGroupInfo($groupID);
         if($group['shown'] > 0) {
             if($group['showInHierarchy'] > 0) {
-                $out .= '<li class="SNPRootGroupsMenuElement">';
+                $out .= '<li class="SNPGroupsMenuElement">';
                     $out .= '<a href="'.$this->urlHelper->chengeParams(array('catalog',$group['id'])).'">';
                         $out .= '<div class="ShopGroupName">';
                             $out .= '<div>'.$group['groupName'].'</div>';

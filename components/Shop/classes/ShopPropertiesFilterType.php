@@ -188,8 +188,10 @@ class ShopPropertiesFilterType {
             $out .= '<div class="ShopPropertiesFilter_GroupSelectElement">';
             $out .= InputHelper::checkbox($filterId.'['.$key.']', $filterId.'_'.$key, 'ShopPropertiesFilter FilterType_groupSelect', FALSE, $val, ($value!==NULL && in_array($val,$value)), NULL);
             $out .= ' <label for="'.$filterId.'_'.$key.'">'.TextGenerator::shortenRusTextForLen($val, 25, 5, 6).'</label>';
+            $out .= '<div></div>';
             $out .= '</div>';
         }
+        $out .= '<div class="clear"></div>';
         return $out;
     }
     
@@ -351,8 +353,10 @@ class ShopPropertiesFilterType {
     }
     
     private static function getForms($inputs) {
+//        $url = self::$urlHelper->getThisPage();
+        $url = ShopGroupsUrlHelper::getUrl(array('catalog',ShopPageInfoHelper::shopPageGroupId()));
         $out = '';
-        $out .= '<form class="ShopPropertiesFilterForm" name="ShopPropertiesFilterForm" action="'.self::$urlHelper->getThisPage().'" enctype="multipart/form-data" method="post" accept-charset="UTF-8">';
+        $out .= '<form class="ShopPropertiesFilterForm" name="ShopPropertiesFilterForm" action="'.$url.'" enctype="multipart/form-data" method="post" accept-charset="UTF-8">';
         $out .= $inputs;
         $out .= '<center><input class="ShopPropertiesFilterFormSubmit" type="submit" name="ShopPropertiesFilterFormSubmit" value="OK"></center>';
         $out .= '</form>';

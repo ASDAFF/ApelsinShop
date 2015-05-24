@@ -8,7 +8,7 @@ class ShopHelperSQL {
     static private $object;
     static private $shopGroupsHelper;
     static private $SQL_HELPER;
-    static private $itemOnPage = 50;
+    static private $itemOnPage = 48;
     
     private function __construct() {
         global $_SQL_HELPER;

@@ -4,7 +4,8 @@
 .ShopNavigationPanel .ThisGroupPathPanel ul.ThisGroupPath {
     list-style: none;
     margin-left: 0;
-    height: 30px;
+    height: 10px;
+    padding: 10px 0px 10px 0px;
 }
 .ShopNavigationPanel .ThisGroupPathPanel ul.ThisGroupPath li.ThisGroupPathElement {
     height: 10px;
@@ -12,34 +13,205 @@
     float: left;
     font: bold 10px/10px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
     text-transform: uppercase;
-    padding: 10px 0px 10px 0px;
 }
 .ShopNavigationPanel .ThisGroupPathPanel ul.ThisGroupPath li.ThisGroupPathElement:before {
     content: "\00BB";
-    padding: 0px 2px 0px 2px;
+    padding: 0px 5px 0px 5px;
 }
-.ShopNavigationPanel .ThisGroupPathPanel ul.ThisGroupPath li.ThisGroupPathElement.RootElement {}
 .ShopNavigationPanel .ThisGroupPathPanel ul.ThisGroupPath li.ThisGroupPathElement a {
     color: #ef7f1a;
 }
-
-.ShopNavigationPanel .ShopNavigationPanel_Menu {
-    /*clear: both;*/
+.ShopNavigationPanel .ThisGroupPathPanel ul.ThisGroupPath li.ThisGroupPathElement.RootElement {
+    background: url('../img/homeCatalog.png') top center no-repeat;
+    width: 10px;
+    height: 10px;
 }
-.ShopNavigationPanel .ShopNavigationPanel_Menu .ThisGroupIconPanelBlock {}
+.ShopNavigationPanel .ThisGroupPathPanel ul.ThisGroupPath li.ThisGroupPathElement.RootElement:hover {
+    background-position: 0px -10px;
+}
+.ShopNavigationPanel .ThisGroupPathPanel ul.ThisGroupPath li.ThisGroupPathElement.RootElement:before {
+    content: "";
+    padding: 0px;
+}
+.ShopNavigationPanel .ThisGroupPathPanel ul.ThisGroupPath li.ThisGroupPathElement.RootElement a {
+    display: block;
+    width: 10px;
+    height: 10px;
+}
+
+.ShopNavigationPanel .ShopNavigationPanel_Menu {}
+.ShopNavigationPanel .ShopNavigationPanel_Menu .ThisGroupIconPanelBlock {
+    width: 100px;
+    margin-bottom: 10px;
+    float: left;
+}
 .ShopNavigationPanel .ShopNavigationPanel_Menu .ThisGroupIconPanelBlock .ThisGroupIconPanel {}
-.ShopNavigationPanel .ShopNavigationPanel_Menu .ThisGroupIconPanelBlock .ThisGroupIconPanel .ShopGroupIcon {}
-.ShopNavigationPanel .ShopNavigationPanel_Menu .ThisGroupIconPanelBlock .ThisGroupIconPanel .ShopGroupName {}
+.ShopNavigationPanel .ShopNavigationPanel_Menu .ThisGroupIconPanelBlock .ThisGroupIconPanel .ShopGroupIcon {
+    margin: 0 auto;
+    height: 70px;
+    width: 70px;
+    background: url('../../../resources/Components/Shop/Image/GroupsIcons/defaultIcon.png') center center no-repeat;
+    
+}
+.ShopNavigationPanel .ShopNavigationPanel_Menu .ThisGroupIconPanelBlock .ThisGroupIconPanel .ShopGroupName {
+    font: bold 10px/10px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    text-align: center;
+    padding: 5px;
+}
 .ShopNavigationPanel .ShopNavigationPanel_Menu .ThisGroupIconPanelBlock .ThisGroupIconPanel .ShopGroupName div {}
 
-.ShopNavigationPanel .ShopNavigationPanel_Menu ul.SNPRootGroupsMenu {}
-.ShopNavigationPanel .ShopNavigationPanel_Menu ul.SNPRootGroupsMenu li.SNPRootGroupsMenuElement {}
-.ShopNavigationPanel .ShopNavigationPanel_Menu ul.SNPRootGroupsMenu li.SNPRootGroupsMenuElement a {}
-.ShopNavigationPanel .ShopNavigationPanel_Menu ul.SNPRootGroupsMenu li.SNPRootGroupsMenuElement .ShopGroupIcon {}
-.ShopNavigationPanel .ShopNavigationPanel_Menu ul.SNPRootGroupsMenu li.SNPRootGroupsMenuElement .ShopGroupName {}
+.ShopNavigationPanel .ShopNavigationPanel_Menu ul.SNPGroupsMenu {
+    border-left: 1px dotted #869791;
+    padding-left: 10px;
+    margin: 0px 0px 20px 100px;
+    column-count: 3;
+    -moz-column-count: 3;
+    -webkit-column-count: 3;
+    column-gap: 20px;
+    -moz-column-gap: 20px;
+    -webkit-column-gap: 20px;
+    column-rule: 1px dotted #869791;
+    -moz-column-rule: 1px dotted #869791;
+    -webkit-column-rule: 1px dotted #869791;
+}
+.ShopNavigationPanel .ShopNavigationPanel_Menu ul.SNPGroupsMenu li.SNPGroupsMenuElement {
+    list-style: none;
+    padding-bottom: 5px;
+}
+.ShopNavigationPanel .ShopNavigationPanel_Menu ul.SNPGroupsMenu li.SNPGroupsMenuElement a {}
+.ShopNavigationPanel .ShopNavigationPanel_Menu ul.SNPGroupsMenu li.SNPGroupsMenuElement a:hover {
+    color: #ef7f1a;
+}
+.ShopNavigationPanel .ShopNavigationPanel_Menu ul.SNPGroupsMenu li.SNPGroupsMenuElement .ShopGroupName {
+    font: bold 11px/11px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+}
+.ShopNavigationPanel .ShopNavigationPanel_Menu ul.SNPGroupsMenu li.SNPGroupsMenuElement .ShopGroupName div:before {
+    content: "\00BB";
+    margin-right: 5px;
+}
+.ShopNavigationPanel .ShopNavigationPanel_Menu ul.SNPGroupsMenu li.SNPGroupsMenuElement .ShopGroupName div {}
 
-.ShopNavigationPanel .ShopNavigationPanel_Filter {}
-.ShopNavigationPanel .ShopNavigationPanel_Filter .ShopPropertiesFilterForm {}
-.ShopNavigationPanel .ShopNavigationPanel_Filter .ShopPropertiesFilterForm .ShopPropertiesFilterBlock {}
-.ShopNavigationPanel .ShopNavigationPanel_Filter .ShopPropertiesFilterForm .ShopPropertiesFilterBlock .ShopPropertiesFilter {}
-.ShopNavigationPanel .ShopNavigationPanel_Filter .ShopPropertiesFilterForm .ShopPropertiesFilterFormSubmit {}
+
+.ShopNavigationPanel .ShopNavigationPanel_Menu ul.SNPRootGroupsMenu {}
+.ShopNavigationPanel .ShopNavigationPanel_Menu ul.SNPRootGroupsMenu li.SNPRootGroupsMenuElement {
+    list-style: none;
+    float: left;
+    width: 100px;
+    margin: 10px;
+    padding: 5px;
+    border: 1px solid transparent;
+}
+.ShopNavigationPanel .ShopNavigationPanel_Menu ul.SNPRootGroupsMenu li.SNPRootGroupsMenuElement:hover {
+    border: 1px solid #C3C3C3;
+    background: #EDEDED;
+}
+.ShopNavigationPanel .ShopNavigationPanel_Menu ul.SNPRootGroupsMenu li.SNPRootGroupsMenuElement a {}
+.ShopNavigationPanel .ShopNavigationPanel_Menu ul.SNPRootGroupsMenu li.SNPRootGroupsMenuElement .ShopGroupIcon {
+    margin: 0 auto;
+    height: 70px;
+    width: 70px;
+    background: url('../../../resources/Components/Shop/Image/GroupsIcons/defaultIcon.png') center center no-repeat;
+}
+.ShopNavigationPanel .ShopNavigationPanel_Menu ul.SNPRootGroupsMenu li.SNPRootGroupsMenuElement .ShopGroupName {
+    font: bold 9px/9px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    text-align: center;
+}
+
+
+.ShopNavigationPanel .shopNavigationPanelFilterButton {
+    margin: 0 auto;
+    width: 200px;
+    background: #ef7f1a;
+    margin-bottom: 10px;
+}
+.ShopNavigationPanel .shopNavigationPanelFilterButton a {
+    display: block;
+    padding: 5px;
+    font: bold 12px/12px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    color: #FFF;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+
+.ShopNavigationPanel .ShopNavigationPanel_Filter {
+    display: none;
+}
+.ShopNavigationPanel_Filter {
+    padding: 20px;
+}
+.ShopNavigationPanel_Filter .ShopPropertiesFilterForm {}
+.ShopNavigationPanel_Filter .ShopPropertiesFilterForm .ShopPropertiesFilterBlock {
+    font: bold 12px/12px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    color: #ef7f1a;
+    clear: both;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px dotted #C3C3C3;
+}
+.ShopNavigationPanel_Filter .ShopPropertiesFilterForm .ShopPropertiesFilterBlock .ShopPropertiesFilter {}
+.ShopNavigationPanel_Filter .ShopPropertiesFilterForm .ShopPropertiesFilterBlock .ShopPropertiesFilterBlockName {
+    
+}
+.ShopNavigationPanel_Filter .ShopPropertiesFilterForm .ShopPropertiesFilterFormSubmit {
+    width: 50px;
+    border: none;
+    background: #ef7f1a;
+    padding: 5px;
+    font: bold 12px/12px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    color: #FFF;
+    text-align: center;
+    clear: both;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.ShopNavigationPanel_Filter .ShopPropertiesFilterForm .ShopPropertiesFilterBlock input[type=text], 
+.ShopNavigationPanel_Filter .ShopPropertiesFilterForm .ShopPropertiesFilterBlock input[type=password], 
+.ShopNavigationPanel_Filter .ShopPropertiesFilterForm .ShopPropertiesFilterBlock textarea, 
+.ShopNavigationPanel_Filter .ShopPropertiesFilterForm .ShopPropertiesFilterBlock .selectBox {
+  background: rgb(250,250,250);
+  padding-left: 10px;
+  padding-right: 10px;
+  font: 13px/17px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+  color: #ef7f1a;
+  margin: 2px 10px 2px 10px;
+  border: none;
+  box-shadow: inset 0px 1px 3px rgba(0,0,0,0.5);
+  text-shadow: 0 1px 0 #fff;
+}
+
+
+
+
+
+
+input.FilterType_groupSelect {
+    position: absolute;
+    visibility: hidden;
+}
+input.FilterType_groupSelect + label {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font: 11px/11px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    color: #5f5f5f;
+    margin: 2px;
+    width: 150px;
+    padding: 5px;
+    -webkit-transition: background 0.5s;
+    -moz-transition: background 0.5s;
+    -o-transition: background 0.5s;
+    transition: background 0.5s;
+    float: left;
+}
+input.FilterType_groupSelect:checked+label {
+  background-color: #ef7f1a;
+  color: #fff;
+}

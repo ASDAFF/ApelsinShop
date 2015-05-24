@@ -5,7 +5,7 @@
  * @author Максим
  */
 class ShopGroupsIcons {
-    const iconPath_NavPa = './resources/Components/Shop/Icons/GroupsIcons/';
+    const iconPath_NavPa = './resources/Components/Shop/Image/GroupsIcons/';
     const defaultIcon_NavPa = 'defaultIcon';
     
     static private $shopGroupsHelper;

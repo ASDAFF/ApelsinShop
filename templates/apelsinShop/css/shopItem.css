@@ -1,0 +1,86 @@
+.ShopItemMainWrapper {
+    padding-bottom: 20px;
+}
+.ShopItemMainWrapper .ShopItemLeftBlock {
+    width: 200px;
+    float: left;
+}
+.ShopItemMainWrapper .ShopItemLeftBlock .ShopItemIMG {
+    width: 200px;
+    height: 200px;
+}
+.ShopItemMainWrapper .ShopItemLeftBlock .ShopItemIMG img {
+    width: 200px;
+}
+.ShopItemMainWrapper .ShopItemLeftBlock .ShopItemName {
+    width: 180px;
+    height: 60px;
+    margin: 0 auto;
+    font:  bold 12px/16px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    text-align: center;
+}
+.ShopItemMainWrapper .ShopItemLeftBlock .ShopItemPrice {
+    font:  bold 20px/20px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    text-align: center;
+}
+.ShopItemMainWrapper .ShopItemLeftBlock .ShopItemPrice:after {
+    content: ' руб.'
+}
+.ShopItemMainWrapper .ShopItemLeftBlock .ShopItemAmount {
+    margin: 10px auto;
+    height: 20px;
+    width: 60px;
+    background: #C3C3C3;
+    cursor: pointer;
+}
+.ShopItemMainWrapper .ShopItemLeftBlock .ShopItemAmount .ShopItemAmountScale {
+    height: 20px;
+    background: #00cf00;
+}
+.ShopItemMainWrapper .ShopItemLeftBlock .ShopItemBuyButton {
+    width: 120px;
+    margin: 0 auto;
+    font:  bold 14px/30px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    background: #ef7f1a;
+    text-transform: uppercase;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+}
+
+.ShopItemMainWrapper .ShopItemMainBlock {
+    margin-left: 220px;
+}
+.ShopItemMainWrapper .ShopItemMainBlock .ShopItemDescription {
+    font:  14px/16px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    text-align: justify;
+    margin-bottom: 20px;
+}
+.ShopItemMainWrapper .ShopItemMainBlock .ShopItemParams {}
+.ShopItemMainWrapper .ShopItemMainBlock .ShopItemParams .ShopItemParam {}
+.ShopItemMainWrapper .ShopItemMainBlock .ShopItemParams .ShopItemParam .ShopItemParamName {
+    height: 24px;
+    color: #ef7f1a;
+    display: inline-block;
+    width: 200px;
+    font:  12px/12px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    padding-right: 10px;
+}
+.ShopItemMainWrapper .ShopItemMainBlock .ShopItemParams .ShopItemParam .ShopItemParamName div {
+    width: 200px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: right;
+}
+.ShopItemMainWrapper .ShopItemMainBlock .ShopItemParams .ShopItemParam .ShopItemParamValue {
+    height: 24px;
+    display: inline-block;
+    /*height: 30px;*/
+    font:  14px/15px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+}
+.ShopItemMainWrapper .ShopItemMainBlock .ShopItemParams .ShopItemParam .ShopItemParamValue div {
+    /*height: 30px;*/
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}

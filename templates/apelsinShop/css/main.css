@@ -191,3 +191,38 @@ ul li:before {
     text-align: right;
     padding: 40px 0px 40px 0px;
 }
+
+
+
+/** ToTopSite **/
+.Wraper .FutterWraper .FutterBlock .ToTopSite {
+    height: 50px;
+    margin: 0px;
+    padding-top: 4px;
+}
+
+.Wraper .FutterWraper .FutterBlock .ToTopSite .ToTopSiteButton  {
+    /*display: block;*/
+    margin: 0 auto;
+    height: 22px;
+    width: 65px;
+    background: transparent url('../img/toTopSite.png') top center no-repeat;
+    background-position: 0px -42px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    font: bold 14px/14px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    padding-top: 20px;
+    color: #B8B8B8;
+}
+.Wraper .FutterWraper .FutterBlock .ToTopSite .ToTopSiteButton:hover {
+    background-position: 0px 0px;
+    color: #7E7E7E;
+}
+
+.fancybox-skin {
+    border: 5px solid #ef7f1a;
+}
+.fancybox-close {
+    display: none;
+}

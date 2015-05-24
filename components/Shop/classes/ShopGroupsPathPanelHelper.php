@@ -32,7 +32,7 @@ class ShopGroupsPathPanelHelper {
         $groupsPath = self::$shopGroupsHelper->getGroupPath($group['id']);
         $out .= '<div class="ThisGroupPathPanel">';
             $out .= '<ul class="ThisGroupPath">';
-                $out .= '<li class="ThisGroupPathElement RootElement"><a href="'.ShopGroupsUrlHelper::getUrl().'">root</a></li>';
+                $out .= '<li class="ThisGroupPathElement RootElement"><a href="'.ShopGroupsUrlHelper::getUrl().'"></a></li>';
                 if($groupsPath !== null) {
                     foreach ($groupsPath as $groupId) {
                         $gr = self::$shopGroupsHelper->getGroupInfo($groupId);

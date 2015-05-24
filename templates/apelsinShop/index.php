@@ -5,9 +5,11 @@
     <?php $ROOT->head();?>
     <link rel="stylesheet" href="<?php $ROOT->templatePath();?>css/main.css" type="text/css" />
     <link rel="stylesheet" href="<?php $ROOT->templatePath();?>css/modules.css" type="text/css" />
-    
     <link rel="stylesheet" href="<?php $ROOT->templatePath();?>css/siteMenu.css" type="text/css" />
     <link rel="stylesheet" href="<?php $ROOT->templatePath();?>css/shopNavigationPanel.css" type="text/css" />
+    <link rel="stylesheet" href="<?php $ROOT->templatePath();?>css/shopItemsList.css" type="text/css" />
+    <link rel="stylesheet" href="<?php $ROOT->templatePath();?>css/shopItem.css" type="text/css" />
+    <script src="<?php $ROOT->templatePath();?>js/TemplateAnimations.js"></script>
 </head>
 <body>
     <?php $ROOT->bodyStart();?>
@@ -77,11 +79,13 @@
                 <div class="FutterLeftWraper">
                     <div class="FutterLeftBlock">
                         <?php $ROOT->block('FutterLeftBlock');?>
+                        <div class="clear"></div>
                     </div>
                 </div>
                 <div class="FutterRightWraper">
                     <div class="FutterRightBlock">
                         <?php $ROOT->block('FutterRightBlock');?>
+                        <div class="clear"></div>
                     </div>
                 </div>
             </div>

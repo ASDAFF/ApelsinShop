@@ -11,6 +11,7 @@ class ShopItem {
     private $price;
     private $property;
     private $dir = './resources/Components/Shop/Image/ItemsImage/';
+    private $defaultIcon = "defaultIcon_200x200.png";
 
     /**
      * Конструктор класса
@@ -97,7 +98,9 @@ class ShopItem {
             WHERE SIPV.`item` = '".$this->elementID."'
             ORDER BY SP.`sequence`;";
         $rezult = $this->SQL_HELPER->select($query);
-        $this->property = [];
+        if(!isset($this->property)) {
+            $this->property = [];
+        }
         $i = 0;
         foreach ($rezult as $value) {
             if ($value["oneOfAllValues"] == '0') {
@@ -113,10 +116,13 @@ class ShopItem {
      * Получение родительских групп
      */
     private function getProperty() {
-        $dataAll = [];
+//        $dataAll = [];
         $groups = $this->getListGroup();
-        foreach ($groups as $key => $group) {
-            $dataAll[$key][$group] = $this->getPropertiesInGroup($group);
+        $this->property = [];
+//        foreach ($groups as $key => $group) {
+        foreach ($groups as $group) {
+//            $dataAll[$key][$group] = $this->getPropertiesInGroup($group);
+            $this->getPropertiesInGroup($group);
         }
     }
 
@@ -148,9 +154,9 @@ class ShopItem {
                 $this->HTML .= '<div class="ShopItemPrice">';
                     $this->HTML .= $this->price['value'];
                 $this->HTML .= '</div>';  // ShopItemPrice
-                $this->HTML .= '<div class="ShopItemAmount">';
-                    $this->HTML .= $this->data['amount'];
-                $this->HTML .= '</div>';  // ShopItemAmount
+//                $this->HTML .= '<div class="ShopItemAmount">';
+                    $this->HTML .= ShopItemAmountScale::getAmountScale($this->data['amount'], $this->data['minAmount']);
+//                $this->HTML .= '</div>';  // ShopItemAmount
                 $this->HTML .= '<div class="ShopItemBuyButton">';
                     $this->HTML .= 'Купить';
                 $this->HTML .= '</div>';  // ShopItemBuyButton
@@ -161,12 +167,13 @@ class ShopItem {
                     $this->HTML .= $this->data['description'];
                 $this->HTML .= '</div>';  // ShopItemDescription
                 
+                $this->HTML .= '<div class="ShopItemParams">';
                 foreach ($this->property as $proper => $allValues) {
-                    $this->HTML .= '<div class="ShopItemParams">';
-                        $this->HTML .= '<div class="ShopItemParamName">';
-                            $this->HTML .= $proper.':';
-                        $this->HTML .= '</div>';  // ShopItemParamName
-                        $this->HTML .= '<div class="ShopItemParamValue">';
+                    $this->HTML .= '<div class="ShopItemParam">';
+                        $this->HTML .= '<div class="ShopItemParamName"><div>';
+                            $this->HTML .= $proper.' :';
+                        $this->HTML .= '</div></div>';  // ShopItemParamName
+                        $this->HTML .= '<div class="ShopItemParamValue"><div>';
                             
                         foreach ($allValues as $key => $values ) {
                             if ($key == 'all') {
@@ -176,10 +183,12 @@ class ShopItem {
                             }
                         }
                             
-                        $this->HTML .= '</div>';  // ShopItemParamValue
-                    $this->HTML .= '</div>';  // ShopItemParams
+                        $this->HTML .= '</div></div>';  // ShopItemParamValue
+                    $this->HTML .= '</div>';  // ShopItemParam
                 }
+                $this->HTML .= '</div>';  // ShopItemParams
             $this->HTML .= '</div>';  // ShopItemMainBlock
+            $this->HTML .= '<div class="clear"></div>';
         $this->HTML .= '</div>';  // ShopItemMainWrapper
     }
     
@@ -232,7 +241,7 @@ class ShopItem {
         } elseif (file_exists($this->dir.$item.'_200x200.png'))  {
             $image = $item.'_200x200.png';
         } else {
-            $image = 'defaultIcon.jpg';
+            $image = $this->defaultIcon;
         }
         return $this->dir.$image;
     } 

@@ -9,3 +9,12 @@
     float: left;
 }
 
+.FutterLeftWraper .m_block.html {
+    float: left;
+}
+.FutterRightBlock .m_block.html {
+    float: right;
+}
+.m_block.ToTopSite  {
+    float: right;
+}

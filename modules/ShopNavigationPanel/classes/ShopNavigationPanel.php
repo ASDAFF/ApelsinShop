@@ -45,6 +45,10 @@ class ShopNavigationPanel {
         $this->HTML = '';
         $this->HTML .= ShopGroupsPathPanelHelper::getPanel();
         $this->HTML .= $this->shopNavigationPanelMenu->getHtml();
+        $this->HTML .= "<div class='clear'></div>";
+        $this->HTML .= "<div class='shopNavigationPanelFilterButton'>";
+        $this->HTML .= '<a class="fancybox-doc" href="#shopNavigationPanelFilter">Расширенный поиск</a>';
+        $this->HTML .= "</div>";
         $this->HTML .= $this->shopNavigationPanelFilter->getHtml();
     }
     
