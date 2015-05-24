@@ -353,8 +353,11 @@ class ShopPropertiesFilterType {
     }
     
     private static function getForms($inputs) {
-//        $url = self::$urlHelper->getThisPage();
-        $url = ShopGroupsUrlHelper::getUrl(array('catalog',ShopPageInfoHelper::shopPageGroupId()));
+        if(ShopPageInfoHelper::shopPageGroupId() !== null) {
+            $url = ShopGroupsUrlHelper::getUrl(array('catalog',ShopPageInfoHelper::shopPageGroupId()));
+        } else {
+            $url = ShopGroupsUrlHelper::getUrl(array());
+        }
         $out = '';
         $out .= '<form class="ShopPropertiesFilterForm" name="ShopPropertiesFilterForm" action="'.$url.'" enctype="multipart/form-data" method="post" accept-charset="UTF-8">';
         $out .= $inputs;
