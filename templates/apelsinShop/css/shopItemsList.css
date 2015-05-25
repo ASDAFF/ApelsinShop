@@ -1,4 +1,17 @@
 .ShopItemsListBlock {}
+.ShopItemsListBlock .PropertyValueForGroup {
+    font: 11px/12px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    margin: 20px 0px 10px 0px;
+    padding-bottom: 10px;
+    border-bottom: 1px dotted #869791;
+}
+.ShopItemsListBlock .PropertyValueForGroup .property {
+    font: bold 11px/12px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    color: #ef7f1a;
+}
+.ShopItemsListBlock .PropertyValueForGroup .value {
+    font: 11px/12px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+}
 .ShopItemsListBlock .ItemsFound {
     font:  bold 13px/20px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
     text-align: right;

@@ -48,6 +48,7 @@ class ShopGroupsItemList {
     
     private function generateHTML() {
         $this->HTML = "<div class='ShopItemsListBlock'>";
+            $this->HTML .= ShopGroupPropertyValue::getPropertyValueForGroup($this->groupID);
             $this->HTML .= $this->getPageNavigator();
             $this->HTML .= "<div class='ShopItemsList'>";
             foreach ($this->itemsList as $item) {

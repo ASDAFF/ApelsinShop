@@ -397,11 +397,18 @@ class ShopPropertiesFilterType {
             $itemPrise_min = self::getPostValue('ItemPrise_min', NULL);
             $itemPrise_max = self::getPostValue('ItemPrise_max', NULL);
             $itemPriseValue = array();
-            if($itemPrise_min!==NULL && $itemPrise_min!=='') {
-                $itemPriseValue['min']=$itemPrise_min;
-            }
-            if($itemPrise_max!==NULL && $itemPrise_max!=='') {
-                $itemPriseValue['max']=$itemPrise_max;
+            
+            
+            if($itemPrise_min!==NULL && $itemPrise_min!=='' && $itemPrise_max!==NULL && $itemPrise_max!=='') {
+                $itemPriseValue['min'] = min($itemPrise_min, $itemPrise_max);
+                $itemPriseValue['max'] = max($itemPrise_min, $itemPrise_max);
+            } else {
+                if($itemPrise_min!==NULL && $itemPrise_min!=='') {
+                    $itemPriseValue['min']=$itemPrise_min;
+                }
+                if($itemPrise_max!==NULL && $itemPrise_max!=='') {
+                    $itemPriseValue['max']=$itemPrise_max;
+                }
             }
             self::addSearchFilterData($groupID, 'ItemPrise', 'main', $itemPriseValue);
             $subgroup = self::getPostValue('Subgroup', $groupID);
@@ -451,11 +458,16 @@ class ShopPropertiesFilterType {
         $min = self::getPostValue($filterId_min);
         $max = self::getPostValue($filterId_max);
         $value = array();
-        if($min!==NULL && $min!=='') {
-            $value['min']=$min;
-        }
-        if($max!==NULL && $max!=='') {
-            $value['max']=$max;
+        if($min!==NULL && $min!=='' && $max!==NULL && $max!=='') {
+            $value['min'] = min($min, $max);
+            $value['max'] = max($min, $max);
+        } else {
+            if($min!==NULL && $min!=='') {
+                $value['min']=$min;
+            }
+            if($max!==NULL && $max!=='') {
+                $value['max']=$max;
+            }
         }
         self::addSearchFilterData($groupID,$propertyID,'intRange',$value);
     }

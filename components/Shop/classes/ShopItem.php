@@ -12,6 +12,7 @@ class ShopItem {
     private $property;
     private $dir = './resources/Components/Shop/Image/ItemsImage/';
     private $defaultIcon = "defaultIcon_200x200.png";
+    private $defaultBigIcon = "defaultIcon.png";
 
     /**
      * Конструктор класса
@@ -146,8 +147,10 @@ class ShopItem {
         $this->HTML .= '<div class="ShopItemMainWrapper">';
             $this->HTML .= '<div class="ShopItemLeftBlock">';
                 $this->HTML .= '<div class="ShopItemIMG">';
+                    $this->HTML .= '<a class="fancybox-gallery" href="'.$this->getBigImageData().'">';
                     $this->HTML .= '<img src="'.$this->getImageData().'" alt="'.$this->data['itemName'].'" title="'.$this->data['itemName'].'">';
-                 $this->HTML .= '</div>';  // ShopItemIMG
+                    $this->HTML .= '</a>';
+                $this->HTML .= '</div>';  // ShopItemIMG
                 $this->HTML .= '<div class="ShopItemName">';
                     $this->HTML .= $this->data['itemName'];
                 $this->HTML .= '</div>';  // ShopItemName
@@ -223,9 +226,22 @@ class ShopItem {
             if ($desiredValue != null && $desiredValue != '') { 
                 return $desiredValue; 
             }
-        } else {
-            echo 'Файла с таким названием не существует';
         }
+        return ''; 
+    }
+    
+    /**
+     * Получить изображение
+     * @return type
+     */
+    private function getBigImageData() {
+        $desiredValue = $this->getBigImage($this->elementID);
+        if (file_exists($desiredValue)) {
+            if ($desiredValue != null && $desiredValue != '') { 
+                return $desiredValue; 
+            }
+        }
+        return ''; 
     }
     
     /**
@@ -242,6 +258,24 @@ class ShopItem {
             $image = $item.'_200x200.png';
         } else {
             $image = $this->defaultIcon;
+        }
+        return $this->dir.$image;
+    } 
+    
+    /**
+     * Уточнить расширение
+     * @param type $item
+     * @return type
+     */
+    private function getBigImage($item) {
+        // если есть - jpg
+        if (file_exists($this->dir.$item.'.jpg'))  {
+            $image = $item.'.jpg';
+        // если нет - посмотреть png
+        } elseif (file_exists($this->dir.$item.'.png'))  {
+            $image = $item.'.png';
+        } else {
+            $image = $this->defaultBigIcon;
         }
         return $this->dir.$image;
     } 

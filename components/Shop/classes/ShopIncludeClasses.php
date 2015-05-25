@@ -21,6 +21,7 @@ class ShopIncludeClasses {
             include_once './components/Shop/classes/ShopGroupsPageNavigator.php';
             include_once './components/Shop/classes/ShopGroupPriceType.php';
             include_once './components/Shop/classes/ShopItemAmountScale.php';
+            include_once './components/Shop/classes/ShopGroupPropertyValue.php';
 
             include_once './modules/ShopNavigationPanel/classes/ShopNavigationPanel.php';
             include_once './modules/ShopNavigationPanel/classes/ShopNavigationPanel_Menu.php';
