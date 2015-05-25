@@ -138,10 +138,12 @@
     display: none;
 }
 .ShopNavigationPanel_Filter {
+    position: relative;
     padding: 20px;
 }
 .ShopNavigationPanel_Filter .ShopPropertiesFilterForm {}
-.ShopNavigationPanel_Filter .ShopPropertiesFilterForm .ShopPropertiesFilterBlock {
+.ShopNavigationPanel_Filter .ShopPropertiesFilterForm .ShopPropertiesFilterBlocks {}
+.ShopNavigationPanel_Filter .ShopPropertiesFilterForm .ShopPropertiesFilterBlocks .ShopPropertiesFilterBlock {
     font: bold 12px/12px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
     color: #ef7f1a;
     clear: both;
@@ -149,8 +151,8 @@
     padding-bottom: 10px;
     border-bottom: 1px dotted #C3C3C3;
 }
-.ShopNavigationPanel_Filter .ShopPropertiesFilterForm .ShopPropertiesFilterBlock .ShopPropertiesFilter {}
-.ShopNavigationPanel_Filter .ShopPropertiesFilterForm .ShopPropertiesFilterBlock .ShopPropertiesFilterBlockName {
+.ShopNavigationPanel_Filter .ShopPropertiesFilterForm .ShopPropertiesFilterBlocks .ShopPropertiesFilterBlock .ShopPropertiesFilter {}
+.ShopNavigationPanel_Filter .ShopPropertiesFilterForm .ShopPropertiesFilterBlocks .ShopPropertiesFilterBlock .ShopPropertiesFilterBlockName {
     
 }
 .ShopNavigationPanel_Filter .ShopPropertiesFilterForm .ShopPropertiesFilterFormSubmit {
@@ -163,7 +165,8 @@
     text-align: center;
     clear: both;
     cursor: pointer;
-    margin-top: 20px;
+    margin: 20px auto;
+    /*margin-top: 20px;*/
 }
 
 .ShopNavigationPanel_Filter .ShopPropertiesFilterForm .ShopPropertiesFilterBlock input[type=text], 

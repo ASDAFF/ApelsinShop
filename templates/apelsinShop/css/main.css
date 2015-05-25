@@ -3,6 +3,12 @@ root {  display: block; }
 * { padding: 0px; margin: 0px; }
 img { border: none; vertical-align:bottom; }
 .clear { clear: both; }
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-button { background-color: #ef7f1a; width: 0px; height: 0px; }
+::-webkit-scrollbar-track { background-color: #ef7f1a; }
+::-webkit-scrollbar-track-piece { background-color: #ffffff; }
+::-webkit-scrollbar-thumb { height: 50px; background-color: #ef7f1a; border-radius: 3px; }
+::-webkit-scrollbar-corner { background-color: #ef7f1a; }
 
 /** СТИЛИ ТЕГОВ **/
 body {

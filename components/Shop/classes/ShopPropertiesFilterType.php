@@ -360,8 +360,10 @@ class ShopPropertiesFilterType {
         }
         $out = '';
         $out .= '<form class="ShopPropertiesFilterForm" name="ShopPropertiesFilterForm" action="'.$url.'" enctype="multipart/form-data" method="post" accept-charset="UTF-8">';
+        $out .= '<div class="ShopPropertiesFilterBlocks">';
         $out .= $inputs;
-        $out .= '<center><input class="ShopPropertiesFilterFormSubmit" type="submit" name="ShopPropertiesFilterFormSubmit" value="OK"></center>';
+        $out .= '</div>';
+        $out .= '<input class="ShopPropertiesFilterFormSubmit" type="submit" name="ShopPropertiesFilterFormSubmit" value="OK">';
         $out .= '</form>';
         return $out;
     }
