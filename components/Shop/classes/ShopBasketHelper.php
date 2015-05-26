@@ -115,6 +115,18 @@ class ShopBasketHelper {
         }
     }
     
+    public static function apdateItemAmountInTheShopBasket($itemID, $amount) {
+        self::createObject();
+        if($amount > 0) {
+            if(self::checkItemInTheShopBasket($itemID)) {
+                $_SESSION['ShopBasket'][$itemID]['amount'] = $amount;
+                $_SESSION['ShopBasket'][$itemID]['allPriceValue'] = $_SESSION['ShopBasket'][$itemID]['priceValue'] * $_SESSION['ShopBasket'][$itemID]['amount'];
+            } else {
+                self::addItemToTheShopBasket($itemID, $amount);
+            }
+        }
+    }
+    
     public static function getItemAmountInTheShopBasket($itemID) {
         self::createObject();
         if(self::checkItemInTheShopBasket($itemID)) {
