@@ -18,8 +18,9 @@ class ShopBasket {
     }
     
     private function setTestData() {
+//        ShopBasketHelper::clearShopBasket();
 //        ShopBasketHelper::addItemToTheShopBasket('3409410b-5b1f-11e2-8bea-005056be271d', 5);
-//        ShopBasketHelper::addItemToTheShopBasket('3409410b-5b1f-11e2-8bea-005056be271d', 3);
+//        ShopBasketHelper::addItemToTheShopBasket('e242e97f-f29b-11dd-9439-000e0c431b58', 3);
     }
 
 
@@ -35,6 +36,7 @@ class ShopBasket {
                 $this->HTML .= '<div class="priceValue">'.$item['priceValue'].'</div>';
                 $this->HTML .= '<div class="allPriceValue">'.$item['allPriceValue'].'</div>';
                 $this->HTML .= '<div class="amount">'.$item['amount'].'</div>';
+                $this->HTML .= ShopItemAmountScale::getAmountScale($item['maxAmount'] - $item['amount'], $item['minAmount']);
                 if(mb_strlen($item['note']) > 0) {
                     $this->HTML .= '<div class="note">'.$item['note'].'</div>';
                 }

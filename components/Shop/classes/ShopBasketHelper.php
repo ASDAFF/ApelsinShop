@@ -34,6 +34,7 @@ class ShopBasketHelper {
             SI.`groupName`, 
             SI.`action`, 
             SI.`amount` as maxAmount,
+            SI.`minAmount`,
             SI.`description`, 
             SI.`shown`,
             SIP.`value` as priceValue
@@ -45,6 +46,7 @@ class ShopBasketHelper {
                 SG.`groupName`, 
                 SI.`action`, 
                 SI.`amount`,
+                SI.`minAmount`,
                 SI.`description`, 
                 SI.`shown`
                 FROM `ShopItems` as SI
@@ -145,6 +147,7 @@ class ShopBasketHelper {
      * $rezult[<itemID>]['groupName'] - названеи группы товара
      * $rezult[<itemID>]['action'] - TRUE | FALSE - акционный ли товар
      * $rezult[<itemID>]['maxAmount'] - сколько всего товара доступно
+     * $rezult[<itemID>]['minAmount'] - минимальный порог товаров
      * $rezult[<itemID>]['description'] - описание товара
      * $rezult[<itemID>]['shown'] - TRUE | FALSE - доступен ли товар дял заказа
      * $rezult[<itemID>]['priceValue'] - цена товара
