@@ -12,23 +12,23 @@
  */
 class ResizeImage {
     
-    private $ext;
-    private $image;
-    private $newImage;
-    private $origWidth;
-    private $origHeight;
-    private $resizeWidth;
-    private $resizeHeight;
-
+    private $ext;          // расширение
+    private $image;        // дескриптор загруженного изображения 
+    private $newImage;     //для измененного изображения
+    private $origWidth;    // ширина загруженного изображения
+    private $origHeight;   // высота загруженного изображения
+    private $resizeWidth;  // новая ширина 
+    private $resizeHeight; // новая высота
+    
     /**
      * 
      * @param type $filename - изображение
      */
     public function __construct( $filename ) {
-        if(file_exists($filename)) {
+        if (file_exists($filename)) {
             $this->setImage( $filename );
         } else {
-            echo 'Hе найденo, попробуйте другое изображение';
+            echo 'Изображение не найденo, выберите другое';
         }
     }
 
@@ -39,7 +39,7 @@ class ResizeImage {
     private function setImage( $filename ) {
         $size = getimagesize($filename);
         $this->ext = $size['mime'];
-        switch($this->ext) {
+        switch ($this->ext) {
             // JPG
             case 'image/jpg':
             case 'image/jpeg':
@@ -54,7 +54,7 @@ class ResizeImage {
                 $this->image = @imagecreatefrompng($filename);
                 break;
             default:
-                throw new Exception("File is not an image, please use another file type.", 1);
+                throw new Exception("Файл не является изображением, выберите другое", 1);
         }
         $this->origWidth = imagesx($this->image);
         $this->origHeight = imagesy($this->image);
@@ -67,20 +67,18 @@ class ResizeImage {
      * @return сохраненное изображение
      */
     public function saveImage($savePath, $imageQuality="100", $download = false) {
-        switch($this->ext) {
+        switch ($this->ext) {
             case 'image/jpg':
             case 'image/jpeg':
                 if (imagetypes() & IMG_JPG) {
                     imagejpeg($this->newImage, $savePath, $imageQuality);
                 }
                 break;
-
             case 'image/gif':
                 if (imagetypes() & IMG_GIF) {
                     imagegif($this->newImage, $savePath);
                 }
                 break;
-
             case 'image/png':
                 $invertScaleQuality = 9 - round(($imageQuality/100) * 9);
                 if (imagetypes() & IMG_PNG) {
@@ -88,7 +86,7 @@ class ResizeImage {
                 }
                 break;
         }
-        if($download) {
+        if ($download) {
             header('Content-Description: File Transfer');
             header("Content-type: application/octet-stream");
             header("Content-disposition: attachment; filename= ".$savePath."");
@@ -105,7 +103,7 @@ class ResizeImage {
      * @return 
      */
     public function resizeTo( $width, $height, $resizeOption = 'default' ) {
-        switch(strtolower($resizeOption)) {
+        switch (strtolower($resizeOption)) {
             case 'exact': 
                 $this->resizeWidth = $width;
                 $this->resizeHeight = $height;
@@ -129,11 +127,11 @@ class ResizeImage {
                 $this->resizeWidth = $height / $optimalRatio;  
                 $this->resizeHeight  = $width  / $optimalRatio;  
             default:
-                if($this->origWidth > $width || $this->origHeight > $height) {
+                if ($this->origWidth > $width || $this->origHeight > $height) {
                     if ( $this->origWidth > $this->origHeight ) {
                      $this->resizeHeight = $this->resizeHeightByWidth($width);
                              $this->resizeWidth  = $width;
-                    } else if( $this->origWidth < $this->origHeight ) {
+                    } else if ( $this->origWidth < $this->origHeight ) {
                             $this->resizeWidth  = $this->resizeWidthByHeight($height);
                             $this->resizeHeight = $height;
                     }  else {
@@ -148,6 +146,29 @@ class ResizeImage {
         }
 
         $this->newImage = imagecreatetruecolor($this->resizeWidth, $this->resizeHeight);
+        // для png (сораняем прозрачность)
+        if ($this->ext == 'image/png') {
+            // отключаем режим сопряжения цветов (убираем черный фон)
+            imagealphablending($this->newImage, false);
+            // сохраняем альфа канал в выходной файл
+            imagesavealpha($this->newImage, true);
+        }
+        //для gif (если надо)
+//        if ($this->ext == 'image/gif') {
+//            // получаем прозрачный цвет
+//            $transparent_source_index = imagecolortransparent($this->image);
+//            // проверяем наличие прозрачности
+//            if ($transparent_source_index !== -1) {
+//                // получаем цвет, соответствующий заданному индексу.
+//                $transparent_color = imagecolorsforindex($this->image, $transparent_source_index);
+//                //Добавляем цвет в палитру нового изображения 
+//                $transparent_destination_index = imagecolorallocate($this->newImage, $transparent_color['red'], $transparent_color['green'], $transparent_color['blue']);
+//                 // устанавливаем его как прозрачный
+//                imagecolortransparent($this->newImage, $transparent_destination_index);
+//                //На всякий случай заливаем фон этим цветом
+//                imagefill($this->newImage, 0, 0, $transparent_destination_index);
+//            }
+//        } 
         imagecopyresampled($this->newImage, $this->image, 0, 0, 0, 0, $this->resizeWidth, $this->resizeHeight, $this->origWidth, $this->origHeight);
         // Если параметр $option = 'crop'(обрезка), то создаем соответствующий холст
         if ($resizeOption == 'crop') {  
