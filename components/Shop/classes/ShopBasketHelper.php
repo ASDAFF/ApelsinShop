@@ -12,7 +12,7 @@ class ShopBasketHelper {
         global $_SQL_HELPER;
         self::$SQL_HELPER = $_SQL_HELPER;
         self::$urlHelper = new UrlHelper();
-        self::clearShopBasket();
+        self::createShopBasketArray();
         self::$priceTypeID = ShopGroupPriceType::getPriceTypeID();
         self::$shopPageAlias = ShopPageInfoHelper::getShopPageAlias();
     }
@@ -56,6 +56,12 @@ class ShopBasketHelper {
             ON SI.`id` = SIP.`item`
             WHERE SIP.`price` = '".self::$priceTypeID."';";
         return self::$SQL_HELPER->select($query,1);
+    }
+    
+    private static function createShopBasketArray() {
+        if(!isset($_SESSION['ShopBasket'])) {
+            $_SESSION['ShopBasket'] = array();
+        }
     }
     
     public static function clearShopBasket() {
