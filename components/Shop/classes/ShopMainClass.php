@@ -24,6 +24,9 @@ class ShopMainClass {
         } else if(isset($this->params[0]) && $this->params[0] === 'item') {
             $shopItem = new ShopItem();
             $this->HTML = $shopItem->getHtml();
+        } else if(isset($this->params[0]) && $this->params[0] === 'shopbasket') {
+            $shopBasket = new ShopBasket();
+            $this->HTML = $shopBasket->getHtml();
         } else {
             $this->HTML = "Некорректная URL, позже здесь будет нормальный обработчик ошибки";
         }
