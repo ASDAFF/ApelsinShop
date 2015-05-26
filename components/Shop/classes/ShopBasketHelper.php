@@ -163,5 +163,24 @@ class ShopBasketHelper {
         return $_SESSION['ShopBasket'];
     }
     
-    
+    public static function getDysplayButtonBuy($itemID) {
+        self::createObject();
+        $maxAmount = self::getItemFromShopBasket($itemID);
+        $html = '';
+        if (ShopBasketHelper::checkItemInTheShopBasket($itemID) ) {
+            $html .= '<div class="ShopItemBuyButtonBlock">';
+                $html .= '<a href="'.self::$urlHelper->pageUrl(ShopPageInfoHelper::getShopPageAlias(), array('shopbasket')).'">';
+                    $html .= '<div class="ShopItemBuyButton" >';
+                        $html .= 'Товар в корзине';
+                    $html .= '</div>';  // ShopItemBuyButton
+                $html .= '</a>';
+            $html .= '</div>';  // ShopItemBuyButtonBlock
+        } else {
+            $html .= '<div class="ShopItemBuyButton" onclick="getShopItemAmountBuy( \''.$itemID.'\');">';
+                $html .= 'Купить';
+            $html .= '</div>';  // ShopItemBuyButton
+            $html .= '<input type="number" name="shopItemAmountBuy" id="shopItemAmountBuy" class="shopItemAmountBuy" value="1" min="1" max="'.$maxAmount['maxAmount'].'" >';
+        }
+        return $html;
+    }
 }

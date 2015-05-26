@@ -117,12 +117,9 @@ class ShopItem {
      * Получение родительских групп
      */
     private function getProperty() {
-//        $dataAll = [];
         $groups = $this->getListGroup();
         $this->property = [];
-//        foreach ($groups as $key => $group) {
         foreach ($groups as $group) {
-//            $dataAll[$key][$group] = $this->getPropertiesInGroup($group);
             $this->getPropertiesInGroup($group);
         }
     }
@@ -157,19 +154,19 @@ class ShopItem {
                 $this->HTML .= '<div class="ShopItemPrice">';
                     $this->HTML .= $this->price['value'];
                 $this->HTML .= '</div>';  // ShopItemPrice
-//                $this->HTML .= '<div class="ShopItemAmount">';
-                    $this->HTML .= ShopItemAmountScale::getAmountScale($this->data['amount'], $this->data['minAmount']);
-//                $this->HTML .= '</div>';  // ShopItemAmount
-                $this->HTML .= '<div class="ShopItemBuyButton">';
-                    $this->HTML .= 'Купить';
-                $this->HTML .= '</div>';  // ShopItemBuyButton
+                $this->HTML .= ShopItemAmountScale::getAmountScale($this->data['amount'], $this->data['minAmount']);
+                $this->HTML .= '<div class="ShopItemBuyButtonBlock">';
+                    if ($this->data['amount'] > 0) {
+                        $this->HTML .= ShopBasketHelper::getDysplayButtonBuy($this->elementID);
+                    } else {
+                        $this->HTML .= 'Товара нет. <br />Уточняйте у менеджера.';
+                    }
+                $this->HTML .= '</div>';  // ShopItemBuyButtonBlock
             $this->HTML .= '</div>';  // ShopItemLeftBlock
-            
             $this->HTML .= '<div class="ShopItemMainBlock">';
                 $this->HTML .= '<div class="ShopItemDescription">';
                     $this->HTML .= $this->data['description'];
                 $this->HTML .= '</div>';  // ShopItemDescription
-                
                 $this->HTML .= '<div class="ShopItemParams">';
                 foreach ($this->property as $proper => $allValues) {
                     $this->HTML .= '<div class="ShopItemParam">';
@@ -177,7 +174,6 @@ class ShopItem {
                             $this->HTML .= $proper.' :';
                         $this->HTML .= '</div></div>';  // ShopItemParamName
                         $this->HTML .= '<div class="ShopItemParamValue"><div>';
-                            
                         foreach ($allValues as $key => $values ) {
                             if ($key == 'all') {
                                 $this->HTML .= $this->getHtmlAllValue($values, true);
@@ -185,7 +181,6 @@ class ShopItem {
                                 $this->HTML .= $this->getHtmlAllValue($values, false);
                             }
                         }
-                            
                         $this->HTML .= '</div></div>';  // ShopItemParamValue
                     $this->HTML .= '</div>';  // ShopItemParam
                 }
