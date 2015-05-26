@@ -1,0 +1,170 @@
+.ShopBasketBlock {}
+.ShopBasketBlock .ShopBasketItemBlock {
+    height: 90px;
+    margin-bottom: 10px;
+    border-bottom: 1px dotted #869791;
+}
+
+.ShopBasketBlock .ShopBasketItemBlock:hover {
+    background: #F5F5F5;
+}
+
+.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemImageInfoBlock {
+    width: 70px;
+    height: 90px;
+    float: left;
+}
+.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemImageInfoBlock .itemImage {
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+    text-align: center;
+}
+.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemImageInfoBlock .itemImage a {}
+.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemImageInfoBlock .itemImage img {
+    max-width: 50px;
+    max-height: 50px;
+    border: none;
+}
+.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemImageInfoBlock .ShopItemAmount {
+    margin: 5px auto;
+    margin-bottom: 10px;
+    height: 5px;
+    width: 50px;
+    background: #C3C3C3;
+}
+.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemImageInfoBlock .ShopItemAmount .ShopItemAmountScale {
+    height: 5px;
+    background: #00cf00;
+}
+
+.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemTextInfoBlock {
+    height: 90px;
+    float: left;
+    font:  12px/12px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+}
+.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemTextInfoBlock .itemName {
+    height: 90px;
+    width: 640px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemTextInfoBlock .itemName a {}
+
+.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemPriceInfoBlock {
+    width: 150px;
+    height: 60px;
+    padding: 15px 0px 15px 0px;
+    float: left;
+    text-align: right;
+}
+.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemPriceInfoBlock .priceValue {
+    height: 30px;
+    font:  16px/30px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+}
+.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemPriceInfoBlock .allPriceValue {
+    height: 30px;
+    font:  bold 16px/30px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+}
+.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemPriceInfoBlock .priceValue span:after,
+.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemPriceInfoBlock .allPriceValue span:after {
+    font: bold 11px/30px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    content: ' руб.'
+}
+
+.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemButtonBlock {
+    width: 100px;
+    height: 60px;
+    padding: 15px 0px 15px 0px;
+    float: left;
+}
+.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemButtonBlock .AmountButtonBlock {
+    height: 30px;
+}
+.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemButtonBlock .AmountButtonBlock .shopItemAmountBuyBlock {
+    height: 20px;
+    padding: 5px 15px 5px 15px;
+}
+.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemButtonBlock .AmountButtonBlock .shopItemAmountBuyBlock .shopItemAmountBuyDelButton,
+.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemButtonBlock .AmountButtonBlock .shopItemAmountBuyBlock .shopItemAmountBuyAddButton {
+    padding: 0px;
+    height: 20px;
+    width: 15px;
+    font: bold 10px/20px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    background: #C8C8C8;
+    text-transform: uppercase;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+}
+.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemButtonBlock .AmountButtonBlock .shopItemAmountBuyBlock .shopItemAmountBuyDelButton:hover,
+.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemButtonBlock .AmountButtonBlock .shopItemAmountBuyBlock .shopItemAmountBuyAddButton:hover {
+    background: #ef7f1a;
+}
+.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemButtonBlock .AmountButtonBlock .shopItemAmountBuyBlock .shopItemAmountBuyDelButton {
+    float: left;
+}
+.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemButtonBlock .AmountButtonBlock .shopItemAmountBuyBlock .shopItemAmountBuyAddButton {
+    float: right;
+}
+.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemButtonBlock .AmountButtonBlock .shopItemAmountBuyBlock .shopItemAmountBuy {
+    background: rgb(250,250,250);
+    padding: 0px 5px 0px 5px;
+    margin: 0px;
+    font: 10px/15px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    color: #ef7f1a;
+    border: none;
+    box-shadow: none;
+    text-shadow: 0 1px 0 #fff;
+    height: 20px;
+    width: 30px;
+    text-align: center;
+}
+.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemButtonBlock .DeleteButtonBlock {
+    height: 20px;
+    padding: 5px 15px 5px 15px;
+}
+.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemButtonBlock .DeleteButtonBlock .DeleteButton {
+    width: 70px;
+    height: 20px;
+    font: bold 12px/20px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    background: #C8C8C8;
+    text-transform: uppercase;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+}
+.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemButtonBlock .DeleteButtonBlock .DeleteButton:hover {
+    background: #ef7f1a;
+}
+.ShopBasketBlock .ShopBasketItemBuyBlock {
+    height: 30px;
+    padding: 10px 0px 20px 0px;
+}
+.ShopBasketBlock .ShopBasketItemBuyBlock .ShopBasketItemPayInfoBlock {
+    float: right;
+    margin-right: 20px;
+}
+.ShopBasketBlock .ShopBasketItemBuyBlock .ShopBasketItemPayInfoBlock .text {
+    font: 12px/30px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    text-transform: uppercase;
+}
+.ShopBasketBlock .ShopBasketItemBuyBlock .ShopBasketItemPayInfoBlock .price {
+    font: bold 24px/30px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+}
+.ShopBasketBlock .ShopBasketItemBuyBlock .ShopBasketItemPayInfoBlock .price:after {
+    font: bold 12px/30px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    content: ' руб.'
+}
+.ShopBasketBlock .ShopBasketItemBuyBlock .ShopBasketItemBuyButton {  
+    height: 30px;
+    width: 120px;
+    font: bold 14px/30px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    background: #ef7f1a;
+    text-transform: uppercase;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+    float: right;
+}
