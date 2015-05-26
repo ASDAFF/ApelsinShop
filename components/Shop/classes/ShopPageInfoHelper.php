@@ -14,6 +14,7 @@ class ShopPageInfoHelper {
     static private $URL_PARAMS;
     
     static private $shopPage;
+    static private $shopPageAlias;
     static private $pageUrlType;
     static private $pageUrlElement;
     static private $groupId;
@@ -35,6 +36,7 @@ class ShopPageInfoHelper {
         global $_SQL_HELPER;
         self::$SQL_HELPER = $_SQL_HELPER;
         $this->checkThisPage();
+        $this->getShopPageData();
         $this->getUrlPageInfo();
     }
     
@@ -57,6 +59,16 @@ class ShopPageInfoHelper {
             AND CE.`component` = '".self::ComponentAlias."';";
         $rezult = self::$SQL_HELPER->select($query,1);
         self::$shopPage = $rezult['pages'] > 0;
+    }
+    
+    private function getShopPageData() {
+        $query = "SELECT Pa.`alias`
+            FROM `Pages` as Pa
+            LEFT JOIN `ComponentsElements` as CE
+            on Pa.`componentElement` = CE.`id`
+            WHERE CE.`component` = '".self::ComponentAlias."';";
+        $rezult = self::$SQL_HELPER->select($query,1);
+        self::$shopPageAlias = $rezult['alias'] > 0;
     }
     
     private function getUrlPageInfo() {
@@ -119,6 +131,11 @@ class ShopPageInfoHelper {
     public static function isItGroupPage() {
         self::createObject();
         return self::$groupPage;
+    }
+    
+    public static function getShopPageAlias() {
+        self::createObject();
+        return self::$shopPageAlias;
     }
 
 
