@@ -18,7 +18,7 @@ class ShopItemAmountScale {
             $text = "Достаточно.";
         } else if ($amount >= 3 * $minAmount) {
             $scaleValue = 100;
-            $text = "Многою";
+            $text = "Много.";
         }
 //        $text .= "\n\nTEST BLOCK\namount=".$amount." | minAmount=".$minAmount;
         $out = "<div class='ShopItemAmount' title='".$text."'>";
