@@ -22,7 +22,7 @@ class ShopBasketHelper {
      */
     private static function createObject() {
         if(!isset(self::$object)) {
-            self::$object = new ShopGroupsUrlHelper();
+            self::$object = new ShopBasketHelper();
         }
     }
     
@@ -59,7 +59,6 @@ class ShopBasketHelper {
     }
     
     public static function clearShopBasket() {
-        self::createObject();
         $_SESSION['ShopBasket'] = array();
     }
     
@@ -80,9 +79,9 @@ class ShopBasketHelper {
                 if($itemData['shown']) {
                     $_SESSION['ShopBasket'][$itemID] = $itemData;
                     $_SESSION['ShopBasket'][$itemID]['amount'] = $amount;
-                    $_SESSION['ShopBasket'][$itemID]['allPriceValue'] = $itemData['value'] * $amount;
+                    $_SESSION['ShopBasket'][$itemID]['allPriceValue'] = $itemData['priceValue'] * $amount;
                     $_SESSION['ShopBasket'][$itemID]['itemUrl'] = self::$urlHelper->pageUrl(self::$shopPageAlias, array('item',$itemID));
-                    $_SESSION['ShopBasket'][$itemID]['groupUrl'] = self::$urlHelper->pageUrl(self::$shopPageAlias, array('catalog',itemData['group']));
+                    $_SESSION['ShopBasket'][$itemID]['groupUrl'] = self::$urlHelper->pageUrl(self::$shopPageAlias, array('catalog',$itemData['group']));
                     if($amount > $itemData['maxAmount']) {
                         $_SESSION['ShopBasket'][$itemID]['note'] = 'Количество заказаного товара превышает доступное, уточните наличие товара в магазине.';
                     } else {
@@ -101,6 +100,7 @@ class ShopBasketHelper {
                 self::deleteItemFromShopBasket($itemID);
             } else {
                 $_SESSION['ShopBasket'][$itemID]['amount'] += $amount;
+                $_SESSION['ShopBasket'][$itemID]['allPriceValue'] = $_SESSION['ShopBasket'][$itemID]['priceValue'] * $_SESSION['ShopBasket'][$itemID]['amount'];
             }
         } else {
             self::addItemToTheShopBasket($itemID, $amount);
@@ -141,6 +141,8 @@ class ShopBasketHelper {
      * $rezult[<itemID>]['maxAmount'] - сколько всего товара доступно
      * $rezult[<itemID>]['description'] - описание товара
      * $rezult[<itemID>]['shown'] - TRUE | FALSE - доступен ли товар дял заказа
+     * $rezult[<itemID>]['priceValue'] - цена товара
+     * $rezult[<itemID>]['allPriceValue'] - цена товара * количество товара
      * $rezult[<itemID>]['amount'] - количество товара в заказе
      * $rezult[<itemID>]['itemUrl'] - ссылка на страницу товара
      * $rezult[<itemID>]['groupUrl'] - ссылка на страницу каталога

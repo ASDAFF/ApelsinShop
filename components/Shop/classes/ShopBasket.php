@@ -10,10 +10,16 @@ class ShopBasket {
      * @global type $_SQL_HELPER
      */
     public function __construct() {
+        $this->setTestData();
         global $_SQL_HELPER;
         $this->SQL_HELPER = $_SQL_HELPER;
-        $this->generateHtml();
         $this->items = ShopBasketHelper::getAllItemsFromShopBasket();
+        $this->generateHtml();
+    }
+    
+    private function setTestData() {
+//        ShopBasketHelper::addItemToTheShopBasket('3409410b-5b1f-11e2-8bea-005056be271d', 5);
+//        ShopBasketHelper::addItemToTheShopBasket('3409410b-5b1f-11e2-8bea-005056be271d', 3);
     }
 
 
@@ -21,7 +27,20 @@ class ShopBasket {
      * Генерируем HTML информации о товаре
      */
     private function generateHtml() {
-        $this->HTML = '';
+        $this->HTML = '<div class="ShopBasketBlock">';
+        foreach ($this->items as $item) {
+            $this->HTML .= '<div class="ShopBasketItem">';
+                $this->HTML .= '<div class="itemName"><a href="'.$item['itemUrl'].'">'.$item['itemName'].'</a></div>';
+                $this->HTML .= '<div class="groupName"><a href="'.$item['groupUrl'].'">'.$item['groupName'].'</a></div>';
+                $this->HTML .= '<div class="priceValue">'.$item['priceValue'].'</div>';
+                $this->HTML .= '<div class="allPriceValue">'.$item['allPriceValue'].'</div>';
+                $this->HTML .= '<div class="amount">'.$item['amount'].'</div>';
+                if(mb_strlen($item['note']) > 0) {
+                    $this->HTML .= '<div class="note">'.$item['note'].'</div>';
+                }
+            $this->HTML .= '</div>';
+        }
+        $this->HTML .= '</div>';
     }
     
     /**
