@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="<?php $ROOT->templatePath();?>css/shopItemsList.css" type="text/css" />
     <link rel="stylesheet" href="<?php $ROOT->templatePath();?>css/shopItem.css" type="text/css" />
     <link rel="stylesheet" href="<?php $ROOT->templatePath();?>css/ShopBasket.css" type="text/css" />
+    <link rel="stylesheet" href="<?php $ROOT->templatePath();?>css/print.css" type="text/css" />
     <script src="<?php $ROOT->templatePath();?>js/TemplateAnimations.js"></script>
 </head>
 <body>
@@ -18,7 +19,7 @@
     <div class="Wraper">
         <div class="HeadWraper">
             <div class="HeadWraperBlock">
-                <div class="SiteLogo"></div>
+                <div class="SiteLogo"><img src='<?php $ROOT->templatePath();?>img/SiteLogo.png'></div>
                 <div class="LeftHeadWraper">
                     <div class="LeftHeadBlock">
                         <div class="LeftTopHeadWraper">

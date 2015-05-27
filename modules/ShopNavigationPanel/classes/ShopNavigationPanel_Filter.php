@@ -16,11 +16,6 @@ class ShopNavigationPanel_Filter {
     private function generateHTML() {
         $this->HTML = '<div id="shopNavigationPanelFilter" class="ShopNavigationPanel_Filter">';
         $this->HTML .= ShopPropertiesFilterType::getFilters(ShopPageInfoHelper::shopPageGroupId());
-//        if(ShopPageInfoHelper::isShopPage() && !ShopPageInfoHelper::isShopPageError() && ShopPageInfoHelper::shopPageGroupId() !== NULL) {
-//            $this->HTML .= ShopPropertiesFilterType::getFilters(ShopPageInfoHelper::shopPageGroupId());
-//        } else {
-//            $this->HTML .= 'Нет фильтра';
-//        }
         $this->HTML .= '</div>';
     }
     

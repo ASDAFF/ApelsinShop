@@ -9,23 +9,43 @@ jQuery(document).ready(function() {
             $('.BeforeContentButtonText').removeClass('HideText');
             $('.BeforeContentButtonText').addClass('ShowText');
             $('.BeforeContentWraper').hide("normal");
-//            $('.BeforeContentWraper').fadeOut(300);
         } else {
             $('.BeforeContentButtonText').removeClass('ShowText');
             $('.BeforeContentButtonText').addClass('HideText');
             $('.BeforeContentWraper').show("normal");
-//            $('.BeforeContentWraper').fadeIn(300);
         }
-        
-        
-//        jQuery('.BeforeContentWraper').hide();
     });
     
-    jQuery(".BeforeContentButtonText.ShowText").click(function(){ 
-        alert('test');
-//        jQuery('.BeforeContentButtonText').removeClass('ShowText');
-//        jQuery('.BeforeContentButtonText').addClass('HideText');
-//        jQuery('.BeforeContentWraper').show();
+    jQuery(".shopNavigationPanelSwitchButtonToFilter").click(function(){
+        if($(".shopNavigationPanelSwitchButtonToFilter").hasClass("noChecked")) {
+            $('.shopNavigationPanelSwitchButtonToFilter').removeClass('noChecked');
+            $('.shopNavigationPanelSwitchButtonToFilter').addClass('checked');
+            $('.shopNavigationPanelSwitchButtonToMenu').removeClass('checked');
+            $('.shopNavigationPanelSwitchButtonToMenu').addClass('noChecked');
+            $('.ShopNavigationPanel_Menu').hide("normal");
+            $('.ShopNavigationPanel_Filter').show("normal");
+        }
     });
- 
+    
+    jQuery(".shopNavigationPanelSwitchButtonToMenu").click(function(){
+        if($(".shopNavigationPanelSwitchButtonToMenu").hasClass("noChecked")) {
+            $('.shopNavigationPanelSwitchButtonToMenu').removeClass('noChecked');
+            $('.shopNavigationPanelSwitchButtonToMenu').addClass('checked');
+            $('.shopNavigationPanelSwitchButtonToFilter').removeClass('checked');
+            $('.shopNavigationPanelSwitchButtonToFilter').addClass('noChecked');
+            $('.ShopNavigationPanel_Filter').hide("normal");
+            $('.ShopNavigationPanel_Menu').show("normal");
+        }
+    });
+    
+    jQuery(".ShopPropertiesFilterBlockName").click(function(){
+        var blockID = $(this).attr('blockID');
+        if($(this).hasClass("clicked")) {
+            $('#' + blockID).hide("normal");
+            $(this).removeClass('clicked');
+        } else {
+            $('#' + blockID).show("normal");
+            $(this).addClass('clicked');
+        }
+    });
 });

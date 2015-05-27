@@ -1,0 +1,17 @@
+@media print  {
+    .MenuWraper, 
+    .BeforeContentWraper, 
+    .BeforeContentButtonWraper,
+    .ShopItemBuyButtonBlock {
+        display: none;
+    }
+    .HeadWraper {
+        border-bottom: 1px solid #ef7f1a;
+    }
+    .SiteLogo {
+        background: url('../img/SiteLogo.png') center center no-repeat !important;
+    }
+    .ShopItemElement:hover {
+        border: 1px transparent solid;
+    }
+}

@@ -3,11 +3,11 @@ root {  display: block; }
 * { padding: 0px; margin: 0px; }
 img { border: none; vertical-align:bottom; }
 .clear { clear: both; }
-::-webkit-scrollbar { width: 5px; height: 5px; }
-::-webkit-scrollbar-button { background-color: #ef7f1a; width: 0px; height: 0px; }
-::-webkit-scrollbar-track { background-color: #ef7f1a; }
+::-webkit-scrollbar { width: 5px; height: 5px;}
+::-webkit-scrollbar-button { background-color: #ef7f1a; width: 0px; height: 0px;}
+::-webkit-scrollbar-track { background-color: #ef7f1a;}
 ::-webkit-scrollbar-track-piece { background-color: #ffffff; }
-::-webkit-scrollbar-thumb { height: 50px; background-color: #ef7f1a; border-radius: 3px; }
+::-webkit-scrollbar-thumb { height: 50px; background-color: #ef7f1a; border-radius: 3px;}
 ::-webkit-scrollbar-corner { background-color: #ef7f1a; }
 
 /** СТИЛИ ТЕГОВ **/
@@ -51,9 +51,15 @@ ul li:before {
 }
 .Wraper .HeadWraper .HeadWraperBlock .SiteLogo {
     float: left;
-    background: url('../img/SiteLogo.png') center center no-repeat;
+    /*background: url('../img/SiteLogo.png') center center no-repeat;*/
     width: 200px;
-    height: 100px;
+    /*height: 100px;*/
+    height: 74px;
+    padding: 13px 0px 13px 0px;
+}
+.Wraper .HeadWraper .HeadWraperBlock .SiteLogo img {
+    width: 200px;
+    height: 74px;
 }
 .Wraper .HeadWraper .HeadWraperBlock .LeftHeadWraper {
     float: right;
@@ -91,8 +97,8 @@ ul li:before {
 .Wraper .BeforeContentWraper .BeforeContentBlock {
     margin: 0 auto;
     width: 960px;
-    max-height: 400px;
-    overflow-y: auto;
+/*    max-height: 400px;
+    overflow-y: auto;*/
 }
 .Wraper .BeforeContentButtonWraper {
     height: 15px;

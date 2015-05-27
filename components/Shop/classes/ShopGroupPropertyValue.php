@@ -151,6 +151,9 @@ class ShopGroupPropertyValue {
         $propertyValueString = '';
         $propertyValueString .= self::getPropertyValueForGroup_Main($groupID, $propertyValue);
         $propertyValueString .= self::getPropertyValueForGroup_Other($propertyValue);
+        $out .= "<div class='ItemsFoundTop'>";
+        $out .= "<span class='property'>Найдено товаров:</span> <span class='value'>".ShopPropertiesFilterSerchArray::getArrayGroupAmauntOfItems($groupID)."</span>";
+        $out .= "</div>";
         if($propertyValueString !== '') {
             $out .= '<div class="PropertyValueForGroup">';
             $out .= $propertyValueString;

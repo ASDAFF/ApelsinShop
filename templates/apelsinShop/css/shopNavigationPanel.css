@@ -1,5 +1,23 @@
 .ShopNavigationPanel {}
 
+.ShopNavigationPanel .shopNavigationPanelSwitchButtonBlock {
+    float: right;
+    height: 10px;
+    padding: 10px 0px 10px 0px;
+    font: bold 10px/10px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    text-transform: uppercase;
+}
+.ShopNavigationPanel .shopNavigationPanelSwitchButtonBlock .shopNavigationPanelSwitchButtonToMenu,
+.ShopNavigationPanel .shopNavigationPanelSwitchButtonBlock .shopNavigationPanelSwitchButtonToFilter {
+    float: left;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.ShopNavigationPanel .shopNavigationPanelSwitchButtonBlock .shopNavigationPanelSwitchButtonToMenu.checked,
+.ShopNavigationPanel .shopNavigationPanelSwitchButtonBlock .shopNavigationPanelSwitchButtonToFilter.checked {
+    color: #ef7f1a;
+}
+
 .ShopNavigationPanel .ThisGroupPathPanel {}
 .ShopNavigationPanel .ThisGroupPathPanel ul.ThisGroupPath {
     list-style: none;
@@ -133,7 +151,6 @@
     text-transform: uppercase;
 }
 
-
 .ShopNavigationPanel .ShopNavigationPanel_Filter {
     display: none;
 }
@@ -142,7 +159,15 @@
     padding: 20px;
 }
 .ShopNavigationPanel_Filter .ShopPropertiesFilterForm {}
-.ShopNavigationPanel_Filter .ShopPropertiesFilterForm .ShopPropertiesFilterBlocks {}
+.ShopNavigationPanel_Filter .ShopPropertiesFilterForm .ShopPropertiesFilterBlocks {
+    /*max-height: 300px;*/
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+.ShopNavigationPanel_Filter .ShopPropertiesFilterForm .ShopPropertiesFilterBlocks::-webkit-scrollbar {
+    width: 10px;
+}
 .ShopNavigationPanel_Filter .ShopPropertiesFilterForm .ShopPropertiesFilterBlocks .ShopPropertiesFilterBlock {
     font: bold 12px/12px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
     color: #ef7f1a;
@@ -153,7 +178,16 @@
 }
 .ShopNavigationPanel_Filter .ShopPropertiesFilterForm .ShopPropertiesFilterBlocks .ShopPropertiesFilterBlock .ShopPropertiesFilter {}
 .ShopNavigationPanel_Filter .ShopPropertiesFilterForm .ShopPropertiesFilterBlocks .ShopPropertiesFilterBlock .ShopPropertiesFilterBlockName {
-    
+    height: 12px;
+    cursor: pointer;
+    background: url('../img/arrowHideShow_orange_12px.png') top left no-repeat;
+    padding-left: 20px;
+}
+.ShopNavigationPanel_Filter .ShopPropertiesFilterForm .ShopPropertiesFilterBlocks .ShopPropertiesFilterBlock .ShopPropertiesFilterBlockName.clicked {
+    background-position: 0px -12px;
+}
+.ShopNavigationPanel_Filter .ShopPropertiesFilterForm .ShopPropertiesFilterBlocks .ShopPropertiesFilterBlock .ShopPropertiesFilterBlockValues {
+    display: none;
 }
 .ShopNavigationPanel_Filter .ShopPropertiesFilterForm .ShopPropertiesFilterFormSubmit {
     width: 50px;
@@ -166,6 +200,8 @@
     clear: both;
     cursor: pointer;
     margin: 20px auto;
+    display: block;
+    margin: 0 auto;
     /*margin-top: 20px;*/
 }
 

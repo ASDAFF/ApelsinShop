@@ -162,7 +162,7 @@ class ShopPropertiesFilterType {
     }
     
     private static function getFilterBlockName($groupID, $propertyID) {
-        $out = '<div class="ShopPropertiesFilterBlockName">';
+        $out = '<div class="ShopPropertiesFilterBlockName" id="FilterBlockName_'.$propertyID.'" blockID="FilterBlockValue_'.$propertyID.'">';
         $out .= self::getFilterName($groupID, $propertyID);
         $out .= '</div>';
         return $out;
@@ -182,8 +182,8 @@ class ShopPropertiesFilterType {
         $value = self::getSearchFilterElementData($groupID,$propertyID);
         $filterId = self::getFilterID($groupID, $propertyID);
         $filterData = self::getDataForFilter($groupID, $propertyID);
-        $out = '';
         $out = self::getFilterBlockName($groupID, $propertyID);
+        $out .= '<div class="ShopPropertiesFilterBlockValues" id="FilterBlockValue_'.$propertyID.'">';
         foreach ($filterData as $key => $val) {
             $out .= '<div class="ShopPropertiesFilter_GroupSelectElement">';
             $out .= InputHelper::checkbox($filterId.'['.$key.']', $filterId.'_'.$key, 'ShopPropertiesFilter FilterType_groupSelect', FALSE, $val, ($value!==NULL && in_array($val,$value)), NULL);
@@ -191,6 +191,7 @@ class ShopPropertiesFilterType {
             $out .= '<div></div>';
             $out .= '</div>';
         }
+        $out .= '</div>';
         $out .= '<div class="clear"></div>';
         return $out;
     }

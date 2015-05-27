@@ -42,9 +42,21 @@ class ShopGroupsItemList {
     
     private function getItemImage($itemId) {
         $imageName = $itemId."_100x100";
-        $background = BackgroundGeneratorHelper::getBackgroundStyleImg($this->imageItemPath, $imageName, $this->defaultImageItemPath);
-        return '<div class="ShopItemElement_Image" '.$background.'></div>';
+//        $background = BackgroundGeneratorHelper::getBackgroundStyleImg($this->imageItemPath, $imageName, $this->defaultImageItemPath);
+        $background = '';
+        $img = '<img src="'.$this->getImage($imageName).'">';
+        return '<div class="ShopItemElement_Image" '.$background.'>'.$img.'</div>';
     }
+    
+    private function getImage($item) {
+        if (file_exists($this->imageItemPath.$item.'.jpg'))  {
+            return $this->imageItemPath.$item.'.jpg';
+        } elseif (file_exists($this->imageItemPath.$item.'.png'))  {
+            return $this->imageItemPath.$item.'.png';
+        }
+        return $this->defaultImageItemPath;
+        
+    } 
     
     private function generateHTML() {
         $this->HTML = "<div class='ShopItemsListBlock'>";
@@ -56,9 +68,9 @@ class ShopGroupsItemList {
             }
             $this->HTML .= "</div>";
             $this->HTML .= $this->getPageNavigator();
-            $this->HTML .= "<div class='ItemsFound'>";
-            $this->HTML .= "Найдено товаров: ".ShopPropertiesFilterSerchArray::getArrayGroupAmauntOfItems($this->groupID);
-            $this->HTML .= "</div>";
+//            $this->HTML .= "<div class='ItemsFound'>";
+//            $this->HTML .= "Найдено товаров: ".ShopPropertiesFilterSerchArray::getArrayGroupAmauntOfItems($this->groupID);
+//            $this->HTML .= "</div>";
         $this->HTML .= "</div>";
     }
     
