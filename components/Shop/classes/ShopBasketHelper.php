@@ -115,7 +115,7 @@ class ShopBasketHelper {
         }
     }
     
-    public static function apdateItemAmountInTheShopBasket($itemID, $amount) {
+    public static function updateItemAmountInTheShopBasket($itemID, $amount) {
         self::createObject();
         if($amount > 0) {
             if(self::checkItemInTheShopBasket($itemID)) {
