@@ -295,10 +295,12 @@ class ShopPropertiesFilterType {
         $out .= '<div class="ShopPropertiesFilterBlocks">';
         $out .= $inputs;
         $out .= '</div>';
-        $out .= "<div class='ItemsFoundFilterBlocks'>";
-        $out .= "<span class='property'>Найдено товаров:</span> <span class='value'>".ShopPropertiesFilterSerchArray::getArrayGroupAmauntOfItems(ShopPageInfoHelper::shopPageGroupId())."</span>";
-        $out .= "</div>";
-        $out .= '<input class="ShopPropertiesFilterFormSubmit" type="submit" name="ShopPropertiesFilterFormSubmit" value="OK">';
+//        $out .= "<div class='ItemsFoundFilterBlocks'>";
+//        $out .= "<span class='property'>Найдено товаров:</span> <span class='value'>".ShopPropertiesFilterSerchArray::getArrayGroupAmauntOfItems(ShopPageInfoHelper::shopPageGroupId())."</span>";
+//        $out .= "</div>";
+        if(!ShopPageInfoHelper::isShopPage()) {
+            $out .= '<input class="ShopPropertiesFilterFormSubmit" type="submit" name="ShopPropertiesFilterFormSubmit" value="OK">';
+        }
         $out .= '</form>';
         return $out;
     }

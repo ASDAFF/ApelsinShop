@@ -160,8 +160,8 @@
 }
 .ShopNavigationPanel_Filter .ShopPropertiesFilterForm {}
 .ShopNavigationPanel_Filter .ShopPropertiesFilterForm .ShopPropertiesFilterBlocks {
-    /*max-height: 300px;*/
-    max-height: 400px;
+    max-height: 300px;
+    /*max-height: 400px;*/
     overflow-y: auto;
     padding-right: 10px;
 }
