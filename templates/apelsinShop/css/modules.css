@@ -18,3 +18,7 @@
 .m_block.ToTopSite  {
     float: right;
 }
+
+.LeftTopHeadBlock .m_block {
+    float: right;
+}

@@ -254,3 +254,8 @@ input.FilterType_groupSelect:checked+label {
   background-color: #ef7f1a;
   color: #fff;
 }
+
+input.FilterType_groupSelect:checked+label:before {
+    content: '\2713';
+    padding-right: 5px;
+}

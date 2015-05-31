@@ -27,7 +27,6 @@ class ShopNavigationPanel {
         $this->SQL_HELPER = $_SQL_HELPER;
         $this->urlHelper = new UrlHelper();
         $this->shopGroupsHelper = new ShopGroupsHelper();
-//        $this->checkId();
         if($this->checkId()) {
             $this->shopNavigationPanelMenu = new ShopNavigationPanel_Menu($this->shopGroupsHelper);
             $this->shopNavigationPanelFilter = new ShopNavigationPanel_Filter($this->shopGroupsHelper);
