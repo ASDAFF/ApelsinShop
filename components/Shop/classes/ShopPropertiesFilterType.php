@@ -12,7 +12,7 @@ class ShopPropertiesFilterType {
     static private $object;
     static private $allGroupProperties;
     static private $allGroupPropertiesData;
-    static private $searchFilterDataArray;
+    static private $postDataTrigger = false;
     
     private function __construct() {
         self::$shopGroupsHelper = new ShopGroupsHelper();
@@ -28,69 +28,6 @@ class ShopPropertiesFilterType {
         if(!isset(self::$object)) {
             self::$object = new ShopPropertiesFilterType();
         }
-    }
-    
-    private static function getGroupPath($groupID) {
-        $groups = self::$shopGroupsHelper->getGroupPath($groupID);
-        $groups[] = $groupID;
-        return $groups;
-    }
-    
-    private static function getShopGroupPropertiesData($groupID) {
-        if(!isset(self::$allGroupPropertiesData[$groupID]) || empty(self::$allGroupPropertiesData[$groupID])) {
-            self::$allGroupPropertiesData[$groupID] = array();
-            $groups = self::getGroupPath($groupID);
-            $query = "SELECT 
-                SPIG.`group`,
-                SPIG.`property`,
-                SPIG.`sequence`,
-                SP.`propertyName`,
-                SP.`filterType`,
-                SP.`valueType`,
-                SP.`oneOfAllValues`
-                FROM `ShopPropertiesInGroups` as SPIG
-                LEFT JOIN `ShopProperties` AS SP
-                ON SPIG.`property` = SP.`id`
-                WHERE ";
-            foreach ($groups as $group) {
-                $query .= "`group`='".$group."' OR ";
-            }
-            $query = substr($query, 0,  strlen($query)-4).";";
-            $properties = self::$SQL_HELPER->select($query);
-            foreach ($properties as $property) {
-                self::$allGroupPropertiesData[$groupID][$property['property']] = $property;
-            }
-        }
-    }
-
-    private static function getShopGroupProperties($groupID) {
-        $query = "SELECT 
-            SPIG.`property`
-            FROM `ShopPropertiesInGroups` as SPIG
-            LEFT JOIN `ShopProperties` AS SP
-            ON SPIG.`property` = SP.`id`
-            WHERE `group`='".$groupID."' 
-            ORDER BY SPIG.`sequence` ASC";
-        return self::$SQL_HELPER->select($query);
-    }
-    
-    private static function getShopGroupsPropertiesID($groupID) {
-        if(!isset(self::$allGroupProperties[$groupID]) || empty(self::$allGroupProperties[$groupID])) {
-            self::$allGroupProperties[$groupID] = array();
-            $properties = array();
-            $groups = self::getGroupPath($groupID);
-            foreach ($groups as $group) {
-                $properties = array_merge($properties, self::getShopGroupProperties($group));
-            }
-            foreach ($properties as $property) {
-                self::$allGroupProperties[$groupID][] = $property['property'];
-            }
-        }
-    }
-    
-    private static function getShopGroupsProperties($groupID) {
-        self::getShopGroupsPropertiesID($groupID);
-        self::getShopGroupPropertiesData($groupID);
     }
     
     private static function getDataForFilter($groupID, $propertyID) {
@@ -116,10 +53,6 @@ class ShopPropertiesFilterType {
             $values[$key] = $val['value'];
         }
         return $values;
-    }
-
-    private static function getFilterID($groupID, $propertyID) {
-        return $groupID."_".$propertyID;
     }
     
     private static function getMaxValue($array) {
@@ -170,7 +103,7 @@ class ShopPropertiesFilterType {
 
     private static function FilterType_bool($groupID, $propertyID) {
         $value = self::getSearchFilterElementData($groupID,$propertyID);
-        $filterId = self::getFilterID($groupID, $propertyID);
+        $filterId = ShopPropertiesFilterTypeGetPostData::getFilterID($groupID, $propertyID);
         $out = '';
         $out .= self::getFilterName($groupID, $propertyID)." ";
         $out .= InputHelper::checkbox($filterId, $filterId, 'ShopPropertiesFilter FilterType_bool', FALSE, '1', $value, NULL);
@@ -180,7 +113,7 @@ class ShopPropertiesFilterType {
     
     private static function FilterType_groupSelect($groupID, $propertyID) {
         $value = self::getSearchFilterElementData($groupID,$propertyID);
-        $filterId = self::getFilterID($groupID, $propertyID);
+        $filterId = ShopPropertiesFilterTypeGetPostData::getFilterID($groupID, $propertyID);
         $filterData = self::getDataForFilter($groupID, $propertyID);
         $out = self::getFilterBlockName($groupID, $propertyID);
         $out .= '<div class="ShopPropertiesFilterBlockValues" id="FilterBlockValue_'.$propertyID.'">';
@@ -197,7 +130,7 @@ class ShopPropertiesFilterType {
     }
     
     private static function FilterType_intRange($groupID, $propertyID) {
-        $filterId = self::getFilterID($groupID, $propertyID);
+        $filterId = ShopPropertiesFilterTypeGetPostData::getFilterID($groupID, $propertyID);
         $filterData = self::getDataForFilter($groupID, $propertyID);
         $min_v = self::getMinValue($filterData);
         $max_v = self::getmaxValue($filterData);
@@ -227,7 +160,7 @@ class ShopPropertiesFilterType {
     
     private static function FilterType_select($groupID, $propertyID) {
         $value = self::getSearchFilterElementData($groupID,$propertyID);
-        $filterId = self::getFilterID($groupID, $propertyID);
+        $filterId = ShopPropertiesFilterTypeGetPostData::getFilterID($groupID, $propertyID);
         $filterData = self::getDataForFilter($groupID, $propertyID);
         $out = '';
         $out = self::getFilterName($groupID, $propertyID)." ";
@@ -241,12 +174,11 @@ class ShopPropertiesFilterType {
     
     private static function FilterType_text($groupID, $propertyID) {
         $value = self::getSearchFilterElementData($groupID,$propertyID);
-        $filterId = self::getFilterID($groupID, $propertyID);
+        $filterId = ShopPropertiesFilterTypeGetPostData::getFilterID($groupID, $propertyID);
         $pattern = '[А-Яа-яЁёЙйЦцA-Za-z0-9\s-_]{2,800;}';
         $maxlength = 800;
         $out = '';
         $out .= self::getFilterName($groupID, $propertyID)." ";
-//        $out .= InputHelper::paternTextBox($filterId, $filterId, 'ShopPropertiesFilter FilterType_text', $maxlength, FALSE, "Буквы пробелы и цифры", $pattern, NULL, NULL);
         $out .= InputHelper::textBox($filterId, $filterId, 'ShopPropertiesFilter FilterType_text', $maxlength, FALSE, $value, NULL);
         return $out;
     }
@@ -257,7 +189,6 @@ class ShopPropertiesFilterType {
         $maxlength = 800;
         $out = '';
         $out .= "Наименование ";
-//        $out .= InputHelper::paternTextBox('ItemName', 'ItemName', 'ShopPropertiesFilter FilterType_text ItemName', $maxlength, FALSE, "Буквы пробелы и цифры", $pattern, NULL, NULL);
         $out .= InputHelper::textBox('ItemName', 'ItemName', 'ShopPropertiesFilter FilterType_text ItemName', $maxlength, FALSE, $value, NULL);
         return self::getFilterBlock($out);
     }
@@ -364,18 +295,14 @@ class ShopPropertiesFilterType {
         $out .= '<div class="ShopPropertiesFilterBlocks">';
         $out .= $inputs;
         $out .= '</div>';
+        $out .= "<div class='ItemsFoundFilterBlocks'>";
+        $out .= "<span class='property'>Найдено товаров:</span> <span class='value'>".ShopPropertiesFilterSerchArray::getArrayGroupAmauntOfItems(ShopPageInfoHelper::shopPageGroupId())."</span>";
+        $out .= "</div>";
         $out .= '<input class="ShopPropertiesFilterFormSubmit" type="submit" name="ShopPropertiesFilterFormSubmit" value="OK">';
         $out .= '</form>';
         return $out;
     }
     
-    private static function getPostValue($id, $falseValue = NULL) {
-        if(isset($_POST[$id]) && $_POST[$id]!==NULL && $_POST[$id]!==NULL) {
-            return $_POST[$id];
-        } else {
-            return $falseValue;
-        }
-    }
     private static function getSearchFilterElementData($groupID,$propertyID) {
         $data = ShopPropertiesFilterSerchArray::getArrayGroupProperties($groupID);
         if(isset($data[$propertyID]['value'])) {
@@ -384,116 +311,31 @@ class ShopPropertiesFilterType {
             return NULL;
         }
     }
-
-    private static function addSearchFilterData($groupID,$propertyID,$type,$value) {
-        if($value!==NULL && $value!=='' && $value!==array()) {
-            self::$searchFilterDataArray[$groupID][$propertyID]['type'] = $type;
-            self::$searchFilterDataArray[$groupID][$propertyID]['value'] = $value;
-        }
-    }
     
     private static function getPostData($groupID) {
-        if(isset($_POST['ShopPropertiesFilterFormSubmit']) && $_POST['ShopPropertiesFilterFormSubmit']!=='') {
-            self::$searchFilterDataArray[$groupID] = array();
-            self::addSearchFilterData($groupID, 'ItemName', 'main', self::getPostValue('ItemName', NULL));
-            self::addSearchFilterData($groupID, 'Action', 'main', self::getPostValue('Action', NULL));
-            $itemPrise_min = self::getPostValue('ItemPrise_min', NULL);
-            $itemPrise_max = self::getPostValue('ItemPrise_max', NULL);
-            $itemPriseValue = array();
-            
-            
-            if($itemPrise_min!==NULL && $itemPrise_min!=='' && $itemPrise_max!==NULL && $itemPrise_max!=='') {
-                $itemPriseValue['min'] = min($itemPrise_min, $itemPrise_max);
-                $itemPriseValue['max'] = max($itemPrise_min, $itemPrise_max);
-            } else {
-                if($itemPrise_min!==NULL && $itemPrise_min!=='') {
-                    $itemPriseValue['min']=$itemPrise_min;
-                }
-                if($itemPrise_max!==NULL && $itemPrise_max!=='') {
-                    $itemPriseValue['max']=$itemPrise_max;
-                }
-            }
-            self::addSearchFilterData($groupID, 'ItemPrise', 'main', $itemPriseValue);
-            $subgroup = self::getPostValue('Subgroup', $groupID);
-            self::addSearchFilterData($groupID, 'Subgroup', 'main', $subgroup);
-            foreach (self::$allGroupProperties[$groupID] as $propertyID) {
-                if(isset(self::$allGroupPropertiesData[$groupID][$propertyID])) {
-                    switch (self::$allGroupPropertiesData[$groupID][$propertyID]['filterType']) {
-                        case 'bool':
-                            self::getPostData_bool($groupID, $propertyID);
-                            break;
-                        case 'groupSelect':
-                            self::getPostData_groupSelect($groupID, $propertyID);
-                            break;
-                        case 'intRange':
-                            self::getPostData_intRange($groupID, $propertyID);
-                            break;
-                        case 'select':
-                            self::getPostData_select($groupID, $propertyID);
-                            break;
-                        case 'text':
-                            self::getPostData_text($groupID, $propertyID);
-                            break;
-                    }
-                }
-            }
-            ShopPropertiesFilterSerchArray::setArrayGroup($groupID, self::$searchFilterDataArray[$groupID]);
-        } else {
-            If(count(ShopPropertiesFilterSerchArray::getArrayGroupProperties($groupID)) === 0) {
-                ShopPropertiesFilterSerchArray::setArrayGroup($groupID, array());
-            }
+        if(!self::$postDataTrigger) {
+            ShopPropertiesFilterTypeGetPostData::getPostData($groupID);
+            self::$allGroupProperties = ShopPropertiesFilterTypeGetPostData::getAllGroupProperties();
+            self::$allGroupPropertiesData = ShopPropertiesFilterTypeGetPostData::getAllGroupPropertiesData();
+            self::$postDataTrigger = true;
         }
     }
-    
-    private static function getPostData_bool($groupID, $propertyID) {
-        $filterId = self::getFilterID($groupID, $propertyID);
-        self::addSearchFilterData($groupID,$propertyID,'bool',self::getPostValue($filterId,false));
-    }
-    
-    private static function getPostData_groupSelect($groupID, $propertyID) {
-        $filterId = self::getFilterID($groupID, $propertyID);
-        self::addSearchFilterData($groupID,$propertyID,'groupSelect',self::getPostValue($filterId,array()));
-    }
-    
-    private static function getPostData_intRange($groupID, $propertyID) {
-        $filterId_min = self::getFilterID($groupID, $propertyID).'_min';
-        $filterId_max = self::getFilterID($groupID, $propertyID).'_max';
-        $min = self::getPostValue($filterId_min);
-        $max = self::getPostValue($filterId_max);
-        $value = array();
-        if($min!==NULL && $min!=='' && $max!==NULL && $max!=='') {
-            $value['min'] = min($min, $max);
-            $value['max'] = max($min, $max);
-        } else {
-            if($min!==NULL && $min!=='') {
-                $value['min']=$min;
-            }
-            if($max!==NULL && $max!=='') {
-                $value['max']=$max;
-            }
-        }
-        self::addSearchFilterData($groupID,$propertyID,'intRange',$value);
-    }
-    
-    private static function getPostData_select($groupID, $propertyID) {
-        $filterId = self::getFilterID($groupID, $propertyID);
-        self::addSearchFilterData($groupID,$propertyID,'select',self::getPostValue($filterId));
-    }
-    
-    private static function getPostData_text($groupID, $propertyID) {
-        $filterId = self::getFilterID($groupID, $propertyID);
-        self::addSearchFilterData($groupID,$propertyID,'text',self::getPostValue($filterId));
-    }
-    
+
     public static function getFilters($groupID) {
         self::createObject();
-        self::getShopGroupsProperties($groupID);
         self::getPostData($groupID);
+        
         $out = self::getMainFilters($groupID);
         foreach (self::$allGroupProperties[$groupID] as $propertyID) {
             $out .= self::getFilter($groupID, $propertyID);
         }
         return self::getForms($out);
+    }
+    
+    public static function getJS($groupID) {
+        self::getPostData($groupID);
+        $JSGenerator = new ShopPropertiesFilterTypeJSGenerator(self::$allGroupProperties, self::$allGroupPropertiesData, $groupID);
+        return $JSGenerator->getHtml();
     }
     
 }

@@ -259,3 +259,16 @@ input.FilterType_groupSelect:checked+label:before {
     content: '\2713';
     padding-right: 5px;
 }
+
+.ShopPropertiesFilterForm .ItemsFoundFilterBlocks {
+    /*float: right;*/
+/*    font: bold 14px/20px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    color: #ef7f1a;*/
+}
+.ShopPropertiesFilterForm .ItemsFoundFilterBlocks .property {
+    font: bold 12px/14px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    color: #ef7f1a;
+}
+.ShopPropertiesFilterForm .ItemsFoundFilterBlocks .value {
+    font: 12px/14px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+}

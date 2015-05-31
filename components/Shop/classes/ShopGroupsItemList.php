@@ -6,25 +6,42 @@ class ShopGroupsItemList {
     private $urlHelper;
     private $itemsList;
     private $HTML;
-    private $imageItemPath = './resources/Components/Shop/Image/ItemsImage/';
-    private $defaultImageItemPath = './resources/Components/Shop/Image/ItemsImage/defaultIcon_100x100.png';
+    private $imageItemPath;
+    private $defaultImageItemPath;
     
-    public function __construct($page=1) {
+    public function __construct($page=1, $groupID = 'none') {
+        $this->setImagePath();
         global $_SQL_HELPER;
         $this->SQL_HELPER = $_SQL_HELPER;
         $this->page = $page;
         $this->urlHelper = new UrlHelper();
-        $this->setGroupID();
+        $this->setGroupID($groupID);
         $this->getPageData();
         $this->generateHTML();
     }
     
-    private function setGroupID() {
-        $groupID = ShopPageInfoHelper::shopPageGroupId();
-        if($groupID!=='' && $groupID!==NULL) {
-            $this->groupID = $groupID;
+    public function setImagePath($imageItemPath = './resources/Components/Shop/Image/ItemsImage/', $defaultImageItemPath = './resources/Components/Shop/Image/ItemsImage/defaultIcon_100x100.png') {
+        $this->imageItemPath = $imageItemPath;
+        $this->defaultImageItemPath = $defaultImageItemPath;
+        if(isset($this->HTML) && $this->HTML !== NULL && $this->HTML !== '') {
+            $this->generateHTML();
+        }
+    }
+
+    private function setGroupID($groupID) {
+        if($groupID === 'none') {
+            $groupID = ShopPageInfoHelper::shopPageGroupId();
+            if($groupID!=='' && $groupID!==NULL) {
+                $this->groupID = $groupID;
+            } else {
+                $this->groupID = 'root';
+            }
         } else {
-            $this->groupID = 'root';
+            if($groupID!=='' && $groupID!==NULL) {
+                $this->groupID = $groupID;
+            } else {
+                $this->groupID = 'root';
+            }
         }
     }
     
@@ -42,7 +59,6 @@ class ShopGroupsItemList {
     
     private function getItemImage($itemId) {
         $imageName = $itemId."_100x100";
-//        $background = BackgroundGeneratorHelper::getBackgroundStyleImg($this->imageItemPath, $imageName, $this->defaultImageItemPath);
         $background = '';
         $img = '<img src="'.$this->getImage($imageName).'">';
         return '<div class="ShopItemElement_Image" '.$background.'>'.$img.'</div>';

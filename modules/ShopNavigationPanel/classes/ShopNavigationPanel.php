@@ -51,9 +51,9 @@ class ShopNavigationPanel {
         $this->HTML .= $this->shopNavigationPanelMenu->getHtml();
         $this->HTML .= $this->shopNavigationPanelFilter->getHtml();
         $this->HTML .= "<div class='clear'></div>";
-//        $this->HTML .= "<div class='shopNavigationPanelFilterButton'>";
-//        $this->HTML .= '<a class="fancybox-doc" href="#shopNavigationPanelFilter">Расширенный поиск</a>';
-//        $this->HTML .= "</div>";
+        $this->HTML .= "<div class='shopNavigationPanelFilterButton'>";
+        $this->HTML .= '<a class="fancybox-doc" href="#shopNavigationPanelFilter">Расширенный поиск</a>';
+        $this->HTML .= "</div>";
     }
     
     public function getHtml() {
