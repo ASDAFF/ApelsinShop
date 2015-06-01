@@ -238,3 +238,7 @@ ul li:before {
 .fancybox-close {
     display: none;
 }
+
+.c_block.Shop.Shop {
+    margin-bottom: 50px
+}

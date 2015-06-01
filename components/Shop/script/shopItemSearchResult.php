@@ -24,11 +24,22 @@ if(isset($_GET['groupID'])) {
 } else {
     $groupID = NULL;
 }
-ShopPropertiesFilterTypeGetPostData::getPostData($groupID);
-$shopGroupsItemList = new ShopGroupsItemList(1,$groupID);
+if(isset($_GET['page'])) {
+    $page = $_GET['page'];
+    $showInformation = false;
+} else {
+    $page = 1;
+    $showInformation = true;
+}
+if(!(isset($_GET['noPostData']) && $_GET['noPostData']==='yes')) {
+    ShopPropertiesFilterTypeGetPostData::getPostData($groupID);
+}
+$shopGroupsItemList = new ShopGroupsItemList($page, $groupID, $showInformation);
 $imageItemPath = '../../../resources/Components/Shop/Image/ItemsImage/';
 $defaultImageItemPath = '../../../resources/Components/Shop/Image/ItemsImage/defaultIcon_100x100.png';
 $shopGroupsItemList->setImagePath($imageItemPath, $defaultImageItemPath);
 $shopGroupsItemList->get();
-
-//var_dump($_POST);
+?>
+<script type="text/javascript">
+    setAmountOfPage(<?php echo ShopPropertiesFilterSerchArray::getArrayGroupAmauntOfPage($groupID)?>);
+</script>

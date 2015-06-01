@@ -1,6 +1,7 @@
 <script type="text/javascript">
 var shopItemsListTimer; // Таймер для запроса данных по задержке;
 var shopItemsListTime = 2000; // время на задержку при запросе данных;
+var shopItemsListPage = 1;
     
 jQuery(document).ready(function() {
     jQuery("form.ShopPropertiesFilterForm .selectBox").change(function(){
@@ -28,6 +29,23 @@ jQuery(document).ready(function() {
         if (!(e.which==8 || e.which==44 ||e.which==45 ||e.which==46 ||(e.which>47 && e.which<58))) return false;
     });
 });
+
+$(document).on("scroll", scrolling);
+
+function scrolling(){
+    if(shopItemsListThisPage < shopItemsListLastPage) {
+        
+        var clientHeight = document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight;
+        var documentHeight = document.documentElement.scrollHeight ? document.documentElement.scrollHeight : document.body.scrollHeight;
+        var scrollTop = window.pageYOffset ? window.pageYOffset : (document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop);
+     
+        if((documentHeight - clientHeight) <= scrollTop + 200 ) {
+            getShopItemListPage();
+        }
+    }
+}
+
+
 </script>
 
 

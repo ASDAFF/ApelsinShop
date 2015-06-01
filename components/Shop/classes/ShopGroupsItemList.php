@@ -3,17 +3,19 @@ class ShopGroupsItemList {
     private $SQL_HELPER;
     private $groupID;
     private $page;
+    private $showInformation;
     private $urlHelper;
     private $itemsList;
     private $HTML;
     private $imageItemPath;
     private $defaultImageItemPath;
     
-    public function __construct($page=1, $groupID = 'none') {
+    public function __construct($page=1, $groupID = 'none', $showInformation = true) {
         $this->setImagePath();
         global $_SQL_HELPER;
         $this->SQL_HELPER = $_SQL_HELPER;
         $this->page = $page;
+        $this->showInformation = $showInformation;
         $this->urlHelper = new UrlHelper();
         $this->setGroupID($groupID);
         $this->getPageData();
@@ -76,17 +78,20 @@ class ShopGroupsItemList {
     
     private function generateHTML() {
         $this->HTML = "<div class='ShopItemsListBlock'>";
-            $this->HTML .= ShopGroupPropertyValue::getPropertyValueForGroup($this->groupID);
-            $this->HTML .= $this->getPageNavigator();
+            if($this->showInformation) {
+                $this->HTML .= ShopGroupPropertyValue::getPropertyValueForGroup($this->groupID);
+            }
+//            $this->HTML .= $this->getPageNavigator();
             $this->HTML .= "<div class='ShopItemsList'>";
             foreach ($this->itemsList as $item) {
                 $this->HTML .= $this->getItemHTML($item);
             }
             $this->HTML .= "</div>";
-            $this->HTML .= $this->getPageNavigator();
+//            $this->HTML .= $this->getPageNavigator();
 //            $this->HTML .= "<div class='ItemsFound'>";
 //            $this->HTML .= "Найдено товаров: ".ShopPropertiesFilterSerchArray::getArrayGroupAmauntOfItems($this->groupID);
 //            $this->HTML .= "</div>";
+            $this->HTML .= "<div class='clear'></div>";
         $this->HTML .= "</div>";
     }
     
