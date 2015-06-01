@@ -288,7 +288,7 @@ class ShopHelperSQL {
             t1.`amount`, 
             t1.`minAmount`,
             t1.`description`,
-            t2.`value` as priceValue
+            t2.`value` + t2.`value`*".ShopGroupPriceType::getPriceMarkup()." as priceValue
             FROM (
                 SELECT 
                 `id`, 
@@ -322,7 +322,7 @@ class ShopHelperSQL {
             t1.`amount`, 
             t1.`minAmount`,
             t1.`description`,
-            t2.`value` as priceValue
+            t2.`value` + t2.`value`*".ShopGroupPriceType::getPriceMarkup()." as priceValue
             FROM (
                 SELECT
                 t2.`id`, 

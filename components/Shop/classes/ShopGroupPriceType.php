@@ -32,4 +32,7 @@ class ShopGroupPriceType {
         $rezult = self::$SQL_HELPER->select($query,1);
         return $rezult['id'];
     }
+    public static function getPriceMarkup() {
+        return 0/100;
+    }
 }

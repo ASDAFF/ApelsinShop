@@ -242,3 +242,128 @@ FROM (
                 WHERE t2.`property`='0a552a3f-3bb7-11e3-80e1-005056be1f7a' 
                  AND (t2.`value` = 'зеленый' OR t2.`value` = 'коричневый' OR t2.`value` = 'серый' OR t2.`value` = 'синий') GROUP BY `item`
 ) as t1
+
+
+
+
+
+INSERT INTO `TestBD`.`Group` (`id`, `name`) VALUES ('gr_001', 'gr_001');
+INSERT INTO `TestBD`.`Group` (`id`, `name`) VALUES ('gr_002', 'gr_002');
+INSERT INTO `TestBD`.`Group` (`id`, `name`) VALUES ('gr_003', 'gr_003');
+
+INSERT INTO `TestBD`.`Items` (`id`, `name`) VALUES ('item_001_gr_001', 'item_001_gr_001');
+INSERT INTO `TestBD`.`Items` (`id`, `name`) VALUES ('item_002_gr_001', 'item_002_gr_001');
+INSERT INTO `TestBD`.`Items` (`id`, `name`) VALUES ('item_003_gr_001', 'item_003_gr_001');
+
+INSERT INTO `TestBD`.`Items` (`id`, `name`) VALUES ('item_001_gr_002', 'item_001_gr_002');
+INSERT INTO `TestBD`.`Items` (`id`, `name`) VALUES ('item_002_gr_002', 'item_002_gr_002');
+INSERT INTO `TestBD`.`Items` (`id`, `name`) VALUES ('item_003_gr_002', 'item_003_gr_002');
+
+INSERT INTO `TestBD`.`Items` (`id`, `name`) VALUES ('item_001_gr_003', 'item_001_gr_003');
+INSERT INTO `TestBD`.`Items` (`id`, `name`) VALUES ('item_002_gr_003', 'item_002_gr_003');
+INSERT INTO `TestBD`.`Items` (`id`, `name`) VALUES ('item_003_gr_003', 'item_003_gr_003');
+
+
+INSERT INTO `TestBD`.`ItemInGroup` (`item`, `group`) VALUES ('item_001_gr_001', 'gr_001');
+INSERT INTO `TestBD`.`ItemInGroup` (`item`, `group`) VALUES ('item_002_gr_001', 'gr_001');
+INSERT INTO `TestBD`.`ItemInGroup` (`item`, `group`) VALUES ('item_003_gr_001', 'gr_001');
+
+INSERT INTO `TestBD`.`ItemInGroup` (`item`, `group`) VALUES ('item_001_gr_002', 'gr_002');
+INSERT INTO `TestBD`.`ItemInGroup` (`item`, `group`) VALUES ('item_002_gr_002', 'gr_002');
+INSERT INTO `TestBD`.`ItemInGroup` (`item`, `group`) VALUES ('item_003_gr_002', 'gr_002');
+
+INSERT INTO `TestBD`.`ItemInGroup` (`item`, `group`) VALUES ('item_001_gr_003', 'gr_003');
+INSERT INTO `TestBD`.`ItemInGroup` (`item`, `group`) VALUES ('item_002_gr_003', 'gr_003');
+INSERT INTO `TestBD`.`ItemInGroup` (`item`, `group`) VALUES ('item_003_gr_003', 'gr_003');
+
+INSERT INTO `TestBD`.`PriceType` (`id`, `type`) VALUES ('prt_001', 'prt_001');
+INSERT INTO `TestBD`.`PriceType` (`id`, `type`) VALUES ('prt_002', 'prt_002');
+INSERT INTO `TestBD`.`PriceType` (`id`, `type`) VALUES ('prt_003', 'prt_003');
+
+
+INSERT INTO `TestBD`.`ItemPrice` (`item`, `type`, `price`) VALUES ('item_001_gr_001', 'prt_001', '111');
+INSERT INTO `TestBD`.`ItemPrice` (`item`, `type`, `price`) VALUES ('item_001_gr_001', 'prt_002', '112');
+INSERT INTO `TestBD`.`ItemPrice` (`item`, `type`, `price`) VALUES ('item_001_gr_001', 'prt_003', '113');
+INSERT INTO `TestBD`.`ItemPrice` (`item`, `type`, `price`) VALUES ('item_002_gr_001', 'prt_001', '211');
+INSERT INTO `TestBD`.`ItemPrice` (`item`, `type`, `price`) VALUES ('item_002_gr_001', 'prt_002', '212');
+INSERT INTO `TestBD`.`ItemPrice` (`item`, `type`, `price`) VALUES ('item_002_gr_001', 'prt_003', '213');
+INSERT INTO `TestBD`.`ItemPrice` (`item`, `type`, `price`) VALUES ('item_003_gr_001', 'prt_001', '311');
+INSERT INTO `TestBD`.`ItemPrice` (`item`, `type`, `price`) VALUES ('item_003_gr_001', 'prt_002', '312');
+INSERT INTO `TestBD`.`ItemPrice` (`item`, `type`, `price`) VALUES ('item_003_gr_001', 'prt_003', '313');
+
+INSERT INTO `TestBD`.`ItemPrice` (`item`, `type`, `price`) VALUES ('item_001_gr_002', 'prt_001', '121');
+INSERT INTO `TestBD`.`ItemPrice` (`item`, `type`, `price`) VALUES ('item_001_gr_002', 'prt_002', '122');
+INSERT INTO `TestBD`.`ItemPrice` (`item`, `type`, `price`) VALUES ('item_001_gr_002', 'prt_003', '123');
+INSERT INTO `TestBD`.`ItemPrice` (`item`, `type`, `price`) VALUES ('item_002_gr_002', 'prt_001', '221');
+INSERT INTO `TestBD`.`ItemPrice` (`item`, `type`, `price`) VALUES ('item_002_gr_002', 'prt_002', '222');
+INSERT INTO `TestBD`.`ItemPrice` (`item`, `type`, `price`) VALUES ('item_002_gr_002', 'prt_003', '223');
+INSERT INTO `TestBD`.`ItemPrice` (`item`, `type`, `price`) VALUES ('item_003_gr_002', 'prt_001', '321');
+INSERT INTO `TestBD`.`ItemPrice` (`item`, `type`, `price`) VALUES ('item_003_gr_002', 'prt_002', '322');
+INSERT INTO `TestBD`.`ItemPrice` (`item`, `type`, `price`) VALUES ('item_003_gr_002', 'prt_003', '323');
+
+INSERT INTO `TestBD`.`ItemPrice` (`item`, `type`, `price`) VALUES ('item_001_gr_003', 'prt_001', '131');
+INSERT INTO `TestBD`.`ItemPrice` (`item`, `type`, `price`) VALUES ('item_001_gr_003', 'prt_002', '132');
+INSERT INTO `TestBD`.`ItemPrice` (`item`, `type`, `price`) VALUES ('item_001_gr_003', 'prt_003', '133');
+INSERT INTO `TestBD`.`ItemPrice` (`item`, `type`, `price`) VALUES ('item_002_gr_003', 'prt_001', '231');
+INSERT INTO `TestBD`.`ItemPrice` (`item`, `type`, `price`) VALUES ('item_002_gr_003', 'prt_002', '232');
+INSERT INTO `TestBD`.`ItemPrice` (`item`, `type`, `price`) VALUES ('item_002_gr_003', 'prt_003', '233');
+INSERT INTO `TestBD`.`ItemPrice` (`item`, `type`, `price`) VALUES ('item_003_gr_003', 'prt_001', '331');
+INSERT INTO `TestBD`.`ItemPrice` (`item`, `type`, `price`) VALUES ('item_003_gr_003', 'prt_002', '332');
+INSERT INTO `TestBD`.`ItemPrice` (`item`, `type`, `price`) VALUES ('item_003_gr_003', 'prt_003', '333');
+
+
+INSERT INTO `TestBD`.`PriceTypeForGroup` (`group`, `priceType`, `client`, `markup`) VALUES ('gr_001', 'prt_001', 'cl_001', '0');
+INSERT INTO `TestBD`.`PriceTypeForGroup` (`group`, `priceType`, `client`, `markup`) VALUES ('gr_002', 'prt_001', 'cl_001', '0');
+INSERT INTO `TestBD`.`PriceTypeForGroup` (`group`, `priceType`, `client`, `markup`) VALUES ('gr_003', 'prt_001', 'cl_001', '0');
+
+INSERT INTO `TestBD`.`PriceTypeForGroup` (`group`, `priceType`, `client`, `markup`) VALUES ('gr_001', 'prt_001', 'cl_002', '100');
+INSERT INTO `TestBD`.`PriceTypeForGroup` (`group`, `priceType`, `client`, `markup`) VALUES ('gr_002', 'prt_001', 'cl_002', '100');
+INSERT INTO `TestBD`.`PriceTypeForGroup` (`group`, `priceType`, `client`, `markup`) VALUES ('gr_003', 'prt_001', 'cl_002', '100');
+
+INSERT INTO `TestBD`.`PriceTypeForGroup` (`group`, `priceType`, `client`, `markup`) VALUES ('gr_001', 'prt_001', 'cl_003', '0');
+INSERT INTO `TestBD`.`PriceTypeForGroup` (`group`, `priceType`, `client`, `markup`) VALUES ('gr_002', 'prt_002', 'cl_003', '0');
+INSERT INTO `TestBD`.`PriceTypeForGroup` (`group`, `priceType`, `client`, `markup`) VALUES ('gr_003', 'prt_003', 'cl_003', '0');
+
+INSERT INTO `TestBD`.`PriceTypeForGroup` (`group`, `priceType`, `client`, `markup`) VALUES ('gr_001', 'prt_001', 'cl_004', '100');
+INSERT INTO `TestBD`.`PriceTypeForGroup` (`group`, `priceType`, `client`, `markup`) VALUES ('gr_002', 'prt_002', 'cl_004', '100');
+INSERT INTO `TestBD`.`PriceTypeForGroup` (`group`, `priceType`, `client`, `markup`) VALUES ('gr_003', 'prt_003', 'cl_004', '100');
+
+
+
+
+
+SELECT
+Itm.`item`,
+Itm.`itemName`,
+Itm.`group`,
+IFNULL(PTFG.`priceType`,"prt_002") as priceType,
+IFNULL(PTFG.`markup`,"0") as markup
+FROM (
+    SELECT
+    IIG.`item`,
+    Itm.`name` as itemName,
+    IIG.`group`
+    FROM `Items` as Itm
+    LEFT JOIN `ItemInGroup` as IIG
+    ON Itm.`id` = IIG.`item`
+) as Itm
+LEFT JOIN (
+    SELECT * FROM `PriceTypeForGroup`
+    WHERE `client` = 'cl_005'
+) as PTFG
+ON Itm.`group` = PTFG.`group`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
