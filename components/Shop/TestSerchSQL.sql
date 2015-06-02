@@ -353,7 +353,26 @@ LEFT JOIN (
 ) as PTFG
 ON Itm.`group` = PTFG.`group`
 
-
+SELECT
+Itm.`item`,
+Itm.`itemName`,
+Itm.`group`,
+PTFG.`priceType`,
+PTFG.`markup`
+FROM (
+    SELECT
+    IIG.`item`,
+    Itm.`name` as itemName,
+    IIG.`group`
+    FROM `Items` as Itm
+    LEFT JOIN `ItemInGroup` as IIG
+    ON Itm.`id` = IIG.`item`
+) as Itm
+LEFT JOIN (
+    SELECT * FROM `PriceTypeForGroup`
+    WHERE `client` = 'cl_005'
+) as PTFG
+ON Itm.`group` = PTFG.`group`
 
 
 
