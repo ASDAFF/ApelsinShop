@@ -57,20 +57,12 @@ class ShopBasket {
         return $out;
     }
     
-    public static function getShopItemAmountForBuy($itemID, $disabledWrite = false, $value) {
-        if($disabledWrite) {
-            $disSTR = 'disabled';
-        } else {
-            $disSTR = '';
-        }
-        $out = '<div id="shopItemAmountBuyBlock_'.$itemID.'" class="shopItemAmountBuyBlock">';
-        $out .= '<div id="shopItemAmountBuyDelButton_'.$itemID.'" class="shopItemAmountBuyDelButton">-</div>';
-        $out .= '<input type="text" '
-                . 'name="shopItemAmountBuy" '
-                . 'id="shopItemAmountBuy_'.$itemID.'" '
-                . 'class="shopItemAmountBuy" '
-                . 'value="'.$value.'" '.$disSTR.'>';
-        $out .= '<div id="shopItemAmountBuyAddButton_'.$itemID.'" class="shopItemAmountBuyAddButton">+</div>';
+    public static function getShopItemAmountForBuy($itemID, $value) {
+        $out = '<div class="shopItemAmountBuyBlock">';
+        $out .= '<div class="shopItemAmountBuyDelButton" itemID="'.$itemID.'">-</div>';
+        $out .= '<input type="text" name="shopItemAmountBuy" id="'.$itemID.'" '
+                . 'class="shopItemAmountBuy" maxlength="5" value="'.$value.'">';
+        $out .= '<div class="shopItemAmountBuyAddButton" itemID="'.$itemID.'">+</div>';
         $out .= '</div>';
         return $out;
     }
@@ -88,7 +80,7 @@ class ShopBasket {
     }
     
     private function generateItemHtml($item) {
-        $out = '<div class="ShopBasketItemBlock" title="'.$item['note'].'">';
+        $out = '<div class="ShopBasketItemBlock" id="ShopBasketItemBlock_'.$item['id'].'" title="'.$item['note'].'">';
             $out .= '<div class="ShopBasketItemImageInfoBlock">';
                 $out .= '<div class="itemImage">';
                 $out .= $this->getImageHTML($item['id'],$item['itemName']);
@@ -99,15 +91,15 @@ class ShopBasket {
                 $out .= '<div class="itemName"><a href="'.$item['itemUrl'].'">'.$item['itemName'].'</a></div>';
             $out .= '</div>';
             $out .= '<div class="ShopBasketItemPriceInfoBlock">';
-                $out .= '<div class="priceValue"><span>'.$item['priceValue'].'</span></div>';
-                $out .= '<div class="allPriceValue"><span>'.$item['allPriceValue'].'</span></div>';
+                $out .= '<div class="priceValue"><span id="priceValue_'.$item['id'].'">'.$item['priceValue'].'</span></div>';
+                $out .= '<div class="allPriceValue"><span id="allPriceValue_'.$item['id'].'">'.$item['allPriceValue'].'</span></div>';
             $out .= '</div>';
             $out .= '<div class="ShopBasketItemButtonBlock">';
                 $out .= '<div class="AmountButtonBlock">';
-                $out .= $this->getShopItemAmountForBuy($item['id'], true, $item['amount']);
+                $out .= $this->getShopItemAmountForBuy($item['id'], $item['amount']);
                 $out .= '</div>';
-                $out .= '<div class="DeleteButtonBlock">';
-                    $out .= '<div class="DeleteButton">Удалить</div>';
+                $out .= '<div class="DeleteButtonBlock" idDel="'.$item['id'].'">';
+                $out .= '<div class="DeleteButton">Удалить</div>';
                 $out .= '</div>';
             $out .= '</div>';
         $out .= '</div>';
@@ -115,13 +107,16 @@ class ShopBasket {
     }
     private function generateBuyHtml() {
         $pay = 0;
-        foreach ($this->items as $item) {
-            $pay += $item['allPriceValue'];
+        $out = '';
+        if (!empty($this->items)) {
+            foreach ($this->items as $item) {
+                $pay += $item['allPriceValue'];
+            }
+            $out = '<div class="ShopBasketItemBuyBlock">';
+                $out .= '<div class="ShopBasketItemBuyButton">Купить</div>';
+                $out .= '<div class="ShopBasketItemPayInfoBlock"><span class="text">Итого:</span> <span class="price">'.$pay.'</span></div>';
+            $out .= '</div>';
         }
-        $out = '<div class="ShopBasketItemBuyBlock">';
-            $out .= '<div class="ShopBasketItemBuyButton">Купить</div>';
-            $out .= '<div class="ShopBasketItemPayInfoBlock"><span class="text">Итого:</span> <span class="price">'.$pay.'</span></div>';
-        $out .= '</div>';
         return $out;
     }
     

@@ -31,6 +31,10 @@ jQuery(document).ready(function() {
         if (!(e.which==8 || e.which==46 ||(e.which>47 && e.which<58))) return false;
 //        if (!(e.which==8 || e.which==44 ||e.which==45 ||e.which==46 ||(e.which>47 && e.which<58))) return false;
     });
+    
+    jQuery('.shopItemAmountBuy').keypress(function(e) {
+        if (!(e.which == 8 || (e.which > 47 && e.which < 58))) return false;
+    });
 });
 
 $(document).on("scroll", scrolling);

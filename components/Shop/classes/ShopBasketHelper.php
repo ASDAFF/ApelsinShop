@@ -177,10 +177,9 @@ class ShopBasketHelper {
     
     public static function getDysplayButtonBuy($itemID) {
         self::createObject();
-        $maxAmount = self::getItemFromShopBasket($itemID);
         $html = '';
         if (ShopBasketHelper::checkItemInTheShopBasket($itemID) ) {
-            $html .= '<div class="ShopItemBuyButtonBlock">';
+            $html .= '<div class="ShopItemBuyButtonBlock" >';
                 $html .= '<a href="'.self::$urlHelper->pageUrl(ShopPageInfoHelper::getShopPageAlias(), array('shopbasket')).'">';
                     $html .= '<div class="ShopItemBuyButton" >';
                         $html .= 'Товар в корзине';
@@ -188,11 +187,16 @@ class ShopBasketHelper {
                 $html .= '</a>';
             $html .= '</div>';  // ShopItemBuyButtonBlock
         } else {
-            $html .= '<div class="ShopItemBuyButton" onclick="getShopItemAmountBuy( \''.$itemID.'\');">';
+            $html .= '<div class="ShopItemBuyButton ShopItemBuy" id="'.$itemID.'" >';
                 $html .= 'Купить';
-            $html .= '</div>';  // ShopItemBuyButton
-            $html .= '<input type="number" name="shopItemAmountBuy" id="shopItemAmountBuy" class="shopItemAmountBuy" value="1" min="1" max="'.$maxAmount['maxAmount'].'" >';
-        }
+            $html .= '</div>';  
+            // ShopItemBuyButton
+            $html .= '<div class="shopItemAmountBuyBlock">';
+            $html .= '<div id="shopItemAmountBuyDelButton" class="shopItemAmountBuyDelButton">-</div>';
+                $html .= '<input type="text" id="shopItemAmountBuy" class="shopItemAmountBuy" maxlength="5" value="1">';
+            $html .= '<div id="shopItemAmountBuyAddButton" class="shopItemAmountBuyAddButton">+</div>';
+            $html .= '</div>';
+       }
         return $html;
     }
 }
