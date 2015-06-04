@@ -99,17 +99,13 @@ class ShopItem {
             WHERE SIPV.`item` = '".$this->elementID."'
             ORDER BY SP.`sequence`;";
         $rezult = $this->SQL_HELPER->select($query);
-        if(!isset($this->property)) {
-            $this->property = [];
-        }
-        $i = 0;
         foreach ($rezult as $value) {
-            if ($value["oneOfAllValues"] == '0') {
-                $this->property[$value["propertyName"]]["all"][$i] = $value["value"];
-            } else {
-                $this->property[$value["propertyName"]]["one"][$i] = $value["value"];
-            }
-            $i++;
+            $this->property[$value["property"]]['property'] = $value['property'];
+            $this->property[$value["property"]]['propertyName'] = $value['propertyName'];
+            $this->property[$value["property"]]['valueType'] = $value['valueType'] ;
+            $this->property[$value["property"]]['oneOfAllValues'] = $value['oneOfAllValues'];
+            $this->property[$value["property"]]['measure'] = $value['measure'];
+            $this->property[$value["property"]]['value'][] = $value['value'];
         }
     }
     
@@ -168,19 +164,13 @@ class ShopItem {
                     $this->HTML .= $this->data['description'];
                 $this->HTML .= '</div>';  // ShopItemDescription
                 $this->HTML .= '<div class="ShopItemParams">';
-                foreach ($this->property as $proper => $allValues) {
+                foreach ($this->property as $property) {
                     $this->HTML .= '<div class="ShopItemParam">';
                         $this->HTML .= '<div class="ShopItemParamName"><div>';
-                            $this->HTML .= $proper.' :';
+                            $this->HTML .= $property['propertyName'].' :';
                         $this->HTML .= '</div></div>';  // ShopItemParamName
                         $this->HTML .= '<div class="ShopItemParamValue"><div>';
-                        foreach ($allValues as $key => $values ) {
-                            if ($key == 'all') {
-                                $this->HTML .= $this->getHtmlAllValue($values, true);
-                            } else {
-                                $this->HTML .= $this->getHtmlAllValue($values, false);
-                            }
-                        }
+                        $this->HTML .= $this->getHtmlAllValue($property, $property['oneOfAllValues'] === "1");
                         $this->HTML .= '</div></div>';  // ShopItemParamValue
                     $this->HTML .= '</div>';  // ShopItemParam
                 }
@@ -192,23 +182,39 @@ class ShopItem {
     
     /**
      * Вариант отображенияе всех свойств товара 
-     * @param type $mass
-     * @param type $flag
+     * @param type $property
+     * @param type $oneOfAllValues
      */
-    private function getHtmlAllValue($mass, $flag) {
-        if ($flag == false) {
-        $arr = array();
-        foreach ($mass as $key => $value) {
-            $arr[$key]['value'] = $arr[$key]['text'] = $value;
-        }
-        $this->HTML .= InputHelper::select("ShopItemPropertyValueSelectBox", "ShopItemPropertyValueSelectBox", $arr, false, '');
-        } else {
-            $out = '';
-            foreach ($mass as $value) {
-                $out .= $value.', ';
+    private function getHtmlAllValue($property, $oneOfAllValues) {
+        $out = '';
+        if(count($property['value']) > 1) {
+            if ($oneOfAllValues) {
+                $arr = array();
+                foreach ($property['value'] as $key => $value) {
+                    if($property['valueType'] == 'float' || $property['valueType'] == 'int') {
+                        $value = ShopItemsPropertiesMeasureScaling::ScalingMeasureString($property['measure'], $value);
+                    }
+                    $arr[$key]['value'] = $arr[$key]['text'] = $value;
+                }
+                $out .= InputHelper::select("ShopItemPropertyValueSelectBox", "ShopItemPropertyValueSelectBox", $arr, false, '');
+            } else {
+                foreach ($property['value'] as $key => $value) {
+                    if($property['valueType'] == 'float' || $property['valueType'] == 'int') {
+                        $value = ShopItemsPropertiesMeasureScaling::ScalingMeasureString($property['measure'], $value);
+                    }
+                    $out .= $value.', ';
+                }
+                $out = mb_substr($out, 0, mb_strlen($out) - 2);
             }
-            $this->HTML .= mb_substr($out, 0, mb_strlen($out) - 2);
+        } else {
+            if($property['valueType'] == 'float' || $property['valueType'] == 'int') {
+                $value = ShopItemsPropertiesMeasureScaling::ScalingMeasureString($property['measure'], $property['value'][0]);
+            } else {
+                $value = $property['value'][0];
+            }
+            $out = $value;
         }
+        return $out;
     }
     
     /**

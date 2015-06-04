@@ -115,6 +115,9 @@ class ShopPropertiesFilterType {
         $value = self::getSearchFilterElementData($groupID,$propertyID);
         $filterId = ShopPropertiesFilterTypeGetPostData::getFilterID($groupID, $propertyID);
         $filterData = self::getDataForFilter($groupID, $propertyID);
+        if(empty($filterData)) {
+            return '';
+        }
         $out = self::getFilterBlockName($groupID, $propertyID);
         $out .= '<div class="ShopPropertiesFilterBlockValues" id="FilterBlockValue_'.$propertyID.'">';
         foreach ($filterData as $key => $val) {
@@ -132,6 +135,9 @@ class ShopPropertiesFilterType {
     private static function FilterType_intRange($groupID, $propertyID) {
         $filterId = ShopPropertiesFilterTypeGetPostData::getFilterID($groupID, $propertyID);
         $filterData = self::getDataForFilter($groupID, $propertyID);
+        if(empty($filterData)) {
+            return '';
+        }
         $min_v = self::getMinValue($filterData);
         $max_v = self::getmaxValue($filterData);
         $value = self::getSearchFilterElementData($groupID,$propertyID);
@@ -162,6 +168,9 @@ class ShopPropertiesFilterType {
         $value = self::getSearchFilterElementData($groupID,$propertyID);
         $filterId = ShopPropertiesFilterTypeGetPostData::getFilterID($groupID, $propertyID);
         $filterData = self::getDataForFilter($groupID, $propertyID);
+        if(empty($filterData)) {
+            return '';
+        }
         $out = '';
         $out = self::getFilterName($groupID, $propertyID)." ";
         $selectData = array();
@@ -281,7 +290,11 @@ class ShopPropertiesFilterType {
                     break;
             }
         }
-        return self::getFilterBlock($out);
+        if($out !== '') {
+            return self::getFilterBlock($out);
+        } else {
+            return '';
+        }
     }
     
     private static function getForms($inputs) {

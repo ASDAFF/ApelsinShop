@@ -612,16 +612,3 @@ FROM (
     on t1.`id` = t2.`item`
     WHERE t2.`property`='1ea6fcc4-d206-11e4-9be0-005056be1f7c' AND t2.`value` >= 0 AND t2.`value` <= 3 GROUP BY `item`
 ) as t1;
-
-
-
-
-
-
-
-
-
-
-
-
-
