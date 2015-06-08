@@ -49,11 +49,3 @@ jQuery(document).ready(function() {
         }
     });
 });
-
-// Requires jQuery!
-jQuery.ajax({
-            url: "http://compuproject.com:8085/s/6592ff192f8e5fd64268f5f0ab3fe646-T/ru_RU382ewm/64020/4/1.4.25/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs.js?locale=ru-RU&collectorId=7015c86e",
-        type: "get",
-    cache: true,
-    dataType: "script"
-});
