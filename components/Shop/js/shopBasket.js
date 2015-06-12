@@ -3,8 +3,8 @@ var oldValue = 0;
 var correctShopItemZeroAmountTimer; // Таймер для запроса данных по задержке;
 var correctShopItemZeroAmountTime = 1000; // время на задержку при запросе данных;
 
-jQuery(document).ready(function() { 
-    
+jQuery(document).ready(function() {
+
     // обработка кнопки "-" в корзине
     jQuery('.shopItemAmountBuyDelButton').click(function() {
         var itemID = $(this).attr("itemID");
@@ -16,9 +16,9 @@ jQuery(document).ready(function() {
             amount = 1;
         }
         // редактируем
-        editBasket(amount, itemID); 
-    });  
-    
+        editBasket(amount, itemID);
+    });
+
     // обработка кнопки "+" в корзине
     jQuery('.shopItemAmountBuyAddButton').click(function() {
         var itemID = $(this).attr("itemID");
@@ -26,18 +26,18 @@ jQuery(document).ready(function() {
         var amount = ++itemVal;
         $('#' + itemID).val(amount);
         // редактируем
-        editBasket(amount, itemID); 
+        editBasket(amount, itemID);
     });
-    
+
     // обработка незаполненного поля input
     jQuery(document).click(function() {
         correctShopItemAmountBuy();
     });
-    
+
     // обработка заполненного поля input
     $('.shopItemAmountBuy').keyup(function() {
         var id = $(this).attr('id');
-        // получаем значение input            
+        // получаем значение input
         var amount = parseInt($(this).val());
         clearTimeout(correctShopItemZeroAmountTimer);
         if (isNaN(amount) || amount < 1) {
@@ -45,27 +45,32 @@ jQuery(document).ready(function() {
         } else {
             editBasket(amount, id);
         }
-        return false; 
+        return false;
     });
-    
+
     // обработка кнопка "КУПИТЬ" - в "ТОВАР В КОРЗИНЕ"
     jQuery('.ShopItemBuy').click(function() {
         var id = $(this).attr('id');
         correctShopItemAmountBuy();
         getShopItemAmountBuy(id);
     });
-    
+
     jQuery('.ShopBasketItemBuyButton').click(function() {
         clearTimeout(correctShopItemZeroAmountTimer);
         correctShopItemAmountBuy();
     });
-    
+
     // удаление товара из корзины
     jQuery('.DeleteButtonBlock').click(function() {
         var id = $(this).attr('idDel');
         deleteItemAndChangeTotal(id);
     });
-    
+
+    // очищение корзины
+    jQuery('.ShopBasketItemClearButton').click(function() {
+        shopBasketItemClearButton();
+    });
+
 });
 
 function correctShopItemZeroAmount(obj,id) {
@@ -82,49 +87,85 @@ function correctShopItemAmountBuy() {
             var id = $(this).attr('id');
             $(this).val('1');
             editBasket('1', id);
-        } 
+        }
     });
 }
 
-// ----------- кнопка "КУПИТЬ" - в "ТОВАР В КОРЗИНЕ" ---------    
-function getShopItemAmountBuy(id) { 
-    var amount = $("#shopItemAmountBuy").val();
+// ----------- кнопка "КУПИТЬ" - в "ТОВАР В КОРЗИНЕ" ---------
+// изменить надпись и "заполнить" корзину
+function getShopItemAmountBuy(id) {
+    var amount = $(".shopItemAmountBuy").val();
+    var countUnit = $(".ShopBasketModuleBlockBasketUnit").html();
     $.ajax({
         type: "POST",
         url: "./components/Shop/script/shopItemAmountBuy.php",
         data: {"id":id,
                 "amount":amount
                 },
-        cache: false,						
+        cache: false,
         success: function(result) {
                $('.ShopItemBuyButtonBlock').html(result);
+               $('.ShopBasketModuleBlockBasketUnit').html(++countUnit);
+               curentTotalInBasket(amount);
+               displayOneItemInBasket(id, amount);
        }
     });
-    return false;	
+    return false;
 };
 
+// обновить итог в МОДУЛЕ КОРЗИНА
+function curentTotalInBasket(amount) {
+    var oldTotalBasket; var cost; var subtotal; var totalBasket;
+    // получаем старый итог
+    oldTotalBasket = $(".ShopBasketModuleBlockBasketTotal").html();
+    // получаем цену товара
+    cost = $(".ShopItemPrice").html();
+    // вычисляем подитог товара
+    subtotal = cost * amount;
+    // вычисляем итог товара
+    totalBasket = parseInt(oldTotalBasket) + parseInt(subtotal);
+    // записываем его
+    if (isNaN(totalBasket)) totalBasket = 0;
+    $(".ShopBasketModuleBlockBasketTotal").html(totalBasket);
+};
+
+function displayOneItemInBasket(id, amount) {
+    $.ajax({
+        type: "POST",
+        url: "./modules/ShopBasket/script/oneItemInBasket.php",
+        cache: false,
+        data: {"id":id,
+                "amount":amount
+                },
+        success: function(result) {
+                    $('#ShopBasketModuleOneItemInBasket').html(result);
+                    $("#ShopBasketModuleOneItemInBasket").animate({ opacity: "hide" }, 5000);
+                }
+    });
+    return false;
+};
 // ---------- РАБОТА В КОРЗИНЕ -----------------
 // редактирование товара в корзине
-function updateItemAndChangeTotal(id, amount) {  
+function updateItemAndChangeTotal(id, amount) {
     $.ajax({
         type: "POST",
         url: "./components/Shop/script/shopItemUpdateItem.php",
         data: {"id":id,
-                "amount":amount 
+                "amount":amount
                 },
-        cache: false,						
+        cache: false,
         success: function() {
                     getSubTotal(id, amount);
-                }      
+                }
     });
-    return false;	
+    return false;
 };
 
 // перезаписывание количества товара в корзине
 function editBasket(amount, id) {
     if (oldValue !== amount) {
-        oldValue = amount; 
-        updateItemAndChangeTotal(id, amount); 
+        oldValue = amount;
+        updateItemAndChangeTotal(id, amount);
     }
 }
 
@@ -139,7 +180,7 @@ function getSubTotal(id, amount) {
     newSubtotal = cost * amount;
     // записываем его
     $("#allPriceValue_" + id).html(newSubtotal);
-    // вычисляем разницу между итогами 
+    // вычисляем разницу между итогами
     var dif = oldSubtotal - newSubtotal;
     // вычисляем новый итог
     setTotal(dif);
@@ -155,8 +196,10 @@ function setTotal(dif) {
     // записываем его
     if (isNaN(total)) {
         $('.price').html(oldTotal);
+        $(".ShopBasketModuleBlockBasketTotal").html(oldTotal);
     } else {
         $('.price').html(total);
+        $(".ShopBasketModuleBlockBasketTotal").html(total);
     }
 }
 
@@ -182,15 +225,17 @@ $( document ).ready(function() {
 // --------- УДАЛЕНИЕ ----------
 // удаление товара из корзины
 function deleteItemAndChangeTotal(id) {
+    var countUnit = $(".ShopBasketModuleBlockBasketUnit").html();
     if (confirmDelete()) {
         $.ajax({
             type: "POST",
             url: "./components/Shop/script/shopItemDeleteItem.php",
             data: {"id":id },
-            cache: false,						
+            cache: false,
             success:  function() {
+                        $('.ShopBasketModuleBlockBasketUnit').html(--countUnit);
                         deleteItem(id);
-                    }      
+                    }
         });
         return false;
     }
@@ -214,4 +259,20 @@ function deleteItem(item) {
     setTotal(oldSubtotal);
     // удаляем блок с "нулевым товаром"
     $('#ShopBasketItemBlock_' + item).remove();
-} 
+}
+
+//--------- Очищение корзины -------------
+// очищение корзины
+function shopBasketItemClearButton() {
+    $.ajax({
+        url: "./components/Shop/script/shopBasketItemClearButton.php",
+        cache: false,
+        success:  function() {
+                    // удаляем блок
+                    $('.ShopBasketBlock').remove();
+                    curentTotalInBasket(0);
+                    $(".ShopBasketModuleBlockBasketUnit").html(0);
+                }
+    });
+    return false;
+};

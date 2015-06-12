@@ -1,13 +1,13 @@
 <?php
-
 class ShopBasketHelper {
-    
+
     static private $object;
     static private $SQL_HELPER;
     static private $urlHelper;
     static private $shopPageAlias;
     static private $priceTypeID;
-    
+    static private $total;
+
     private function __construct() {
         global $_SQL_HELPER;
         self::$SQL_HELPER = $_SQL_HELPER;
@@ -16,7 +16,7 @@ class ShopBasketHelper {
         self::$priceTypeID = ShopGroupPriceType::getPriceTypeID();
         self::$shopPageAlias = ShopPageInfoHelper::getShopPageAlias();
     }
-    
+
     /**
      * создание объекта
      */
@@ -25,29 +25,29 @@ class ShopBasketHelper {
             self::$object = new ShopBasketHelper();
         }
     }
-    
+
     private static function getItemData($itemID) {
-        $query = "SELECT 
-            SI.`id`, 
-            SI.`itemName`, 
-            SI.`group`, 
-            SI.`groupName`, 
-            SI.`action`, 
+        $query = "SELECT
+            SI.`id`,
+            SI.`itemName`,
+            SI.`group`,
+            SI.`groupName`,
+            SI.`action`,
             SI.`amount` as maxAmount,
             SI.`minAmount`,
-            SI.`description`, 
+            SI.`description`,
             SI.`shown`,
             SIP.`value` as priceValue
-            FROM ( 
-                SELECT 
-                SI.`id`, 
-                SI.`itemName`, 
-                SI.`group`, 
-                SG.`groupName`, 
-                SI.`action`, 
+            FROM (
+                SELECT
+                SI.`id`,
+                SI.`itemName`,
+                SI.`group`,
+                SG.`groupName`,
+                SI.`action`,
                 SI.`amount`,
                 SI.`minAmount`,
-                SI.`description`, 
+                SI.`description`,
                 SI.`shown`
                 FROM `ShopItems` as SI
                 LEFT JOIN `ShopGroups` as SG
@@ -59,22 +59,22 @@ class ShopBasketHelper {
             WHERE SIP.`price` = '".self::$priceTypeID."';";
         return self::$SQL_HELPER->select($query,1);
     }
-    
+
     private static function createShopBasketArray() {
         if(!isset($_SESSION['ShopBasket'])) {
             $_SESSION['ShopBasket'] = array();
         }
     }
-    
+
     public static function clearShopBasket() {
         $_SESSION['ShopBasket'] = array();
     }
-    
+
     public static function checkItemInTheShopBasket($itemID) {
         self::createObject();
         return isset($_SESSION['ShopBasket'][$itemID]);
     }
-    
+
     public static function addItemToTheShopBasket($itemID, $amount = 1) {
         self::createObject();
         if($amount > 0) {
@@ -99,7 +99,7 @@ class ShopBasketHelper {
             }
         }
     }
-    
+
     public static function editItemAmountInTheShopBasket($itemID, $amount) {
         self::createObject();
         if(self::checkItemInTheShopBasket($itemID)) {
@@ -114,7 +114,7 @@ class ShopBasketHelper {
             self::addItemToTheShopBasket($itemID, $amount);
         }
     }
-    
+
     public static function updateItemAmountInTheShopBasket($itemID, $amount) {
         self::createObject();
         if($amount > 0) {
@@ -126,7 +126,7 @@ class ShopBasketHelper {
             }
         }
     }
-    
+
     public static function getItemAmountInTheShopBasket($itemID) {
         self::createObject();
         if(self::checkItemInTheShopBasket($itemID)) {
@@ -136,12 +136,12 @@ class ShopBasketHelper {
             return 0;
         }
     }
-    
+
     public static function deleteItemFromShopBasket($itemID) {
         self::createObject();
         unset($_SESSION['ShopBasket'][$itemID]);
     }
-    
+
     public static function getItemFromShopBasket($itemID) {
         self::createObject();
         if(self::checkItemInTheShopBasket($itemID)) {
@@ -150,7 +150,7 @@ class ShopBasketHelper {
             return NULL;
         }
     }
-    
+
     /**
      * Формат возвращаемого массива:
      * $rezult[<itemID>]['id'] - id товара
@@ -174,12 +174,11 @@ class ShopBasketHelper {
         self::createObject();
         return $_SESSION['ShopBasket'];
     }
-    
+
     public static function getDysplayButtonBuy($itemID) {
         self::createObject();
-        $html = '';
         if (ShopBasketHelper::checkItemInTheShopBasket($itemID) ) {
-            $html .= '<div class="ShopItemBuyButtonBlock" >';
+            $html = '<div class="ShopItemBuyButtonBlock" >';
                 $html .= '<a href="'.self::$urlHelper->pageUrl(ShopPageInfoHelper::getShopPageAlias(), array('shopbasket')).'">';
                     $html .= '<div class="ShopItemBuyButton" >';
                         $html .= 'Товар в корзине';
@@ -189,7 +188,7 @@ class ShopBasketHelper {
         } else {
             $html .= '<div class="ShopItemBuyButton ShopItemBuy" id="'.$itemID.'" >';
                 $html .= 'Купить';
-            $html .= '</div>';  
+            $html .= '</div>';
             // ShopItemBuyButton
             $html .= '<div class="shopItemAmountBuyBlock">';
             $html .= '<div id="shopItemAmountBuyDelButton" class="shopItemAmountBuyDelButton">-</div>';
@@ -198,5 +197,29 @@ class ShopBasketHelper {
             $html .= '</div>';
        }
         return $html;
+    }
+
+    /**
+     * Получить общий итог корзины
+     * @return type
+     */
+    public static function getTotal() {
+        $allItems = ShopBasketHelper::getAllItemsFromShopBasket();
+        if (!empty($allItems)) {
+            foreach ($allItems as $item) {
+                self::$total += $item['allPriceValue'];
+            }
+        } else {
+            self::$total = '0';
+        }
+        return self::$total;
+    }
+
+    /**
+     * Получить кол-во позиций в корзине
+     * @return type
+     */
+    public static function getUnitInBasket() {
+        return (count($_SESSION['ShopBasket']));
     }
 }

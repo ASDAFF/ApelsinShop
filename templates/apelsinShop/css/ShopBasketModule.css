@@ -1,10 +1,231 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : 31.05.2015, 13:58:30
-    Author     : Максим
-*/
-
+/*---------- кнопка "Корзина" --------------*/
+.m_block.ShopBasket {
+    position: relative;
+    color: #5f5f5f;
+    font: normal 12px/15px 'PT Sans', helvetica, 'segoe UI', arial, sans-serif;
+}
+.m_block.ShopBasket a {
+    display: block;
+    cursor: default;
+}
+.ShopBasketModuleBlockBasket {
+    width: 130px;
+    height: 35px;
+    text-align: right;
+    font-weight: bold;
+}
+.ShopBasketModuleBlockBasket .ShopBasketModuleBlockBasketIcon {
+    float: left;
+    width: 35px;
+}
+.ShopBasketModuleBlockBasket .ShopBasketModuleBlockBasketIcon img {
+    margin: 5px;
+}
+.ShopBasketModuleBlockBasket .ShopBasketModuleBlockBasketUnit {
+    position: absolute;
+    height: 15px;
+    top: 3px;
+    left: 20px;
+    background: #ef7f1a;
+    color: #fff;
+    padding: 0 2px;
+    border-radius: 3px;
+}
+.ShopBasketModuleBlockBasket .ShopBasketModuleBlockBasketTotal {
+    width: 95px;
+    float: left;
+    text-align: center;
+    font-size: 16px;
+    line-height: 35px;
+}
+.ShopBasketModuleBlockBasket .ShopBasketModuleBlockBasketTotal:after {
+    content: ' руб.';
+    font-size: 11px;
+}
+/*-------------- basket List -------------*/
+.ShopBasketModuleWrapper {
+    position: absolute;
+    right: 0;
+    top: 30px;
+    z-index: 999;
+    width: 420px;
+    background: #fff;
+    box-shadow: -5px 5px 15px rgba(139,139,139,.3);
+    display: block;
+}
+.ShopBasketModuleWrapper .ShopBasketModuleContent {
+    overflow-y: auto;
+    max-height: 500px;
+}
+.ShopBasketModuleWrapper .ShopBasketModuleContent::-webkit-scrollbar {
+    width: 10px;
+}
+.ShopBasketModuleWrapper .ShopBasketModuleContent .ShopBasketBlockItem {
+    height: 50px;
+    padding: 2px 0;
+    border-bottom: 1px dotted #869791;
+}
+.ShopBasketModuleWrapper .ShopBasketModuleContent .ShopBasketBlockItem:hover {
+    background: rgba(239,127,26, .07);
+}
+.ShopBasketModuleWrapper .ShopBasketModuleContent .ShopBasketBlockItem:last-child {
+    border-bottom: none;
+}
+.ShopBasketModuleWrapper .ShopBasketModuleContent .ShopBasketBlockItem .ShopBasketLeftBlock,
+.ShopBasketModuleOneItemInBasketWrapper .ShopBasketBlockItem .ShopBasketLeftBlock {
+    width: 50px;
+    height: 50px;
+    float: left;
+    padding-left: 10px;
+}
+.ShopBasketModuleWrapper .ShopBasketModuleContent .ShopBasketBlockItem .ShopBasketLeftBlock .itemImage {}
+.ShopBasketModuleWrapper .ShopBasketModuleContent .ShopBasketBlockItem .ShopBasketCenterBlock,
+.ShopBasketModuleOneItemInBasketWrapper .ShopBasketBlockItem .ShopBasketCenterBlock {
+    height: 50px;
+    width: 220px;
+    display: inline-table;
+    text-align: center;
+}
+.ShopBasketModuleWrapper .ShopBasketModuleContent .ShopBasketBlockItem .ShopBasketCenterBlock .itemName,
+.ShopBasketModuleOneItemInBasketWrapper .ShopBasketBlockItem .ShopBasketCenterBlock .itemName {
+    display: table-cell;
+    vertical-align: middle;
+}
+.ShopBasketModuleWrapper .ShopBasketModuleContent .ShopBasketBlockItem .ShopBasketRightBlock,
+.ShopBasketModuleOneItemInBasketWrapper .ShopBasketBlockItem  .ShopBasketRightBlock {
+    float: right;
+    width: 120px;
+    height: 50px;
+    margin-right: 10px;
+}
+.ShopBasketModuleWrapper .ShopBasketModuleContent .ShopBasketBlockItem .ShopBasketRightBlock .ShopBasketItemAmountBlock {
+    width: 40px;
+    float: left;
+    line-height: 50px;
+    text-align: center;
+}
+.ShopBasketModuleWrapper .ShopBasketModuleContent .ShopBasketBlockItem .ShopBasketRightBlock .ShopBasketItemAmountBlock:after {
+    font-size: 10px;
+    content: ' шт.';
+}
+.ShopBasketModuleWrapper .ShopBasketModuleContent .ShopBasketBlockItem .ShopBasketRightBlock .ShopBasketItemPriceInfoBlock {
+    width: 80px;
+    height: 40px;
+    padding-top: 7px;
+    text-align: right;
+    float: left;
+}
+.ShopBasketModuleWrapper .ShopBasketModuleContent .ShopBasketBlockItem .ShopBasketRightBlock .ShopBasketItemPriceInfoBlock .priceValue {
+    height: 18px;
+}
+.ShopBasketModuleWrapper .ShopBasketModuleContent .ShopBasketBlockItem .ShopBasketRightBlock .ShopBasketItemPriceInfoBlock .allPriceValue {
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 25px;
+    height: 25px;
+}
+.ShopBasketModuleWrapper .ShopBasketBlockItem .ShopBasketItemPriceInfoBlock .priceValue span:after,
+.ShopBasketModuleWrapper .ShopBasketBlockItem .ShopBasketItemPriceInfoBlock .allPriceValue span:after,
+.ShopBasketModuleWrapper .ShopBasketItemPayInfoBlock .price:after,
+.ShopBasketModuleOneItemInBasketWrapper .ShopBasketBlockItem .ShopBasketItemPriceInfoBlock .priceValue span:after,
+.ShopBasketModuleOneItemInBasketWrapper .ShopBasketBlockItem .ShopBasketItemButtonBlock .allPriceValue span:after {
+    font-size: 10px;
+    content: ' руб.';
+}
+.ShopBasketModuleWrapper .ShopBasketButton {
+    text-align: center;
+    height: 50px;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 50px;
+    color: #fff;
+    background: #ef7f1a;
+    cursor: pointer;
+}
+.ShopBasketModuleWrapper .ShopBasketButton:hover {
+    background: rgb(224,122,21);
+}
+/*----------- один товар --------------*/
+.ShopBasketModuleOneItemInBasket {
+    position: absolute;
+    right: 0;
+    z-index: 990;
+}
+.ShopBasketModuleOneItemInBasketWrapper {
+    width: 420px;
+    background: #fff;
+    padding-bottom: 4px;
+    box-shadow: -5px 5px 15px 1px rgba(139,139,139,.3);
+}
+.ShopBasketModuleOneItemInBasketWrapper .ShopBasketModuleOneItemTitle {
+    color: rgb(239, 127, 26);
+    font-size: 16px;
+    line-height: 30px;
+    height: 30px;
+    text-align: center;
+}
+.ShopBasketModuleOneItemInBasketWrapper .ShopBasketBlockItem {
+    height: 50px;
+    margin-bottom: 10px;
+}
+.ShopBasketModuleOneItemInBasketWrapper .ShopBasketBlockItem .ShopBasketCenterBlock {
+    width: 220px;
+}
+.ShopBasketModuleOneItemInBasketWrapper .ShopBasketBlockItem .ShopBasketCenterBlock .itemName {}
+.ShopBasketModuleOneItemInBasketWrapper .ShopBasketBlockItem  .ShopBasketRightBlock {
+    line-height: 50px;
+    text-align: right;
+}
+.ShopBasketModuleOneItemInBasketWrapper .ShopBasketBlockItem  .ShopBasketRightBlock .ShopBasketItemPriceInfoBlock {
+    font-size: 14px;
+}
+.ShopBasketModuleOneItemInBasketWrapper .ShopBasketBlockItem .ShopBasketRightBlock .ShopBasketItemPriceInfoBlock .ShopBasketItemAmountBlock {
+    width: 50px;
+    float: left;
+}
+.ShopBasketModuleOneItemInBasketWrapper .ShopBasketBlockItem .ShopBasketRightBlock .ShopBasketItemPriceInfoBlock .ShopBasketItemAmountBlock:after {
+    content: ' шт.';
+    font-size: 11px;
+}
+.ShopBasketModuleOneItemInBasketWrapper .ShopBasketBlockItem .ShopBasketRightBlock .ShopBasketItemPriceInfoBlock .priceValue {
+    width: 70px;
+    float: left;
+}
+.ShopBasketModuleOneItemInBasketWrapper .ShopBasketBlockItem .ShopBasketItemPriceInfoBlock .priceValue span:after,
+.ShopBasketModuleOneItemInBasket .allPriceValue span:after {
+    font-size: 11px;
+    font-weight: bold;
+    content: ' руб.';
+}
+.ShopBasketModuleOneItemInBasket .allPriceValue {
+     width: 115px;
+     height: 22px;
+     margin-top: -2px;
+     text-align: center;
+     font-size: 16px;
+     font-weight: bold;
+     line-height: 22px;
+     position: relative;
+     background: #fff;
+     float: right;
+     box-shadow: -2px 5px 8px rgba(139,139,139,.2);
+}
+.ShopBasketModuleOneItemInBasket .allPriceValue::after, .ShopBasketModuleOneItemInBasket .allPriceValue::before {
+     content: '';
+     position: absolute;
+     background: #fff;
+     left: -15px;
+     bottom: 6px;
+     width: 30px;
+     height: 30px;
+     -moz-transform: rotate(45deg); /* Для Firefox */
+     -ms-transform: rotate(45deg); /* Для IE */
+     -webkit-transform: rotate(45deg); /* Для Safari, Chrome, iOS */
+     -o-transform: rotate(45deg); /* Для Opera */
+     transform: rotate(45deg);
+     z-index: -1;
+}
+.ShopBasketModuleOneItemInBasket .allPriceValue::before {
+     box-shadow: 0px 6px 0px 0px rgba(139,139,139,.1);
+     z-index: 1;
+}

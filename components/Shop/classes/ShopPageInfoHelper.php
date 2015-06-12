@@ -6,13 +6,16 @@
  */
 class ShopPageInfoHelper {
     const ComponentAlias = 'Shop';
-    
+    const CatalogPage = 'catalog';
+    const ItemPage = 'item';
+    const ShopbasketPage = 'shopbasket';
+
     static private $SQL_HELPER;
     static private $object;
-    
+
     static private $THIS_PAGE;
     static private $URL_PARAMS;
-    
+
     static private $shopPage;
     static private $shopPageAlias;
     static private $pageUrlType;
@@ -20,11 +23,11 @@ class ShopPageInfoHelper {
     static private $groupId;
     static private $pageUrlError = false;
     static private $groupPage = false;
-    
+
 //    static private $SQL_DATA;
-    
+
     static private $SQL_DATA;
-    
+
     /**
      * Конструктор вызывается автоматически
      * @global type $_SQL_HELPER
@@ -39,7 +42,7 @@ class ShopPageInfoHelper {
         $this->getShopPageData();
         $this->getUrlPageInfo();
     }
-    
+
     /**
      * создание объекта
      */
@@ -48,9 +51,9 @@ class ShopPageInfoHelper {
             self::$object = new ShopPageInfoHelper();
         }
     }
-    
+
     private function checkThisPage() {
-        $query = "SELECT 
+        $query = "SELECT
             count(Pa.`alias`) as pages
             FROM `Pages` as Pa
             LEFT JOIN `ComponentsElements` as CE
@@ -60,7 +63,7 @@ class ShopPageInfoHelper {
         $rezult = self::$SQL_HELPER->select($query,1);
         self::$shopPage = $rezult['pages'] > 0;
     }
-    
+
     private function getShopPageData() {
         $query = "SELECT Pa.`alias`
             FROM `Pages` as Pa
@@ -70,7 +73,7 @@ class ShopPageInfoHelper {
         $rezult = self::$SQL_HELPER->select($query,1);
         self::$shopPageAlias = $rezult['alias'] > 0;
     }
-    
+
     private function getUrlPageInfo() {
         if(isset(self::$URL_PARAMS[0]) && (self::$URL_PARAMS[0]=='catalog' || self::$URL_PARAMS[0]=='item')) {
             switch (self::$URL_PARAMS[0]) {
@@ -102,42 +105,53 @@ class ShopPageInfoHelper {
             }
         }
     }
-    
+
     public static function isShopPageError() {
         self::createObject();
         return self::$pageUrlError;
     }
-    
+
     public static function isShopPage() {
         self::createObject();
         return self::$shopPage;
     }
-    
+
     public static function shopPageUrlType() {
         self::createObject();
         return self::$pageUrlType;
     }
-    
+
     public static function shopPageUrlElement() {
         self::createObject();
         return self::$pageUrlElement;
     }
-    
+
     public static function shopPageGroupId() {
         self::createObject();
         return self::$groupId;
     }
-    
+
     public static function isItGroupPage() {
         self::createObject();
         return self::$groupPage;
     }
-    
+
     public static function getShopPageAlias() {
         self::createObject();
         return self::$shopPageAlias;
     }
 
+    public static function getCatalogPage() {
+        return self::CatalogPage;
+    }
+
+    public static function getItemPage() {
+        return self::ItemPage;
+    }
+
+    public static function getShopbasketPage() {
+        return self::ShopbasketPage;
+    }
 
     /**
      * 

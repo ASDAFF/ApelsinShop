@@ -158,7 +158,7 @@
     font: bold 12px/30px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
     content: ' руб.'
 }
-.ShopBasketBlock .ShopBasketItemBuyBlock .ShopBasketItemBuyButton {  
+.ShopBasketBlock .ShopBasketItemBuyBlock .ShopBasketItemBuyButton {
     height: 30px;
     width: 120px;
     font: bold 14px/30px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
@@ -168,4 +168,7 @@
     color: #fff;
     cursor: pointer;
     float: right;
+}
+.ShopBasketBlock .ShopBasketItemBuyBlock .ShopBasketItemClearButton {
+    float: left;
 }

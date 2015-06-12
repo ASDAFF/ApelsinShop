@@ -113,6 +113,7 @@ class ShopBasket {
                 $pay += $item['allPriceValue'];
             }
             $out = '<div class="ShopBasketItemBuyBlock">';
+                $out .= '<div class="ShopBasketItemClearButton ShopBasketItemBuyButton">Очистить</div>';
                 $out .= '<div class="ShopBasketItemBuyButton">Купить</div>';
                 $out .= '<div class="ShopBasketItemPayInfoBlock"><span class="text">Итого:</span> <span class="price">'.$pay.'</span></div>';
             $out .= '</div>';
