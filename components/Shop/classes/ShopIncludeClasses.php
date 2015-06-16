@@ -2,7 +2,7 @@
 
 class ShopIncludeClasses {
     private static $notIncluded = true;
-    
+
     public static function includeAllClasses($componentPath = './components/Shop/', $modulesPath = './modules/ShopNavigationPanel/') {
         if(self::$notIncluded) {
             self::$notIncluded = false;
@@ -27,6 +27,7 @@ class ShopIncludeClasses {
             include_once $componentPath.'classes/ShopBasketHelper.php';
             include_once $componentPath.'classes/ShopBasket.php';
             include_once $componentPath.'classes/ShopItemsPropertiesMeasureScaling.php';
+            include_once $componentPath.'classes/ShopBasketGenerateXML.php';
 
             include_once $modulesPath.'classes/ShopNavigationPanel.php';
             include_once $modulesPath.'classes/ShopNavigationPanel_Menu.php';
