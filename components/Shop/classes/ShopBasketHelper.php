@@ -204,6 +204,7 @@ class ShopBasketHelper {
      * @return type
      */
     public static function getTotal() {
+        self::createObject();
         $allItems = ShopBasketHelper::getAllItemsFromShopBasket();
         if (!empty($allItems)) {
             foreach ($allItems as $item) {
@@ -220,6 +221,7 @@ class ShopBasketHelper {
      * @return type
      */
     public static function getUnitInBasket() {
+        self::createObject();
         return (count($_SESSION['ShopBasket']));
     }
 }
