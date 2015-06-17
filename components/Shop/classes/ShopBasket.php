@@ -7,7 +7,6 @@ class ShopBasket {
     private $imgSizeSmall = "_50x50";
     private $imgSizeMidle = "_100x100";
     private $data;
-    private $property;
 
     /**
      * Конструктор класса
@@ -26,7 +25,7 @@ class ShopBasket {
     }
 
     private function getImageHTML($item, $itemName) {
-        $out = '<a class="fancybox-gallery" href="'.ShopItemDataHelper::getBigImage($item).'">';
+        $out = '<a class="fancybox-gallery" href="'.ShopItemDataHelper::getImage($item, '').'">';
         $out .= '<img src="'.ShopItemDataHelper::getImage($item, $this->imgSizeSmall).'" alt="'.$itemName.'" title="'.$itemName.'">';
         $out .= '</a>';
         return $out;
@@ -83,15 +82,16 @@ class ShopBasket {
 
     private function getMoreInfo($item) {
         $this->getDataItem($item['id']);
-        $this->property = ShopItemDataHelper::getProperty($item['id'], $this->data['group']);
+        $property = ShopItemDataHelper::getProperty($item['id'], $this->data['group']);
         $out = '<a class="fancybox-doc" href="#itemMoreInfo_'.$item['id'].'">';
             $out .= '<div class="itemName">'.$item['itemName'].'</div>';
+        $out .= '</a>';
             $out .= '<div class="doc_div" id="itemMoreInfo_'.$item['id'].'" style="display: none;">';
                 $out .= '<div class="itemMoreInfoWrapper">';
                     $out .= ShopGroupsPathPanelHelper::getPanel($item['group']);
                     $out .= '<img src="'.ShopItemDataHelper::getImage($item['id'], $this->imgSizeMidle).'" alt="'.$item['itemName'].'" title="'.$item['itemName'].'">';
                     $out .= '<div class="itemMoreInfoWrapperNameDescription">';
-                    $out .= '<div class="itemName">'.$item['itemName'].'</div>';
+                    $out .= '<div class="titleName">'.$item['itemName'].'</div>';
                     $out .= '<div class="ShopItemDescription">';
                     $out .= $this->data['description'];
                     $out .= '</div>';  // ShopItemDescription
@@ -99,7 +99,7 @@ class ShopBasket {
                     $out .= '<div class="clear"></div>';
                     $out .= '<div class="itemMoreInfoWrapperLine"></div>';
                     $out .= '<div class="ShopItemParams">';
-                    foreach ($this->property as $property) {
+                    foreach ($property as $property) {
                         $out .= '<div class="ShopItemParam">';
                         $out .= '<div class="ShopItemParamName"><div>';
                         $out .= $property['propertyName'].' :';
@@ -112,7 +112,6 @@ class ShopBasket {
                     $out .= '</div>';  // ShopItemParams
                 $out .= '</div>';  // itemMoreInfoWrapper
             $out .= '</div>';  // class="doc_div"
-        $out .= '</a>';
         return $out;
     }
 

@@ -11,7 +11,6 @@ class ShopItemDataHelper {
     private static $SQL_HELPER;
     private static $imageDir = './resources/Components/Shop/Image/ItemsImage/';
     private static $defaultIcon = "defaultIcon";
-    private static $defaultBigIcon = "defaultIcon.png";
 
     /**
      * Конструктор класса
@@ -32,28 +31,11 @@ class ShopItemDataHelper {
     }
 
     /**
-     * Получить большое изображение
-     * @param type $item
-     * @return type
-     */
-    public static function getBigImage($item) {
-        self::createObject();
-        if (file_exists(self::$imageDir.$item.'.jpg')) {
-            $image = $item.'.jpg';
-        } elseif (file_exists(self::$imageDir.$item.'.png')) {
-            $image = $item.'.png';
-        } else {
-            $image = self::$defaultBigIcon;
-        }
-        return self::$imageDir.$image;
-    }
-
-    /**
      * Получить изображение
      * @param type $item
      * @return type
      */
-    public static function getImage($item, $imgSize) {
+    public static function getImage($item, $imgSize = '') {
         self::createObject();
         if (file_exists(self::$imageDir.$item.$imgSize.'.jpg')) {
             $image = $item.$imgSize.'.jpg';

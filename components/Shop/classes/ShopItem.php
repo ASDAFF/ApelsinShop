@@ -10,7 +10,6 @@ class ShopItem {
     private $HTML;
     private $data;
     private $price;
-    private $property;
     private $imgSizeMidle = "_200x200";
 
     /**
@@ -75,11 +74,11 @@ class ShopItem {
      */
     private function generateHtml() {
         $this->getPrice();
-        $this->property = ShopItemDataHelper::getProperty($this->elementID, $this->data['group']);
+        $property = ShopItemDataHelper::getProperty($this->elementID, $this->data['group']);
         $this->HTML = '<div class="ShopItemMainWrapper">';
             $this->HTML .= '<div class="ShopItemLeftBlock">';
             $this->HTML .= '<div class="ShopItemIMG">';
-            $this->HTML .= '<a class="fancybox-gallery" href="'.ShopItemDataHelper::getBigImage($this->elementID).'">';
+            $this->HTML .= '<a class="fancybox-gallery" href="'.ShopItemDataHelper::getImage($this->elementID, '').'">';
             $this->HTML .= '<img src="'.ShopItemDataHelper::getImage($this->elementID, $this->imgSizeMidle).'" alt="'.$this->data['itemName'].'" title="'.$this->data['itemName'].'">';
             $this->HTML .= '</a>';
             $this->HTML .= '</div>';  // ShopItemIMG
@@ -103,7 +102,7 @@ class ShopItem {
             $this->HTML .= $this->data['description'];
             $this->HTML .= '</div>';  // ShopItemDescription
             $this->HTML .= '<div class="ShopItemParams">';
-            foreach ($this->property as $property) {
+            foreach ($property as $property) {
                 $this->HTML .= '<div class="ShopItemParam">';
                 $this->HTML .= '<div class="ShopItemParamName"><div>';
                 $this->HTML .= $property['propertyName'].' :';
