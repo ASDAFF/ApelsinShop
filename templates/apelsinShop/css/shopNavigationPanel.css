@@ -18,45 +18,6 @@
     color: #ef7f1a;
 }
 
-.ShopNavigationPanel .ThisGroupPathPanel {}
-.ShopNavigationPanel .ThisGroupPathPanel ul.ThisGroupPath {
-    list-style: none;
-    margin-left: 0;
-    height: 10px;
-    padding: 10px 0px 10px 0px;
-}
-.ShopNavigationPanel .ThisGroupPathPanel ul.ThisGroupPath li.ThisGroupPathElement {
-    height: 10px;
-    display: block;
-    float: left;
-    font: bold 10px/10px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
-    text-transform: uppercase;
-}
-.ShopNavigationPanel .ThisGroupPathPanel ul.ThisGroupPath li.ThisGroupPathElement:before {
-    content: "\00BB";
-    padding: 0px 5px 0px 5px;
-}
-.ShopNavigationPanel .ThisGroupPathPanel ul.ThisGroupPath li.ThisGroupPathElement a {
-    color: #ef7f1a;
-}
-.ShopNavigationPanel .ThisGroupPathPanel ul.ThisGroupPath li.ThisGroupPathElement.RootElement {
-    background: url('../img/homeCatalog.png') top center no-repeat;
-    width: 10px;
-    height: 10px;
-}
-.ShopNavigationPanel .ThisGroupPathPanel ul.ThisGroupPath li.ThisGroupPathElement.RootElement:hover {
-    background-position: 0px -10px;
-}
-.ShopNavigationPanel .ThisGroupPathPanel ul.ThisGroupPath li.ThisGroupPathElement.RootElement:before {
-    content: "";
-    padding: 0px;
-}
-.ShopNavigationPanel .ThisGroupPathPanel ul.ThisGroupPath li.ThisGroupPathElement.RootElement a {
-    display: block;
-    width: 10px;
-    height: 10px;
-}
-
 .ShopNavigationPanel .ShopNavigationPanel_Menu {}
 .ShopNavigationPanel .ShopNavigationPanel_Menu .ThisGroupIconPanelBlock {
     width: 100px;

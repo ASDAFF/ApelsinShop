@@ -1,62 +1,37 @@
 <?php
-
 class ShopBasket {
+
     private $SQL_HELPER;
     private $HTML;
     private $items;
-    private $imageDir = './resources/Components/Shop/Image/ItemsImage/';
-    private $imgSize = "50x50";
-    private $defaultIcon = "defaultIcon_50x50.png";
-    private $defaultBigIcon = "defaultIcon.png";
+    private $imgSizeSmall = "_50x50";
+    private $imgSizeMidle = "_100x100";
+    private $data;
+    private $property;
 
     /**
      * Конструктор класса
      * @global type $_SQL_HELPER
      */
     public function __construct() {
-        $this->defaultIcon = "defaultIcon_".$this->imgSize.".png";
-        $this->setTestData();
         global $_SQL_HELPER;
         $this->SQL_HELPER = $_SQL_HELPER;
         $this->items = ShopBasketHelper::getAllItemsFromShopBasket();
         $this->generateHtml();
     }
-    
-    private function setTestData() {
-//        ShopBasketHelper::clearShopBasket();
-//        ShopBasketHelper::addItemToTheShopBasket('3409410b-5b1f-11e2-8bea-005056be271d', 5);
-//        ShopBasketHelper::addItemToTheShopBasket('e242e97f-f29b-11dd-9439-000e0c431b58', 3);
+
+    private function getDataItem($item) {
+        $query = "SELECT * FROM `ShopItems` WHERE `id` = '".$item."';";
+        $this->data = $this->SQL_HELPER->select($query,1);
     }
-    
-    private function getImage($item) {
-        if (file_exists($this->imageDir.$item.'_'.$this->imgSize.'.jpg'))  {
-            $image = $item.'_'.$this->imgSize.'.jpg';
-        } elseif (file_exists($this->imageDir.$item.'_'.$this->imgSize.'.png'))  {
-            $image = $item.'_'.$this->imgSize.'.png';
-        } else {
-            $image = $this->defaultIcon;
-        }
-        return $this->imageDir.$image;
-    }
-    
-    private function getBigImage($item) {
-        if (file_exists($this->imageDir.$item.'.jpg'))  {
-            $image = $item.'.jpg';
-        } elseif (file_exists($this->imageDir.$item.'.png'))  {
-            $image = $item.'.png';
-        } else {
-            $image = $this->defaultBigIcon;
-        }
-        return $this->imageDir.$image;
-    }
-    
-    private function getImageHTML($item,$itemName) {
-        $out = '<a class="fancybox-gallery" href="'.$this->getBigImage($item).'">';
-        $out .= '<img src="'.$this->getImage($item).'" alt="'.$itemName.'" title="'.$itemName.'">';
+
+    private function getImageHTML($item, $itemName) {
+        $out = '<a class="fancybox-gallery" href="'.ShopItemDataHelper::getBigImage($item).'">';
+        $out .= '<img src="'.ShopItemDataHelper::getImage($item, $this->imgSizeSmall).'" alt="'.$itemName.'" title="'.$itemName.'">';
         $out .= '</a>';
         return $out;
     }
-    
+
     public static function getShopItemAmountForBuy($itemID, $value) {
         $out = '<div class="shopItemAmountBuyBlock">';
         $out .= '<div class="shopItemAmountBuyDelButton" itemID="'.$itemID.'">-</div>';
@@ -78,33 +53,69 @@ class ShopBasket {
         $this->HTML .= $this->generateBuyHtml();
         $this->HTML .= '</div>';
     }
-    
+
     private function generateItemHtml($item) {
         $out = '<div class="ShopBasketItemBlock" id="ShopBasketItemBlock_'.$item['id'].'" title="'.$item['note'].'">';
             $out .= '<div class="ShopBasketItemImageInfoBlock">';
-                $out .= '<div class="itemImage">';
-                $out .= $this->getImageHTML($item['id'],$item['itemName']);
-                $out .= '</div>';
-                $out .= ShopItemAmountScale::getAmountScale($item['maxAmount'], $item['minAmount']);
+            $out .= '<div class="itemImage">';
+            $out .= $this->getImageHTML($item['id'], $item['itemName']);
+            $out .= '</div>';
+            $out .= ShopItemAmountScale::getAmountScale($item['maxAmount'], $item['minAmount']);
             $out .= '</div>';
             $out .= '<div class="ShopBasketItemTextInfoBlock">';
-                $out .= '<div class="itemName"><a href="'.$item['itemUrl'].'">'.$item['itemName'].'</a></div>';
+            $out .= $this->getMoreInfo($item);
             $out .= '</div>';
             $out .= '<div class="ShopBasketItemPriceInfoBlock">';
-                $out .= '<div class="priceValue"><span id="priceValue_'.$item['id'].'">'.$item['priceValue'].'</span></div>';
-                $out .= '<div class="allPriceValue"><span id="allPriceValue_'.$item['id'].'">'.$item['allPriceValue'].'</span></div>';
+            $out .= '<div class="priceValue"><span id="priceValue_'.$item['id'].'">'.$item['priceValue'].'</span></div>';
+            $out .= '<div class="allPriceValue"><span id="allPriceValue_'.$item['id'].'">'.$item['allPriceValue'].'</span></div>';
             $out .= '</div>';
             $out .= '<div class="ShopBasketItemButtonBlock">';
-                $out .= '<div class="AmountButtonBlock">';
-                $out .= $this->getShopItemAmountForBuy($item['id'], $item['amount']);
-                $out .= '</div>';
-                $out .= '<div class="DeleteButtonBlock" idDel="'.$item['id'].'">';
-                $out .= '<div class="DeleteButton">Удалить</div>';
-                $out .= '</div>';
+            $out .= '<div class="AmountButtonBlock">';
+            $out .= $this->getShopItemAmountForBuy($item['id'], $item['amount']);
+            $out .= '</div>';
+            $out .= '<div class="DeleteButtonBlock" idDel="'.$item['id'].'">';
+            $out .= '<div class="DeleteButton">Удалить</div>';
+            $out .= '</div>';
             $out .= '</div>';
         $out .= '</div>';
         return $out;
     }
+
+    private function getMoreInfo($item) {
+        $this->getDataItem($item['id']);
+        $this->property = ShopItemDataHelper::getProperty($item['id'], $this->data['group']);
+        $out = '<a class="fancybox-doc" href="#itemMoreInfo_'.$item['id'].'">';
+            $out .= '<div class="itemName">'.$item['itemName'].'</div>';
+            $out .= '<div class="doc_div" id="itemMoreInfo_'.$item['id'].'" style="display: none;">';
+                $out .= '<div class="itemMoreInfoWrapper">';
+                    $out .= ShopGroupsPathPanelHelper::getPanel($item['group']);
+                    $out .= '<img src="'.ShopItemDataHelper::getImage($item['id'], $this->imgSizeMidle).'" alt="'.$item['itemName'].'" title="'.$item['itemName'].'">';
+                    $out .= '<div class="itemMoreInfoWrapperNameDescription">';
+                    $out .= '<div class="itemName">'.$item['itemName'].'</div>';
+                    $out .= '<div class="ShopItemDescription">';
+                    $out .= $this->data['description'];
+                    $out .= '</div>';  // ShopItemDescription
+                    $out .= '</div>';
+                    $out .= '<div class="clear"></div>';
+                    $out .= '<div class="itemMoreInfoWrapperLine"></div>';
+                    $out .= '<div class="ShopItemParams">';
+                    foreach ($this->property as $property) {
+                        $out .= '<div class="ShopItemParam">';
+                        $out .= '<div class="ShopItemParamName"><div>';
+                        $out .= $property['propertyName'].' :';
+                        $out .= '</div></div>';  // ShopItemParamName
+                        $out .= '<div class="ShopItemParamValue"><div>';
+                        $out .= ShopItemDataHelper::getHtmlAllValue($property, $property['oneOfAllValues'] === "1");
+                        $out .= '</div></div>';  // ShopItemParamValue
+                        $out .= '</div>';  // ShopItemParam
+                    }
+                    $out .= '</div>';  // ShopItemParams
+                $out .= '</div>';  // itemMoreInfoWrapper
+            $out .= '</div>';  // class="doc_div"
+        $out .= '</a>';
+        return $out;
+    }
+
     private function generateBuyHtml() {
         $pay = 0;
         $out = '';
@@ -120,14 +131,14 @@ class ShopBasket {
         }
         return $out;
     }
-    
+
     /**
      * выводим HTML
      */
     public function get() {
         echo $this->HTML;
     }
-    
+
     /**
      * Возвращаем HTML
      * @return string $this->HTML - сгенерированный HTML

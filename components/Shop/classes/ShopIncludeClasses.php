@@ -1,6 +1,6 @@
 <?php
-
 class ShopIncludeClasses {
+
     private static $notIncluded = true;
 
     public static function includeAllClasses($componentPath = './components/Shop/', $modulesPath = './modules/ShopNavigationPanel/') {
@@ -20,6 +20,7 @@ class ShopIncludeClasses {
             include_once $componentPath.'classes/ShopGroupsItemList.php';
             include_once $componentPath.'classes/ShopMainClass.php';
             include_once $componentPath.'classes/ShopItem.php';
+            include_once $componentPath.'classes/ShopItemDataHelper.php';
             include_once $componentPath.'classes/ShopGroupsPageNavigator.php';
             include_once $componentPath.'classes/ShopGroupPriceType.php';
             include_once $componentPath.'classes/ShopItemAmountScale.php';

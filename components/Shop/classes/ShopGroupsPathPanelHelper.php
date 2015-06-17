@@ -7,11 +7,11 @@
 class ShopGroupsPathPanelHelper {
     static private $shopGroupsHelper;
     static private $object;
-    
+
     private function __construct() {
         self::$shopGroupsHelper = new ShopGroupsHelper();
     }
-    
+
     /**
      * создание объекта
      */
@@ -20,10 +20,12 @@ class ShopGroupsPathPanelHelper {
             self::$object = new ShopGroupsPathPanelHelper();
         }
     }
-    
-    public static function getPanel() {
+
+    public static function getPanel($thisGroup = NULL) {
         self::createObject();
-        $thisGroup = ShopPageInfoHelper::shopPageGroupId();
+        if($thisGroup === NULL) {
+            $thisGroup = ShopPageInfoHelper::shopPageGroupId();
+        }
         if($thisGroup == null || $thisGroup == '') {
             return '';
         }

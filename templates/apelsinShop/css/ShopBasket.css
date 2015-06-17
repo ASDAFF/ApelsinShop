@@ -1,7 +1,6 @@
 .ShopBasketBlock {}
 .ShopBasketBlock .ShopBasketItemBlock {
     height: 90px;
-    margin-bottom: 10px;
     border-bottom: 1px dotted #869791;
 }
 
@@ -50,7 +49,9 @@
     vertical-align: middle;
     text-align: center;
 }
-.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemTextInfoBlock .itemName a {}
+.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemTextInfoBlock a:hover {
+    text-decoration: underline;
+}
 
 .ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemPriceInfoBlock {
     width: 150px;
@@ -169,6 +170,63 @@
     cursor: pointer;
     float: right;
 }
+.ShopBasketBlock .ShopBasketItemBuyBlock .ShopBasketItemBuyButton:hover {
+    background: rgb(224,122,21);
+}
 .ShopBasketBlock .ShopBasketItemBuyBlock .ShopBasketItemClearButton {
     float: left;
+    background: #C8C8C8;
+}
+.ShopBasketBlock .ShopBasketItemBuyBlock .ShopBasketItemClearButton:hover {
+    background: #ef7f1a;
+}
+/*---------- FANCYBOX ---------------*/
+/*смена фона для fancybox*/
+.itemMoreInfoWrapper {
+    font: 14px/16px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    max-width: 600px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.itemMoreInfoWrapper .itemName {
+    text-align: center;
+    font-size: 16px;
+    color: #ef7f1a;
+    font-weight: bold;
+    padding-bottom: 10px;
+    text-decoration: underline;
+}
+.itemMoreInfoWrapper img {
+    float: left;
+    padding: 0 10px 10px 0px;
+}
+.itemMoreInfoWrapper.itemMoreInfoWrapperNameDescription {}
+.itemMoreInfoWrapper .ShopItemDescription {
+    text-align: justify;
+}
+.itemMoreInfoWrapper .itemMoreInfoWrapperLine {
+    width: 500px;
+    height: 1px;
+    background: #ef7f1a;
+    margin: 10px 50px;
+}
+.itemMoreInfoWrapper .ShopItemParams .ShopItemParam {
+    margin: 5px 0;
+}
+.itemMoreInfoWrapper .ShopItemParams .ShopItemParam .ShopItemParamName {
+    color: #ef7f1a;
+    display: inline-block;
+    width: 295px;
+    font-size: 12px;
+    padding-right: 10px;
+}
+.itemMoreInfoWrapper .ShopItemParams .ShopItemParam .ShopItemParamName div {
+    text-align: right;
+}
+.itemMoreInfoWrapper .ShopItemParams .ShopItemParam .ShopItemParamValue {
+    width: 295px;
+    display: inline-block;
+}
+.itemMoreInfoWrapper .ShopItemParams .ShopItemParam .ShopItemParamValue div {
+    text-align: left;
 }

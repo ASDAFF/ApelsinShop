@@ -186,7 +186,7 @@ class ShopBasketHelper {
                 $html .= '</a>';
             $html .= '</div>';  // ShopItemBuyButtonBlock
         } else {
-            $html .= '<div class="ShopItemBuyButton ShopItemBuy" id="'.$itemID.'" >';
+            $html = '<div class="ShopItemBuyButton ShopItemBuy" id="'.$itemID.'" >';
                 $html .= 'Купить';
             $html .= '</div>';
             // ShopItemBuyButton
