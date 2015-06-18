@@ -84,7 +84,7 @@ class ShopBasket {
         $this->getDataItem($item['id']);
         $property = ShopItemDataHelper::getProperty($item['id'], $this->data['group']);
         $out = '<a class="fancybox-doc" href="#itemMoreInfo_'.$item['id'].'">';
-            $out .= '<div class="itemName">'.$item['itemName'].'</div>';
+            $out .= '<div class="itemName" title="подробнее">'.$item['itemName'].'</div>';
         $out .= '</a>';
             $out .= '<div class="doc_div" id="itemMoreInfo_'.$item['id'].'" style="display: none;">';
                 $out .= '<div class="itemMoreInfoWrapper">';
