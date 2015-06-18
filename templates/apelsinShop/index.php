@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="<?php $ROOT->templatePath();?>css/print.css" type="text/css" />
 </head>
 <body>
+    test
     <?php $ROOT->bodyStart();?>
     <div class="Wraper">
         <div class="HeadWraper">
