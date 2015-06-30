@@ -76,7 +76,7 @@ ul li:before {
 }
 .Wraper .HeadWraper .HeadWraperBlock .LeftHeadWraper .LeftHeadBlock .LeftBottomHeadWraper {
     height: 35px; /* 50px */
-    padding: 5px 0px 10px 0px;
+    padding: 0px 0px 15px 0px;
 }
 .Wraper .HeadWraper .HeadWraperBlock .LeftHeadWraper .LeftHeadBlock .LeftBottomHeadWraper .LeftBottomHeadBlock {
     height: 35px;

@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.13.1
+-- version 4.2.10.1
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Июн 08 2015 г., 13:28
+-- Время создания: Июн 30 2015 г., 12:33
 -- Версия сервера: 10.0.13-MariaDB
 -- Версия PHP: 5.6.1
 
@@ -144,6 +144,7 @@ INSERT INTO `CreatedModules` (`id`, `name`, `module`) VALUES(102, 'Перекл�
 INSERT INTO `CreatedModules` (`id`, `name`, `module`) VALUES(201, 'Главное меню', 'menu');
 INSERT INTO `CreatedModules` (`id`, `name`, `module`) VALUES(401, 'ShopNavigationPanel', 'ShopNavigationPanel');
 INSERT INTO `CreatedModules` (`id`, `name`, `module`) VALUES(501, 'ShopBasket', 'ShopBasket');
+INSERT INTO `CreatedModules` (`id`, `name`, `module`) VALUES(601, 'Поиск', 'Search');
 INSERT INTO `CreatedModules` (`id`, `name`, `module`) VALUES(901, 'Основной копирайт', 'html');
 INSERT INTO `CreatedModules` (`id`, `name`, `module`) VALUES(902, 'Дополнительный копирайт', 'html');
 INSERT INTO `CreatedModules` (`id`, `name`, `module`) VALUES(903, 'Наверх сайта', 'ToTopSite');
@@ -539,6 +540,7 @@ INSERT INTO `Modules` (`alias`, `name`, `author`, `version`, `description`, `mai
 INSERT INTO `Modules` (`alias`, `name`, `author`, `version`, `description`, `main`, `head`, `bodyStart`, `bodyEnd`, `admin`, `includeOnceHead`, `includeOnceBodyStart`, `includeOnceBodyEnd`) VALUES('html', 'Вывод HTML кода', 'Compu Project', '1.0', 'Данный модуль позволяет делать HTML вставки в указанные блоки сайта.', 'index.php', 'head.php', 'bodyStart.php', 'bodyEnd.php', 'admin/index.php', 1, 1, 1);
 INSERT INTO `Modules` (`alias`, `name`, `author`, `version`, `description`, `main`, `head`, `bodyStart`, `bodyEnd`, `admin`, `includeOnceHead`, `includeOnceBodyStart`, `includeOnceBodyEnd`) VALUES('langPanel', 'Языковая панель', 'Compu Project', '1.0', 'Панель выбора языка сайта.', 'index.php', 'head.php', 'bodyStart.php', 'bodyEnd.php', 'admin/index.php', 1, 1, 1);
 INSERT INTO `Modules` (`alias`, `name`, `author`, `version`, `description`, `main`, `head`, `bodyStart`, `bodyEnd`, `admin`, `includeOnceHead`, `includeOnceBodyStart`, `includeOnceBodyEnd`) VALUES('menu', 'Модуль меню', 'Compu Project', '1.0', 'Модуль для создания меню сайта.', 'index.php', 'head.php', 'bodyStart.php', 'bodyEnd.php', 'admin/index.php', 1, 1, 1);
+INSERT INTO `Modules` (`alias`, `name`, `author`, `version`, `description`, `main`, `head`, `bodyStart`, `bodyEnd`, `admin`, `includeOnceHead`, `includeOnceBodyStart`, `includeOnceBodyEnd`) VALUES('Search', 'Поиск', 'Compu Project', '1.0', 'Поле поиска', 'index.php', 'head.php', 'bodyStart.php', 'bodyEnd.php', '/admin/index.php', 1, 1, 1);
 INSERT INTO `Modules` (`alias`, `name`, `author`, `version`, `description`, `main`, `head`, `bodyStart`, `bodyEnd`, `admin`, `includeOnceHead`, `includeOnceBodyStart`, `includeOnceBodyEnd`) VALUES('ShopBasket', 'ShopBasket', 'Compu Project', '1.0', NULL, 'index.php', 'head.php', 'bodyStart.php', 'bodyEnd.php', NULL, 1, 1, 1);
 INSERT INTO `Modules` (`alias`, `name`, `author`, `version`, `description`, `main`, `head`, `bodyStart`, `bodyEnd`, `admin`, `includeOnceHead`, `includeOnceBodyStart`, `includeOnceBodyEnd`) VALUES('ShopNavigationPanel', 'Shop Navigation Panel', 'CompuProject', '1.0', NULL, 'index.php', 'head.php', 'bodyStart.php', 'bodyEnd.php', NULL, 1, 1, 1);
 INSERT INTO `Modules` (`alias`, `name`, `author`, `version`, `description`, `main`, `head`, `bodyStart`, `bodyEnd`, `admin`, `includeOnceHead`, `includeOnceBodyStart`, `includeOnceBodyEnd`) VALUES('slider', 'Слайдер', 'Compu Project', '1.0', 'Модуль для вывода слайдеров', 'index.php', 'head.php', 'bodyStart.php', 'bodyEnd.php', 'admin/index.php', 1, 1, 1);
@@ -605,6 +607,7 @@ INSERT INTO `ModulesInBlocks` (`id`, `module`, `block`, `sequence`, `showTitle`,
 INSERT INTO `ModulesInBlocks` (`id`, `module`, `block`, `sequence`, `showTitle`, `cssClasses`, `display`, `onAllPages`) VALUES(201103, 201, 103, 1, 0, NULL, 1, 1);
 INSERT INTO `ModulesInBlocks` (`id`, `module`, `block`, `sequence`, `showTitle`, `cssClasses`, `display`, `onAllPages`) VALUES(401104, 401, 104, 1, 0, NULL, 1, 1);
 INSERT INTO `ModulesInBlocks` (`id`, `module`, `block`, `sequence`, `showTitle`, `cssClasses`, `display`, `onAllPages`) VALUES(501101, 501, 101, 1, 0, NULL, 1, 1);
+INSERT INTO `ModulesInBlocks` (`id`, `module`, `block`, `sequence`, `showTitle`, `cssClasses`, `display`, `onAllPages`) VALUES(601102, 601, 102, 1, 0, NULL, 1, 1);
 INSERT INTO `ModulesInBlocks` (`id`, `module`, `block`, `sequence`, `showTitle`, `cssClasses`, `display`, `onAllPages`) VALUES(901108, 901, 108, 1, 0, NULL, 1, 1);
 INSERT INTO `ModulesInBlocks` (`id`, `module`, `block`, `sequence`, `showTitle`, `cssClasses`, `display`, `onAllPages`) VALUES(902109, 902, 109, 1, 0, NULL, 1, 1);
 INSERT INTO `ModulesInBlocks` (`id`, `module`, `block`, `sequence`, `showTitle`, `cssClasses`, `display`, `onAllPages`) VALUES(903108, 903, 108, 2, 0, NULL, 1, 1);
@@ -5418,7 +5421,7 @@ CREATE TABLE IF NOT EXISTS `TemplateBlocks` (
   `block` varchar(50) NOT NULL,
   `template` varchar(50) NOT NULL,
   `description` text
-) ENGINE=InnoDB AUTO_INCREMENT=110 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2001 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `TemplateBlocks`
@@ -6257,7 +6260,7 @@ MODIFY `sequence` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 -- AUTO_INCREMENT для таблицы `TemplateBlocks`
 --
 ALTER TABLE `TemplateBlocks`
-MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=110;
+MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2001;
 --
 -- AUTO_INCREMENT для таблицы `TemplateDependence`
 --
