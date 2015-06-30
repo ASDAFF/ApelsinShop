@@ -8,11 +8,12 @@
 .searchModuleWrapper {
     display: inline-block;
     padding: 3px;
-    height: 30px;
+    height: 32px;
 }
 .searchModuleWrapper .searchModuleForm {
     height: inherit;
     border: 1px solid #c3c3c3;
+    padding: 0px;
 }
 .searchModuleWrapper .searchModuleForm .searchModuleFormSearch,
 .searchModuleWrapper .searchModuleForm .searchModuleFormSubmit {
