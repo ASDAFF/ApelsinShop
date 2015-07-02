@@ -37,7 +37,11 @@ class ShopOrderManagementHelper {
         return substr($code, 0,  strlen($code)-1);
     }
     
-    public static function getOrderIdBarCode($orderId) {
+    public static function getOrderIdBarCode_IMG($orderId) {
         return BarCodeGenHelper::BCGcode39_IMG($orderId);
+    }
+    
+    public static function getOrderIdBarCode_IMG_URL($orderId) {
+        return BarCodeGenHelper::BCGcode39_IMG_URL($orderId);
     }
 }
