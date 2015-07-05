@@ -31,12 +31,13 @@ class ShopImportData_MySQL {
     private $fileName ;
     
     public function __construct($fileName) {
+        global $SHOP_ADMIN_TEST_MOD;
         $this->fileName = $fileName;
         global $_SQL_HELPER;
         $this->SQL_HELPER = $_SQL_HELPER;
         $this->getUserData();
         $this->getData_XML();
-        if(count($this->ERRORS) == 0) {
+        if(count($this->ERRORS) == 0 || $SHOP_ADMIN_TEST_MOD) {
             $this->getData_MySQL();
             $this->generateQueriesMySQL();
             $this->createMysqlScript();
@@ -390,7 +391,8 @@ class ShopImportData_MySQL {
     }
     
     public function execMysqlScript() {
-        if(count($this->ERRORS) == 0) {
+        global $SHOP_ADMIN_TEST_MOD;
+        if(count($this->ERRORS) == 0 || $SHOP_ADMIN_TEST_MOD) {
             return $this->SQL_HELPER->sqlFileExec($this->FILE_SQL);
         } else {
             return 'Есть ошибки';

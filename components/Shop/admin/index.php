@@ -1,4 +1,7 @@
 <?php
+global $SHOP_ADMIN_TEST_MOD;
+$SHOP_ADMIN_TEST_MOD = FALSE;
+                
 function createdDir($dirUpload) {
     if (!file_exists($dirUpload)) { 
         mkdir($dirUpload, 0777, true);
