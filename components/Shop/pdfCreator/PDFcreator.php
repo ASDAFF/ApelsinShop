@@ -91,9 +91,8 @@ class PDFcreator extends TCPDF {
             $row++;
             $this->Ln( 10 );
         }
-        $this->Cell( 10, 10, $row + 1, 1, 0, 'C');
         $this->SetFontSize(12);
-        $this->Cell( 150, 10, 'Итого: ', 1, 0, 'R');
+        $this->Cell( 160, 10, 'Итого: ', 1, 0, 'R');
         $this->SetFontSize(12);
         $this->Cell( 30, 10, $this->total.' руб.', 1, 0, 'C');
     }

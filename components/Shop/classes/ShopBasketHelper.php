@@ -206,13 +206,14 @@ class ShopBasketHelper {
      */
     public static function getTotal() {
         self::createObject();
+        self::$total = 0;
         $allItems = ShopBasketHelper::getAllItemsFromShopBasket();
         if (!empty($allItems)) {
             foreach ($allItems as $item) {
                 self::$total += $item['allPriceValue'];
             }
         } else {
-            self::$total = '0';
+            self::$total = 0;
         }
         return self::$total;
     }
