@@ -45,7 +45,8 @@ class ShopBasket {
      * Генерируем HTML информации о товаре
      */
     private function generateHtml() {
-        $this->HTML = '<div class="ShopBasketBlock">';
+        $this->HTML = '<div class="printOrder"></div>';
+        $this->HTML .= '<div class="ShopBasketBlock">';
         foreach ($this->items as $item) {
             $this->HTML .= $this->generateItemHtml($item);
         }
@@ -124,7 +125,10 @@ class ShopBasket {
             }
             $out = '<div class="ShopBasketItemBuyBlock">';
                 $out .= '<div class="ShopBasketItemClearButton ShopBasketItemBuyButton">Очистить</div>';
-                $out .= '<div class="ShopBasketItemBuyButton">Купить</div>';
+                $urlHelper = new UrlHelper();
+                $out .= '<a href="'.$urlHelper->pageUrl(ShopPageInfoHelper::getShopPageAlias(), [ShopPageInfoHelper::ShopbasketPage, 'buy']).'">';
+                    $out .= '<div class="ShopBasketItemBuyButton" id="ShopItemBuyButton">Купить</div>';
+                $out .= '</a>';
                 $out .= '<div class="ShopBasketItemPayInfoBlock"><span class="text">Итого:</span> <span class="price">'.$pay.'</span></div>';
             $out .= '</div>';
         }

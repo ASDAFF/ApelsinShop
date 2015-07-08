@@ -24,8 +24,14 @@ class ShopMainClass {
             $shopItem = new ShopItem();
             $this->HTML = $shopItem->getHtml();
         } else if(isset($this->params[0]) && $this->params[0] === ShopPageInfoHelper::getShopbasketPage()) {
-            $shopBasket = new ShopBasket();
-            $this->HTML = $shopBasket->getHtml();
+            if (isset($this->params[1]) && $this->params[1] === 'buy') {
+                $form = new ShopOrderForm();
+                $this->HTML .= $form->getHtml();
+                $form->getFile();
+            } else {
+                $shopBasket = new ShopBasket();
+                $this->HTML = $shopBasket->getHtml();
+            }
         } else {
             $this->HTML = "Некорректная URL, позже здесь будет нормальный обработчик ошибки";
         }

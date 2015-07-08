@@ -5,7 +5,7 @@
 class ShopBasketGenerateXML {
 
     static private $object;
-    const xmlDir = './resources/Components/Shop/OrdertFilesXML/';
+    static private $xmlDir = './resources/Components/Shop/Orders/FilesXML/';
 
     /**
      * Конструктор класса ShopBasketGenerateXML
@@ -28,9 +28,9 @@ class ShopBasketGenerateXML {
      * создаем дирректорию для заливки заказов
      */
     private static function createDir() {
-        if (!file_exists(self::xmlDir)) { 
-            mkdir(self::xmlDir, 0777, true);
-            chmod(self::xmlDir, 0777);
+        if (!file_exists(self::$xmlDir)) { 
+            mkdir(self::$xmlDir, 0777, true);
+            chmod(self::$xmlDir, 0777);
         }
     }
 
@@ -40,7 +40,7 @@ class ShopBasketGenerateXML {
      * @return string - путь к XML файлу заказа
      */
     private static function getFileName($orderId) {
-        return self::xmlDir.$orderId.".xml";
+        return self::$xmlDir.$orderId.".xml";
     }
 
     /**
@@ -105,7 +105,7 @@ class ShopBasketGenerateXML {
      * @param string $orderId - ID заказа
      * @return string - путь к XML файлу заказа или NULL если такой файл не найден
      */
-    public function getFileByID($orderId) {
+    public static function getFileByID($orderId) {
         self::createObject();
         $file = self::getFileName($orderId);
         if(file_exists($file)) {
@@ -119,11 +119,20 @@ class ShopBasketGenerateXML {
      * Удаляем файл с заказом
      * @param string $orderId - ID заказа
      */
-    public function deleteFileByID($orderId) {
+    public static function deleteFileByID($orderId) {
         self::createObject();
         $file = self::getFileName($orderId);
         if(file_exists($file)) {
             unlink($file);
         }
+    }
+
+    /**
+     * Вызывать в первую очередь если надо указать другой путь
+     * @param type $path
+     */
+    public static function setDirPath($path) {
+        self::$xmlDir = $path;
+        self::createObject();
     }
 }

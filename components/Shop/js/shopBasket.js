@@ -55,11 +55,6 @@ jQuery(document).ready(function() {
         getShopItemAmountBuy(id);
     });
 
-    jQuery('.ShopBasketItemBuyButton').click(function() {
-        clearTimeout(correctShopItemZeroAmountTimer);
-        correctShopItemAmountBuy();
-    });
-
     // удаление товара из корзины
     jQuery('.DeleteButtonBlock').click(function() {
         var id = $(this).attr('idDel');
@@ -71,7 +66,28 @@ jQuery(document).ready(function() {
         shopBasketItemClearButton();
     });
 
+    // печать PDF - файла, очищение корзины, переход на главную
+    jQuery('#openFilePDF').click(function() {
+        shopOrderFormHandling();
+        shopBasketItemClearButton();
+    });
+
 });
+
+// обрабртка данных из формы подтверждения заказа
+function shopOrderFormHandling() {
+    var data = $('.shopOrderFormMain').serialize();
+    $.ajax({
+        type: "POST",
+        url: "./components/Shop/script/shopOrderFormHandling.php",
+        cache: false,
+        data: data,
+        success: function(result) {
+               $('.shopOrderFormMain').html(result);
+            }
+    });
+    return false;
+};
 
 function correctShopItemZeroAmount(obj,id) {
     $(obj).val(1);

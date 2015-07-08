@@ -1,0 +1,94 @@
+.shopOrderFormWrapper {
+    width: 100%;
+    height: 198px;
+    background: #fff;
+    font: 16px/25px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    color: #5f5f5f;
+}
+.shopOrderFormWrapper .shopOrderFormInfo {
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+.shopOrderFormWrapper .shopOrderFormMain {
+    width: 600px;
+    height: 153px;
+    text-align: center;
+    overflow: auto;
+    float: left;
+}
+.shopOrderFormWrapper .shopOrderFormMain .shopOrderFormTable {
+    width: 100%;
+}
+.shopOrderFormWrapper .shopOrderFormMain .shopOrderFormTable td {
+    padding: 5px;
+}
+.shopOrderFormWrapper .shopOrderFormMain .shopOrderFormTable .FormTable_Text {
+    text-align: right;
+    width: 25%;
+    color: #ef7f1a;
+}
+.shopOrderFormWrapper .shopOrderFormMain .shopOrderFormTable .FormTable_Text .text {}
+.shopOrderFormWrapper .shopOrderFormMain .shopOrderFormTable .FormTable_Input {
+    width: 75%;
+}
+.shopOrderFormWrapper .shopOrderFormMain .shopOrderFormTable .FormTable_Input .shopOrderFormInput,
+.shopOrderFormWrapper .shopOrderFormMain .shopOrderFormTable .FormTable_Input .selectBox,
+.shopOrderFormWrapper .shopOrderFormMain .shopOrderFormTable .FormTable_Input .selectBox option,
+.shopOrderFormWrapper .shopOrderFormMain .shopOrderFormSubmit {
+    outline: none;
+    border: none;
+}
+.shopOrderFormWrapper .shopOrderFormMain .shopOrderFormTable .FormTable_Input .shopOrderFormInput {
+    width: 100%;
+    border-bottom: 1px solid #c3c3c3;
+}
+input::-webkit-input-placeholder {
+    color: #c3c3c3;
+}
+input:-moz-placeholder { 
+    color: #c3c3c3; 
+}
+.shopOrderFormWrapper .shopOrderFormMain .shopOrderFormTable .FormTable_Input .selectBox {
+    background: #c3c3c3;
+    color: #fff;
+    font-size: inherit;
+    padding: 5px 0px;
+    margin: 0;
+    text-overflow: ellipsis;
+    width: 100%;
+    -webkit-appearance: button;
+    background: #c3c3c3 url("../img/icon_select.png") 98% center no-repeat;
+}
+.shopOrderFormWrapper .shopOrderFormMain .shopOrderFormTable .FormTable_Input .selectBox option {
+    background: #fff;
+    color: #4d4d4d;
+}
+.shopOrderFormWrapper .shopOrderFormSubmit {
+    height: 30px;
+    width: 140px;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    background: #ef7f1a;
+    color: #fff;
+    text-transform: uppercase;
+    font: bold 14px/30px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+}
+.shopOrderFormWrapper .shopOrderFormSubmit:hover {
+    background: rgb(224,122,21);
+}
+.shopOrderFormWrapper .shopOrderPrint {
+    width: 286px;
+    height: 150px;
+    float: left;
+    text-align: center;
+    border-left: 1px dotted #5f5f5f;
+    margin: 0 0 0 73px;
+}
+.shopOrderFormWrapper .shopOrderPrint a {
+    margin: 60px auto;
+}
+.shopOrderFormWrapper .shopOrderPrint a:hover {
+    background: rgb(224,122,21);
+}

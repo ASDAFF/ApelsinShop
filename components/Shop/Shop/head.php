@@ -7,3 +7,5 @@ $(document).ready(function() {
 <?php
 include_once './components/Shop/classes/ShopIncludeClasses.php';
 ShopIncludeClasses::includeAllClasses();
+include_once './components/Shop/pdfCreator/tcpdf.php';
+include_once './components/Shop/pdfCreator/PDFcreator.php';

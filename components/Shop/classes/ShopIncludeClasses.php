@@ -30,6 +30,8 @@ class ShopIncludeClasses {
             include_once $componentPath.'classes/ShopItemsPropertiesMeasureScaling.php';
             include_once $componentPath.'classes/ShopBasketGenerateXML.php';
             include_once $componentPath.'classes/ShopOrderManagementHelper.php';
+            include_once $componentPath.'classes/ShopOrderForm.php';
+            include_once $componentPath.'classes/ShopOrderMessage.php';
 
             include_once $modulesPath.'classes/ShopNavigationPanel.php';
             include_once $modulesPath.'classes/ShopNavigationPanel_Menu.php';
