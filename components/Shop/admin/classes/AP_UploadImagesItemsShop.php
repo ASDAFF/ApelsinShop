@@ -5,7 +5,7 @@
  * @author olga
  */
 class AP_UploadImagesItemsShop {
-    
+
     private $form;
     private $dir;
     private $archiveItemsImage = 'ItemsImage.zip';
@@ -32,7 +32,7 @@ class AP_UploadImagesItemsShop {
     public function getHtml() {
         return $this->form;
     }
-    
+
     /**
      * Данные о пользователе
      */
@@ -41,13 +41,14 @@ class AP_UploadImagesItemsShop {
         $this->yourUser->checkAuthorization();
         $this->yourUserData = $this->yourUser->getUserData();
     }
-    
+
     /**
      *  Форма
      */
     private function generateForm() {
         $urlHelper = new UrlHelper();
         $this->form = "";
+        $this->getTextInfo();
         $this->form .= '<form class="AP_Form" name="AP_Form" action="'.$urlHelper->getThisPage().'" method="POST" accept - charset="UTF-8" required >';
             $this->form .= '<fieldset>';
             $this->form .= '<legend>Распаковать архив</legend>';
@@ -59,14 +60,22 @@ class AP_UploadImagesItemsShop {
             $this->form .= '</fieldset>';
         $this->form .= '</form>';
     }
-    
+
+    private function getTextInfo() {
+        $this->form = "Перед загрузкой изображений необходимо:";
+        $this->form .= "<ul>";
+        $this->form .= "<li>Создать zip-архив: для изображений товаров - 'ItemsImage.zip', для иконок групп - 'GroupsIcons.zip.'</li>";
+        $this->form .= "<li>Разместить созданный архив в директории ./resources/Components/Shop/TEMP.</li>";
+        $this->form .= "</ul>";
+    }
+
     /**
      * Генерирование блока формы
      * @param type $text
      * @param type $zip
      * @param type $checkbox
      */
-    private function generationBlockForm($text, $zip) {
+    private function generationBlockForm($text, $zip, $name) {
         $archive = $this->dirTEMP.$zip;
         $this->form .= '<tr>';
             $this->form .= '<td class="FormTable_Input">';
@@ -81,7 +90,7 @@ class AP_UploadImagesItemsShop {
                 $this->form .= '</td>';
             } else {
                 $this->form .= '<td class="FormTable_Input" colspan="2">';
-                    $this->form .= '<div class="text">Архив отсутствует</div>';
+                    $this->form .= '<div class="text">Архив "'.$name.'" отсутствует</div>';
                 $this->form .= '</td>';
             }
         $this->form .= '</tr>';
@@ -91,8 +100,7 @@ class AP_UploadImagesItemsShop {
      * Загрузка checkboxItemsImage  checkboxGroupsIcons
      */
     private function uploadArchive() {
-        
-        if (isset($_POST['AP_Submit']) && isset($_POST['checkboxUploadImages']) && 
+        if (isset($_POST['AP_Submit']) && isset($_POST['checkboxUploadImages']) &&
            $_POST['checkboxUploadImages'] != null && $_POST['checkboxUploadImages'] !== "") {
             $uploadImages = $_POST['checkboxUploadImages'];
             // если $uploadImages заполнен
@@ -108,7 +116,7 @@ class AP_UploadImagesItemsShop {
                     $this->unpaсkingArchive($archiveName, $dirUnzipped);
                     // выводим отчет
                     $this->generationReport($archiveName);
-                    //делаем запись в логи 
+                    //делаем запись в логи
                     $this->recordActionLog($archiveName);
                     //удалить архив
 //                    unlink($this->dirTEMP.$archiveName);
@@ -118,7 +126,7 @@ class AP_UploadImagesItemsShop {
             }
         }
     }
-    
+
     /**
      * Получить название файла без его расширения
      * @param type $file
@@ -139,7 +147,7 @@ class AP_UploadImagesItemsShop {
             chmod($dir, 0777);
         }
     }
-    
+
     /**
      * Распаковка архива
      */
@@ -163,7 +171,7 @@ class AP_UploadImagesItemsShop {
             $this->errors[] = 'Архив не найден.';
         }
     }
-    
+
     /**
      * Генерируем отчет о распаковке
      */
@@ -193,7 +201,7 @@ class AP_UploadImagesItemsShop {
                 $this->form .= '</p>';
             $this->form .= '</div>';
         $this->form .= '</div>';
-        
+
         $this->form .= '<div id="'.$this->dir.'" class="listImagesItemsAndIconsShop">';
             $this->form .= '<p>Список всех файлов</p>';
             $this->form .= '<div class="collumnsUploadImagesItemsShop">';
@@ -205,7 +213,7 @@ class AP_UploadImagesItemsShop {
             $this->form .= '</div>';
         $this->form .= '</div>';
     }
-    
+
     /**
      * Генерирование блока с инфой в списке
      * @param type $info
@@ -223,7 +231,7 @@ class AP_UploadImagesItemsShop {
                     $this->form .= '<li>'.$nameFile.'</li>';
                 } else {
                     $this->form .= '<li>'.$file.'</li>';
-                } 
+                }
             }
             $this->form .= '</ol>';
         }
@@ -239,8 +247,8 @@ class AP_UploadImagesItemsShop {
         $query = "SELECT `itemName` FROM `ShopItems` WHERE `id` = '".$id."';";
         $itemName = $this->SQL_HELPER->select($query,1);
         return $itemName['itemName'];
-    } 
-    
+    }
+
     /**
      * Обрезает строку после заданного символа ($char)
      */
@@ -255,11 +263,11 @@ class AP_UploadImagesItemsShop {
     public function getError() {
         if ($this->errors !== null) {
             for ($i = 0; $i < count($this->errors); $i++) {
-                return $this->errors[$i].'<br>';  
-            }  
+                return $this->errors[$i].'<br>';
+            }
         }
     }
-    
+
     /**
     * Возвращает текст сообщения (ошибки)
     * @return type string
@@ -267,12 +275,12 @@ class AP_UploadImagesItemsShop {
     public function getErrorHtml() {
         if ($this->errors !== null) {
             for ($i = 0; $i < count($this->errors); $i++) {
-                echo $this->errors[$i].'<br>';  
-            }  
+                echo $this->errors[$i].'<br>';
+            }
         }
     }
-    
-    /** 
+
+    /**
      * Запись в логи таблица `ShopLogs`
      */
     private function recordActionLog($archive) {
