@@ -63,7 +63,6 @@ class ShopPropertiesFilterTypeJSGenerator {
         $this->HTML .= '    return true;';
         $this->HTML .= '};';
         $this->HTML .= 'function getShopItemListPage() {';
-//        $this->HTML .= '    alert(shopItemsListThisPage + " - " + shopItemsListLastPage);';
         $this->HTML .= '    if(shopItemsListThisPage < shopItemsListLastPage) {';
         $this->HTML .= '        shopItemsListThisPage++;';
         $this->HTML .= '        $.ajax({';
@@ -71,7 +70,6 @@ class ShopPropertiesFilterTypeJSGenerator {
         $this->HTML .= '            url: "./components/Shop/script/shopItemSearchResult.php'.$urlPageData.'" + shopItemsListThisPage,';
         $this->HTML .= '            cache: false,';
         $this->HTML .= '            success: function(result) {';
-//        $this->HTML .= '                alert(shopItemsListThisPage + " - " + shopItemsListLastPage);';
         $this->HTML .= '                $(".c_block.Shop").append(result);';
         $this->HTML .= '            }';
         $this->HTML .= '        });';
@@ -91,6 +89,7 @@ class ShopPropertiesFilterTypeJSGenerator {
     public function get() {
         echo $this->HTML;
     }
+    
     public function getHtml() {
         return $this->HTML;
     }

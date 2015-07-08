@@ -37,22 +37,6 @@ jQuery(document).ready(function() {
     });
 });
 
-$(document).on("scroll", scrolling);
-function scrolling(){
-    if(shopItemsListThisPage < shopItemsListLastPage && loadPageTrigger) {
-        
-        var clientHeight = document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight;
-        var documentHeight = document.documentElement.scrollHeight ? document.documentElement.scrollHeight : document.body.scrollHeight;
-        var scrollTop = window.pageYOffset ? window.pageYOffset : (document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop);
-     
-        if((documentHeight - clientHeight) <= scrollTop + 200 ) {
-            getShopItemListPage();
-            loadPageTrigger = false;
-            clearTimeout(shopItemsListTimer);
-            shopItemsListTimer = setTimeout(unsetLoadPageTrigger, shopItemsPageLoadTime);
-        }
-    }
-}
 function unsetLoadPageTrigger(){
     loadPageTrigger = true;
     
@@ -77,3 +61,5 @@ global $shopNavigationPanel;
 if(!isset($shopNavigationPanel) || $shopNavigationPanel === null) {
     $shopNavigationPanel = new ShopNavigationPanel();
 }
+// AJAX добавление товаров в список при прокрутке страницы
+echo ShopJsHelper::shopSearchResoultForScrols();
