@@ -68,6 +68,7 @@ class ShopBasketHelper {
 
     public static function clearShopBasket() {
         $_SESSION['ShopBasket'] = array();
+        ShopOrderManagementHelper::clearThisOrderID();
     }
 
     public static function checkItemInTheShopBasket($itemID) {

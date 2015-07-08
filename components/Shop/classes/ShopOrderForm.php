@@ -41,6 +41,7 @@ class ShopOrderForm {
         $this->html .= '<div id="shopOrderPrint" class="shopOrderPrint">';
         $this->html .= '<a href="'.$adres.'" target="_blanck" id="openFilePDF" class="shopOrderFormSubmit">Печать</a>';
         $this->html .= '</div>';
+        $this->html .= '<div class="clear"></div>';
         $this->html .= '</div>';
     }
 
