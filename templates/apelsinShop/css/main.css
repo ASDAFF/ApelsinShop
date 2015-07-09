@@ -102,6 +102,7 @@ ul li:before {
 }
 .Wraper .BeforeContentButtonWraper {
     height: 15px;
+    margin-bottom: 15px;
 }
 .Wraper .BeforeContentButtonWraper .BeforeContentButtonBlock {
     margin: 0 auto;
