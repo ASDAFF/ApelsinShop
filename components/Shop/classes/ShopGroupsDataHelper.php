@@ -25,7 +25,7 @@ class ShopGroupsDataHelper {
      * Получаем данные групп
      */
     private static function getGroupsData() {
-        $query = "SELECT * FROM `ShopGroups`";
+        $query = "SELECT * FROM `ShopGroups` ORDER BY `groupName` ASC";
         $rezult = self::$SQL_HELPER->select($query);
         self::$SQL_DATA['Groups'] = array();
         foreach ($rezult as $group) {
@@ -54,7 +54,8 @@ class ShopGroupsDataHelper {
             FROM `ShopGroupsHierarchy` as SGH 
             right join `ShopGroups` as SG
             on SGH.`group` = SG.`id`
-            where SGH.`group` IS NULL;";
+            where SGH.`group` IS NULL
+            ORDER BY SG.`groupName` ASC;";
         $rezult = self::$SQL_HELPER->select($query);
         self::$SQL_DATA['RootGroups'] = array();
         foreach ($rezult as $group) {
