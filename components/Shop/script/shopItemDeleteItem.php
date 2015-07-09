@@ -3,9 +3,8 @@ header("Content-type: text/html; charset=UTF-8");
 @session_start();
 include_once '../../../ROOT/functions/includeSistemClasses.php';
 includeSistemClasses('../../../ROOT/');
-include_once '../classes/ShopBasketHelper.php';
-include_once '../classes/ShopGroupPriceType.php';
-include_once '../classes/ShopPageInfoHelper.php';
+include_once '../classes/ShopIncludeClasses.php';
+ShopIncludeClasses::includeAllClasses('../', '../../../modules/ShopNavigationPanel/');
 
 global $_SQL_HELPER;
 $_SQL_HELPER = new MysqliHelper();
@@ -17,4 +16,4 @@ $_URL_PARAMS = $urlParams->getUrlParam();
 if (isset($_POST['id'])  && $_POST['id'] != "" && $_POST['id'] != null) {
     $itemID = $_POST['id'];
     ShopBasketHelper::deleteItemFromShopBasket($itemID);
-} 
+}

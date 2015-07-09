@@ -250,7 +250,11 @@ function deleteItemAndChangeTotal(id) {
             cache: false,
             success:  function() {
                         $('.ShopBasketModuleBlockBasketUnit').html(--countUnit);
-                        deleteItem(id);
+                        if (countUnit > 0) {
+                            deleteItem(id);
+                        } else {
+                            shopBasketItemClearButton();
+                        }
                     }
         });
         return false;
@@ -286,6 +290,7 @@ function shopBasketItemClearButton() {
         success:  function() {
                     // удаляем блок
                     $('.ShopBasketBlock').remove();
+                    $('.ShopBasketBlockEmpty').css('display', 'block');
                     curentTotalInBasket(0);
                     $(".ShopBasketModuleBlockBasketUnit").html(0);
                 }

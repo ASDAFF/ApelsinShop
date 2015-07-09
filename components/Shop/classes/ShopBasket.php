@@ -45,13 +45,18 @@ class ShopBasket {
      * Генерируем HTML информации о товаре
      */
     private function generateHtml() {
-        $this->HTML = '<div class="printOrder"></div>';
-        $this->HTML .= '<div class="ShopBasketBlock">';
-        foreach ($this->items as $item) {
-            $this->HTML .= $this->generateItemHtml($item);
+        if (!empty($this->items)) {
+            $this->HTML .= '<div class="ShopBasketBlock">';
+                foreach ($this->items as $item) {
+                    $this->HTML .= $this->generateItemHtml($item);
+                }
+                $this->HTML .= $this->generateBuyHtml();
+            $this->HTML .= '</div>';
+            $style = 'none';
+        } else {
+            $style = 'display';
         }
-        $this->HTML .= $this->generateBuyHtml();
-        $this->HTML .= '</div>';
+        $this->HTML .= '<div class="ShopBasketBlockEmpty" style="display: '.$style.'">Товары в корзине отсутствуют.</div>';
     }
 
     private function generateItemHtml($item) {
