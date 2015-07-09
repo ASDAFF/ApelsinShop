@@ -98,8 +98,9 @@ class ShopGroupsItemList {
     private function getItemHTML($item) {
         $itemURL = $this->urlHelper->chengeParams(array('item',$item['id']));
         $item['action'] === 1 ? $itemClass = 'ActionItem' : $itemClass = 'NormalItem';
+        $item['amount'] > 0 ? $availableClass = 'Available' : $availableClass = 'NotAvailable';
         $out = '';
-        $out .= "<div class='ShopItemElement ".$itemClass."'>";
+        $out .= "<div class='ShopItemElement ".$itemClass." ".$availableClass."'>";
         if($item['action'] == 1) {
             $out .= "<div class='ActionItemLable'></div>";
         }

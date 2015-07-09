@@ -20,7 +20,6 @@ class ShopItemAmountScale {
             $scaleValue = 100;
             $text = "Много.";
         }
-//        $text .= "\n\nTEST BLOCK\namount=".$amount." | minAmount=".$minAmount;
         $out = "<div class='ShopItemAmount' title='".$text."'>";
         $out .= "<div class='ShopItemAmountScale' style='width: ".$scaleValue."%;'></div>";
         $out .= "</div>";
