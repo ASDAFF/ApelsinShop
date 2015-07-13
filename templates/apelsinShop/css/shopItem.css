@@ -57,6 +57,14 @@
     color: #fff;
     cursor: pointer;
 }
+.ShopItemMainWrapper .ShopItemLeftBlock .ShopItemBuyButtonBlock.BasketBlock .AlreadyInTheBasketText {
+    text-align: center;
+    font:  bold 11px/30px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+}
+.ShopItemMainWrapper .ShopItemLeftBlock .ShopItemBuyButtonBlock.BasketBlock .ShopItemBuyButton {
+    width: 150px;
+    font:  bold 10px/30px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+}
 .ShopItemMainWrapper .ShopItemLeftBlock .shopItemAmountBuyBlock {
     margin: 0 auto;
     width: 120px;

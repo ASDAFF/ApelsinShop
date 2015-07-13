@@ -211,8 +211,12 @@ class ShopBasketHelper {
         } else {
             $html = '<div class="ShopItemBuyButtonBlock BasketBlock">';
         }
+        
+        $html .= '<div class="AlreadyInTheBasketText">';
+        $html .= 'Этот товар уже в вашей корзине';
+        $html .= '</div>';
         $html .= '<a href="'.self::$urlHelper->pageUrl(ShopPageInfoHelper::getShopPageAlias(), array('shopbasket')).'">';
-        $html .= '<div class="ShopItemBuyButton" >Товар в корзине</div>';
+        $html .= '<div class="ShopItemBuyButton" >Посмотреть покупки</div>';
         $html .= '</a>';
         $html .= '</div>';
         return $html;
