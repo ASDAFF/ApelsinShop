@@ -6,13 +6,9 @@ jQuery(document).ready(function() {
     
     jQuery(".BeforeContentButtonText").click(function(){ 
         if($(".BeforeContentButtonText").hasClass("HideText")) {
-            $('.BeforeContentButtonText').removeClass('HideText');
-            $('.BeforeContentButtonText').addClass('ShowText');
-            $('.BeforeContentWraper').hide("normal");
+            hideBeforeContentWraper(true);
         } else {
-            $('.BeforeContentButtonText').removeClass('ShowText');
-            $('.BeforeContentButtonText').addClass('HideText');
-            $('.BeforeContentWraper').show("normal");
+            showBeforeContentWraper(true);
         }
     });
     
@@ -48,4 +44,35 @@ jQuery(document).ready(function() {
             $(this).addClass('clicked');
         }
     });
+    ShowHideBeforeContentWraper();
 });
+
+function ShowHideBeforeContentWraper() {
+    var condition=$.cookie('BeforeContentWraperСondition');
+    if(!navigator.cookieEnabled || typeof condition === "undefined" || condition=="" || condition=="Show") {
+        showBeforeContentWraper(false);
+    } else {
+        hideBeforeContentWraper(false);
+    }
+}
+
+function hideBeforeContentWraper(animate) {
+    $('.BeforeContentButtonText').removeClass('HideText');
+    $('.BeforeContentButtonText').addClass('ShowText');
+    if(animate) {
+        $('.BeforeContentWraper').hide("normal");
+    } else {
+        $('.BeforeContentWraper').hide();
+    }
+    $.cookie('BeforeContentWraperСondition', 'Hide', { expires: 1, path: '/' });
+}
+function showBeforeContentWraper(animate) {
+    $('.BeforeContentButtonText').removeClass('ShowText');
+    $('.BeforeContentButtonText').addClass('HideText');
+    if(animate) {
+        $('.BeforeContentWraper').show("normal");
+    } else {
+        $('.BeforeContentWraper').show();
+    }
+    $.cookie('BeforeContentWraperСondition', 'Show', { expires: 1, path: '/' });
+}

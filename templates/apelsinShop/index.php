@@ -3,6 +3,7 @@
 <html>
 <head>
     <?php $ROOT->head();?>
+    <script type="text/javascript" src="<?php $ROOT->templatePath();?>js/jquery.cookie.js"></script>
     <link rel="shortcut icon" href="<?php $ROOT->templatePath();?>favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="<?php $ROOT->templatePath();?>css/main.css" type="text/css" />
     <link rel="stylesheet" href="<?php $ROOT->templatePath();?>css/modules.css" type="text/css" />
@@ -53,7 +54,7 @@
         <div class="BeforeContentButtonWraper">
             <div class="BeforeContentButtonBlock">
                 <div class="BeforeContentButton">
-                    <div class="BeforeContentButtonText HideText"></div>
+                    <div class="BeforeContentButtonText ShowText"></div>
                 </div>
             </div>
         </div>
