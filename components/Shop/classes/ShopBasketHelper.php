@@ -224,7 +224,12 @@ class ShopBasketHelper {
     
     private static function getDysplayButtonBuy_NotAvailable() {
         $html = '<div class="ShopItemBuyButtonBlock NotAvailable">';
-        $html .= 'Товара нет в наличии.<br />Уточняйте у менеджера.';
+            $html .= '<div class="NotAvailableText">';
+            $html .= 'Товара нет в наличии.';
+            $html .= '</div>';
+            $html .= '<div class="NotAvailableText">';
+            $html .= 'Возможность заказа<br />уточняйте у менеджера.';
+            $html .= '</div>';
         $html .= '</div>';
         return $html;
     }

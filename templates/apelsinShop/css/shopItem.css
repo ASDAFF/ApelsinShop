@@ -65,6 +65,12 @@
     width: 150px;
     font:  bold 10px/30px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
 }
+.ShopItemMainWrapper .ShopItemLeftBlock .ShopItemBuyButtonBlock.NotAvailable .NotAvailableText {
+    text-align: center;
+    font: bold 11px/13px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    color: #ef7f1a;
+    padding: 5px 0px 4px 0px;
+}
 .ShopItemMainWrapper .ShopItemLeftBlock .shopItemAmountBuyBlock {
     margin: 0 auto;
     width: 120px;
