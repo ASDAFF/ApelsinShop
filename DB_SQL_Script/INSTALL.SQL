@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Июл 05 2015 г., 09:18
+-- Время создания: Июл 13 2015 г., 13:44
 -- Версия сервера: 10.0.13-MariaDB
 -- Версия PHP: 5.6.1
 
@@ -857,7 +857,7 @@ CREATE TABLE IF NOT EXISTS `PluginDefaultParam` (
 
 INSERT INTO `PluginDefaultParam` (`plugin`, `param`, `value`) VALUES
 ('jquery', 'min', '1'),
-('jquery', 'version', '2.0.3');
+('jquery', 'version', '1.10.1');
 
 -- --------------------------------------------------------
 
