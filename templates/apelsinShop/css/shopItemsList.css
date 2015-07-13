@@ -154,8 +154,14 @@
     font:  bold 14px/20px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
     text-align: center;
 }
-.ShopItemsListBlock .ShopItemsList .ShopItemElement .ShopItemElement_PriceValue:after {
-    content: ' руб.'
+
+.ShopItemsListBlock .ShopItemsList .ShopItemElement .ShopItemElement_PriceValue .Price {}
+.ShopItemsListBlock .ShopItemsList .ShopItemElement .ShopItemElement_PriceValue .Price .PriceBasic,
+.ShopItemsListBlock .ShopItemsList .ShopItemElement .ShopItemElement_PriceValue .Price .PriceAuxiliary {}
+.ShopItemsListBlock .ShopItemsList .ShopItemElement .ShopItemElement_PriceValue .Price .PriceBasicText,
+.ShopItemsListBlock .ShopItemsList .ShopItemElement .ShopItemElement_PriceValue .Price .PriceAuxiliaryText {
+    font:  bold 11px/20px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    padding-left: 2px;
 }
 
 

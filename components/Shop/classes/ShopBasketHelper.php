@@ -176,27 +176,52 @@ class ShopBasketHelper {
         return $_SESSION['ShopBasket'];
     }
 
-    public static function getDysplayButtonBuy($itemID) {
+    public static function getDysplayButtonBuy($itemID, $available = TRUE) {
         self::createObject();
-        if (ShopBasketHelper::checkItemInTheShopBasket($itemID) ) {
-            $html = '<div class="ShopItemBuyButtonBlock" >';
-                $html .= '<a href="'.self::$urlHelper->pageUrl(ShopPageInfoHelper::getShopPageAlias(), array('shopbasket')).'">';
-                    $html .= '<div class="ShopItemBuyButton" >';
-                        $html .= 'Товар в корзине';
-                    $html .= '</div>';  // ShopItemBuyButton
-                $html .= '</a>';
-            $html .= '</div>';  // ShopItemBuyButtonBlock
+        if($available) {
+            if (ShopBasketHelper::checkItemInTheShopBasket($itemID)) {
+                $html = self::getDysplayButtonBuy_BasketButton(FALSE);
+            } else {
+                $html = self::getDysplayButtonBuy_BuyButton($itemID);
+                $html .= self::getDysplayButtonBuy_BasketButton(TRUE);
+            }
         } else {
-            $html = '<div class="ShopItemBuyButton ShopItemBuy" id="'.$itemID.'" >';
+            $html = self::getDysplayButtonBuy_NotAvailable();
+        }
+        return $html;
+    }
+    
+    private static function getDysplayButtonBuy_BuyButton($itemID) {
+        $html = '<div class="ShopItemBuyButtonBlock BuyBlock">';
+            $html .= '<div class="ShopItemBuyButton ShopItemBuy" id="'.$itemID.'" >';
                 $html .= 'Купить';
             $html .= '</div>';
-            // ShopItemBuyButton
             $html .= '<div class="shopItemAmountBuyBlock">';
-            $html .= '<div id="shopItemAmountBuyDelButton" class="shopItemAmountBuyDelButton">-</div>';
+            $html .= '<button id="shopItemAmountBuyDelButton" class="shopItemAmountBuyDelButton">-</button>';
                 $html .= '<input type="text" id="shopItemAmountBuy" class="shopItemAmountBuy" maxlength="5" value="1">';
-            $html .= '<div id="shopItemAmountBuyAddButton" class="shopItemAmountBuyAddButton">+</div>';
+            $html .= '<button id="shopItemAmountBuyAddButton" class="shopItemAmountBuyAddButton">+</button>';
             $html .= '</div>';
-       }
+        $html .= '</div>';
+        return $html;
+    }
+    
+    private static function getDysplayButtonBuy_BasketButton($hide) {
+        if($hide) {
+            $html = '<div class="ShopItemBuyButtonBlock BasketBlock" style="display: none">';
+        } else {
+            $html = '<div class="ShopItemBuyButtonBlock BasketBlock">';
+        }
+        $html .= '<a href="'.self::$urlHelper->pageUrl(ShopPageInfoHelper::getShopPageAlias(), array('shopbasket')).'">';
+        $html .= '<div class="ShopItemBuyButton" >Товар в корзине</div>';
+        $html .= '</a>';
+        $html .= '</div>';
+        return $html;
+    }
+    
+    private static function getDysplayButtonBuy_NotAvailable() {
+        $html = '<div class="ShopItemBuyButtonBlock NotAvailable">';
+        $html .= 'Товара нет в наличии.<br />Уточняйте у менеджера.';
+        $html .= '</div>';
         return $html;
     }
 

@@ -63,10 +63,10 @@ class ShopBasketModuleUpdate {
                 $out .= '</div>';
                 $out .= '<div class="ShopBasketItemPriceInfoBlock">';
                     $out .= '<div class="priceValue">';
-                        $out .= '<span >'.$item['priceValue'].'</span>';
+                        $out .= '<span >'.TextGenerator::formattingPrices_RUB($item['priceValue']).'</span>';
                     $out .= '</div>';
                     $out .= '<div class="allPriceValue">';
-                        $out .= '<span >'.$item['allPriceValue'].'</span>';
+                        $out .= '<span >'.TextGenerator::formattingPrices_RUB($item['allPriceValue']).'</span>';
                     $out .= '</div>';
                 $out .= '</div>';
             $out .= '</div>';

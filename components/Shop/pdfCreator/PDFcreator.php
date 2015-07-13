@@ -86,14 +86,14 @@ class PDFcreator extends TCPDF {
             $this->Cell(10, 10, $number , 1, 0, 'C');
             $this->MultiCell(110, 10, $dataRow['itemName'], 1, 'L', 0, 0, '', '', true, 0, false, false, 10, 'M');
                 $this->Cell( 20, 10, $dataRow['amount'].' шт.', 1, 0, 'C');
-                $this->Cell( 20, 10, $dataRow['priceValue'].' руб.', 1, 0, 'C');
-                $this->Cell( 30, 10, $dataRow['allPriceValue'].' руб.', 1, 0, 'C');
+                $this->Cell( 20, 10, TextGenerator::formattingPrices_RUB_TEXT($dataRow['priceValue']), 1, 0, 'C');
+                $this->Cell( 30, 10, TextGenerator::formattingPrices_RUB_TEXT($dataRow['allPriceValue']), 1, 0, 'C');
             $row++;
             $this->Ln( 10 );
         }
         $this->SetFontSize(12);
         $this->Cell( 160, 10, 'Итого: ', 1, 0, 'R');
         $this->SetFontSize(12);
-        $this->Cell( 30, 10, $this->total.' руб.', 1, 0, 'C');
+        $this->Cell( 30, 10, TextGenerator::formattingPrices_RUB_TEXT($this->total), 1, 0, 'C');
     }
 }

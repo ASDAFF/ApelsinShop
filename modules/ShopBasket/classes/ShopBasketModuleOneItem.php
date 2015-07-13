@@ -28,7 +28,7 @@ class ShopBasketModuleOneItem {
             $this->html .= '<div class="ShopBasketBlockItem">';
                 $this->html .= '<div class="ShopBasketLeftBlock">';
                     $this->html .= '<div class="itemImage">';
-                    $this->html .= '<img src="'.$this->getImage($this->item['id']).'">';
+                        $this->html .= '<img src="'.$this->getImage($this->item['id']).'">';
                     $this->html .= '</div>';
                 $this->html .= '</div>';
                 $this->html .= '<div class="ShopBasketCenterBlock">';
@@ -36,16 +36,14 @@ class ShopBasketModuleOneItem {
                 $this->html .= '</div>';
                 $this->html .= '<div class="ShopBasketRightBlock">';
                     $this->html .= '<div class="ShopBasketItemPriceInfoBlock">';
-                        $this->html .= '<div class="ShopBasketItemAmountBlock">';
-                            $this->html .= $this->item['amount'];
-                        $this->html .= '</div>';
-                            $this->html .= '<div class="priceValue"><span >'.$this->item['priceValue'].'</span></div>';
-                        $this->html .= '</div>';
+                        $this->html .= '<div class="priceValue"><span >'.TextGenerator::formattingPrices_RUB($this->item['priceValue']).'</span></div>';
+                        $this->html .= '<div class="ShopBasketItemAmountBlock">'.$this->item['amount'].'</div>';
                     $this->html .= '</div>';
                 $this->html .= '</div>';
+            $this->html .= '</div>';
         $this->html .= '</div>';
         $this->html .= '<div class="allPriceValue">';
-            $this->html .= '<span >'.$this->item['allPriceValue'].'</span>';
+            $this->html .= '<span >'.TextGenerator::formattingPrices_RUB($this->item['allPriceValue']).'</span>';
         $this->html .= '</div>';
     }
 

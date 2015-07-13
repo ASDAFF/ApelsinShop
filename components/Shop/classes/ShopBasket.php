@@ -33,10 +33,10 @@ class ShopBasket {
 
     public static function getShopItemAmountForBuy($itemID, $value) {
         $out = '<div class="shopItemAmountBuyBlock">';
-        $out .= '<div class="shopItemAmountBuyDelButton" itemID="'.$itemID.'">-</div>';
+        $out .= '<button class="shopItemAmountBuyDelButton" itemID="'.$itemID.'">-</button>';
         $out .= '<input type="text" name="shopItemAmountBuy" id="'.$itemID.'" '
                 . 'class="shopItemAmountBuy" maxlength="5" value="'.$value.'">';
-        $out .= '<div class="shopItemAmountBuyAddButton" itemID="'.$itemID.'">+</div>';
+        $out .= '<button class="shopItemAmountBuyAddButton" itemID="'.$itemID.'">+</button>';
         $out .= '</div>';
         return $out;
     }
@@ -71,15 +71,15 @@ class ShopBasket {
             $out .= $this->getMoreInfo($item);
             $out .= '</div>';
             $out .= '<div class="ShopBasketItemPriceInfoBlock">';
-            $out .= '<div class="priceValue"><span id="priceValue_'.$item['id'].'">'.$item['priceValue'].'</span></div>';
-            $out .= '<div class="allPriceValue"><span id="allPriceValue_'.$item['id'].'">'.$item['allPriceValue'].'</span></div>';
+            $out .= '<div class="priceValue"><span id="priceValue_'.$item['id'].'">'.TextGenerator::formattingPrices_RUB($item['priceValue']).'</span></div>';
+            $out .= '<div class="allPriceValue"><span id="allPriceValue_'.$item['id'].'">'.TextGenerator::formattingPrices_RUB($item['allPriceValue']).'</span></div>';
             $out .= '</div>';
             $out .= '<div class="ShopBasketItemButtonBlock">';
             $out .= '<div class="AmountButtonBlock">';
             $out .= $this->getShopItemAmountForBuy($item['id'], $item['amount']);
             $out .= '</div>';
             $out .= '<div class="DeleteButtonBlock" idDel="'.$item['id'].'">';
-            $out .= '<div class="DeleteButton">Удалить</div>';
+            $out .= '<button class="DeleteButton">Удалить</button>';
             $out .= '</div>';
             $out .= '</div>';
         $out .= '</div>';
@@ -100,33 +100,33 @@ class ShopBasket {
                     $out .= '<div class="titleName">'.$item['itemName'].'</div>';
                     $out .= '<div class="ShopItemDescription">';
                     $out .= $this->data['description'];
-                    $out .= '</div>';  // ShopItemDescription
+                    $out .= '</div>';
                     $out .= '</div>';
                     $out .= '<div class="clear"></div>';
                     $out .= '<div class="itemMoreInfoWrapperLine"></div>';
                     $out .= '<div class="ShopItemParams">';
                     foreach ($property as $property) {
                         $out .= '<div class="ShopItemParam">';
-                        $out .= '<div class="ShopItemParamName"><div>';
-                        $out .= $property['propertyName'].' :';
-                        $out .= '</div></div>';  // ShopItemParamName
-                        $out .= '<div class="ShopItemParamValue"><div>';
-                        $out .= ShopItemDataHelper::getHtmlAllValue($property, $property['oneOfAllValues'] === "1");
-                        $out .= '</div></div>';  // ShopItemParamValue
-                        $out .= '</div>';  // ShopItemParam
+                            $out .= '<div class="ShopItemParamName"><div>';
+                                $out .= $property['propertyName'].' :';
+                            $out .= '</div></div>';
+                            $out .= '<div class="ShopItemParamValue"><div>';
+                                $out .= ShopItemDataHelper::getHtmlAllValue($property, $property['oneOfAllValues'] === "1");
+                            $out .= '</div></div>';
+                        $out .= '</div>';
                     }
-                    $out .= '</div>';  // ShopItemParams
-                $out .= '</div>';  // itemMoreInfoWrapper
-            $out .= '</div>';  // class="doc_div"
+                    $out .= '</div>';
+                $out .= '</div>';
+            $out .= '</div>';
         return $out;
     }
 
     private function generateBuyHtml() {
-        $pay = 0;
+        $price = 0;
         $out = '';
         if (!empty($this->items)) {
             foreach ($this->items as $item) {
-                $pay += $item['allPriceValue'];
+                $price += $item['allPriceValue'];
             }
             $out = '<div class="ShopBasketItemBuyBlock">';
                 $out .= '<div class="ShopBasketItemClearButton ShopBasketItemBuyButton">Очистить</div>';
@@ -134,7 +134,7 @@ class ShopBasket {
                 $out .= '<a href="'.$urlHelper->pageUrl(ShopPageInfoHelper::getShopPageAlias(), [ShopPageInfoHelper::ShopbasketPage, 'buy']).'">';
                     $out .= '<div class="ShopBasketItemBuyButton" id="ShopItemBuyButton">Купить</div>';
                 $out .= '</a>';
-                $out .= '<div class="ShopBasketItemPayInfoBlock"><span class="text">Итого:</span> <span class="price">'.$pay.'</span></div>';
+                $out .= '<div class="ShopBasketItemPayInfoBlock"><span class="text">Итого:</span> <span class="price">'.TextGenerator::formattingPrices_RUB($price).'</span></div>';
             $out .= '</div>';
         }
         return $out;

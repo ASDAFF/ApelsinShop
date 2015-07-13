@@ -108,7 +108,7 @@ class ShopGroupsItemList {
             $out .= $this->getItemImage($item['id']);
             $out .= "<div class='ShopItemElement_ItemName'><div>".$item['itemName']."</div></div>";
             $out .= ShopItemAmountScale::getAmountScale($item['amount'], $item['minAmount']);
-            $out .= "<div class='ShopItemElement_PriceValue'>".$item['priceValue']."</div>";
+            $out .= "<div class='ShopItemElement_PriceValue'>".TextGenerator::formattingPrices_RUB($item['priceValue'])."</div>";
         $out .= "</a>";
         $out .= "</div>";
         return $out;

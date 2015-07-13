@@ -20,5 +20,5 @@ if (isset($_POST['amount']) && isset($_POST['id'])  &&
     $itemID = $_POST['id'];
     $amount = $_POST['amount'];
     ShopBasketHelper::addItemToTheShopBasket($itemID, $amount);
-    echo ShopBasketHelper::getDysplayButtonBuy($itemID);
+//    echo ShopBasketHelper::getDysplayButtonBuy($itemID);
 } 

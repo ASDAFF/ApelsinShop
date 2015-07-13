@@ -64,16 +64,27 @@
 }
 .ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemPriceInfoBlock .priceValue {
     height: 30px;
-    font:  16px/30px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    font:  14px/30px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+}
+.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemPriceInfoBlock .priceValue .Price {}
+.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemPriceInfoBlock .priceValue .Price .PriceBasic,
+.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemPriceInfoBlock .priceValue .Price .PriceAuxiliary {}
+.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemPriceInfoBlock .priceValue .Price .PriceBasicText,
+.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemPriceInfoBlock .priceValue .Price .PriceAuxiliaryText {
+    font:  10px/30px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    padding-left: 2px;
 }
 .ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemPriceInfoBlock .allPriceValue {
     height: 30px;
-    font:  bold 16px/30px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    font:  bold 14px/30px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
 }
-.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemPriceInfoBlock .priceValue span:after,
-.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemPriceInfoBlock .allPriceValue span:after {
-    font: bold 11px/30px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
-    content: ' руб.'
+.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemPriceInfoBlock .allPriceValue .Price {}
+.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemPriceInfoBlock .allPriceValue .Price .PriceBasic,
+.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemPriceInfoBlock .allPriceValue .Price .PriceAuxiliary {}
+.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemPriceInfoBlock .allPriceValue .Price .PriceBasicText,
+.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemPriceInfoBlock .allPriceValue .Price .PriceAuxiliaryText {
+    font: bold 10px/30px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    padding-left: 2px;
 }
 .ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemButtonBlock {
     width: 100px;
@@ -92,14 +103,16 @@
 .Shop .shopItemAmountBuyBlock .shopItemAmountBuyDelButton,
 .Shop .shopItemAmountBuyBlock .shopItemAmountBuyAddButton {
     padding: 0px;
+    margin: 0px;
     height: 20px;
-    width: 15px;
+    width: 20px;
     font: bold 10px/20px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
     background: #C8C8C8;
     text-transform: uppercase;
     text-align: center;
     color: #fff;
     cursor: pointer;
+    border: none;
 }
 .Shop .shopItemAmountBuyBlock .shopItemAmountBuyDelButton:hover,
 .Shop .shopItemAmountBuyBlock .shopItemAmountBuyAddButton:hover {
@@ -121,7 +134,7 @@
     box-shadow: none;
     text-shadow: 0 1px 0 #fff;
     height: 20px;
-    width: 30px;
+    width: 20px;
     text-align: center;
 }
 .ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemButtonBlock .DeleteButtonBlock {
@@ -154,11 +167,15 @@
     text-transform: uppercase;
 }
 .ShopBasketBlock .ShopBasketItemBuyBlock .ShopBasketItemPayInfoBlock .price {
-    font: bold 24px/30px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    font: bold 20px/30px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
 }
-.ShopBasketBlock .ShopBasketItemBuyBlock .ShopBasketItemPayInfoBlock .price:after {
-    font: bold 12px/30px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
-    content: ' руб.'
+.ShopBasketBlock .ShopBasketItemBuyBlock .ShopBasketItemPayInfoBlock .price .Price {}
+.ShopBasketBlock .ShopBasketItemBuyBlock .ShopBasketItemPayInfoBlock .price .Price .PriceBasic,
+.ShopBasketBlock .ShopBasketItemBuyBlock .ShopBasketItemPayInfoBlock .price .Price .PriceAuxiliary {}
+.ShopBasketBlock .ShopBasketItemBuyBlock .ShopBasketItemPayInfoBlock .price .Price .PriceBasicText,
+.ShopBasketBlock .ShopBasketItemBuyBlock .ShopBasketItemPayInfoBlock .price .Price .PriceAuxiliaryText {
+    font: bold 14px/30px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    padding-left: 2px;
 }
 .ShopBasketBlock .ShopBasketItemBuyBlock .ShopBasketItemBuyButton {
     height: 30px;

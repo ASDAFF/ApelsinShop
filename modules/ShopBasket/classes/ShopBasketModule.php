@@ -25,7 +25,7 @@ class ShopBasketModule {
                     $this->html .= ShopBasketHelper::getUnitInBasket();
                 $this->html .= '</div>';
                 $this->html .= '<div class="ShopBasketModuleBlockBasketTotal">';
-                    $this->html .= ShopBasketHelper::getTotal();
+                    $this->html .= TextGenerator::formattingPrices_RUB(ShopBasketHelper::getTotal());
                 $this->html .= '</div>';
             $this->html .= '</div>';
         $this->html .= '</a>';

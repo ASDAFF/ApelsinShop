@@ -9,7 +9,7 @@
     cursor: default;
 }
 .ShopBasketModuleBlockBasket {
-    width: 130px;
+    /*width: 130px;*/
     height: 35px;
     text-align: right;
     font-weight: bold;
@@ -32,16 +32,22 @@
     border-radius: 3px;
 }
 .ShopBasketModuleBlockBasket .ShopBasketModuleBlockBasketTotal {
-    width: 95px;
+    /*width: 95px;*/
+    padding-left: 5px;
     float: left;
     text-align: center;
     font-size: 16px;
     line-height: 35px;
 }
-.ShopBasketModuleBlockBasket .ShopBasketModuleBlockBasketTotal:after {
-    content: ' руб.';
-    font-size: 11px;
+.ShopBasketModuleBlockBasket .ShopBasketModuleBlockBasketTotal .Price {}
+.ShopBasketModuleBlockBasket .ShopBasketModuleBlockBasketTotal .Price .PriceBasic,
+.ShopBasketModuleBlockBasket .ShopBasketModuleBlockBasketTotal .Price .PriceAuxiliary {}
+.ShopBasketModuleBlockBasket .ShopBasketModuleBlockBasketTotal .Price .PriceBasicText,
+.ShopBasketModuleBlockBasket .ShopBasketModuleBlockBasketTotal .Price .PriceAuxiliaryText {
+    font:  bold 11px/20px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    padding-left: 2px;
 }
+
 /*-------------- basket List -------------*/
 .ShopBasketModuleWrapper {
     position: absolute;
@@ -117,20 +123,27 @@
 }
 .ShopBasketModuleWrapper .ShopBasketModuleContent .ShopBasketBlockItem .ShopBasketRightBlock .ShopBasketItemPriceInfoBlock .priceValue {
     height: 18px;
+    font:  12px/18px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+}
+.ShopBasketModuleWrapper .ShopBasketModuleContent .ShopBasketBlockItem .ShopBasketRightBlock .ShopBasketItemPriceInfoBlock .priceValue .Price {}
+.ShopBasketModuleWrapper .ShopBasketModuleContent .ShopBasketBlockItem .ShopBasketRightBlock .ShopBasketItemPriceInfoBlock .priceValue .Price .PriceBasic,
+.ShopBasketModuleWrapper .ShopBasketModuleContent .ShopBasketBlockItem .ShopBasketRightBlock .ShopBasketItemPriceInfoBlock .priceValue .Price .PriceAuxiliary {}
+.ShopBasketModuleWrapper .ShopBasketModuleContent .ShopBasketBlockItem .ShopBasketRightBlock .ShopBasketItemPriceInfoBlock .priceValue .Price .PriceBasicText,
+.ShopBasketModuleWrapper .ShopBasketModuleContent .ShopBasketBlockItem .ShopBasketRightBlock .ShopBasketItemPriceInfoBlock .priceValue .Price .PriceAuxiliaryText {
+    font:  10px/18px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    padding-left: 2px;
 }
 .ShopBasketModuleWrapper .ShopBasketModuleContent .ShopBasketBlockItem .ShopBasketRightBlock .ShopBasketItemPriceInfoBlock .allPriceValue {
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 25px;
     height: 25px;
+    font: bold 12px/25px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
 }
-.ShopBasketModuleWrapper .ShopBasketBlockItem .ShopBasketItemPriceInfoBlock .priceValue span:after,
-.ShopBasketModuleWrapper .ShopBasketBlockItem .ShopBasketItemPriceInfoBlock .allPriceValue span:after,
-.ShopBasketModuleWrapper .ShopBasketItemPayInfoBlock .price:after,
-.ShopBasketModuleOneItemInBasketWrapper .ShopBasketBlockItem .ShopBasketItemPriceInfoBlock .priceValue span:after,
-.ShopBasketModuleOneItemInBasketWrapper .ShopBasketBlockItem .ShopBasketItemButtonBlock .allPriceValue span:after {
-    font-size: 10px;
-    content: ' руб.';
+.ShopBasketModuleWrapper .ShopBasketModuleContent .ShopBasketBlockItem .ShopBasketRightBlock .ShopBasketItemPriceInfoBlock .allPriceValue .Price {}
+.ShopBasketModuleWrapper .ShopBasketModuleContent .ShopBasketBlockItem .ShopBasketRightBlock .ShopBasketItemPriceInfoBlock .allPriceValue .Price .PriceBasic,
+.ShopBasketModuleWrapper .ShopBasketModuleContent .ShopBasketBlockItem .ShopBasketRightBlock .ShopBasketItemPriceInfoBlock .allPriceValue .Price .PriceAuxiliary {}
+.ShopBasketModuleWrapper .ShopBasketModuleContent .ShopBasketBlockItem .ShopBasketRightBlock .ShopBasketItemPriceInfoBlock .allPriceValue .Price .PriceBasicText,
+.ShopBasketModuleWrapper .ShopBasketModuleContent .ShopBasketBlockItem .ShopBasketRightBlock .ShopBasketItemPriceInfoBlock .allPriceValue .Price .PriceAuxiliaryText {
+    font: bold 10px/25px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    padding-left: 2px;
 }
 .ShopBasketModuleWrapper .ShopBasketButton {
     text-align: center;
@@ -177,38 +190,40 @@
     text-align: right;
 }
 .ShopBasketModuleOneItemInBasketWrapper .ShopBasketBlockItem  .ShopBasketRightBlock .ShopBasketItemPriceInfoBlock {
-    font-size: 14px;
+    font:  12px/50px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
 }
 .ShopBasketModuleOneItemInBasketWrapper .ShopBasketBlockItem .ShopBasketRightBlock .ShopBasketItemPriceInfoBlock .ShopBasketItemAmountBlock {
-    width: 50px;
-    float: left;
+    float: right;
+    margin-right: 5px;
 }
 .ShopBasketModuleOneItemInBasketWrapper .ShopBasketBlockItem .ShopBasketRightBlock .ShopBasketItemPriceInfoBlock .ShopBasketItemAmountBlock:after {
     content: ' шт.';
     font-size: 11px;
 }
 .ShopBasketModuleOneItemInBasketWrapper .ShopBasketBlockItem .ShopBasketRightBlock .ShopBasketItemPriceInfoBlock .priceValue {
-    width: 70px;
-    float: left;
+    float: right;
 }
-.ShopBasketModuleOneItemInBasketWrapper .ShopBasketBlockItem .ShopBasketItemPriceInfoBlock .priceValue span:after,
-.ShopBasketModuleOneItemInBasket .allPriceValue span:after {
-    font-size: 11px;
-    font-weight: bold;
-    content: ' руб.';
+.ShopBasketModuleOneItemInBasketWrapper .ShopBasketBlockItem .ShopBasketRightBlock .ShopBasketItemPriceInfoBlock .priceValue .Price {}
+.ShopBasketModuleOneItemInBasketWrapper .ShopBasketBlockItem .ShopBasketRightBlock .ShopBasketItemPriceInfoBlock .priceValue .Price .PriceBasic,
+.ShopBasketModuleOneItemInBasketWrapper .ShopBasketBlockItem .ShopBasketRightBlock .ShopBasketItemPriceInfoBlock .priceValue .Price .PriceAuxiliary {
+    font:  12px/14px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+}
+.ShopBasketModuleOneItemInBasketWrapper .ShopBasketBlockItem .ShopBasketRightBlock .ShopBasketItemPriceInfoBlock .priceValue .Price .PriceBasicText,
+.ShopBasketModuleOneItemInBasketWrapper .ShopBasketBlockItem .ShopBasketRightBlock .ShopBasketItemPriceInfoBlock .priceValue .Price .PriceAuxiliaryText {
+    font:  10px/14px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    padding-left: 2px;
 }
 .ShopBasketModuleOneItemInBasket .allPriceValue {
      width: 115px;
      height: 22px;
      margin-top: -2px;
      text-align: center;
-     font-size: 16px;
      font-weight: bold;
-     line-height: 22px;
      position: relative;
      background: #fff;
      float: right;
      box-shadow: -2px 5px 8px rgba(139,139,139,.2);
+     font:  bold 16px/22px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
 }
 .ShopBasketModuleOneItemInBasket .allPriceValue::after, .ShopBasketModuleOneItemInBasket .allPriceValue::before {
      content: '';
@@ -228,4 +243,12 @@
 .ShopBasketModuleOneItemInBasket .allPriceValue::before {
      box-shadow: 0px 6px 0px 0px rgba(139,139,139,.1);
      z-index: 1;
+}
+.ShopBasketModuleOneItemInBasket .allPriceValue .Price {}
+.ShopBasketModuleOneItemInBasket .allPriceValue .Price .PriceBasic,
+.ShopBasketModuleOneItemInBasket .allPriceValue .Price .PriceAuxiliary {}
+.ShopBasketModuleOneItemInBasket .allPriceValue .Price .PriceBasicText,
+.ShopBasketModuleOneItemInBasket .allPriceValue .Price .PriceAuxiliaryText {
+    font:  bold 12px/22px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    padding-left: 2px;
 }

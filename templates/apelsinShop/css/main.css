@@ -24,6 +24,10 @@ p a {
 p a:hover {
     color: #ef7f1a;
 }
+button {
+    border: none;
+    cursor: pointer;
+}
 /*ul {
     list-style: none;
     margin-left: 0;

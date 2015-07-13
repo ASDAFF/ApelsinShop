@@ -25,8 +25,13 @@
     font:  bold 20px/20px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
     text-align: center;
 }
-.ShopItemMainWrapper .ShopItemLeftBlock .ShopItemPrice:after {
-    content: ' руб.'
+.ShopItemMainWrapper .ShopItemLeftBlock .ShopItemPrice .Price {}
+.ShopItemMainWrapper .ShopItemLeftBlock .ShopItemPrice .Price .PriceBasic,
+.ShopItemMainWrapper .ShopItemLeftBlock .ShopItemPrice .Price .PriceAuxiliary {}
+.ShopItemMainWrapper .ShopItemLeftBlock .ShopItemPrice .Price .PriceBasicText,
+.ShopItemMainWrapper .ShopItemLeftBlock .ShopItemPrice .Price .PriceAuxiliaryText {
+    font:  bold 14px/20px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    padding-left: 2px;
 }
 .ShopItemMainWrapper .ShopItemLeftBlock .ShopItemAmount {
     margin: 10px auto;
@@ -57,7 +62,7 @@
     width: 120px;
 }
 .ShopItemMainWrapper .ShopItemLeftBlock .shopItemAmountBuyBlock .shopItemAmountBuy {
-    width: 80px;
+    width: 70px;
 }
 
 .ShopItemMainWrapper .ShopItemMainBlock {

@@ -159,11 +159,69 @@ class TextGenerator {
         }
     }
     
+    private static function formattingPricesString($basic, $basicText, $auxiliary, $auxiliaryText, $smartPrice = TRUE) {
+        $out = '<span class="Price">';
+        $out .= '<span class="PriceBasic">';
+        $out .= $basic;
+        $out .= '</span>';
+        $out .= '<span class="PriceBasicText">';
+        $out .= $basicText;
+        $out .= '</span>';
+        if($auxiliary > 0 || !$smartPrice) {
+            $out .= '<span class="PriceAuxiliary">';
+            $out .= $auxiliary;
+            $out .= '</span>';
+            $out .= '<span class="PriceAuxiliaryText">';
+            $out .= $auxiliaryText;
+            $out .= '</span>';
+        }
+        $out .= '</span>';
+        return $out;
+    }
+    
+    private static function formattingPricesString_TEXT($basic, $basicText, $auxiliary, $auxiliaryText, $smartPrice = TRUE) {
+        $out = $basic.' '.$basicText;
+        if($auxiliary > 0 || !$smartPrice) {
+            $out .= ' '.$auxiliary.' '.$auxiliaryText;
+        }
+        return $out;
+    }
+    
     public static function shortenRusText($text, $maxLength, $syllable = 2) {
         return self::shortenRusTextGeneral($text, $maxLength, $syllable, NULL, NULL);
     }
     
     public static function shortenRusTextForLen($text, $maxLength, $minWordLen = 3, $maxWordLen = 6) {
         return self::shortenRusTextGeneral($text, $maxLength, NULL, $minWordLen, $maxWordLen);
+    }
+    
+    /**
+     * Форматирование цены.
+     * @param float $price - цена
+     * @param bool $round - округлять копейки?
+     * @return String - форматированная цена.
+     */
+    public static function formattingPrices_RUB($price, $smartPrice = TRUE, $round = FALSE) {
+        if($round) {
+            $price = round($price,0);
+        }
+        $basic = number_format($price, 0, '.', ' ');
+        $auxiliary = round(($price-intval($price))*pow(10,2));
+        return self::formattingPricesString($basic, "руб.", $auxiliary, "коп.", $smartPrice);
+    }
+    
+    /**
+     * Форматирование цены.
+     * @param float $price - цена
+     * @param bool $round - округлять копейки?
+     * @return String - форматированная цена.
+     */
+    public static function formattingPrices_RUB_TEXT($price, $smartPrice = TRUE, $round = FALSE) {
+        if($round) {
+            $price = round($price,0);
+        }
+        $basic = number_format($price, 0, '.', ' ');
+        $auxiliary = round(($price-intval($price))*pow(10,2));
+        return self::formattingPricesString_TEXT($basic, "руб.", $auxiliary, "коп.", $smartPrice);
     }
 }
