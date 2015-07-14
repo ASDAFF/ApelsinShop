@@ -37,7 +37,13 @@ class ShopGroupsDataHelper {
      * Получаем данные об иерархии групп
      */
     private static function getGroupsHierarchyData() {
-        $query = "SELECT * FROM `ShopGroupsHierarchy`;";
+        $query = "SELECT 
+            SGH.`group`, 
+            SGH.`parentGroup`
+            FROM `ShopGroupsHierarchy` as SGH
+            LEFT JOIN `ShopGroups` as SG
+            ON SGH.`group` = SG.`id`
+            ORDER BY SG.`groupName` ASC;";
         $rezult = self::$SQL_HELPER->select($query);
         self::$SQL_DATA['GroupsHierarchy'] = array();
         foreach ($rezult as $pair) {
