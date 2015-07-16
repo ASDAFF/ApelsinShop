@@ -75,10 +75,10 @@
 .ShopNavigationPanel .ShopNavigationPanel_Menu ul.SNPRootGroupsMenu li.SNPRootGroupsMenuElement {
     list-style: none;
     float: left;
-    width: 100px;
-    height: 100px;
-    margin: 10px;
-    padding: 5px;
+    width: 85px;
+    height: 105px;
+    /*margin: 10px;*/
+    /*padding: 5px;*/
     border: 1px solid transparent;
 }
 .ShopNavigationPanel .ShopNavigationPanel_Menu ul.SNPRootGroupsMenu li.SNPRootGroupsMenuElement:hover {
@@ -93,6 +93,7 @@
     background: url('../../../resources/Components/Shop/Image/GroupsIcons/defaultIcon.png') center center no-repeat;
 }
 .ShopNavigationPanel .ShopNavigationPanel_Menu ul.SNPRootGroupsMenu li.SNPRootGroupsMenuElement .ShopGroupName {
+    padding-top: 5px;
     font: bold 9px/9px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
     text-align: center;
 }
@@ -234,8 +235,4 @@ input.FilterType_groupSelect:checked+label:before {
 }
 .ShopPropertiesFilterForm .ItemsFoundFilterBlocks .value {
     font: 12px/14px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
-}
-
-.ShopNavigationPanel .ShopNavigationPanel_Menu ul.SNPRootGroupsMenu {
-    padding-right: 100px;
 }
