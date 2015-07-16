@@ -76,10 +76,11 @@
     list-style: none;
     float: left;
     width: 85px;
-    height: 105px;
+    height: 100px;
     /*margin: 10px;*/
     /*padding: 5px;*/
     border: 1px solid transparent;
+    margin-bottom: 10px;
 }
 .ShopNavigationPanel .ShopNavigationPanel_Menu ul.SNPRootGroupsMenu li.SNPRootGroupsMenuElement:hover {
     border: 1px solid #C3C3C3;
@@ -119,7 +120,7 @@
 }
 .ShopNavigationPanel_Filter {
     position: relative;
-    padding: 20px;
+    padding: 0px 0px 20px 0px;
 }
 .ShopNavigationPanel_Filter .ShopPropertiesFilterForm {}
 .ShopNavigationPanel_Filter .ShopPropertiesFilterForm .ShopPropertiesFilterBlocks {
