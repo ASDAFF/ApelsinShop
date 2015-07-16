@@ -73,8 +73,7 @@ class Unpacking {
                 if (!is_dir($this->image['filename']) ) {
                     // если изображениe
                     if ($this->isImage()) {
-                        $nameFile = $this->getTextNameImage($this->image['stored_filename']);
-                        if ($nameFile == null) {
+                        if ($this->getTextNameImage($this->image['stored_filename'])) {
                             $this->undefinedFiles[] = $this->image['stored_filename'];
                             unlink($this->image['filename']);
                         } 
@@ -209,11 +208,25 @@ class Unpacking {
      * @return type - текстовое название файла
      */
     private function getTextNameImage($file) {
-        $nameWitheExtension = $this->reverse_strrchr($file, '.');
-        $id = substr($nameWitheExtension, 0, strlen($nameWitheExtension) - 1);
-        $query = "SELECT `itemName` FROM `ShopItems` WHERE `id` = '".$id."';";
-        $itemName = $this->SQL_HELPER->select($query,1);
-        return $itemName['itemName'];
+        $id = $this->getFileNameWithoutExtension($file);
+        $query = "SELECT `groupName` as name FROM `ShopGroups` WHERE `id` = '".$id."';";
+        $name = $this->SQL_HELPER->select($query,1);
+        if ($name === null || empty($name)) {
+            $query = "SELECT `itemName` as name FROM `ShopItems` WHERE `id` = '".$id."';";
+            $name = $this->SQL_HELPER->select($query,1);
+        }
+        return $name === null || empty($name);
+    }
+
+    /**
+     * Получить название файла без его расширения
+     * @param type $file
+     * @return type
+     */
+    private function getFileNameWithoutExtension($file) {
+        $fileNameExtension = $this->reverse_strrchr($file, '.');
+        $name = substr($fileNameExtension, 0, strlen($fileNameExtension) - 1);
+        return $name;
     }
     
     /**

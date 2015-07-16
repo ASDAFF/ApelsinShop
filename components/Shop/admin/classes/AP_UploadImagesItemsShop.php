@@ -244,9 +244,13 @@ class AP_UploadImagesItemsShop {
      */
     private function getTextNameImage($file) {
         $id = $this->getFileNameWithoutExtension($file);
-        $query = "SELECT `itemName` FROM `ShopItems` WHERE `id` = '".$id."';";
-        $itemName = $this->SQL_HELPER->select($query,1);
-        return $itemName['itemName'];
+        $query = "SELECT `groupName` as name FROM `ShopGroups` WHERE `id` = '".$id."';";
+        $name = $this->SQL_HELPER->select($query,1);
+        if ($name === null || empty($name)) {
+            $query = "SELECT `itemName` as name FROM `ShopItems` WHERE `id` = '".$id."';";
+            $name = $this->SQL_HELPER->select($query,1);
+        }
+        return $name['name'];
     }
 
     /**
