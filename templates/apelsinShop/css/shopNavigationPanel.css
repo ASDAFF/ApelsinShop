@@ -235,3 +235,7 @@ input.FilterType_groupSelect:checked+label:before {
 .ShopPropertiesFilterForm .ItemsFoundFilterBlocks .value {
     font: 12px/14px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
 }
+
+.ShopNavigationPanel .ShopNavigationPanel_Menu ul.SNPRootGroupsMenu {
+    padding-right: 100px;
+}
