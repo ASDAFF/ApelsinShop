@@ -366,7 +366,7 @@ class ShopImportData_MySQL {
         $this->SQL .= "SET CHARACTER SET 'utf8';\r\n";
         $this->SQL .= "SET SESSION collation_connection = 'utf8_general_ci';\r\n";
         $this->SQL .= "SET SQL_MODE = 'NO_AUTO_VALUE_ON_ZERO';\r\n";
-        $this->SQL .= "SET time_zone = ''+00:00';\r\n";
+        $this->SQL .= "SET time_zone = '+00:00';\r\n";
         $this->SQL .= "\r\n";
         $this->SQL .= "\r\n--\r\n-- DeleteDataLinks\r\n--\r\n\r\n";
         $this->SQL .= $this->getMysqlScript('DeleteDataLinks');
@@ -383,7 +383,7 @@ class ShopImportData_MySQL {
         $this->SQL .= "\r\n--\r\n-- Success\r\n--\r\n\r\n";
         $this->SQL .= $this->getScriptToSuccess();
 //        $this->FILE_SQL = $this->FILE.'apelsin1c.sql';
-        $rez = file_put_contents($this->FILE_SQL, $this->SQL);
+        file_put_contents($this->FILE_SQL, $this->SQL);
     }
     
     private function getMysqlScript($key) {
