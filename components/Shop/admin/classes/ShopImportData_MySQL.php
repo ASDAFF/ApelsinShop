@@ -28,6 +28,7 @@ class ShopImportData_MySQL {
     private $WARNINGS = array();
     
     private $logDate = array();
+    private $numericColumn = array();
     private $fileName ;
     
     public function __construct($fileName) {
@@ -35,6 +36,7 @@ class ShopImportData_MySQL {
         $this->fileName = $fileName;
         global $_SQL_HELPER;
         $this->SQL_HELPER = $_SQL_HELPER;
+        $this->setNumericColumn();
         $this->getUserData();
         $this->getData_XML();
         if(count($this->ERRORS) == 0 || $SHOP_ADMIN_TEST_MOD) {
@@ -44,6 +46,15 @@ class ShopImportData_MySQL {
         } else {
             $this->importIsNotSuccess();
         }
+    }
+    
+    private function setNumericColumn() {
+        $this->numericColumn['ShopGroups'] = array('shown','showInHierarchy');
+        $this->numericColumn['ShopProperties'] = array('oneOfAllValues');
+        $this->numericColumn['ShopItems'] = array('action','amount','minAmount','shown');
+        $this->numericColumn['ShopPricesTypes'] = array('default');
+        $this->numericColumn['ShopPropertiesInGroups'] = array('sequence');
+        $this->numericColumn['ShopItemsPrices'] = array('value');
     }
     
     private function getUserData() {
@@ -105,10 +116,10 @@ class ShopImportData_MySQL {
         $logQ = "INSERT INTO `ShopImportLogs`(`importDate`, `exportDate`, `fullExport`, `user`, `exportUser`, `success`, `xmlFile`, `sqlFile`, `logFileText`, `logFileHtml`) VALUES ("
                 . "'".$this->logDate['importDate']."',"
                 . "'".$this->logDate['exportDate']."',"
-                . "'".$this->logDate['fullExport']."',"
+                . "".$this->logDate['fullExport'].","
                 . "'".$this->logDate['importUser']."',"
                 . "'".$this->logDate['exportUser']."',"
-                . "'".$this->logDate['success']."',"
+                . "".$this->logDate['success'].","
                 . "'".$this->logDate['xmlFile']."',"
                 . "'".$this->logDate['sqlFile']."',"
                 . "'".$this->logDate['logFile']."',"
@@ -296,7 +307,11 @@ class ShopImportData_MySQL {
                 $query = "UPDATE `".$table."` SET ";
                 foreach ($columns as $column) {
                     if(isset($element[$column])) {
-                        $query .= "`".$column."` = '".$element[$column]."', ";
+                        if(isset($this->numericColumn[$table]) && in_array($column, $this->numericColumn[$table])) {
+                            $query .= "`".$column."` = ".$element[$column].", ";
+                        } else {
+                            $query .= "`".$column."` = '".$element[$column]."', ";
+                        }
                     } else {
                         $query .= "`".$column."` = NULL, ";
                     }
@@ -331,7 +346,11 @@ class ShopImportData_MySQL {
                 $query .= '(';
                 foreach ($columns as $column) {
                     if(isset($element[$column])) {
-                        $query .= "'".$element[$column]."', ";
+                        if(isset($this->numericColumn[$table]) && in_array($column, $this->numericColumn[$table])) {
+                            $query .= $element[$column].", ";
+                        } else {
+                            $query .= "'".$element[$column]."', ";
+                        }
                     } else {
                         $query .= 'NULL, ';
                     }
