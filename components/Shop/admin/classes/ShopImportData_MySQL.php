@@ -361,7 +361,11 @@ class ShopImportData_MySQL {
         $this->SQL .= "-- Import Date: ".$this->logDate['importDate2']."\r\n";
         $this->SQL .= "-- Import User: ".$this->yourUserData['ferstName']." ".$this->yourUserData['lastName']." [".$this->yourUserData['nickname']."]\r\n";
         $this->SQL .= "--\r\n";
-        
+        $this->SQL .= "\r\n";
+        $this->SQL .= "SET NAMES 'utf8';\r\n";
+        $this->SQL .= "SET CHARACTER SET 'utf8';\r\n";
+        $this->SQL .= "SET SESSION collation_connection = 'utf8_general_ci';\r\n";
+        $this->SQL .= "\r\n";
         $this->SQL .= "\r\n--\r\n-- DeleteDataLinks\r\n--\r\n\r\n";
         $this->SQL .= $this->getMysqlScript('DeleteDataLinks');
         $this->SQL .= "\r\n--\r\n-- HideData\r\n--\r\n\r\n";
