@@ -371,9 +371,11 @@ class ShopImportData_XML {
                         $this->DATA_XML['GroupsHierarchy'][$key]['parentGroup'] = $groupHierarchy['#']['parentGroup'][0]['#'];
                         if(!in_array($groupHierarchy['#']['group'][0]['#'],$this->xmlDataIdSet["Groups"])) {
                             $this->ERRORS[] = 'В иерархии указана дочерняя группа <span class="WarErrTextId">'.$groupHierarchy['#']['group'][0]['#'].'</span> информация о которой отсутствует';
+                            unset($this->DATA_XML['GroupsHierarchy'][$key]);
                         }
                         if(!in_array($groupHierarchy['#']['parentGroup'][0]['#'],$this->xmlDataIdSet["Groups"])) {
                             $this->ERRORS[] = 'В иерархии указана родительская группа <span class="WarErrTextId">'.$groupHierarchy['#']['parentGroup'][0]['#'].'</span> информация о которой отсутствует';
+                            unset($this->DATA_XML['GroupsHierarchy'][$key]);
                         }
                     }
                 } else {
@@ -413,13 +415,16 @@ class ShopImportData_XML {
                         $this->DATA_XML['PropertiesInGroups'][$key]['property'] = $propertiesInGroups['#']['property'][0]['#'];
                         if($propertiesInGroups['#']['sequence'][0]['#'] <= 0 ) {
                             $this->ERRORS[] = 'Неверное значение поля sequence в PropertiesInGroups. Номер записи <span class="WarErrTextName">'.$key.'</span>';
+                            unset($this->DATA_XML['PropertiesInGroups'][$key]);
                         }
                         $this->DATA_XML['PropertiesInGroups'][$key]['sequence'] = $propertiesInGroups['#']['sequence'][0]['#'];
                         if(!in_array($propertiesInGroups['#']['group'][0]['#'],$this->xmlDataIdSet["Groups"])) {
                             $this->ERRORS[] = 'Свойство <span class="WarErrTextId">'.$propertiesInGroups['#']['property'][0]['#'].'</span> указано для группы <span class="WarErrTextId">'.$propertiesInGroups['#']['group'][0]['#'].'</span> информация о которой отсутствует';
+                            unset($this->DATA_XML['PropertiesInGroups'][$key]);
                         }
                         if(!in_array($propertiesInGroups['#']['property'][0]['#'],$this->xmlDataIdSet["Properties"])) {
                             $this->ERRORS[] = 'Для группы <span class="WarErrTextId">'.$propertiesInGroups['#']['group'][0]['#'].'</span> указано свойство <span class="WarErrTextId">'.$propertiesInGroups['#']['property'][0]['#'].'</span> информация о котором отсутствует';
+                            unset($this->DATA_XML['PropertiesInGroups'][$key]);
                         }
                     }
                 }
