@@ -126,9 +126,9 @@ class ShopImportData_MySQL {
         return $logQ;
     }
     private function importIsNotSuccess() {
-        $logQ = "UPDATE `ShopImportLogs` SET `success`='0', "
-                . "`errors`='".count($this->ERRORS)."', "
-                . "`warnings`='".count($this->WARNINGS)."' "
+        $logQ = "UPDATE `ShopImportLogs` SET `success`=0, "
+                . "`errors`=".count($this->ERRORS).", "
+                . "`warnings`=".count($this->WARNINGS)." "
                 . "WHERE "
                 . "`importDate` = '".$this->logDate['importDate']."' AND "
                 . "`exportDate` = '".$this->logDate['exportDate']."' AND "
