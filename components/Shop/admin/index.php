@@ -1,6 +1,6 @@
 <?php
 global $SHOP_ADMIN_TEST_MOD;
-$SHOP_ADMIN_TEST_MOD = FALSE;
+$SHOP_ADMIN_TEST_MOD = TRUE;
                 
 function createdDir($dirUpload) {
     if (!file_exists($dirUpload)) { 
