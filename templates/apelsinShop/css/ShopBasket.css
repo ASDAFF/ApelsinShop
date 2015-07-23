@@ -39,7 +39,18 @@
     height: 5px;
     background: #00cf00;
 }
-
+.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemImageInfoBlock .ShopItemAmount .ShopItemAmountScale.VeryFew {
+    background: #CF0000;
+}
+.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemImageInfoBlock .ShopItemAmount .ShopItemAmountScale.Few {
+    background: #CF7600;
+}
+.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemImageInfoBlock .ShopItemAmount .ShopItemAmountScale.Suffice {
+    background: #CFB500;
+}
+.ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemImageInfoBlock .ShopItemAmount .ShopItemAmountScale.Many {
+    background: #00cf00;
+}
 .ShopBasketBlock .ShopBasketItemBlock .ShopBasketItemTextInfoBlock {
     height: 90px;
     float: left;

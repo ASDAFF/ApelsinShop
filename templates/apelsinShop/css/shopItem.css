@@ -44,6 +44,18 @@
     height: 20px;
     background: #00cf00;
 }
+.ShopItemMainWrapper .ShopItemLeftBlock .ShopItemAmount .ShopItemAmountScale.VeryFew {
+    background: #CF0000;
+}
+.ShopItemMainWrapper .ShopItemLeftBlock .ShopItemAmount .ShopItemAmountScale.Few {
+    background: #CF7600;
+}
+.ShopItemMainWrapper .ShopItemLeftBlock .ShopItemAmount .ShopItemAmountScale.Suffice {
+    background: #CFB500;
+}
+.ShopItemMainWrapper .ShopItemLeftBlock .ShopItemAmount .ShopItemAmountScale.Many {
+    background: #00cf00;
+}
 .ShopItemMainWrapper .ShopItemLeftBlock .ShopItemBuyButtonBlock {
     height: 80px;
 }
