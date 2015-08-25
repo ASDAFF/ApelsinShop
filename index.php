@@ -1,5 +1,5 @@
 <?php
-ini_set("memory_limit", "1024M");
+ini_set("memory_limit", "256M");
 @session_start();
 // Включить отображение ошибок
 ini_set("display_errors",1);
