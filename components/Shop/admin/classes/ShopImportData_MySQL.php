@@ -310,7 +310,7 @@ class ShopImportData_MySQL {
                         if(isset($this->numericColumn[$table]) && in_array($column, $this->numericColumn[$table])) {
                             $query .= "`".$column."` = ".$element[$column].", ";
                         } else {
-                            $query .= "`".$column."` = '".$element[$column]."', ";
+                            $query .= "`".$column."` = '".$this->SQL_HELPER->escapeString($element[$column])."', ";
                         }
                     } else {
                         $query .= "`".$column."` = NULL, ";
@@ -349,7 +349,7 @@ class ShopImportData_MySQL {
                         if(isset($this->numericColumn[$table]) && in_array($column, $this->numericColumn[$table])) {
                             $query .= $element[$column].", ";
                         } else {
-                            $query .= "'".$element[$column]."', ";
+                            $query .= "'".$this->SQL_HELPER->escapeString($element[$column])."', ";
                         }
                     } else {
                         $query .= 'NULL, ';
