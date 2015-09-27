@@ -95,9 +95,9 @@ class MysqliHelper {
     /**
      * Деструктор класса который разрывает соединение с БД.
      */
-    public function __destruct() {
-        $this->mysqli->close();
-    }
+//    public function __destruct() {
+//        $this->mysqli->close();
+//    }
     
     public function sqlFileExec($scriptFile) {
         global $_DBSETTINGS;

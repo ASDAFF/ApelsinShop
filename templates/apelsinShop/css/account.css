@@ -1,0 +1,696 @@
+.avatarBox {
+    height: 200px;
+    width: 250px;
+    padding: 25px 5px 0px 5px;
+}
+
+.AccountGroup {
+    position: relative;
+    height: 0px;
+    width: 250px;
+    text-align: center;
+}
+
+.AccountGroup .Administrator {
+    position: absolute;
+    background: url('../img/accountGroup/Administrator.png') no-repeat;
+    width: 50px;
+    height: 33px;
+    //z-index: 6;
+    top: -5px;
+    left: 105px;
+}
+
+.avatarBlock {
+    position: relative;
+    height: 200px;
+    width: 200px;
+    border-radius: 105px;
+    -moz-border-radius: 105px;
+    -o-border-radius: 105px;
+    -webkit-border-radius: 105px;
+    box-shadow: 0px 0px 25px rgba(0,0,0,1);
+    border: 5px solid rgba(255,255,255,0.2);
+    margin: 0 auto;
+}
+
+.avatarBlock img.avatarIMG {
+    border-radius: 100px;
+    -moz-border-radius: 100px;
+    -o-border-radius: 100px;
+    -webkit-border-radius: 100px;
+    height: 200px;
+    width: 200px;
+    //box-shadow: 0px 3px 10px rgba(0,0,0,.7);
+    margin: 0px;
+    //float: left;
+    background-color: #4f4f4f;
+    
+}
+
+.loginBox {
+    width: 260px;
+    height: 35px;
+    color: #fff;
+    text-shadow: 0 0 5px rgba(0,0,0,1),0 0 10px rgba(0,0,0,1);
+    margin: 15px 0px 45px 0px;
+    text-align: center;
+}
+.loginBox .sex {
+    text-decoration: none;
+    font: 13px/13px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    font-weight: bold;
+}
+.loginBox .login {
+    font: 26px/26px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    font-weight: bold;
+}
+.loginBox .fio {
+    font: 15px/15px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    font-weight: bold;
+}
+.loginBox .city {
+    font: 13px/13px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    margin-top: 2px;
+}
+.loginBox .city a {
+    color: #fff;
+    text-decoration: none;
+    font: 11px/13px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    text-transform: lowercase;
+    //font-weight: bold;
+}
+.loginBox .city a:hover {
+    color: #5bafff;
+    background-color: rgba(0,0,0,0.3);
+}
+
+
+.accountContacts {
+    text-align: left;
+    font: 11px/13px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    padding: 5px;
+    text-shadow: 0 1px 0px rgba(255,255,255,0.5);
+}
+
+.accountContacts .lable {
+    text-align: right;
+    color: #ef7f1a;
+    color: #00f;
+}
+.accountContacts .contact {
+    padding-left: 5px;
+    color: #111;
+}
+
+.accountContacts .contact a {
+    text-decoration: none;
+    color: #111;
+}
+.accountContacts .contact a:hover {
+    text-decoration: none;
+    color: #500;
+}
+
+ul.accountSocial {
+    list-style-type: none;
+}
+
+ul.accountSocial li.icon {
+    display: block;
+    float:left;
+    width: 64px;
+    height: 64px;
+    margin: 8px 3px 8px 3px;
+    background: url('../img/accountSocial_icons.png');
+}
+
+ul.accountSocial li.icon a {
+    display: block;
+    width: 64px;
+    height: 64px;
+}
+
+ul.accountSocial li.icon.vk {
+    background-position: 0px 0px;
+}
+ul.accountSocial li.icon.vk:hover {
+    background-position: 0px -64px;
+}
+
+ul.accountSocial li.icon.odnoklasniki {
+    background-position: -64px 0px;
+}
+ul.accountSocial li.icon.odnoklasniki:hover {
+    background-position: -64px -64px;
+}
+
+ul.accountSocial li.icon.google {
+    background-position: -128px 0px;
+}
+ul.accountSocial li.icon.google:hover {
+    background-position: -128px -64px;
+}
+
+ul.accountSocial li.icon.facebook {
+    background-position: -192px 0px;
+}
+ul.accountSocial li.icon.facebook:hover {
+    background-position: -192px -64px;
+}
+
+ul.accountSocial li.icon.twitter {
+    background-position: -256px 0px;
+}
+ul.accountSocial li.icon.twitter:hover {
+    background-position: -256px -64px;
+}
+
+ul.accountSocial li.icon.instagram {
+    background-position: -320px 0px;
+}
+ul.accountSocial li.icon.instagram:hover {
+    background-position: -320px -64px;
+}
+
+ul.accountSocial li.icon.youtube {
+    background-position: -384px 0px;
+}
+ul.accountSocial li.icon.youtube:hover {
+    background-position: -384px -64px;
+}
+
+ul.accountSocial li.icon.livejournal {
+    background-position: -448px 0px;
+}
+ul.accountSocial li.icon.livejournal:hover {
+    background-position: -448px -64px;
+}
+
+ul.accountSocial li.icon.blogger {
+    background-position: -512px 0px;
+}
+ul.accountSocial li.icon.blogger:hover {
+    background-position: -512px -64px;
+}
+
+ul.accountSocial li.icon.siteUrl {
+    background-position: -576px 0px;
+}
+ul.accountSocial li.icon.siteUrl:hover {
+    background-position: -576px -64px;
+}
+
+
+.accountUserPanel {
+    width: 960px;
+    height: 400px;
+    background: url('../img/accountUserPanel_bg.jpg');
+    box-shadow: inset 0px 1px 3px rgba(0,0,0,0.5);
+}
+
+.accountUserPanel .accountUserPanelLeft {
+    float: left;
+    //background-color: rgba(0,0,0,0.3);
+    width: 260px;
+    height: 400px;
+}
+.accountUserPanel .accountUserPanelRight {
+    position: relative;
+    width: 700px;
+    float: right;
+    height: 400px;
+}
+
+.accountUserPanel .avatarBox {
+    
+}
+.accountUserPanel .contactsBox {
+    margin: 0px;
+    width: 260px;
+    height: 80px;
+    background: rgba(255,255,255,0.75);
+}
+.accountUserPanel .contactsBox table {
+    margin: 0 auto;
+}
+
+.contentBlock .accountUserPanel .contactsBox {
+    margin: 0px;
+    width: 260px;
+    height: 80px;
+    background: rgba(255,255,255,0.75);
+}
+.contentBlock .accountUserPanel .contactsBox table {
+    margin: 0 auto;
+    border: none;
+}
+
+.contentBlock .accountUserPanel .contactsBox td {
+    border: none;
+    border-collapse: collapse;
+    padding: 3px;
+}
+
+.accountUserPanel .accountUserPanelRight .socialBox {
+    position: absolute;
+    top: 320px;
+    left: 0px;
+    height: 80px;
+    width: 100%;
+    background: rgba(255,255,255,0.75);
+}
+
+.accountUserPanel .accountUserPanelRight .socialBox ul.accountSocial {
+    float: right;
+    height: 64px;
+}
+.avatarPromoBox {
+    width: 460px;
+    height: 230px;
+    margin: 0px auto 0px auto;
+}
+
+
+
+.avatarPromoConteiner, 
+.avatarPromoOneConteiner {
+    height: 200px;
+    width: 200px;
+    box-shadow: 0px 0px 5px black;
+    border: 10px solid white;
+    margin: 5px;
+    float: left;
+}
+
+.avatarPromoConteiner .avatarPromoText, 
+.avatarPromoOneConteiner .avatarPromoText {
+    height: 15px;
+    background-color: rgba(255,255,255,.5);
+    position: relative;
+    margin-top: -40px;
+    color: #000;
+    font: 13px/15px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    text-shadow: 0px 1px 0px rgba(255,255,255,.5);
+    padding: 10px;
+}
+
+.avatarPromoOneConteiner {
+    float: none;
+    margin: 5px auto 5px auto;
+}
+
+.avatarPromo {
+    height: 200px;
+    width: 200px;
+    cursor: pointer;
+}
+.changeImageBox {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 2000;
+    background-color: rgba(0,0,0,.7);
+}
+.changeImageConteiner {
+    width: 800px;
+    height: 500px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -260px 0 0 -440px;
+    padding: 10px 40px 10px 40px;
+    background-color: rgba(255,255,255,.7);
+}
+.changeImageText {
+    color: #000;
+    font: 13px/14px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    text-shadow: 0px 1px 0px rgba(255,255,255,.5);
+    padding: 30px 30px 10px 30px;
+    height: 200px;
+    clear: both;
+}
+
+.CMSCutImageForme {
+    margin: 10px;
+}
+
+.changeImage  {
+    max-width: 500px;
+    max-height: 500px;
+    margin: auto auto 5px auto;
+    float: right;
+}
+.changeImagePromo .changeImagePromo200, 
+.changeImagePromo .changeImagePromo50, 
+.changeImagePromo .changeImagePromo30 {
+    margin: 5px;
+    box-shadow: 0px 0px 5px black;
+}
+.changeImagePromo {
+    width: 270px;
+    float: left;
+}
+.changeImagePromo .changeImagePromo200 {
+    width: 200px;
+    height: 200px;
+    float: left;
+}
+.changeImagePromo .changeImagePromo50 {
+    width: 50px;
+    height: 50px;
+    float: right;
+}
+.changeImagePromo .changeImagePromo30 {
+    margin: 115px 15px 5px 5px;
+    width: 30px;
+    height: 30px;
+    float: right;
+}
+
+.changeImage .jcrop-holder {
+    margin: 0px auto 0px auto;
+    box-shadow: 0px 0px 5px black;
+}
+
+.AccountSettings p {
+    text-align: justify;
+    color: #000;
+    font: 14px/16px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    margin: 10px 100px 10px 100px;
+    text-indent: 30px;
+}
+
+/* COMP Users */
+.EditUserDataForm {
+    font: 13px/17px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    color: #4f4f4f;
+    line-height: 17px;
+}
+.EditUserDataForm .EditUserDataFormTable {
+    width: 100%;
+}
+
+.EditUserDataForm .EditUserDataFormTable .EditUserDataFormTable_Text{
+    width: 40%;
+    text-align: right;
+    padding-right: 5px;
+    vertical-align: middle;
+} 
+.EditUserDataForm .EditUserDataFormTable .EditUserDataFormTable_Input {
+    width: 60%;
+    text-align: left;
+    padding-left: 5px;
+    vertical-align: middle;
+}
+.EditUserDataForm .EditUserDataFormTable .EditUserDataFormTable_Text .text {
+    font: 13px/17px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    color: #4f4f4f;
+    line-height: 17px;
+}
+
+.EditUserDataForm .EditUserDataFormTable .EditUserDataFormTable_Text .info {
+    font: 11px/15px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    color: #8f8f8f;
+    line-height: 17px;
+}
+
+.EditUserDataForm .EditUserDataFormTable .EditUserDataFormTable_Input input[type=text],
+.EditUserDataForm .EditUserDataFormTable .EditUserDataFormTable_Input input[type=password],
+.EditUserDataForm .EditUserDataFormTable .EditUserDataFormTable_Input textarea,
+.EditUserDataForm .EditUserDataFormTable .EditUserDataFormTable_Input .selectBox {
+    width: 400px;
+    margin: 5px 0px 5px 0px;
+}
+
+.EditUserDataForm .EditUserDataFormButton {
+    font: 0.95em 'Open Sans',Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    color: #ef7f1a;
+    padding: 5px 10px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+    border: none;
+    background: #e2e2e2;
+    background: -moz-linear-gradient(top, #e2e2e2 0%, #dbdbdb 50%, #d1d1d1 51%, #fefefe 100%);
+    background: -webkit-linear-gradient(top, #e2e2e2 0%,#dbdbdb 50%,#d1d1d1 51%,#fefefe 100%);
+    background: -o-linear-gradient(top, #e2e2e2 0%,#dbdbdb 50%,#d1d1d1 51%,#fefefe 100%);
+    background: -ms-linear-gradient(top, #e2e2e2 0%,#dbdbdb 50%,#d1d1d1 51%,#fefefe 100%);
+    box-shadow: 0px 1px 3px rgba(0,0,0,0.5);
+    text-shadow: 0px 1px 0px #fff;
+}
+
+.EditUserDataForm .EditUserDataFormButton:hover {
+    box-shadow: inset 0px 1px 5px rgba(0,0,0,0.5);
+}
+
+.EditUserDataForm .EditUserDataFormTable .EditUserDataFormTable_Input textarea {
+    height: 50px;
+    min-height: 50px;
+    width: 400px;
+    min-width: 400px;
+    max-width: 400px;
+    max-height: 300px;
+    padding: 10px;
+}
+
+.EditUserDataForm .EditUserDataFormTable .EditUserDataFormTable_Input .selectBox {
+    width: 420px;
+}
+
+.EditUserDataForm .mandatoryText {
+    text-align: center;
+    margin: 5px 0px 5px 0px;
+}
+
+.statusBox {
+    position: relative;
+    padding: 11px 10px 10px 10px;
+    color: #fff;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    display: block;
+    margin: 10px 10px 0px -10px;
+    font: 13px/14px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    text-align: left;
+    color: #2f2f2f;
+    text-shadow: 0px 1px 0px rgba(255,255,255,0.7);
+    background: rgba(255,255,255,.75);
+    box-shadow: 0px 1px 10px rgba(0,0,0,0.5);
+    border: 1px rgba(255,255,255,.5) solid;
+}
+
+.statusBox:before {
+    content: "";
+    position: absolute;
+    bottom: -25px;
+    left: -15px;
+    width: 20px;
+    height: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    background: rgba(255,255,255,.75);
+    box-shadow: 0px 1px 10px rgba(0,0,0,0.7);
+    border: 1px rgba(255,255,255,.5) solid;
+}
+.statusBox:after {
+    content: "";
+    position: absolute;
+    bottom: -35px;
+    left: -25px;
+    width: 10px;
+    height: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    background: rgba(255,255,255,.75);
+    box-shadow: 0px 1px 10px rgba(0,0,0,0.7);
+    border: 1px rgba(255,255,255,.5) solid;
+}
+
+.aboutYourselfBox {
+    position: relative;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    display: block;
+    margin: 70px 10px 0px 20px;
+    background: rgba(0,0,0,.5);
+    min-height: 70px;
+    max-height: 140px;
+    width: 400px;
+    padding: 10px;
+    color: #2f2f2f;
+    text-shadow: 0px 1px 0px rgba(255,255,255,0.7);
+    background: rgba(255,255,255,.75);
+    box-shadow: 0px 1px 10px rgba(0,0,0,0.5);
+    border: 1px rgba(255,255,255,.5) solid;
+}
+
+.aboutYourselfBlock {
+    padding: 10px;
+    margin-bottom: 10px;
+    font: 11px/13px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    /*color: #fff;*/
+    text-align: left;
+    min-height: 50px;
+    max-height: 120px;
+    width: 380px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.aboutYourselfBlock:before {
+/*    bottom: 20px;
+    left: -40px;
+    bottom: auto;
+    border-width: 0px 40px 15px 0px;
+    border-color: transparent rgba(255,255,255,.5);
+    content: "";
+    position: absolute;
+    border-style: solid;
+    display: block;
+    width: 0;*/
+    /*background: rgba(255,255,255,.5);*/
+    /*box-shadow: 0px 1px 10px rgba(0,0,0,0.7);*/
+    /*border: 1px rgba(255,255,255,.5) solid;*/
+}
+.changeImageMainBlock, .AvatarLoadFormMainBlock {
+    width: 480px;
+    height: 310px;
+    border: 1px solid rgba(255,255,255,.2);
+    background: rgba(255,255,255,.1);
+    border-left: none;
+}
+.changeImageMainBlock {
+    float: right;
+    border-right: none;
+    /*width: 480px;
+    height: 300px;
+    border: 1px solid #d1d1d1;
+    border-left: none;
+    border-right: none;*/
+}
+.AvatarLoadFormMainBlock {
+    float: left;
+    width: 479px;
+    /*width: 479px;
+    height: 300px;
+    border: 1px solid #d1d1d1;
+    border-left: none;*/
+}
+
+.changeImageMainBlock h1,
+.AvatarLoadFormMainBlock h1 {
+    font: 20px/24px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    color: #ef7f1a;
+    font-weight: bold;
+    margin-top: 5px;
+}
+.AvatarLoadFormMainBlock h1 {
+    margin-bottom: 40px;
+}
+
+.AvatarLoadFormMainBlock input[type=submit] {
+    margin-top: 20px;
+}
+
+.AvatarLoadInfo {
+    clear: both;
+    padding-top: 20px;
+}
+
+.noMainAvatarFileInfo {
+    width: 400px;
+    margin: 0px 40px 0px 40px;
+    font: 11px/13px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+}
+
+.userSex {
+    font: 14px/16px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+}
+
+.AccountSettingsIcon {
+    float: right;
+    height: 32px;
+    width: 32px;
+    padding: 0px;
+    margin: 0px;
+    background: url('../img/settingsIcon.png') no-repeat;
+}
+
+.AccountSettingsIcon a {
+    display: block;
+    height: 32px;
+    width: 32px;
+}
+
+.searchUserPanel {
+    font: 14px/14px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    color: #fff;
+    font-weight: bold;
+    width: 200px;
+    float: right;
+    
+    position: relative;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    display: block;
+    margin: 50px 20px 0px 20px;
+    background: rgba(0,0,0,.5);
+    min-height: 70px;
+    padding: 10px;
+    
+    color: #2f2f2f;
+    text-shadow: 0px 1px 0px rgba(255,255,255,0.7);
+    background: rgba(255,255,255,.75);
+    box-shadow: 0px 1px 10px rgba(0,0,0,0.5);
+    border: 1px rgba(255,255,255,.5) solid;
+}
+
+.UserSearchResult {
+    color: #ef7f1a;
+    font: 13px/14px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    max-height: 150px;
+    overflow: scroll;
+    overflow-x: hidden;
+    padding: 0px;
+}
+.UserSearchResult .searchResultElement {
+    height: 14px;
+    font-weight: bold;
+}
+.UserSearchResult .searchResultElement:hover {
+    color: #000;
+    background: rgba(255,255,255,.5);
+}
+.UserSearchResult .searchResultElement a {
+    text-decoration: none;
+    display: block;
+    height: 14px;
+    color: #ef7f1a;
+}
+.UserSearchResult .searchResultElement:hover a {
+    color: #000;
+}
+.changePasswordForm {
+    width: 45%;
+}
+.changePasswordForm .changePasswordFormTable .EditUserDataFormTable_Text {
+    width: 40%;
+    text-align: right;
+    padding-right: 5px;
+    vertical-align: middle;
+} 
+.changePasswordForm .changePasswordFormTable .EditUserDataFormTable_Input .changePassword {
+    width: 90%;
+} 

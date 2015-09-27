@@ -28,6 +28,45 @@ button {
     border: none;
     cursor: pointer;
 }
+input[type=text],
+input[type=password],
+textarea,
+.selectBox {
+    background: #EDEDED;
+/*    padding-left: 10px;
+    padding-right: 10px;*/
+    padding: 5px 10px;
+    font: bold 12px/12px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    color: #ef7f1a;
+    margin: 2px 0px 2px 0px;
+    border: none;
+    outline: none;
+}
+input[type=submit], input[type=button] {
+    padding: 0px 10px;
+    margin: 5px;
+    border: none;
+    font: bold 14px/30px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    background: #ef7f1a;
+    text-transform: uppercase;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+}
+
+input[type=submit]:hover, input[type=button]:hover {
+    box-shadow: inset 0px 1px 5px rgba(0,0,0,0.5);
+}
+
+input[type=button].bigButton {
+    font: 20px/30px 'Open Sans',Arial,Helvetica,sans-serif;
+    font-weight: bold;
+}
+
+input[type=file] {
+    box-shadow: inset 0px 1px 5px rgba(0,0,0,0.5);
+    background: rgb(245,250,255);
+}
 /*ul {
     list-style: none;
     margin-left: 0;

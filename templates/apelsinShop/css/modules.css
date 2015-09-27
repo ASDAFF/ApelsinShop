@@ -22,3 +22,7 @@
 .LeftTopHeadBlock .m_block {
     float: right;
 }
+
+.m_block.authorizationUserPanel {
+  float: right;
+}

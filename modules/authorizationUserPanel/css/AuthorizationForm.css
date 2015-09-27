@@ -22,6 +22,7 @@ input[type=submit].AuthorizationFormButton {
     font-size: 0px;
     margin-left: 10px;
     border-radius: 0;
+    margin-top: 15px;
 }
 input[type=submit].AuthorizationFormButton:hover {
     box-shadow: none;
@@ -43,53 +44,34 @@ input[type=submit].AuthorizationFormButton:hover {
     text-align: center;
     cursor: pointer;
     font: 14px/30px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
-    /*color: #e6e6e6;*/
     font-weight: bold;
-    color: #ef7f1a;
-    color: #6d6d6d;
-/*    text-shadow: 
-        1px 0px 0px #FFF,
-        0px 1px 0px #FFF,
-        -1px 0px 0px #FFF,
-        0px -1px 0px #FFF,
-        1px 1px 0px #FFF,
-        -1px -1px 0px #FFF,
-        0px 0px 3px #FFF;*/
-    text-shadow: 0px 1px 0px rgba(255,255,255,0.7);
+    color: #8B8B8B;
 }
 .LoginPanelBlock .LoginPanelTextButon a {
     text-decoration: none;
-    /*color: #e6e6e6;*/
     display: block;
     height: 30px;
-    color: #ef7f1a;
-    color: #6d6d6d;
-/*    text-shadow: 
-        1px 0px 0px #FFF,
-        0px 1px 0px #FFF,
-        -1px 0px 0px #FFF,
-        0px -1px 0px #FFF,
-        1px 1px 0px #FFF,
-        -1px -1px 0px #FFF,
-        0px 0px 3px #FFF;*/
     text-shadow: 0px 1px 0px rgba(255,255,255,0.7);
 }
 
 .LoginPanelBlock .LoginPanelTextButon:hover {
-    box-shadow: inset 0px 0px 3px rgba(0,0,0,0.5);
-    background: rgba(255,255,255,.7);
+    background: #ef7f1a;
+    color: #FFFFFF;
 }
 
 
 .LoginPanelBlock .LoginPanel {
-    height: 60px;
+    margin-top: 1px;
     width: 270px;
-    background: rgba(255,255,255,0.75);
-    padding-top: 10px;
+    background: #EDEDED;
+    background: #fff;
+    padding: 10px 0px;
     float: right;
     display: none;
-    border: 1px rgba(255,255,255,0.5) solid;
+    border: 1px #ef7f1a solid;
     border-top: none;
+    z-index: 9999;
+    position: relative;
 }
 
 .LoginPanelBlock.active .LoginPanel{
@@ -98,12 +80,12 @@ input[type=submit].AuthorizationFormButton:hover {
 
 .LoginPanelBlock .LoginPanel input[type=text],
 .LoginPanelBlock .LoginPanel input[type=password] {
-    background: rgba(255,255,255,0.75);
+/*    background: rgba(255,255,255,0.75);
     text-shadow: 0px 0px 3px #000;
     text-shadow: none;
     color: #ef7f1a;
     font-weight: bold;
-    color: #9d9d9d;
+    color: #9d9d9d;*/
 }
 
 /* UserPanelAvatarBlock */
@@ -145,8 +127,11 @@ input[type=submit].AuthorizationFormButton:hover {
     padding: 0px 5px 0px 5px;
     height: 30px;
     border-right: rgba(255,255,255,0.4) 1px solid;
-    color: #fff;
+    color: #8B8B8B;
     text-shadow: none;
+}
+.UserPanelLoginBlock:hover .UserPanelLoginBlockElement {
+    color: #fff;
 }
 
 .UserPanelLoginBlock .UserPanelLoginBlockElementMenuBlock {
