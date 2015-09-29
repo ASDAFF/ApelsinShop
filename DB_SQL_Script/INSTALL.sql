@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Сен 29 2015 г., 10:07
+-- Время создания: Сен 29 2015 г., 10:13
 -- Версия сервера: 10.0.13-MariaDB
 -- Версия PHP: 5.6.1
 
@@ -626,7 +626,6 @@ CREATE TABLE IF NOT EXISTS `ModulesInBlocks` (
 --
 
 INSERT INTO `ModulesInBlocks` (`id`, `module`, `block`, `sequence`, `showTitle`, `cssClasses`, `display`, `onAllPages`) VALUES
-(1, 101, 1000, 1, 0, NULL, 1, 1),
 (101103, 101, 103, 3, 0, NULL, 1, 1),
 (102103, 102, 103, 2, 0, NULL, 1, 1),
 (201103, 201, 103, 1, 0, NULL, 1, 1),
@@ -5357,9 +5356,7 @@ INSERT INTO `TemplateBlocks` (`id`, `block`, `template`, `description`) VALUES
 (106, 'ContentBottomBlock', 'apelsinShop', NULL),
 (107, 'AfterContentBlock', 'apelsinShop', NULL),
 (108, 'FutterLeftBlock', 'apelsinShop', NULL),
-(109, 'FutterRightBlock', 'apelsinShop', NULL),
-(1000, 'test', 'apelsinShopTest', NULL),
-(2000, 'ShopNavigationPanel', 'apelsinShopTest', NULL);
+(109, 'FutterRightBlock', 'apelsinShop', NULL);
 
 -- --------------------------------------------------------
 
@@ -5398,8 +5395,7 @@ CREATE TABLE IF NOT EXISTS `Templates` (
 --
 
 INSERT INTO `Templates` (`alias`, `name`, `author`, `version`, `description`, `default`, `main`, `mobile`, `print`) VALUES
-('apelsinShop', 'Магазин Апельсин', 'Compu Project', '1.0', 'Шаблон для магазина', 0, 'index.php', 'mobile.php', 'print.php'),
-('apelsinShopTest', 'Апельсин', 'Compu Project', '1.0', 'Основной шаблон сайта', 1, 'index.php', 'mobile.php', 'print.php');
+('apelsinShop', 'Магазин Апельсин', 'Compu Project', '1.0', 'Шаблон для магазина', 0, 'index.php', 'mobile.php', 'print.php');
 
 -- --------------------------------------------------------
 
