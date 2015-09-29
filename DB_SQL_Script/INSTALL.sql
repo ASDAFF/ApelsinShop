@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Сен 29 2015 г., 05:20
+-- Время создания: Сен 29 2015 г., 10:07
 -- Версия сервера: 10.0.13-MariaDB
 -- Версия PHP: 5.6.1
 
@@ -751,7 +751,7 @@ CREATE TABLE IF NOT EXISTS `Pages` (
 INSERT INTO `Pages` (`alias`, `showTitle`, `cssClasses`, `componentElement`, `template`, `isMainPage`, `index`, `follow`, `archive`, `notModifiable`) VALUES
 ('accounts', 1, NULL, 999801, 'apelsinShop', 0, 1, 1, 1, 0),
 ('account_settings', 1, NULL, 999802, 'apelsinShop', 0, 1, 1, 1, 0),
-('adminpanel', 1, NULL, 999901, 'apelsinShopTest', 0, 0, 0, 0, 0),
+('adminpanel', 1, NULL, 999901, 'apelsinShop', 0, 0, 0, 0, 0),
 ('shop', 1, NULL, 201, 'apelsinShop', 1, 1, 1, 1, 0),
 ('shopadmin', 1, NULL, 301, 'apelsinShop', 0, 1, 1, 1, 0),
 ('test', 1, NULL, 101, 'apelsinShop', 0, 1, 1, 1, 0);

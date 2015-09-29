@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="<?php $ROOT->templatePath();?>css/shopOrderForm.css" type="text/css" />
     <link rel="stylesheet" href="<?php $ROOT->templatePath();?>css/ThisGroupPathPanel.css" type="text/css" />
     <link rel="stylesheet" href="<?php $ROOT->templatePath();?>css/account.css" type="text/css" />
+    <link rel="stylesheet" href="<?php $ROOT->templatePath();?>css/AdminPanel.css" type="text/css" />
     <script src="<?php $ROOT->templatePath();?>js/TemplateAnimations.js"></script>
     <link rel="stylesheet" href="<?php $ROOT->templatePath();?>css/print.css" type="text/css" />
 </head>

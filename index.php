@@ -45,5 +45,4 @@ if(!$_SITECONFIG->getSiteClosed()) {
     // Перенаправить в случае если сайт закрыт
     header('Location: ./sistem/closedPage.php');
 }
-
 ?>
