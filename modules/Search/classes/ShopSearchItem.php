@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of ShopSearchItem
  *
@@ -11,6 +12,9 @@ class ShopSearchItem {
     private $data;
     private $SQL_HELPER;
     private $urlHelper;
+    private $imgSize = "50x50";
+    private $defaultIcon = "defaultIcon_50x50.png";
+    private $dir = './resources/Components/Shop/Image/';
 
     public function __construct($searchQuery) {
         $this->searchQuery = $searchQuery;
@@ -21,12 +25,12 @@ class ShopSearchItem {
     }
 
     private function getData() {
-        $query = "SELECT `groupName`, `id` FROM `ShopGroups` WHERE `groupName` LIKE '%".$this->searchQuery."%';";
+        $query = "SELECT `groupName`, `id` FROM `ShopGroups` WHERE `groupName` LIKE '%" . $this->searchQuery . "%';";
         $groups = $this->SQL_HELPER->select($query);
         foreach ($groups as $group) {
             $this->data[ShopPageInfoHelper::CatalogPage][$group['id']] = $group['groupName'];
         }
-        $query = "SELECT `itemName`, `id` FROM `ShopItems` WHERE `itemName` LIKE '%".$this->searchQuery."%';";
+        $query = "SELECT `itemName`, `id` FROM `ShopItems` WHERE `itemName` LIKE '%" . $this->searchQuery . "%';";
         $items = $this->SQL_HELPER->select($query);
         foreach ($items as $item) {
             $this->data[ShopPageInfoHelper::ItemPage][$item['id']] = $item['itemName'];
@@ -41,8 +45,11 @@ class ShopSearchItem {
             foreach ($this->data as $pageName => $unit) {
                 foreach ($unit as $idUnit => $nameUnit) {
                     if ($i < 10) {
-                        $this->html .= '<a class="searchOneItem" href="'.$this->urlHelper->pageUrl(ShopPageInfoHelper::getShopPageAlias(),array($pageName, $idUnit)).'" >';
-                        $this->html .= '<p>'.$nameUnit.'</p>';
+                        $this->html .= '<a class="searchOneItem" href="' . $this->urlHelper->pageUrl(ShopPageInfoHelper::getShopPageAlias(), array($pageName, $idUnit)) . '" >';
+                        $this->html .= '<div class="elementImage">';
+                        $this->html .= '<img src="' . $this->getImage($pageName, $idUnit) . '">';
+                        $this->html .= '</div>';
+                        $this->html .= '<div class="elementName">' . $nameUnit . '</div>';
                         $this->html .= '</a>';
                         $i++;
                     } else {
@@ -54,4 +61,30 @@ class ShopSearchItem {
         }
         return $this->html;
     }
+
+    private function getImage($imageDir, $item) {
+        if ($imageDir == 'catalog') {
+            $imageDir = $this->dir . 'GROUPS/';
+        } else {
+            $imageDir = $this->dir . 'ITEMS/';
+        }
+        if (file_exists($imageDir . $item . '_' . $this->imgSize . '.jpg')) {
+            $image = $item . '_' . $this->imgSize . '.jpg';
+        } elseif (file_exists($imageDir . $item . '_' . $this->imgSize . '.png')) {
+            $image = $item . '_' . $this->imgSize . '.png';
+        } else {
+            $image = $this->defaultIcon;
+        }
+        return $imageDir . $image;
+    }
+
+    private function getUnitImage($dir, $idUnit) {
+        if ($dir == 'catalog') {
+            $imageDir = $this->dir . 'GROUPS';
+        } else {
+            $imageDir = $this->dir . 'ITEMS';
+        }
+        $this->getImage($imageDir, $idUnit);
+    }
+
 }
