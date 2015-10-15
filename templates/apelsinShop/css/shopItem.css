@@ -16,10 +16,11 @@
 }
 .ShopItemMainWrapper .ShopItemLeftBlock .ShopItemName {
     width: 180px;
-    height: 60px;
+    min-height: 60px;
     margin: 0 auto;
     font:  bold 12px/16px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
     text-align: center;
+    padding-bottom: 10px;
 }
 .ShopItemMainWrapper .ShopItemLeftBlock .ShopItemPrice {
     font:  bold 20px/20px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
