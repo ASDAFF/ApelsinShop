@@ -35,8 +35,8 @@ if(!(isset($_GET['noPostData']) && $_GET['noPostData']==='yes')) {
     ShopPropertiesFilterTypeGetPostData::getPostData($groupID);
 }
 $shopGroupsItemList = new ShopGroupsItemList($page, $groupID, $showInformation);
-$imageItemPath = '../../../resources/Components/Shop/Image/ItemsImage/';
-$defaultImageItemPath = '../../../resources/Components/Shop/Image/ItemsImage/defaultIcon_100x100.png';
+$imageItemPath = '../../../resources/Components/Shop/Image/ITEMS/';
+$defaultImageItemPath = '../../../resources/Components/Shop/Image/ITEMS/defaultIcon_100x100.png';
 $shopGroupsItemList->setImagePath($imageItemPath, $defaultImageItemPath);
 $shopGroupsItemList->get();
 ?>

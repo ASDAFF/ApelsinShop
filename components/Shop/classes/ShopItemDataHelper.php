@@ -9,7 +9,7 @@ class ShopItemDataHelper {
     private static $object;
     private static $property;
     private static $SQL_HELPER;
-    private static $imageDir = './resources/Components/Shop/Image/ItemsImage/';
+    private static $imageDir = './resources/Components/Shop/Image/ITEMS/';
     private static $defaultIcon = "defaultIcon";
 
     /**

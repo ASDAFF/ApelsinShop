@@ -29,7 +29,7 @@
     margin: 0 auto;
     height: 70px;
     width: 70px;
-    background: url('../../../resources/Components/Shop_old/Image/GroupsIcons/defaultIcon.png') center center no-repeat;
+    background: url('../../../resources/Components/Shop/Image/GroupsIcons/defaultIcon.png') center center no-repeat;
     
 }
 .ShopNavigationPanel .ShopNavigationPanel_Menu .ThisGroupIconPanelBlock .ThisGroupIconPanel .ShopGroupName {
@@ -91,7 +91,7 @@
     margin: 0 auto;
     height: 70px;
     width: 70px;
-    background: url('../../../resources/Components/Shop_old/Image/GroupsIcons/defaultIcon.png') center center no-repeat;
+    background: url('../../../resources/Components/Shop/Image/GroupsIcons/defaultIcon.png') center center no-repeat;
 }
 .ShopNavigationPanel .ShopNavigationPanel_Menu ul.SNPRootGroupsMenu li.SNPRootGroupsMenuElement .ShopGroupName {
     padding-top: 5px;

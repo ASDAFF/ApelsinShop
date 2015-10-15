@@ -15,7 +15,7 @@ $_SITECONFIG = new SiteConfig();
 $urlParams = new UrlParams();
 global $_URL_PARAMS;
 $_URL_PARAMS = $urlParams->getUrlParam();
-$imageDir = '../../../resources/Components/Shop/Image/ItemsImage/';
+$imageDir = '../../../resources/Components/Shop/Image/ITEMS/';
 
 if (isset($_POST['amount']) && isset($_POST['id'])  &&
         $_POST['amount'] != "" && $_POST['id'] != "" &&

@@ -5,7 +5,7 @@
  * @author maxim
  */
 class ShopNavigationPanel_Menu {
-    const iconPath = './resources/Components/Shop/Icons/GroupsIcons/';
+    const iconPath = './resources/Components/Shop/Icons/GROUPS/';
     const defaultIcon = 'defaultIcon';
     
     private $shopGroupsHelper;

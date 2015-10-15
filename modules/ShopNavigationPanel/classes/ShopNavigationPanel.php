@@ -6,7 +6,7 @@
  */
 class ShopNavigationPanel {
     const ComponentAlias = 'Shop';
-    const iconPath = './resources/Components/Shop/Icons/GroupsIcons/';
+    const iconPath = './resources/Components/Shop/Icons/GROUPS/';
     const defaultIcon = 'defaultIcon';
 
     private $SQL_HELPER;

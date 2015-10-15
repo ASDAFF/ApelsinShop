@@ -52,10 +52,21 @@ input[type=submit], input[type=button] {
     text-align: center;
     color: #fff;
     cursor: pointer;
+    outline: none;
+}
+
+input[type=submit].grey, input[type=button].grey {
+    background: #bbb;
 }
 
 input[type=submit]:hover, input[type=button]:hover {
-    box-shadow: inset 0px 1px 5px rgba(0,0,0,0.5);
+    background: #EF631A;
+    box-shadow: none;
+}
+
+input[type=submit]:hover.grey, input[type=button]:hover.grey  {
+    background: #a1a1a1;
+    box-shadow: none;
 }
 
 input[type=button].bigButton {
