@@ -34,7 +34,7 @@ class ShopPropertiesFilterSerchArray {
 
     public static function setArrayGroup($groupID, $array) {
         self::createObject();
-        if ($groupID === NULL) {
+        if ($groupID === NULL || $groupID == "") {
             $groupID = self::getGroupID($groupID);
         }
         if (is_array($array)) {
@@ -59,8 +59,42 @@ class ShopPropertiesFilterSerchArray {
         if ($groupID === NULL) {
             $groupID = self::getGroupID($groupID);
         }
-        unset($_SESSION['ShopPropertiesFilter'][$groupID]['Properties'][$filter]);
-        self::setArrayGroup($groupID, $_SESSION['ShopPropertiesFilter'][$groupID]['Properties'][$filter]);
+        if (isset($_SESSION['ShopPropertiesFilter'][$groupID]['Properties'][$filter])) {
+            unset($_SESSION['ShopPropertiesFilter'][$groupID]['Properties'][$filter]);
+            self::setArrayGroup($groupID, $_SESSION['ShopPropertiesFilter'][$groupID]['Properties']);
+        }
+    }
+
+    public static function unsetGroupFilterValue($groupID, $filter, $value) {
+        self::createObject();
+        if (isset($_SESSION['ShopPropertiesFilter'][$groupID]['Properties'][$filter]["value"]) && is_array($_SESSION['ShopPropertiesFilter'][$groupID]['Properties'][$filter]["value"])) {
+            foreach ($_SESSION['ShopPropertiesFilter'][$groupID]['Properties'][$filter]["value"] as $key => $val) {
+                if ($value === $val) {
+                    unset($_SESSION['ShopPropertiesFilter'][$groupID]['Properties'][$filter]["value"][$key]);
+                    if (count($_SESSION['ShopPropertiesFilter'][$groupID]['Properties'][$filter]["value"]) > 0) {
+                        self::setArrayGroup($groupID, $_SESSION['ShopPropertiesFilter'][$groupID]['Properties']);
+                    } else {
+                        self::unsetGroupFilter($groupID, $filter);
+                    }
+                }
+            }
+        }
+    }
+
+    public static function getPropertiesValue($groupID, $filter) {
+        self::createObject();
+        if (isset($_SESSION['ShopPropertiesFilter'][$groupID]['Properties'][$filter]["value"])) {
+            return $_SESSION['ShopPropertiesFilter'][$groupID]['Properties'][$filter]["value"];
+        }
+        return null;
+    }
+
+    public static function countPropertiesValue($groupID, $filter) {
+        self::createObject();
+        if (isset($_SESSION['ShopPropertiesFilter'][$groupID]['Properties'][$filter]["value"]) && is_array($_SESSION['ShopPropertiesFilter'][$groupID]['Properties'][$filter]["value"])) {
+            return count($_SESSION['ShopPropertiesFilter'][$groupID]['Properties'][$filter]["value"]);
+        }
+        return 0;
     }
 
     public static function issetGroupData($groupID) {

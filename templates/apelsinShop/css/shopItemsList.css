@@ -1,10 +1,33 @@
 .ShopItemsListBlock {}
+.ShopItemsListBlock .ShopItemsListBlockTop {
+    margin-bottom: 10px;
+}
 .ShopItemsListBlock .PropertyValueForGroup {
     font: 11px/12px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
-    /*margin: 20px 0px 10px 0px;*/
     margin: 10px 0px 10px 0px;
-    padding-bottom: 10px;
-    border-bottom: 1px dotted #869791;
+}
+.ShopItemsListBlock .deleteBlockProperty {
+    cursor: pointer;
+    display: inline-block;
+    float: left;
+    background: #C8C8C8;
+    color: #fff;
+    padding: 1px 5px 0px 5px;
+    font: bold 10px/14px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+}
+.ShopItemsListBlock .deleteBlockProperty:hover {
+    background: #ef7f1a;
+}
+.ShopItemsListBlock .PropertyValueForGroup .PropertyValueString .propertyValueStringClear.deleteValueInGroupSelect,
+.ShopItemsListBlock .PropertyValueForGroup .deleteValueInGroupSelect {
+    cursor: pointer;
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin: 0px 3px;
+    background: url('../img/close.png') center center no-repeat;
 }
 .ShopItemsListBlock .PropertyValueForGroup .property {
     font: bold 11px/12px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
@@ -19,8 +42,8 @@
     margin-bottom: 20px;
 }
 .ShopItemsListBlock .ItemsFoundTop {
-/*    font: bold 14px/20px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
-    color: #ef7f1a;*/
+    /*    font: bold 14px/20px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+        color: #ef7f1a;*/
 }
 .ShopItemsListBlock .ItemsFoundTop .property {
     font: bold 12px/14px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
@@ -44,7 +67,7 @@
     display: inline-block;
 }
 .ShopItemsListBlock .ShopItemsListNavBlock ul.ShopItemsListNav li.ShopItemsListNavElement {
-  display: inline;
+    display: inline;
 }
 .ShopItemsListBlock .ShopItemsListNavBlock ul.ShopItemsListNav li.ShopItemsListNavElement div, 
 .ShopItemsListBlock .ShopItemsListNavBlock ul.ShopItemsListNav li.ShopItemsListNavElement a {

@@ -1,5 +1,5 @@
 <?php
-ini_set("display_errors",1);
+ini_set("display_errors", 1);
 error_reporting(E_ALL);
 header("Content-type: text/html; charset=UTF-8");
 @session_start();
@@ -19,19 +19,19 @@ $urlParams = new UrlParams();
 global $_URL_PARAMS;
 $_URL_PARAMS = $urlParams->getUrlParam();
 
-if(isset($_GET['groupID'])) {
+if (isset($_GET['groupID']) && $_GET['groupID'] != "") {
     $groupID = $_GET['groupID'];
 } else {
     $groupID = NULL;
 }
-if(isset($_GET['page'])) {
+if (isset($_GET['page']) && $_GET['page'] != "") {
     $page = $_GET['page'];
     $showInformation = false;
 } else {
     $page = 1;
     $showInformation = true;
 }
-if(!(isset($_GET['noPostData']) && $_GET['noPostData']==='yes')) {
+if (!(isset($_GET['noPostData']) && $_GET['noPostData'] === 'yes')) {
     ShopPropertiesFilterTypeGetPostData::getPostData($groupID);
 }
 $shopGroupsItemList = new ShopGroupsItemList($page, $groupID, $showInformation);
@@ -41,5 +41,5 @@ $shopGroupsItemList->setImagePath($imageItemPath, $defaultImageItemPath);
 $shopGroupsItemList->get();
 ?>
 <script type="text/javascript">
-    setAmountOfPage(<?php echo ShopPropertiesFilterSerchArray::getArrayGroupAmauntOfPage($groupID)?>);
+    setAmountOfPage(<?php echo ShopPropertiesFilterSerchArray::getArrayGroupAmauntOfPage($groupID) ?>);
 </script>
