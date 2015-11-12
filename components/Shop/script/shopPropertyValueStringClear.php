@@ -70,8 +70,8 @@ $urlParams = new UrlParams();
 global $_URL_PARAMS;
 $_URL_PARAMS = $urlParams->getUrlParam();
 
-if (isset($_POST['groupID']) && $_POST['groupID'] != "") {
-    $groupID = $_POST['groupID'];
+if (isset($_POST['groupId']) && $_POST['groupId'] != "") {
+    $groupID = $_POST['groupId'];
 } else {
     $groupID = NULL;
 }
@@ -83,7 +83,7 @@ if ((isset($_POST['propertyId']))) {
     if (count($del) < 1) {
         $html = '<script type="text/javascript">';
         $html .= '$(".deleteBlockProperty").remove();';
-        $html .= 'alert(123)';
+//        $html .= 'alert("'.$groupID." - ".$propertyId.'")';
         $html .= '</script>';
         echo $html;
     }
