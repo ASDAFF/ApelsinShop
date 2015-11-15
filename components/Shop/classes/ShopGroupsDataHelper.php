@@ -25,7 +25,7 @@ class ShopGroupsDataHelper {
      * Получаем данные групп
      */
     private static function getGroupsData() {
-        $query = "SELECT * FROM `ShopGroups` ORDER BY `groupName` ASC";
+        $query = "SELECT * FROM `ShopGroups` WHERE `systemGroup` != '1' ORDER BY `groupName` ASC;";
         $rezult = self::$SQL_HELPER->select($query);
         self::$SQL_DATA['Groups'] = array();
         foreach ($rezult as $group) {

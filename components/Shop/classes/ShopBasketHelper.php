@@ -33,7 +33,7 @@ class ShopBasketHelper {
             SI.`group`,
             SI.`groupName`,
             SI.`action`,
-            SI.`amount` as maxAmount,
+            SI.`totalAmount` as maxAmount,
             SI.`minAmount`,
             SI.`description`,
             SI.`shown`,
@@ -45,7 +45,7 @@ class ShopBasketHelper {
                 SI.`group`,
                 SG.`groupName`,
                 SI.`action`,
-                SI.`amount`,
+                SI.`totalAmount`,
                 SI.`minAmount`,
                 SI.`description`,
                 SI.`shown`
@@ -87,7 +87,7 @@ class ShopBasketHelper {
                 $itemData['shown'] = $itemData['shown'] > 0;
                 if($itemData['shown']) {
                     $_SESSION['ShopBasket'][$itemID] = $itemData;
-                    $_SESSION['ShopBasket'][$itemID]['amount'] = $amount;
+                    $_SESSION['ShopBasket'][$itemID]['totalAmount'] = $amount;
                     $_SESSION['ShopBasket'][$itemID]['allPriceValue'] = $itemData['priceValue'] * $amount;
                     $_SESSION['ShopBasket'][$itemID]['itemUrl'] = self::$urlHelper->pageUrl(self::$shopPageAlias, array('item',$itemID));
                     $_SESSION['ShopBasket'][$itemID]['groupUrl'] = self::$urlHelper->pageUrl(self::$shopPageAlias, array('catalog',$itemData['group']));
@@ -108,8 +108,8 @@ class ShopBasketHelper {
             if($oldAmount + $amount < 1) {
                 self::deleteItemFromShopBasket($itemID);
             } else {
-                $_SESSION['ShopBasket'][$itemID]['amount'] += $amount;
-                $_SESSION['ShopBasket'][$itemID]['allPriceValue'] = $_SESSION['ShopBasket'][$itemID]['priceValue'] * $_SESSION['ShopBasket'][$itemID]['amount'];
+                $_SESSION['ShopBasket'][$itemID]['totalAmount'] += $amount;
+                $_SESSION['ShopBasket'][$itemID]['allPriceValue'] = $_SESSION['ShopBasket'][$itemID]['priceValue'] * $_SESSION['ShopBasket'][$itemID]['totalAmount'];
             }
         } else {
             self::addItemToTheShopBasket($itemID, $amount);
@@ -120,8 +120,8 @@ class ShopBasketHelper {
         self::createObject();
         if($amount > 0) {
             if(self::checkItemInTheShopBasket($itemID)) {
-                $_SESSION['ShopBasket'][$itemID]['amount'] = $amount;
-                $_SESSION['ShopBasket'][$itemID]['allPriceValue'] = $_SESSION['ShopBasket'][$itemID]['priceValue'] * $_SESSION['ShopBasket'][$itemID]['amount'];
+                $_SESSION['ShopBasket'][$itemID]['totalAmount'] = $amount;
+                $_SESSION['ShopBasket'][$itemID]['allPriceValue'] = $_SESSION['ShopBasket'][$itemID]['priceValue'] * $_SESSION['ShopBasket'][$itemID]['totalAmount'];
             } else {
                 self::addItemToTheShopBasket($itemID, $amount);
             }
@@ -132,7 +132,7 @@ class ShopBasketHelper {
         self::createObject();
         if(self::checkItemInTheShopBasket($itemID)) {
             $item = self::getItemFromShopBasket($itemID);
-            return $item['amount'];
+            return $item['totalAmount'];
         } else {
             return 0;
         }
@@ -165,7 +165,7 @@ class ShopBasketHelper {
      * $rezult[<itemID>]['shown'] - TRUE | FALSE - доступен ли товар дял заказа
      * $rezult[<itemID>]['priceValue'] - цена товара
      * $rezult[<itemID>]['allPriceValue'] - цена товара * количество товара
-     * $rezult[<itemID>]['amount'] - количество товара в заказе
+     * $rezult[<itemID>]['totalAmount'] - количество товара в заказе
      * $rezult[<itemID>]['itemUrl'] - ссылка на страницу товара
      * $rezult[<itemID>]['groupUrl'] - ссылка на страницу каталога
      * $rezult[<itemID>]['note'] - заметка к заказу

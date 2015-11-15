@@ -47,6 +47,50 @@ class ShopItemDataHelper {
         return self::$imageDir.$image;
     }
 
+    private static function getPropertiesInGroups($item, $group) {
+        $query = "SELECT
+            SP.`property`,
+            SP.`propertyName`,
+            SP.`filterType`,
+            SP.`valueType`,
+            SP.`oneOfAllValues`,
+            SP.`mainSequence`,
+            SIPV.`value`
+            FROM (
+                SELECT
+                SPIG.`property`,
+                SP.`propertyName`,
+                SP.`filterType`,
+                SP.`valueType`,
+                SP.`oneOfAllValues`,
+                SPIG.`mainSequence`
+                FROM (
+                    SELECT
+                    SPIG.`property`,
+                    SPIGR.`sequence` as mainSequence
+                    FROM `ShopPropertiesInGroupsRanking` as SPIGR 
+                    LEFT JOIN `ShopPropertiesInGroups` as SPIG
+                    on SPIGR.`propertyInGroup` = SPIG.`id`
+                    WHERE SPIGR.`group`='".$group."' AND SPIGR.`shown`='1'
+                ) as SPIG
+                LEFT JOIN `ShopProperties` as SP
+                ON SPIG.`property` = SP.`id`
+            ) as SP 
+            INNER JOIN `ShopItemsPropertiesValues` as SIPV
+            ON SP.`property` = SIPV.`property`
+            WHERE SIPV.`item` = '".$item."'
+            ORDER BY SP.`mainSequence` ASC;";
+        $rezult = self::$SQL_HELPER->select($query);
+        foreach ($rezult as $value) {
+            self::$property[$value["property"]]['property'] = $value['property'];
+            self::$property[$value["property"]]['propertyName'] = $value['propertyName'];
+            self::$property[$value["property"]]['valueType'] = $value['valueType'];
+            self::$property[$value["property"]]['oneOfAllValues'] = $value['oneOfAllValues'];
+//            self::$property[$value["property"]]['measure'] = $value['measure'];
+            self::$property[$value["property"]]['measure'] = " #TESTDATA#";
+            self::$property[$value["property"]]['value'][] = $value['value'];
+        }
+    }
     /**
      * Записать свойства группы
      * @param type $item
@@ -58,8 +102,7 @@ class ShopItemDataHelper {
             SP.`propertyName`,
             SP.`valueType`,
             SP.`oneOfAllValues`,
-            SIPV.`value`,
-            SIPV.`measure`
+            SIPV.`value`
             FROM (
                 SELECT
                 SPIG.`property`,
@@ -82,7 +125,8 @@ class ShopItemDataHelper {
             self::$property[$value["property"]]['propertyName'] = $value['propertyName'];
             self::$property[$value["property"]]['valueType'] = $value['valueType'];
             self::$property[$value["property"]]['oneOfAllValues'] = $value['oneOfAllValues'];
-            self::$property[$value["property"]]['measure'] = $value['measure'];
+//            self::$property[$value["property"]]['measure'] = $value['measure'];
+            self::$property[$value["property"]]['measure'] = " #TESTDATA#";
             self::$property[$value["property"]]['value'][] = $value['value'];
         }
     }
@@ -94,9 +138,11 @@ class ShopItemDataHelper {
         self::createObject();
         $groups = self::getListGroup($dataGroup);
         self::$property = [];
-        foreach ($groups as $group) {
-            self::getPropertiesInGroup($item, $group);
-        }
+        self::getPropertiesInGroups($item, $dataGroup);
+        
+//        foreach ($groups as $group) {
+//            self::getPropertiesInGroup($item, $group);
+//        }
         return self::$property;
     }
 

@@ -99,7 +99,7 @@ class ShopGroupsItemList {
     private function getItemHTML($item) {
         $itemURL = $this->urlHelper->chengeParams(array('item', $item['id']));
         $item['action'] === 1 ? $itemClass = 'ActionItem' : $itemClass = 'NormalItem';
-        $item['amount'] > 0 ? $availableClass = 'Available' : $availableClass = 'NotAvailable';
+        $item['totalAmount'] > 0 ? $availableClass = 'Available' : $availableClass = 'NotAvailable';
         $out = '';
         $out .= "<div class='ShopItemElement " . $itemClass . " " . $availableClass . "'>";
         if ($item['action'] == 1) {
@@ -108,7 +108,7 @@ class ShopGroupsItemList {
         $out .= "<a href='" . $itemURL . "'>";
         $out .= $this->getItemImage($item['id']);
         $out .= "<div class='ShopItemElement_ItemName'><div>" . $item['itemName'] . "</div></div>";
-        $out .= ShopItemAmountScale::getAmountScale($item['amount'], $item['minAmount']);
+        $out .= ShopItemAmountScale::getAmountScale($item['totalAmount'], $item['minAmount']);
         $out .= "<div class='ShopItemElement_PriceValue'>" . TextGenerator::formattingPrices_RUB($item['priceValue']) . "</div>";
         $out .= "</a>";
         $out .= "</div>";

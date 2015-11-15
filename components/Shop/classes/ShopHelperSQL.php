@@ -285,7 +285,7 @@ class ShopHelperSQL {
             t1.`itemName`, 
             t1.`group`, 
             t1.`action`, 
-            t1.`amount`, 
+            t1.`totalAmount`, 
             t1.`minAmount`,
             t1.`description`,
             t2.`value` + t2.`value`*".ShopGroupPriceType::getPriceMarkup()." as priceValue
@@ -295,7 +295,7 @@ class ShopHelperSQL {
                 `itemName`, 
                 `group`, 
                 `action`, 
-                `amount`, 
+                `totalAmount`, 
                 `minAmount`,
                 `description` 
                 FROM `ShopItems` 
@@ -319,7 +319,7 @@ class ShopHelperSQL {
             t1.`itemName`, 
             t1.`group`, 
             t1.`action`, 
-            t1.`amount`, 
+            t1.`totalAmount`, 
             t1.`minAmount`,
             t1.`description`,
             t2.`value` + t2.`value`*".ShopGroupPriceType::getPriceMarkup()." as priceValue
@@ -329,7 +329,7 @@ class ShopHelperSQL {
                 t2.`itemName`, 
                 t2.`group`, 
                 t2.`action`, 
-                t2.`amount`, 
+                t2.`totalAmount`, 
                 t2.`minAmount`,
                 t2.`description`
                 FROM (

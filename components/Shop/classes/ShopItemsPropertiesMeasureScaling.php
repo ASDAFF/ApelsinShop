@@ -21,12 +21,12 @@ class ShopItemsPropertiesMeasureScaling {
     }
     
     private static function getMeasureData() {
-        $query = "SELECT `measureF`, `measureS` FROM `ShopItemsPropertiesMeasure`;";
+        $query = "SELECT `measureF`, `measureS` FROM `ShopMeasure`;";
         $rezult = self::$SQL_HELPER->select($query);
         foreach ($rezult as $measure) {
-            self::$scalingMeasure[$measure['measureS']]['measureS'] = $measure['measureS'];
-            self::$scalingMeasure[$measure['measureS']]['measureF'] = $measure['measureF'];
-            self::$scalingMeasure[$measure['measureS']]['scaling'] = self::getMeasureScalingData($measure['measureF']);
+            self::$scalingMeasure[$measure['measureF']]['measureS'] = $measure['measureS'];
+            self::$scalingMeasure[$measure['measureF']]['measureF'] = $measure['measureF'];
+            self::$scalingMeasure[$measure['measureF']]['scaling'] = self::getMeasureScalingData($measure['measureF']);
         }
     }
     
@@ -37,8 +37,8 @@ class ShopItemsPropertiesMeasureScaling {
             SIPMP.`factor`, 
             SIPMP.`reverseFactor`, 
             SIPMS.`alias` 
-            FROM `ShopItemsPropertiesMeasureScaling` as SIPMS
-            LEFT JOIN `ShopItemsPropertiesMeasurePrefix` as SIPMP
+            FROM `ShopMeasureScaling` as SIPMS
+            LEFT JOIN `ShopMeasurePrefix` as SIPMP
             on SIPMS.`prefix` = SIPMP.`prefixF`
             WHERE SIPMS.`measure` = '".$measure."';";
         return self::$SQL_HELPER->select($query);

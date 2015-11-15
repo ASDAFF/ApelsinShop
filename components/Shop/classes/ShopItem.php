@@ -88,9 +88,9 @@ class ShopItem {
             $this->HTML .= '<div class="ShopItemPrice">';
             $this->HTML .= TextGenerator::formattingPrices_RUB($this->price['value']);
             $this->HTML .= '</div>';  // ShopItemPrice
-            $this->HTML .= ShopItemAmountScale::getAmountScale($this->data['amount'], $this->data['minAmount']);
+            $this->HTML .= ShopItemAmountScale::getAmountScale($this->data['totalAmount'], $this->data['minAmount']);
             $this->HTML .= '<div class="ShopItemBuyButtonWrapper">';
-            $this->HTML .= ShopBasketHelper::getDysplayButtonBuy($this->elementID, $this->data['amount'] > 0);
+            $this->HTML .= ShopBasketHelper::getDysplayButtonBuy($this->elementID, $this->data['totalAmount'] > 0);
             $this->HTML .= '</div>';  // ShopItemBuyButtonWrapper
             $this->HTML .= '</div>';  // ShopItemLeftBlock
             $this->HTML .= '<div class="ShopItemMainBlock">';
