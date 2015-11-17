@@ -206,7 +206,7 @@ class ShopGroupsHelper {
         if($node !== NULL) {
             return array_keys($node["children"]);
         } else {
-            return NULL;
+            return array();
         }
     }
     

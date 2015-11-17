@@ -115,7 +115,7 @@ class ShopGroupsTree {
      * @param string $groupId - идентификатор группы
      * @return string - узел дерева
      */
-    private function getTreeNode($groupId) {
+    public function getTreeNode($groupId) {
         $gteId = ID_GENERATOR::generateID(9, "GTE");
         $CGId = ID_GENERATOR::generateID(9, "CG");
         $children = $this->shopGroupsHelper->getGroupNodeChildren($groupId);
@@ -215,5 +215,8 @@ class ShopGroupsTree {
         $javaScript .= '});';
         return $javaScript;
     }
-
+    
+    private function addNewNode() {
+        
+    }
 }
