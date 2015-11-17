@@ -2,6 +2,25 @@
     font: 12px/12px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
     color: #7F7F7F;
 }
+.GroupTree .GroupTreeHideElement {
+    display: none;
+}
+.GroupTree .GroupTreeFunctionalButton.ROOT {
+    
+    position: relative;
+    min-width: 30px;
+    min-height: 30px;
+    float: right;
+    background: transparent;
+    cursor: pointer;
+    border-left: 1px solid #FFFFFF;
+    text-align: center;
+    background: #E4E4E4;
+    font-size: 14px;
+    line-height: 30px;
+    font-weight: bold;
+    padding: 0px 5px;
+}
 
 .GroupTree .RootGroup,
 .GroupTree .RootGroup ul {

@@ -20,12 +20,14 @@ class ShopGroupsTree {
     private $shopGroupsHelper;
     private $rootGroups;
     private $buttonsForAllGroups;
+    private $showGroupTreeRootButton;
     private $changes = true;
     private $jsExpandGen = false;
 
     const FunctionalButtonClass = 'GroupTreeFunctionalButton';
 
-    public function __construct() {
+    public function __construct($showGroupTreeRootButton = true) {
+        $this->showGroupTreeRootButton = $showGroupTreeRootButton;
         $this->shopGroupsHelper = new ShopGroupsHelper();
         $this->rootGroups = $this->shopGroupsHelper->getGroupRoot();
         $this->buttonsForAllGroups = array();
@@ -42,12 +44,13 @@ class ShopGroupsTree {
      *          groupId - текстовое значение хранящее идентификатор группы к которой относится нажатая кнопка.
      * @param string $content - текст на кнопки, можно оставить пустым.
      */
-    public function addFunctionalButton($buttonName, $javaScript, $content = "") {
+    public function addFunctionalButton($buttonName, $javaScript, $content = "", $ignoreRoot = false) {
         $id = ID_GENERATOR::generateID(9, "GroupTreeFB");
         $this->buttonsForAllGroups[$id]["buttonId"] = $id;
         $this->buttonsForAllGroups[$id]["buttonName"] = $buttonName;
         $this->buttonsForAllGroups[$id]["content"] = $content;
         $this->buttonsForAllGroups[$id]["javaScript"] = $javaScript;
+        $this->buttonsForAllGroups[$id]["ignoreRoot"] = $ignoreRoot;
         $this->changes = true;
     }
     
@@ -61,9 +64,7 @@ class ShopGroupsTree {
      * @return string - html код дерева каталогов
      */
     public function getTree() {
-        if($this->tree === null || $this->changes) {
-            $this->generateTree();
-        }
+        $this->generateTree();
         return $this->tree;
     }
     
@@ -78,6 +79,7 @@ class ShopGroupsTree {
             $newFunctionalButton[$newId]["buttonName"] = $button["buttonName"];
             $newFunctionalButton[$newId]["content"] = $button["content"];
             $newFunctionalButton[$newId]["javaScript"] = $button["javaScript"];
+            $newFunctionalButton[$newId]["ignoreRoot"] = $button["ignoreRoot"];
         }
         $this->buttonsForAllGroups = $newFunctionalButton;
     }
@@ -87,8 +89,17 @@ class ShopGroupsTree {
      */
     private function generateTree() {
         $this->updateFunctionalButtonId();
-        $this->tree = "<div class='GroupTree'>";
-        $this->tree .= "<ul class='RootGroup'>";
+        $rootId = ID_GENERATOR::generateID(9, "RootGroup");
+        $treeId = ID_GENERATOR::generateID(9, "GroupTree");
+        $this->tree = "<div class='GroupTree' id='".$treeId."'>";
+        if($this->showGroupTreeRootButton) {
+            foreach ($this->buttonsForAllGroups as $button) {
+                if(!$button["ignoreRoot"]) {
+                    $this->tree .= $this->getFunctionalButton($button, 'ROOT', $treeId, $rootId, 'ROOT');
+                }
+            }
+        }
+        $this->tree .= "<ul class='RootGroup' id='".$rootId."'>";
         foreach ($this->rootGroups as $group) {
             $this->tree .= "<li>" . $this->getTreeNode($group) . "</li>";
         }
@@ -109,16 +120,12 @@ class ShopGroupsTree {
         $CGId = ID_GENERATOR::generateID(9, "CG");
         $children = $this->shopGroupsHelper->getGroupNodeChildren($groupId);
         $out = "<div class='GroupTreeElement' id='" . $gteId . "'>";
-        if (!empty($children)) {
-            $out .= $this->getGroupName($groupId,$CGId);
-            $out .= "<ul class='ChildrenGroup' id='" . $CGId . "'>";
-            foreach ($children as $child) {
-                $out .= "<li>" . $this->getTreeNode($child) . "</li>";
-            }
-            $out .= "</ul>";
-        } else {
-            $out .= $this->getGroupName($groupId,$gteId, false);
+        $out .= $this->getGroupName($groupId,$gteId,$CGId,!empty($children));
+        $out .= "<ul class='ChildrenGroup' id='" . $CGId . "'>";
+        foreach ($children as $child) {
+            $out .= "<li>" . $this->getTreeNode($child) . "</li>";
         }
+        $out .= "</ul>";
         $out .= "</div>";
         return $out;
     }
@@ -129,23 +136,24 @@ class ShopGroupsTree {
      * @param boolean $expand - разкрываемый или нет
      * @return string - заголовок узла дерва
      */
-    private function getGroupName($groupId, $elementId, $expand = true) {
+    private function getGroupName($groupId, $elementId, $childrenGroupId, $expand = false) {
         $groupInfo = $this->shopGroupsHelper->getGroupInfo($groupId);
         $contentTextClass = "";
         $groupChildrenAmount = "";
         $out = "<div class='GroupTreeElementContent'>";
         if ($expand) {
             $groupChildrenAmount = " (" . count($this->shopGroupsHelper->getGroupChildren($groupId)) . ")";
-            $out .= "<div class='GroupTreeElementExpandButton NoExpanded' groupId='" . $groupId . "' elementId='".$elementId."'></div>";
+            $out .= "<div class='GroupTreeElementExpandButton NoExpanded' groupId='" . $groupId . "' elementId='".$elementId."' childrenGroupId='".$childrenGroupId."'></div>";
             $contentTextClass = 'Expanded';
         } else {
+            $out .= "<div class='GroupTreeElementExpandButton NoExpanded GroupTreeHideElement' groupId='" . $groupId . "' elementId='".$elementId."' childrenGroupId='".$childrenGroupId."'></div>";
             $contentTextClass = 'NoExpanded';
         }
         foreach ($this->buttonsForAllGroups as $button) {
-            $out .= $this->getFunctionalButton($button, $groupId);
+            $out .= $this->getFunctionalButton($button, $groupId, $elementId, $childrenGroupId);
         }
         $out .= "<div class='GroupTreeElementContentText " . $contentTextClass . "'>";
-        $out .= $groupInfo['groupName'] . $groupChildrenAmount;
+        $out .= $groupInfo['groupName'];
         $out .= "</div>";
         $out .= "</div>";
         return $out;
@@ -157,8 +165,8 @@ class ShopGroupsTree {
      * @param string $groupId - идентификатор группы
      * @return string - html код кнопки
      */
-    private function getFunctionalButton($button, $groupId) {
-        return "<div class='GroupTreeFunctionalButton " . $button['buttonId'] . " " . $button['buttonName'] . "' groupId='" . $groupId . "'>" . $button['content'] . "</div>";
+    private function getFunctionalButton($button, $groupId, $elementId, $childrenGroupId, $cssClass = '') {
+        return "<div class='GroupTreeFunctionalButton " . $button['buttonId'] . " " . $button['buttonName'] . " " . $cssClass . "' groupId='" . $groupId . "' elementId='".$elementId."' childrenGroupId='".$childrenGroupId."'>" . $button['content'] . "</div>";
     }
 
     /**
@@ -171,14 +179,15 @@ class ShopGroupsTree {
             $this->javaScript .= '    jQuery(".GroupTreeElementExpandButton").click(function(){';
             $this->javaScript .= '        var groupId = $(this).attr("groupId");';
             $this->javaScript .= '        var elementId = $(this).attr("elementId");';
+            $this->javaScript .= '        var childrenGroupId = $(this).attr("childrenGroupId");';
             $this->javaScript .= '        if($(this).hasClass("NoExpanded")) {';
             $this->javaScript .= '            $(this).removeClass("NoExpanded");';
             $this->javaScript .= '            $(this).addClass("Expanded");';
-            $this->javaScript .= '            $("#" + elementId).slideDown();';
+            $this->javaScript .= '            $("#" + childrenGroupId).slideDown();';
             $this->javaScript .= '        } else {';
             $this->javaScript .= '            $(this).removeClass("Expanded");';
             $this->javaScript .= '            $(this).addClass("NoExpanded");';
-            $this->javaScript .= '            $("#" + elementId).slideUp();';
+            $this->javaScript .= '            $("#" + childrenGroupId).slideUp();';
             $this->javaScript .= '        }';
             $this->javaScript .= '    });';
             $this->javaScript .= '});';
@@ -200,6 +209,8 @@ class ShopGroupsTree {
         $javaScript = 'jQuery(".' . self::FunctionalButtonClass . '.' . $button["buttonId"] . '").click(function(){';
         $javaScript .= 'var object = object = $(this);';
         $javaScript .= 'var groupId = object.attr("groupId");';
+        $javaScript .= 'var elementId = object.attr("elementId");';
+        $javaScript .= 'var childrenGroupId = object.attr("childrenGroupId");';
         $javaScript .= $button["javaScript"];
         $javaScript .= '});';
         return $javaScript;
