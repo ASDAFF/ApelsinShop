@@ -24,19 +24,98 @@ class ShopGroupsDataHelper {
     /**
      * Получаем данные групп
      */
-    private static function getGroupsData() {
+    private function getGroupsData() {
         $query = "SELECT * FROM `ShopGroups` WHERE `systemGroup` != '1' ORDER BY `groupName` ASC;";
         $rezult = self::$SQL_HELPER->select($query);
         self::$SQL_DATA['Groups'] = array();
         foreach ($rezult as $group) {
             self::$SQL_DATA['Groups'][$group['id']] = $group;
+            self::$SQL_DATA['Groups'][$group['id']]['properties']['available'] = $this->getGroupsAvailablePropertiesData($group['id']);
+            self::$SQL_DATA['Groups'][$group['id']]['properties']['personal'] = $this->getGroupsPersonalPropertiesData($group['id']);
+            self::$SQL_DATA['Groups'][$group['id']]['properties']['unused'] = $this->getGroupsUnusedPropertiesData($group['id']);
         }
+    }
+    
+    private function getGroupsAvailablePropertiesData($group) {
+        $query = "SELECT 
+            SPIG.`id`,
+            SPIG.`property`, 
+            SPIG.`shown`,
+            SP.`propertyName`,
+            SP.`filterType`,
+            SP.`valueType`,
+            SP.`oneOfAllValues`
+            FROM (
+                SELECT 
+                SPIG.`id`,
+                SPIG.`property`,
+                SPIGR.`sequence`,
+                SPIGR.`shown`
+                FROM `ShopPropertiesInGroupsRanking` as SPIGR
+                LEFT JOIN `ShopPropertiesInGroups` as SPIG
+                on SPIGR.`propertyInGroup` = SPIG.`id`
+                WHERE SPIGR.`group` = '".$group."'
+            ) as SPIG
+            LEFT JOIN `ShopProperties` as SP
+            on SPIG.`property` = SP.`id`
+            ORDER BY SPIG.`sequence` ASC;";
+        $rezult = self::$SQL_HELPER->select($query);
+        $properties = array();
+        foreach ($rezult as $property) {
+            $properties[$property['id']] = $property;
+        }
+        return $properties;
+    }
+    
+    private function getGroupsPersonalPropertiesData($group) {
+        $query = "SELECT 
+            SPIG.`id`,
+            SPIG.`property`, 
+            SP.`propertyName`,
+            SP.`filterType`,
+            SP.`valueType`,
+            SP.`oneOfAllValues`
+            FROM `ShopPropertiesInGroups` as SPIG
+            LEFT JOIN `ShopProperties` as SP
+            on SPIG.`property` = SP.`id`
+            WHERE SPIG.`group` = '".$group."'
+            ORDER BY SPIG.`sequence` ASC;";
+        $rezult = self::$SQL_HELPER->select($query);
+        $properties = array();
+        foreach ($rezult as $property) {
+            $properties[$property['id']] = $property;
+        }
+        return $properties;
+    }
+    
+    private function getGroupsUnusedPropertiesData($group) {
+        $query = "SELECT 
+            `id`, 
+            `propertyName`, 
+            `filterType`, 
+            `valueType`, 
+            `oneOfAllValues` 
+            FROM `ShopProperties` WHERE `id` 
+            NOT IN (
+                SELECT 
+                SPIG.`property`
+                FROM `ShopPropertiesInGroupsRanking` as SPIGR
+                LEFT JOIN `ShopPropertiesInGroups` as SPIG
+                on SPIGR.`propertyInGroup` = SPIG.`id`
+                WHERE SPIGR.`group` = '".$group."'
+            );";
+        $rezult = self::$SQL_HELPER->select($query);
+        $properties = array();
+        foreach ($rezult as $property) {
+            $properties[$property['id']] = $property;
+        }
+        return $properties;
     }
     
     /**
      * Получаем данные об иерархии групп
      */
-    private static function getGroupsHierarchyData() {
+    private function getGroupsHierarchyData() {
         $query = "SELECT 
             SGH.`group`, 
             SGH.`parentGroup`
@@ -54,7 +133,7 @@ class ShopGroupsDataHelper {
     /**
      * Получаем ID корневых групп
      */
-    private static function getRootGroupsData() {
+    private function getRootGroupsData() {
         $query = "SELECT 
             SG.`id` 
             FROM `ShopGroupsHierarchy` as SGH 
