@@ -45,7 +45,7 @@ class ShopGroupsTree {
      * @param string $content - текст на кнопки, можно оставить пустым.
      */
     public function addFunctionalButton($buttonName, $javaScript, $content = "", $ignoreRoot = false) {
-        $id = ID_GENERATOR::generateID(9, "GroupTreeFB");
+        $id = ID_GENERATOR::generateID("GroupTreeFB");
         $this->buttonsForAllGroups[$id]["buttonId"] = $id;
         $this->buttonsForAllGroups[$id]["buttonName"] = $buttonName;
         $this->buttonsForAllGroups[$id]["content"] = $content;
@@ -74,7 +74,7 @@ class ShopGroupsTree {
     private function updateFunctionalButtonId() {
         $newFunctionalButton = array();
         foreach ($this->buttonsForAllGroups as $button) {
-            $newId = ID_GENERATOR::generateID(9, "GroupTreeFB");
+            $newId = ID_GENERATOR::generateID("GroupTreeFB");
             $newFunctionalButton[$newId]["buttonId"] = $newId;
             $newFunctionalButton[$newId]["buttonName"] = $button["buttonName"];
             $newFunctionalButton[$newId]["content"] = $button["content"];
@@ -89,8 +89,8 @@ class ShopGroupsTree {
      */
     private function generateTree() {
         $this->updateFunctionalButtonId();
-        $rootId = ID_GENERATOR::generateID(9, "RootGroup");
-        $treeId = ID_GENERATOR::generateID(9, "GroupTree");
+        $rootId = ID_GENERATOR::generateID("RootGroup");
+        $treeId = ID_GENERATOR::generateID("GroupTree");
         $this->tree = "<div class='GroupTree' id='".$treeId."'>";
         if($this->showGroupTreeRootButton) {
             foreach ($this->buttonsForAllGroups as $button) {
@@ -116,8 +116,8 @@ class ShopGroupsTree {
      * @return string - узел дерева
      */
     public function getTreeNode($groupId) {
-        $gteId = ID_GENERATOR::generateID(9, "GTE");
-        $CGId = ID_GENERATOR::generateID(9, "CG");
+        $gteId = ID_GENERATOR::generateID("GTE");
+        $CGId = ID_GENERATOR::generateID("CG");
         $children = $this->shopGroupsHelper->getGroupNodeChildren($groupId);
         $out = "<div class='GroupTreeElement' id='" . $gteId . "'>";
         $out .= $this->getGroupName($groupId,$gteId,$CGId,!empty($children));

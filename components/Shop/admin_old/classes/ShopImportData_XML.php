@@ -651,7 +651,7 @@ class ShopImportData_XML {
         foreach ($properties as $key => $property) {
             if(isset($property['#'])) {
                 if($this->checkXmlData_ItemsPropertiesValues($key, $property['#'], $item)) {
-                    $data['id'] = ID_GENERATOR::generateID(6,$item);
+                    $data['id'] = ID_GENERATOR::generateID($item);
                     $data['property'] = $property['#']['property'][0]['#'];
                     if(isset($property['#']['measure'][0]['#'])) {
                         $data['measure'] = $property['#']['measure'][0]['#'];

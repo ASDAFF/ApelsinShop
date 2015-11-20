@@ -86,8 +86,8 @@ class DragDropListJS {
     }
     
     private function updateId() {
-        $this->listJSID = ID_GENERATOR::generateID(9, "DragDropList");
-        $this->listElementsJSID = ID_GENERATOR::generateID(9, "DragDropListElement");
+        $this->listJSID = ID_GENERATOR::generateID("DragDropList");
+        $this->listElementsJSID = ID_GENERATOR::generateID("DragDropListElement");
     }
     
     private function clearList() {
@@ -98,7 +98,7 @@ class DragDropListJS {
         $this->list = "";
         $this->list .= "<div class='DragDropList ".$this->listJSID." ".$this->listClass."'>";
         foreach ($this->listElements as $element) {
-            $this->list .= "<div class='DragDropListElement ".$this->listElementsJSID." ".$element['content']."'>";
+            $this->list .= "<div class='DragDropListElement ".$this->listElementsJSID." ".$element['css']."'>";
             $this->list .= $element['content'];
             $this->list .= "</div>";
         }

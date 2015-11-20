@@ -226,7 +226,7 @@ class AP_ChangeGroupEdit extends AdminPanel_ComponentPanelUI_Element_Edit {
      * Запись в логи таблица `ShopLogs`
      */
     private function recordActionLog() {
-        $id = ID_GENERATOR::generateID(4);
+        $id = ID_GENERATOR::generateID();
         $date = date("Y-m-d h:i:s");
         $query = "INSERT INTO `ShopLogs` SET ";
         $query .= "`id` = '".$id."', ";

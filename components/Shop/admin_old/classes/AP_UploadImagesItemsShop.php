@@ -297,7 +297,7 @@ class AP_UploadImagesItemsShop {
             $title = 'Заливка иконок групп';
             $logtext = 'Заливка иконок групп через панель администрирования';
         }
-        $id = ID_GENERATOR::generateID(4);
+        $id = ID_GENERATOR::generateID();
         $date = date("Y-m-d h:i:s");
         $query = "INSERT INTO `ShopLogs` SET ";
         $query .= "`id` = '".$id."', ";
