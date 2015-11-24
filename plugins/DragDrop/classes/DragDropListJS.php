@@ -96,42 +96,25 @@ class DragDropListJS {
 
     private function generateList () {
         $this->list = "";
-        $this->list .= "<div class='DragDropList ".$this->listJSID." ".$this->listClass."'>";
+        $this->list .= "<ul id='".$this->listJSID."' class='DragDropList ".$this->listJSID." ".$this->listClass."'>";
         foreach ($this->listElements as $element) {
-            $this->list .= "<div class='DragDropListElement ".$this->listElementsJSID." ".$element['css']."'>";
+            $this->list .= "<li class='DragDropListElement ".$this->listElementsJSID." ".$element['css']."'>";
             $this->list .= $element['content'];
-            $this->list .= "</div>";
+            $this->list .= "</li>";
         }
-        $this->list .= "</div>";
+        $this->list .= "</ul>";
         $this->list .= $this->generateJavaScript();
     }
     
     private function generateJavaScript() {
         $out = '<script type="text/javascript">';
-        $out .= "docReady( function() {";
-        $out .= "    var slidesElem = document.querySelector('.DragDropList.".$this->listJSID."');";
-        $out .= "    var slideSize = getSize( document.querySelector('.DragDropListElement.".$this->listElementsJSID."') );";
-        $out .= "    var pckry = new Packery( slidesElem, {";
-        $out .= "        rowHeight: slideSize.outerHeight";
-        $out .= "    });";
-        $out .= "    var itemElems = pckry.getItemElements();";
-        $out .= "    for ( var i=0, len = itemElems.length; i < len; i++ ) {";
-        $out .= "        var elem = itemElems[i];";
-        $out .= "        var draggie = new Draggabilly( elem, {";
-        $out .= "          axis: 'y'";
-        $out .= "        });";
-        $out .= "        pckry.bindDraggabillyEvents( draggie );";
-        $out .= "    }";
-        $out .= "    pckry.on( 'dragItemPositioned', function( _pckry, draggedItem ) {";
-        $out .= "        var index = pckry.items.indexOf( draggedItem );";
-        $out .= "        var nextItem = pckry.items[ index + 1 ];";
-        $out .= "        if ( nextItem ) {";
-        $out .= "            slidesElem.insertBefore( draggedItem.element, nextItem.element );";
-        $out .= "        } else {";
-        $out .= "            slidesElem.appendChild( draggedItem.element );";
-        $out .= "        }";
-        $out .= "    });";
+//        $out .= "docReady( function() {";
+        
+        $out .= "$(function() {";
+        $out .= "    $( '#".$this->listJSID."' ).sortable();";
+        $out .= "    $( '#".$this->listJSID."' ).disableSelection();";
         $out .= "});";
+//        $out .= "});";
         $out .= '</script>';
         return $out;
     }

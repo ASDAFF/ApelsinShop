@@ -52,49 +52,6 @@ CSystem распространяется в надежде, что она буд
     Author     : Maxim Zaytsev
 */
 
-
-
 .DragDropList {
-    counter-reset: DragDropList;
-}
-
-.DragDropListElement {
-    width: 100%;
-    position: relative;
-    user-select: none;
-    z-index: 5;
-}
-
-
-
-
-.DragDropListElement.slide.is-dragging {
-  z-index: 10;
-}
-
-.ui-sortable-helper {
-  transition: none !important;
-  animation: pulse 0.4s alternate infinite;
-}
-
-.sortable-placeholder {
-  height: 60px;
-  width: 5px;
-  border-left: 2px solid #4999DA;
-  margin: 0 0 0.75rem 0;
-  position: relative;
-  z-index: 6;
-}
-
-@keyframes pulse {
-  100% {
-    transform: scale(1.1);
-  }
-}
-.cloned-slides .DragDropListElement {
-  position: absolute;
-  z-index: 1;
-}
-.cloned-slides .DragDropListElement:before {
-  content: attr(data-pos);
+    list-style: none;
 }

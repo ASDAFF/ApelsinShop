@@ -7,4 +7,5 @@ $insertString = "<script type='text/javascript' src='./plugins/jquery/lib/".$dat
 echo $insertString;
 //echo $data['fileName'];
 ?>
+<script type="text/javascript" src="./plugins/jquery/lib/jquery-ui.1.10.4.js"></script>
 

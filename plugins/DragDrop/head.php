@@ -52,5 +52,3 @@
 ?>
 
 <link rel="stylesheet" href="./plugins/DragDrop/css/DragDropCSS.css" type="text/css" />
-<script src="./plugins/DragDrop/js/draggabilly.pkgd.js"></script>
-<script src="./plugins/DragDrop/js/packery.pkgd.js"></script>
