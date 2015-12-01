@@ -51,4 +51,4 @@
  */
 ?>
 
-<link rel="stylesheet" href="./plugins/DragDrop/css/DragDropCSS.css" type="text/css" />
+<link rel="stylesheet" href="./plugins/InteractiveLists/css/InteractiveLists.css" type="text/css" />

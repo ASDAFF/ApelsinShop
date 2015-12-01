@@ -50,4 +50,4 @@
  * 
  */
 
-include_once './plugins/DragDrop/classes/DragDropListJS.php';
+include_once './plugins/InteractiveLists/classes/InteractiveListsPlugin.php';

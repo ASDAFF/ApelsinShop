@@ -52,6 +52,6 @@ CSystem распространяется в надежде, что она буд
     Author     : Maxim Zaytsev
 */
 
-.DragDropList {
+.InteractiveListsPlugin.SortsListBlock ul.SortsList {
     list-style: none;
 }
