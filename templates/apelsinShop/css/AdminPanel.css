@@ -808,3 +808,254 @@ legend {
 .prefixText .prefixs {
     float: left;
 }
+
+/*------------- Работа с каталогом --------------*/
+
+/*PopUp - Parent*/
+.shopCatalogParentPopUp {
+    display: block;
+    /*background: #fff;*/
+    height: 100%;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+    top: 0;
+    left: 0;
+}
+/*PopUp*/
+.shopCatalogPopUp {
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    margin-left: -320px;
+    z-index: 10;
+    width: 640px;
+    background: #fff;
+    border: #ef7f1a 3px solid;
+    box-shadow: 0px 0px 10px 2px rgba(139,139,139,.5);
+    font: normal 15px/16px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    color: rgb(67, 67, 67);
+    max-height: 500px;
+    min-height: 300px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.emphasisPropertyPersonal {
+    color: #ef7f1a;
+}
+.noteGroupShopCatalog {
+    font-style: italic;
+    margin: 5px 10px;
+}
+/*---------- Добавление группы -----------------*/
+.addGroupShopCatalogWraper {}
+/*960-24*/
+.addGroupShopCatalogWraper .addGroupShopCatalog,
+.addGroupCatalogReportWraper {
+    background: #fff;
+    font: normal 12px/14px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    color: #5f5f5f;
+    border: #ef7f1a 2px solid;
+}
+.addGroupShopCatalogWraper .addGroupShopCatalog .addGroupShopCatalogHead,
+.addGroupCatalogReportWraper .addGroupShopCatalogHead {
+    background: #ef7f1a;
+    color: #fff;
+    padding: 10px; 
+    margin: 10px 10px 0;
+    width: 916px;
+    font: bold 18px/20px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    text-align: center;
+}
+.addGroupShopCatalogWraper .addGroupShopCatalog .addGroupCatalogGroupPropertyWrapper {
+    border-bottom: #ef7f1a 1px solid;
+}
+.addGroupShopCatalogWraper .addGroupShopCatalog .addGroupCatalogGroupPropertyWrapperLeft,
+.addGroupShopCatalogWraper .addGroupShopCatalog .addGroupCatalogGroupPropertyRight {
+    float: left;
+    width: 457px;
+    padding: 10px;
+}
+.addGroupShopCatalogWraper .addGroupShopCatalog .addGroupCatalogGroupPropertyWrapperLeft .addGroupCatalogGroupName .addGroupCatalogGroupNameInput input,
+.addGroupShopCatalogWraper .addGroupShopCatalog .addGroupCatalogGroupPropertyRight .addGroupPropertyInteractiveListsPlugin input {
+    width: 437px;
+}
+.addGroupShopCatalogWraper .addGroupShopCatalog .addGroupCatalogGroupVisible {}
+.addGroupShopCatalogWraper .addGroupShopCatalog .addGroupCatalogGroupVisible .selectBox {
+    width: 225px;
+}
+.addGroupShopCatalogWraper .addGroupShopCatalog .addGroupCatalogGroupVisible .addGroupCatalogGroupVisibleLeft {
+    margin-right: 7px;
+}
+.addGroupShopCatalogWraper .addGroupShopCatalog .addGroupCatalogGroupVisible .addGroupCatalogGroupVisibleLeft,
+.addGroupShopCatalogWraper .addGroupShopCatalog .addGroupCatalogGroupVisible .addGroupCatalogGroupVisibleRight {
+    width: 225px;
+    float: left;
+}
+.addGroupShopCatalogWraper .addGroupShopCatalog .addGroupCatalogGroupPropertyWrapperLeft .addGroupPropertyInteractiveListsPlugin {}
+.addGroupShopCatalogWraper .addGroupShopCatalog .addGroupCatalogGroupPropertyWrapperLeft .addGroupPropertyInteractiveListsPlugin span.add {
+    display: none;
+}
+
+.addGroupShopCatalogWraper .addGroupShopCatalog .addGroupCatalogGroupPropertyWrapperLeft .AP_SubmitAddNewGroup {
+    float: right;
+    margin-right: 0px;
+}
+.addGroupShopCatalogWraper .addGroupShopCatalog .addGroupCatalogGroupPropertyRight {
+    border-left: #ef7f1a 1px solid;
+}
+.addGroupShopCatalogWraper .addGroupShopCatalog .addGroupCatalogGroupPropertyRight .addGroupDragDropListElementNameProperty {
+    width: 322px;
+}
+.addGroupShopCatalogWraper .addGroupShopCatalog .addGroupCatalogGroupPropertyRight .addGroupDragDropListElementShow,
+.addGroupShopCatalogWraper .addGroupShopCatalog .addGroupCatalogGroupPropertyRight span.del {
+    display: none;
+}
+
+.addGroupShopCatalogWraper .addGroupShopCatalog li:nth-child(even),
+.addGroupShopCatalogWraper .addGroupShopCatalog li:nth-child(even) .addGroupDragDropListElementShow .selectBox { 
+    background: #eee;
+}
+.addGroupShopCatalogWraper .addGroupShopCatalog li:nth-child(even):hover .addGroupDragDropListElementShow .selectBox { 
+    background: #F4D1B1;
+}
+.addGroupShopCatalogWraper .addGroupShopCatalog .addGroupDragDropListElement {
+    float: left;
+    width: 457px;
+}
+.addGroupShopCatalogWraper .addGroupShopCatalog .addGroupDragDropListElementNameProperty,
+.addGroupShopCatalogWraper .addGroupShopCatalog .addGroupDragDropListElementFilterAndDataType,
+.addGroupShopCatalogWraper .addGroupShopCatalog .addGroupDragDropListElementShow,
+.addGroupShopCatalogWraper .addGroupShopCatalog .addGroupDragDropListElement .addGroupDragDropListElementButton {  
+    padding: 5px 0;
+    float: left;
+}
+.addGroupShopCatalogWraper .addGroupShopCatalog .addGroupDragDropListElementNameProperty {
+    width: 272px;
+}
+.addGroupShopCatalogWraper .addGroupShopCatalog .addGroupDragDropListElementFilterAndDataType {
+    width: 115px;
+}
+.addGroupShopCatalogWraper .addGroupShopCatalog .addGroupDragDropListElementShow {
+    width: 50px;
+}
+.addGroupShopCatalogWraper .addGroupShopCatalog .addGroupDragDropListElement:hover {
+    background: #F4D1B1;
+    cursor: pointer;
+}
+.addGroupShopCatalogWraper .addGroupShopCatalog .addGroupDragDropListElementNameProperty {}
+.addGroupShopCatalogWraper .addGroupShopCatalog .addGroupDragDropListElementFilterAndDataType {
+    font: normal 12px/17px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+}
+.addGroupShopCatalogWraper .addGroupShopCatalog .addGroupDragDropListElementShow {}
+.addGroupShopCatalogWraper .addGroupShopCatalog .addGroupDragDropListElementShow .selectBox {
+    color: #5f5f5f;
+    background: #fff;
+    margin: 0;
+    width: 50px;
+    padding: 0;
+}
+.addGroupShopCatalogWraper .addGroupShopCatalog .addGroupDragDropListElement:hover .selectBox {
+    background: #F4D1B1;
+    cursor: pointer;
+}
+.addGroupShopCatalogWraper .addGroupShopCatalog .addGroupDragDropListElement .addGroupDragDropListElementButton {
+    width: 20px;
+    float: left;
+    color: green;
+}
+.addGroupShopCatalogWraper .addGroupShopCatalog .addGroupDragDropListElement .addGroupDragDropListElementButton span {
+    width: 20px;
+    display: block;
+    text-align: center;
+    font-weight: bolder;
+}
+.addGroupShopCatalogWraper .addGroupShopCatalog .addGroupDragDropListElement .addGroupDragDropListElementButton span.add {
+    font-size: 18px;
+    padding: 1px 0;
+}
+.addGroupShopCatalogWraper .addGroupShopCatalog .addGroupDragDropListElement .addGroupDragDropListElementButton span.del {
+    display: none;
+}
+.addGroupShopCatalogWraper .addGroupShopCatalog .addGroupCatalogGroupPropertyWrapperLeft .addGroupPropertyInteractiveListsPlugin span.del {
+    color: red;
+    display: block;
+}
+.addGroupCatalogReportWraper {}
+.addGroupCatalogReportWraper .addGroupShopCatalogHead {}
+.addGroupCatalogReportWraper .addGroupCatalogReportText {
+    margin: 5px 10px;
+    font: normal 14px/18px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+}
+.addGroupCatalogReportWraper ul {
+    padding-left: 40px;
+}
+.addGroupCatalogReportWraper .addGroupCatalogReportButton {}
+
+
+.addGroupCatalogReportWraper .addGroupCatalogGroupPropertyWrapper {
+    width: 936px;
+    margin: 15px 10px;
+    border-collapse: collapse;
+}
+.addGroupCatalogReportWraper .addGroupCatalogGroupPropertyWrapper th,
+.addGroupCatalogReportWraper .addGroupCatalogGroupPropertyWrapper tr td {
+    border: #ef7f1a 1px solid;
+    padding: 5px 0;
+    vertical-align: top;
+}
+
+/*-------------- Создание свойства ------------------*/
+.addGroupCatalogNewPropertyWrapper {}
+.addGroupCatalogNewPropertyWrapper .addGroupCatalogNewProperty .addGroupCatalogGroupPropertyWrapper {
+    border-bottom: #ef7f1a 1px solid;
+    margin: 15px 10px;
+}
+.addGroupCatalogNewPropertyWrapper .addGroupCatalogNewProperty .addGroupCatalogGroupNameText,
+.addGroupCatalogNewPropertyWrapper .addGroupCatalogNewProperty .addGroupCatalogNewPropertyNameInput,
+.addGroupCatalogNewPropertyWrapper .addGroupCatalogNewProperty .addGroupCatalogNewPropertyType,
+.addGroupCatalogNewPropertyWrapper .addGroupCatalogNewProperty .addGroupCatalogNewPropertyButton {
+    float: left;
+    width: 100px;
+    margin: 5px 3px 0 0;
+}
+.addGroupCatalogNewPropertyWrapper .addGroupCatalogNewProperty .addGroupCatalogGroupNameText {
+    padding: 5px 0;
+}
+.addGroupCatalogNewPropertyWrapper .addGroupCatalogNewProperty .addGroupCatalogNewPropertyNameInput {
+    width: 404px;
+}
+.addGroupCatalogNewPropertyWrapper .addGroupCatalogNewProperty .addGroupCatalogNewPropertyNameInput input,
+.addGroupCatalogNewPropertyWrapper .addGroupCatalogNewProperty .addGroupCatalogNewPropertyType .selectBox {
+    padding: 2px 0px;
+    float: left;
+    width: 110px;
+}
+.addGroupCatalogNewPropertyWrapper .addGroupCatalogNewProperty .addGroupCatalogNewPropertyNameInput input{
+    padding: 3px 0px;
+    width: 404px;
+}
+.addGroupCatalogNewPropertyWrapper .addGroupCatalogNewProperty .addGroupCatalogNewPropertyType {
+    width: 110px;
+}
+.addGroupCatalogNewPropertyWrapper .addGroupCatalogNewProperty .addGroupCatalogNewPropertyButton {
+    width: 63px;
+    margin-right: 0;
+}
+.addGroupCatalogNewPropertyWrapper .addGroupCatalogNewProperty .addGroupCatalogNewPropertyButton .addGroupCatalogNewPropertyButtonInput {
+    display: inline-block;
+    font-size: 12px;
+    line-height: 20px;
+    padding: 0 5px;
+    margin: 2px 5px 0 0;
+}
+
+.GroupTreeFunctionalButton.ImportMoveGroup,
+.GroupTreeFunctionalButton.CancelMoveGroup {
+    display: none;
+}
+
+.GroupTreeFunctionalButton {
+    padding: 0 10px;
+}
