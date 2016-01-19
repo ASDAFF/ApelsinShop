@@ -1,0 +1,7 @@
+/resources/Components/Shop/Image/ITEMS/*
+!/resources/Components/Shop/Image/ITEMS/
+!/resources/Components/Shop/Image/ITEMS/defaultIcon.png
+!/resources/Components/Shop/Image/ITEMS/defaultIcon_50x50.png
+!/resources/Components/Shop/Image/ITEMS/defaultIcon_100x100.png
+!/resources/Components/Shop/Image/ITEMS/defaultIcon_150x150.png
+!/resources/Components/Shop/Image/ITEMS/defaultIcon_200x200.png
