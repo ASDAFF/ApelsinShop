@@ -449,3 +449,98 @@ INNER JOIN `ShopItemsPropertiesValues` as SIPV
 ON SP.`property` = SIPV.`property`
 WHERE SIPV.`item` = '8f0c8f5d-99aa-11db-937f-000e0c431b59'
 ORDER BY SP.`mainSequence` ASC
+
+
+
+
+
+
+
+SELECT 
+SPIG.`id`,
+SPIG.`property`, 
+SP.`propertyName`,
+SP.`filterType`,
+SP.`valueType`,
+SP.`oneOfAllValues`
+FROM `ShopPropertiesInGroups` as SPIG
+LEFT JOIN `ShopProperties` as SP
+on SPIG.`property` = SP.`id`
+WHERE SPIG.`group` = 'fa4db2b8-2a02-11e5-80c2-00155d3703e1'
+ORDER BY SPIG.`sequence` ASC
+
+
+
+
+SELECT 
+SPIG.`id`,
+SPIG.`property`, 
+SPIG.`shown`,
+SP.`propertyName`,
+SP.`filterType`,
+SP.`valueType`,
+SP.`oneOfAllValues`
+FROM (
+    SELECT 
+    SPIG.`id`,
+    SPIG.`property`,
+    SPIGR.`sequence`,
+    SPIGR.`shown`
+    FROM `ShopPropertiesInGroupsRanking` as SPIGR
+    LEFT JOIN `ShopPropertiesInGroups` as SPIG
+    on SPIGR.`propertyInGroup` = SPIG.`id`
+    WHERE SPIGR.`group` = 'fa4db2b8-2a02-11e5-80c2-00155d3703e1'
+) as SPIG
+LEFT JOIN `ShopProperties` as SP
+on SPIG.`property` = SP.`id`
+ORDER BY SPIG.`sequence` ASC
+
+
+
+
+
+SELECT 
+SP.`id`, 
+SP.`propertyName`, 
+SP.`filterType`, 
+SP.`valueType`, 
+SP.`oneOfAllValues` 
+FROM (
+    SELECT 
+    SPIG.`property`
+    FROM `ShopPropertiesInGroupsRanking` as SPIGR
+    LEFT JOIN `ShopPropertiesInGroups` as SPIG
+    on SPIGR.`propertyInGroup` = SPIG.`id`
+    WHERE SPIGR.`group` = 'fa4db2b8-2a02-11e5-80c2-00155d3703e1'
+) as SPIG
+Inner JOIN `ShopProperties` as SP
+on SPIG.`property` = SP.`id`
+
+
+
+SELECT 
+SP.`id`, 
+SP.`propertyName`, 
+SP.`filterType`, 
+SP.`valueType`, 
+SP.`oneOfAllValues` 
+FROM `ShopProperties` as SP
+LEFT OUTER JOIN 
+
+
+
+SELECT 
+`id`, 
+`propertyName`, 
+`filterType`, 
+`valueType`, 
+`oneOfAllValues` 
+FROM `ShopProperties` WHERE `id` 
+NOT IN (
+    SELECT 
+    SPIG.`property`
+    FROM `ShopPropertiesInGroupsRanking` as SPIGR
+    LEFT JOIN `ShopPropertiesInGroups` as SPIG
+    on SPIGR.`propertyInGroup` = SPIG.`id`
+    WHERE SPIGR.`group` = 'fa4db2b8-2a02-11e5-80c2-00155d3703e1'
+)
