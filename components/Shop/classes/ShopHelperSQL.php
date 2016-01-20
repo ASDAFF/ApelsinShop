@@ -227,6 +227,7 @@ class ShopHelperSQL {
                 `id` 
                 FROM `ShopItems` 
                 WHERE `shown` = '1'
+                AND `group` NOT IN (SELECT `id` FROM `ShopGroups` WHERE `systemGroup` > 0)
                 ".self::generateWhereSQL_Group($groupID, $array)."
                 ".self::generateWhereSQL_Action($array)."
                 ".self::generateWhereSQL_ItemName($array)."
@@ -247,7 +248,8 @@ class ShopHelperSQL {
                 SELECT
                 COUNT(t1.`id`) as amount
                 FROM (
-                    SELECT `id` FROM `ShopItems` WHERE `shown` = '1'"
+                    SELECT `id` FROM `ShopItems` WHERE `shown` = '1' 
+                    AND `group` NOT IN (SELECT `id` FROM `ShopGroups` WHERE `systemGroup` > 0) "
                     .self::generateWhereSQL_Action($array)
                     .self::generateWhereSQL_ItemName($array)."
                 ) as t1
@@ -256,7 +258,8 @@ class ShopHelperSQL {
                 WHERE ".self::generateWhereSQL_Price($array,'t2').";
             ";
         } else {
-            $sql = "SELECT count(`id`) as amount FROM `ShopItems` WHERE `shown` = '1'"
+            $sql = "SELECT count(`id`) as amount FROM `ShopItems` WHERE `shown` = '1' 
+                    AND `group` NOT IN (SELECT `id` FROM `ShopGroups` WHERE `systemGroup` > 0) "
                 .self::generateWhereSQL_Action($array)
                 .self::generateWhereSQL_ItemName($array).";
             ";
