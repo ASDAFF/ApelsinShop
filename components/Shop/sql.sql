@@ -612,3 +612,26 @@ FROM (
     on t1.`id` = t2.`item`
     WHERE t2.`property`='1ea6fcc4-d206-11e4-9be0-005056be1f7c' AND t2.`value` >= 0 AND t2.`value` <= 3 GROUP BY `item`
 ) as t1;
+
+
+
+
+
+SELECT 
+    SHPR.`id`, 
+    SHPR.`propertyName`, 
+    SHPR.`filterType`, 
+    SHPR.`valueType`, 
+    SHPR.`oneOfAllValues`, 
+    SHPRM.`measure`
+    FROM 
+        (SELECT * FROM `ShopPropertiesMeasure`) AS SHPRM
+    LEFT JOIN `ShopProperties` AS SHPR
+    ON SHPRM.`property` = SHPR.`id`
+    ORDER BY `propertyName` ASC;
+
+
+        "UPDATE `ShopPropertiesInGroupsRanking` 
+        SET `propertyInGroup` = `propertyInGroup` + "2 " 
+        WHERE `sequence` > '7' AND `group` = '" . $children . "';"
+

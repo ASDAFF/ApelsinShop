@@ -5,7 +5,7 @@
     color: #4f4f4f;
     clear: both;
     margin-bottom: 10px;
-} 
+}
 .AdminPanelListElementUI {
     border: 1px dotted #4f4f4f;
     margin: 10px 0px 0px 0px;
@@ -183,7 +183,7 @@
     border-left: 1px dotted #4f4f4f;
 }
 
-.ElementBlockRightPanel .Edit, 
+.ElementBlockRightPanel .Edit,
 .ElementBlockRightPanel .Delete {
     width: 90px;
     height: 30px;
@@ -416,9 +416,9 @@
     vertical-align: middle;
 }
 
-/*Просмотр логов*/ 
-.viewLogsShopWrapper, 
-.uploadImagesItemsShop, 
+/*Просмотр логов*/
+.viewLogsShopWrapper,
+.uploadImagesItemsShop,
 .listImagesItemsAndIconsShop {
     width: 958px;
     margin: 10px auto;
@@ -435,18 +435,18 @@
     height: 100%;
     float: left;
 }
-.leftViewLogsShopContent.blueViewLogsShop { 
+.leftViewLogsShopContent.blueViewLogsShop {
     background: rgb(30, 210, 247);
     color: dodgerblue;
 }
 .blueViewLogsShopWrapper { border: 1px solid rgb(30, 210, 247)}
 .leftViewLogsShopContent.redViewLogsShop {
-    background: rgb(248, 43, 98); 
+    background: rgb(248, 43, 98);
     color: red;
 }
 .redViewLogsShopWrapper { border: 1px solid rgb(248, 43, 98) }
 .leftViewLogsShopContent.greenViewLogsShop {
-    background: rgb(24, 213, 24); 
+    background: rgb(24, 213, 24);
     color: green;
 }
 .greenViewLogsShopWrapper { border: 1px solid rgb(24, 213, 24); }
@@ -454,12 +454,12 @@
 .orangeExportViewLogsShop { color: orange;}
 .aquaExportViewLogsShop { color: #0099FF;}
 .blueExportViewLogsShop { color: darkblue;}
-.errorExportViewLogsShop, .warningExportViewLogsShop { 
-    color: red; 
+.errorExportViewLogsShop, .warningExportViewLogsShop {
+    color: red;
     font-weight: bolder;
 }
-.warningExportViewLogsShop { 
-    color: darkorange; 
+.warningExportViewLogsShop {
+    color: darkorange;
 }
 .topViewLogsShopContent {
     width: 949px;
@@ -494,10 +494,10 @@
     margin-left: 10px;
     line-height: 26px;
     padding: 0.5px 10px;
-    background: #eee; 
+    background: #eee;
     font-style: italic;
     text-shadow: none;
-    position: absolute; 
+    position: absolute;
     top:  5px;
     left: 5px;
     /*по наведении блок появляется*/
@@ -508,11 +508,11 @@
         display: block;
     }*/
 
-fieldset { 
-    border:1px dotted #ef7f1a; 
+fieldset {
+    border:1px dotted #ef7f1a;
 }
 legend {
-    color: #ef7f1a; 
+    color: #ef7f1a;
     font-size: 1.5em;
     font-weight: bold;
     text-align: center;
@@ -543,8 +543,8 @@ legend {
 .middleViewLogsShop:nth-child(6) {
     width: 596px;
     height: 36px;
-    font: italic 10px/35px  "Verdana",  sans-serif;
-    color: #4f4f4f; 
+    font: italic 10px/35px  "Verdana", sans-serif;
+    color: #4f4f4f;
 }
 
 .rightViewLogsShopContent {
@@ -598,7 +598,7 @@ legend {
     padding: 0px;
     text-align: center;
 }
-.uploadImagesItemsShop > div:first-child,  .listImagesItemsAndIconsShop > p:first-child {
+.uploadImagesItemsShop > div:first-child, .listImagesItemsAndIconsShop > p:first-child {
     font-size: 20px;
     font-weight: bold;
     background: #bbb;
@@ -673,16 +673,16 @@ legend {
     float: none;
 }
 .collumnsUploadImagesItemsShop {
-    width:100%; 
+    width:100%;
     padding: 10px;
     text-align: left;
-    column-count: 3;   
-    -moz-column-count: 3;  
-    -webkit-column-count: 3;  
-    column-gap: 10px; 
+    column-count: 3;
+    -moz-column-count: 3;
+    -webkit-column-count: 3;
+    column-gap: 10px;
     -moz-column-gap: 10px;
     -webkit-column-gap: 10px;
-    column-rule: 1px solid #bbb; 
+    column-rule: 1px solid #bbb;
     -moz-column-rule: 1px solid #bbb;
     -webkit-column-rule: 1px solid #bbb;
 }
@@ -714,7 +714,7 @@ legend {
     text-align: center;
     background: #eee;
 }
-.listItemsShopItems .wrapperItemsShopItems.groupShop  {
+.listItemsShopItems .wrapperItemsShopItems.groupShop {
     height: 82px;
 }
 .wrapperItemsShopItems .blockGorizontConteinerShopItems {
@@ -757,7 +757,7 @@ legend {
     background: #ff5600;
 }
 .blockGorizontConteinerShopItems:first-child .rightBlockGorizontShopItems.hideShopItems,
-.blockGorizontConteinerShopItems:first-child .rightBlockGorizontShopItems .hideShopItems  {
+.blockGorizontConteinerShopItems:first-child .rightBlockGorizontShopItems .hideShopItems {
     background: #FD2661;
 }
 .blockGorizontConteinerShopItems:first-child .rightBlockGorizontShopItems.showShopItems:hover,
@@ -862,7 +862,7 @@ legend {
 .addGroupCatalogReportWraper .addGroupShopCatalogHead {
     background: #ef7f1a;
     color: #fff;
-    padding: 10px; 
+    padding: 10px;
     margin: 10px 10px 0;
     width: 916px;
     font: bold 18px/20px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
@@ -914,10 +914,10 @@ legend {
 }
 
 .addGroupShopCatalogWraper .addGroupShopCatalog li:nth-child(even),
-.addGroupShopCatalogWraper .addGroupShopCatalog li:nth-child(even) .addGroupDragDropListElementShow .selectBox { 
+.addGroupShopCatalogWraper .addGroupShopCatalog li:nth-child(even) .addGroupDragDropListElementShow .selectBox {
     background: #eee;
 }
-.addGroupShopCatalogWraper .addGroupShopCatalog li:nth-child(even):hover .addGroupDragDropListElementShow .selectBox { 
+.addGroupShopCatalogWraper .addGroupShopCatalog li:nth-child(even):hover .addGroupDragDropListElementShow .selectBox {
     background: #F4D1B1;
 }
 .addGroupShopCatalogWraper .addGroupShopCatalog .addGroupDragDropListElement {
@@ -927,7 +927,7 @@ legend {
 .addGroupShopCatalogWraper .addGroupShopCatalog .addGroupDragDropListElementNameProperty,
 .addGroupShopCatalogWraper .addGroupShopCatalog .addGroupDragDropListElementFilterAndDataType,
 .addGroupShopCatalogWraper .addGroupShopCatalog .addGroupDragDropListElementShow,
-.addGroupShopCatalogWraper .addGroupShopCatalog .addGroupDragDropListElement .addGroupDragDropListElementButton {  
+.addGroupShopCatalogWraper .addGroupShopCatalog .addGroupDragDropListElement .addGroupDragDropListElementButton {
     padding: 5px 0;
     float: left;
 }
@@ -979,7 +979,7 @@ legend {
     display: none;
 }
 .addGroupShopCatalogWraper .addGroupShopCatalog .addGroupCatalogGroupPropertyWrapperLeft .addGroupPropertyInteractiveListsPlugin span.del {
-    color: red;
+    color: #ef7f1a;
     display: block;
 }
 .addGroupCatalogReportWraper {}
@@ -1006,7 +1006,80 @@ legend {
     vertical-align: top;
 }
 
-/*-------------- Создание свойства ------------------*/
+/*------------- Работа с свойствами --------------*/
+
+/*-------------- Создание свойств ------------------*/
+.ShopPropertyCatalog {
+    /*font: normal 12px/14px "PT Sans",helvetica,"segoe UI",arial,sans-serif;*/
+    color: #5f5f5f;
+}
+.ShopPropertyCatalog  .ShopPropertyCatalogTopBlock {}
+.ShopPropertyCatalog .ShopPropertyCatalogTopBlock .ShopPropertyCatalogTopBlockSearch,
+.ShopPropertyCatalog .ShopPropertyCatalogTopBlock .ShopPropertyCatalogTopBlockAddProperty {
+    float: left;
+    margin-right: 10px;
+}
+.ShopPropertyCatalog .ShopPropertyCatalogTopBlock .ShopPropertyCatalogTopBlockAddProperty {}
+.ShopPropertyCatalog .ShopPropertyCatalogTopBlock .ShopPropertyCatalogTopBlockAddProperty .ShopPropertyCatalogButtonAdd {}
+
+
+.ShopPropertyCatalog .ShopPropertyCatalogMainBlock {}
+.ShopPropertyCatalog .ShopPropertyCatalogMainBlock .addGroupCatalogNewPropertyWrapper {}
+.ShopPropertyCatalog .ShopPropertyCatalogMainBlock .addGroupCatalogNewPropertyWrapper .addGroupCatalogNewProperty {}
+.ShopPropertyCatalog .ShopPropertyCatalogMainBlock .addGroupCatalogNewPropertyWrapper .addGroupCatalogNewProperty .AP_FormShopAddPropertyCatalog {}
+.ShopPropertyCatalog .addGroupCatalogNewProperty .AP_FormShopAddPropertyCatalog .addGroupCatalogNewPropertyButton {}
+.ShopPropertyCatalog .addGroupCatalogNewProperty .AP_FormShopAddPropertyCatalog .addGroupCatalogNewPropertyButton .addGroupCatalogNewPropertyButtonInput {}
+.ShopPropertyCatalog .ShopPropertyCatalogMainBlock .addGroupCatalogNewPropertyWrapper .addGroupCatalogNewProperty .ShopPropertyCatalogTable {
+    border-collapse: collapse;
+
+}
+.ShopPropertyCatalog .ShopPropertyCatalogMainBlock .addGroupCatalogNewPropertyWrapper .addGroupCatalogNewProperty .ShopPropertyCatalogTable tr {}
+.ShopPropertyCatalog .addGroupCatalogNewPropertyWrapper .addGroupCatalogNewProperty .ShopPropertyCatalogTable .ShopPropertyCatalogHeaderTable {
+    text-align: left;
+}
+.ShopPropertyCatalog .addGroupCatalogNewPropertyWrapper .addGroupCatalogNewProperty .ShopPropertyCatalogTable .ShopPropertyCatalogElementTable .ShopPropertyCatalogButtonDel {
+    color: #ef7f1a;
+    padding-bottom: 3px;
+    width: 10px;
+}
+.ShopPropertyCatalog .addGroupCatalogNewPropertyWrapper .addGroupCatalogNewProperty .ShopPropertyCatalogTable .ShopPropertyCatalogElementTable td {
+}
+.ShopPropertyCatalog .addGroupCatalogNewPropertyWrapper .addGroupCatalogNewProperty .ShopPropertyCatalogTable .ShopPropertyCatalogElementTable .propertyName, .selectBox {
+    color: #5f5f5f;
+}
+.ShopPropertyCatalog .addGroupCatalogNewPropertyWrapper .addGroupCatalogNewProperty .ShopPropertyCatalogTable .ShopPropertyCatalogElementTable .addGroupCatalogNewPropertyNameInput,
+.ShopPropertyCatalog .addGroupCatalogNewPropertyWrapper .addGroupCatalogNewProperty .ShopPropertyCatalogTable .ShopPropertyCatalogElementTable .propertyName {
+    width: 478px;
+}
+
+.ShopPropertyCatalog  .ShopPropertyCatalogBottomBlock {}
+.ShopPropertyCatalog .ShopPropertyCatalogBottomBlock .ShopPropertyCatalogTopBlockAddProperty {}
+.ShopPropertyCatalog .ShopPropertyCatalogBottomBlock .ShopPropertyCatalogTopBlockAddProperty .ShopPropertyCatalogButtonAdd {}
+
+.ShopPropertyCatalog .ShopPropertyCatalogButtonDel,
+.ShopPropertyCatalog .ShopPropertyCatalogButtonAdd,
+.ShopPropertyCatalog .ShopPropertyCatalogElementTable .ShopPropertyCatalogButtonDeleteStepSecond {
+    cursor: pointer;
+    float: left;
+}
+
+.ShopPropertyCatalog .ShopPropertyCatalogElementTable .ShopPropertyCatalogButtonDeleteStepSecond {
+    width: 61px;
+    font-size: 12px;
+    color: #ef7f1a;
+}
+.ShopPropertyCatalog .addGroupCatalogNewPropertyWrapper .addGroupCatalogNewProperty .AP_FormShopAddPropertyCatalogStepSecond .ShopPropertyCatalogTable .ShopPropertyCatalogElementTable .addGroupCatalogNewPropertyNameInput,
+.ShopPropertyCatalog .addGroupCatalogNewPropertyWrapper .addGroupCatalogNewProperty .AP_FormShopAddPropertyCatalogStepSecond .ShopPropertyCatalogTable .ShopPropertyCatalogElementTable .propertyName {
+    width: 417px;
+}
+.ShopPropertyCatalog .addGroupCatalogNewPropertyWrapper .addGroupCatalogNewProperty td, th {
+    border-bottom: #ef7f1a 1px solid;
+}
+.ShopPropertyElementReportColorUpdate {
+    background: #F4D1B1;
+    text-align: center;
+}
+/*-------------- Создание одного свойства ------------------*/
 .addGroupCatalogNewPropertyWrapper {}
 .addGroupCatalogNewPropertyWrapper .addGroupCatalogNewProperty .addGroupCatalogGroupPropertyWrapper {
     border-bottom: #ef7f1a 1px solid;
@@ -1018,7 +1091,7 @@ legend {
 .addGroupCatalogNewPropertyWrapper .addGroupCatalogNewProperty .addGroupCatalogNewPropertyButton {
     float: left;
     width: 100px;
-    margin: 5px 3px 0 0;
+    margin: 3px 3px 3px 0;
 }
 .addGroupCatalogNewPropertyWrapper .addGroupCatalogNewProperty .addGroupCatalogGroupNameText {
     padding: 5px 0;
@@ -1032,7 +1105,7 @@ legend {
     float: left;
     width: 110px;
 }
-.addGroupCatalogNewPropertyWrapper .addGroupCatalogNewProperty .addGroupCatalogNewPropertyNameInput input{
+.addGroupCatalogNewPropertyWrapper .addGroupCatalogNewProperty .addGroupCatalogNewPropertyNameInput input {
     padding: 3px 0px;
     width: 404px;
 }
@@ -1058,4 +1131,45 @@ legend {
 
 .GroupTreeFunctionalButton {
     padding: 0 10px;
+}
+/*-------------- Перенос свойств ------------------*/
+.addGroupCatalogReportWraper .ListShopCatalogMoveProperty {
+    list-style: none;
+    width: 420px;
+    padding-left: 10px;
+}
+
+.addGroupCatalogReportWraper .ListShopCatalogMoveProperty li {
+    border-bottom: #ef7f1a 1px solid;
+    width: 460px;
+    height: 20px;
+    display: block;
+}
+
+.addGroupCatalogReportWraper .ListShopCatalogMoveProperty .labelElementPersonalProperty {
+    width: 460px;
+    float: left;
+    padding: 3px 0;
+    cursor: pointer;
+}
+.addGroupCatalogReportWraper .ListShopCatalogMoveProperty .addColorSelectElementPersonalProperty:hover {
+    background: #F4D1B1;
+}
+.addGroupCatalogReportWraper .ListShopCatalogMoveProperty input {
+    width: 20px;
+    float: right;
+}
+
+.addGroupCatalogReportWraper .addGroupCatalogPersonal {
+    float: left;
+    width: 470px;
+    margin-right: 10px;
+}
+.addGroupCatalogReportWraper .addGroupCatalogMovePropertyMain .addGroupCatalogMoveProperty {
+    width: 470px;
+    float: left;
+}
+.addGroupCatalogReportWraper .selectBox {
+    width: 465px;
+    height: 27px;
 }

@@ -21,7 +21,7 @@
  *    отказ от гарантий и пометка о сделанных изменениях.
  * 
  * 3. Распространение и/или изменение исходного кода должно происходить
- *    на условиях Стандартной общественной лицензии GNU в том виде, в каком
+ *    на условиях Стандартной общественной лицензии GNU в том виде, в каком 
  *    она была опубликована Фондом свободного программного обеспечения;
  *    либо лицензии версии 3, либо (по вашему выбору) любой более поздней
  *    версии. Вы должны были получить копию Стандартной общественной 
@@ -34,32 +34,53 @@
  * общественной лицензии GNU.
  * 
  * НИ ПРИ КАКИХ УСЛОВИЯХ ПРОЕКТ, ЕГО УЧАСТНИКИ ИЛИ CompuProject НЕ 
- * НЕСУТ ОТВЕТСТВЕННОСТИ ЗА КАКИЕ ЛИБО ПРЯМЫЕ, КОСВЕННЫЕ, СЛУЧАЙНЫЕ,
+ * НЕСУТ ОТВЕТСТВЕННОСТИ ЗА КАКИЕ ЛИБО ПРЯМЫЕ, КОСВЕННЫЕ, СЛУЧАЙНЫЕ, 
  * ОСОБЫЕ, ШТРАФНЫЕ ИЛИ КАКИЕ ЛИБО ДРУГИЕ УБЫТКИ (ВКЛЮЧАЯ, НО НЕ 
- * ОГРАНИЧИВАЯСЬ ПРИОБРЕТЕНИЕМ ИЛИ ЗАМЕНОЙ ТОВАРОВ И УСЛУГ; ПОТЕРЕЙ
+ * ОГРАНИЧИВАЯСЬ ПРИОБРЕТЕНИЕМ ИЛИ ЗАМЕНОЙ ТОВАРОВ И УСЛУГ; ПОТЕРЕЙ 
  * ДАННЫХ ИЛИ ПРИБЫЛИ; ПРИОСТАНОВЛЕНИЕ БИЗНЕСА). 
  * 
  * ИСПОЛЬЗОВАНИЕ ДАННОГО ИСХОДНОГО КОДА ОЗНАЧАЕТ, ЧТО ВЫ БЫЛИ ОЗНАКОЛМЛЕНЫ
  * СО ВСЕМИ ПРАВАМИ, СТАНДАРТАМИ И УСЛОВИЯМИ, УКАЗАННЫМИ ВЫШЕ, СОГЛАСНЫ С НИМИ
  * И ОБЯЗУЕТЕСЬ ИХ СОБЛЮДАТЬ.
  * 
- * ЕСЛИ ВЫ НЕ СОГЛАСНЫ С ВЫШЕУКАЗАННЫМИ ПРАВАМИ, СТАНДАРТАМИ И УСЛОВИЯМИ,
+ * ЕСЛИ ВЫ НЕ СОГЛАСНЫ С ВЫШЕУКАЗАННЫМИ ПРАВАМИ, СТАНДАРТАМИ И УСЛОВИЯМИ, 
  * ТО ВЫ МОЖЕТЕ ОТКАЗАТЬСЯ ОТ ИСПОЛЬЗОВАНИЯ ДАННОГО ИСХОДНОГО КОДА.
  * 
  * Данная копия CSystem используется для проекта Apelsin SHOP
  * 
  */
+ini_set("display_errors", 1);
+error_reporting(E_ALL);
+header("Content-type: text/html; charset=UTF-8");
+@session_start();
+include_once '../../../../ROOT/functions/includeSistemClasses.php';
 
-/**
- * Description of SystemGroupIdConstants
- *
- * @author Olga Rjabchikova
- * @copyright © 2010-2016, CompuProjec
- * @created 17.12.2015 14:31:48
- */
-class SystemGroupIdConstants {
+includeSistemClasses('../../../../ROOT/');
 
-    const SYSTEM_GROUP_UNALLOCATED_ITEMS = 'SYSTEM_GROUP_UNALLOCATED_ITEMS';
-    const SYSTEM_GROUP_FOR_NEW_ITEMS = 'SYSTEM_GROUP_FOR_NEW_ITEMS';
+include_once '../../classes/ShopIncludeClasses.php';
+ShopIncludeClasses::includeAllClasses('../../', '../../../../modules/ShopNavigationPanel/');
 
+include_once '../../../../plugins/InteractiveLists/classes/InteractiveListsPlugin.php';
+
+include_once '../classes/AP_WorkingWithShopCatalog/AP_WorkingWithShopCatalog_General.php';
+include_once '../classes/AP_WorkingWithShopProperty/AP_WorkingWithShopCatalog_AddNewProperty.php';
+include_once '../classes/AP_WorkingWithShopProperty/AP_WorkingWithShopPropertyCatalog.php';
+
+global $_SQL_HELPER;
+$_SQL_HELPER = new MysqliHelper();
+
+global $_SITECONFIG;
+$_SITECONFIG = new SiteConfig();
+
+$urlParams = new UrlParams();
+global $_URL_PARAMS;
+$_URL_PARAMS = $urlParams->getUrlParam();
+
+if (isset($_POST)) {
+    $propertyNew = new GenerationFieldForProperty();
+    $propertyNew->getBlockId();
+    echo $propertyNew->getElementTable();
 }
+
+
+

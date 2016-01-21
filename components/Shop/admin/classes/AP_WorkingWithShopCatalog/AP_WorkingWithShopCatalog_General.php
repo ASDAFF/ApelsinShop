@@ -206,7 +206,11 @@ class AP_WorkingWithShopCatalog_General {
         $path = "";
         if ($this->path != null) {
             foreach ($this->path as $parent) {
-                $path .= $this->getGroupName($parent) . " >> ";
+                if ($this->path != "ROOT") {
+                    $path .= $this->getGroupName($parent) . " >> ";
+                } else {
+                    $path = "Корневой каталог";
+                }
             }
         } else {
             $path = "Корневой каталог";
@@ -329,6 +333,42 @@ class AP_WorkingWithShopCatalog_General {
         return ((count($result) > 0) ? true : false);
     }
 
+    /**
+     * MAX sequence из `ShopPropertiesInGroupsRanking`
+     * @param type $group - id группы
+     * @return type
+     */
+    protected function getMaxSequenceRanking($group) {
+        $query = "SELECT MAX(`sequence`) as maximum 
+                    FROM `ShopPropertiesInGroupsRanking` 
+                    WHERE `group` = '" . $group . "';";
+        $result = $this->SQL_HELPER->select($query);
+        if ($result != null) {
+            $maxSequence = $result[0]['maximum'];
+        } else {
+            $maxSequence = 1;
+        }
+        return $maxSequence;
+    }
+
+    /**
+     * MAX sequence из `ShopPropertiesInGroups` для записи нового св-ва
+     * @param type $id - id группы
+     * @return type
+     */
+    protected function getMaxSequence($id) {
+        $query = "SELECT MAX(`sequence`) as maximum 
+                    FROM `ShopPropertiesInGroups` 
+                    WHERE `group` = '" . $id . "';";
+        $result = $this->SQL_HELPER->select($query);
+        if ($result != null) {
+            $maxSequence = $result[0]['maximum'];
+        } else {
+            $maxSequence = 1;
+        }
+        return $maxSequence;
+    }
+
     private function getParent($id) {
         $query = "SELECT `parentGroup` FROM `ShopGroupsHierarchy` WHERE `group` = '" . $id . "'";
         $result = $this->SQL_HELPER->select($query, 1);
@@ -354,6 +394,65 @@ class AP_WorkingWithShopCatalog_General {
         }
         sort($arraySortPrpoperty);
         return $arraySortPrpoperty;
+    }
+
+    // ------------------------- Добавление родительских св-тв потомкам  ------------------
+    /**
+     * Добавление св-ва у потомков
+     */
+    protected function addChildrenProperty($parent, $group) {
+        $newProperty = $this->getNewPropertyChildren($parent, $group);
+        $shiftStep = count($newProperty);
+        $query = "select 
+            max(`sequence`) as maxSequence
+            FROM `ShopPropertiesInGroupsRanking`
+            WHERE `group` = '" . $group . "'
+            AND `propertyInGroup` IN (
+                Select `id` FROM `ShopPropertiesInGroups` WHERE `group` = '" . $parent . "'
+            );";
+        $rezult = $this->SQL_HELPER->select($query, 1);
+        $maxSequence = $this->getMaxSequenceRanking($group);
+        if (isset($rezult['maxSequence']) && $rezult['maxSequence'] != "" && $rezult['maxSequence'] != null) {
+            $incr = $rezult['maxSequence'] + 1;
+            $query = "UPDATE `ShopPropertiesInGroupsRanking` "
+                    . "SET `sequence` = `sequence` + " . ($maxSequence + $shiftStep + 2) . " "
+                    . "WHERE `sequence` > '" . $rezult['maxSequence'] . "' AND `group` = '" . $group . "';";
+            $this->SQL_HELPER->insert($query);
+        } else {
+            $incr = $maxSequence + 1;
+        }
+        foreach ($newProperty as $id) {
+            $ranking = "INSERT INTO `ShopPropertiesInGroupsRanking` SET ";
+            $ranking .= "`group`='" . $group . "', ";
+            $ranking .= "`propertyInGroup`='" . $id["id"] . "', ";
+            $ranking .= "`shown`='1',";
+            $ranking .= "`sequence`='" . ($incr++) . "'; ";
+            $this->SQL_HELPER->insert($ranking);
+        }
+        $this->SQL_HELPER->insert("SET @incr = 0;");
+        $query = "UPDATE `ShopPropertiesInGroupsRanking` SET `sequence` = @incr:=@incr+1 WHERE `group` = '" . $group . "' ORDER BY `sequence` ASC;";
+        $this->SQL_HELPER->insert($query);
+    }
+
+    /**
+     * Получение данных о новых св-ах для потмков
+     * @param type $parent - id
+     * @param type $children - id
+     * @return array
+     */
+    protected function getNewPropertyChildren($parent, $children) {
+        $query = "SELECT `id`
+                    FROM `ShopPropertiesInGroups`
+                    WHERE `group` = '" . $parent . "'
+                    AND `id`
+                    NOT IN (
+                        SELECT `propertyInGroup` 
+                        FROM `ShopPropertiesInGroupsRanking`
+                        WHERE `group` = '" . $children . "'
+                    )
+                    ORDER BY `sequence` ASC;";
+        $newProperty = $this->SQL_HELPER->select($query);
+        return $newProperty;
     }
 
 }

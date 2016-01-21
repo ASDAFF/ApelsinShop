@@ -112,7 +112,7 @@ class AP_WorkingWithShopCatalog_AddNewProperty {
         $this->html .= '<tr>';
         $this->html .= '<td>';
         $this->html .= '<div class="addGroupCatalogNewPropertyNameInput">';
-        $this->html .= InputHelper::paternTextBox("propertyName", "propertyName", "propertyName", 50, false, "Латиница, кирилица", "[А-Яа-яA-Za-z0-9][^@#$%&*]{3,50}", "");
+        $this->html .= InputHelper::paternTextBox("propertyName", "propertyName", "propertyName", 50, true, "Латиница, кирилица", "/[А-Яа-яA-Za-z0-9]{1,50}/", "");
         $this->html .= '</div>';
         $this->html .= '</td>';
         $this->html .= '<td>';

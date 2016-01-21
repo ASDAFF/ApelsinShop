@@ -65,7 +65,6 @@ class AP_WorkingWithShopCatalog_ImportMovingGroup extends AP_WorkingWithShopCata
     private $parentNewInsert;
     private $personalDelete;
     private $nodeChildrenGroupId;
-    private $personalId;
 
     public function __construct($groupId, $newGroupId) {
         parent::__construct($groupId);
@@ -115,11 +114,9 @@ class AP_WorkingWithShopCatalog_ImportMovingGroup extends AP_WorkingWithShopCata
      */
     private function getPersonalDelete($group) {
         $this->personalDelete = [];
-        $this->personalId = [];
         $infoGroup = $this->helperGroup->getGroupInfo($group);
         if (!empty($infoGroup['properties']['personal']) && $infoGroup['properties']['personal'] != null && isset($this->parentNewInsert["propertyId"])) {
             foreach ($infoGroup['properties']['personal'] as $value) {
-                $this->personalId[] = $value["id"];
                 if (in_array($value["property"], $this->parentNewInsert["propertyId"])) {
                     $this->personalDelete['propertyInGroup'][] = $value["id"];
                     $this->personalDelete['propertyId'][] = $value["property"];
@@ -128,7 +125,6 @@ class AP_WorkingWithShopCatalog_ImportMovingGroup extends AP_WorkingWithShopCata
             }
         } else {
             $this->personalDelete = [];
-            $this->personalId = [];
         }
     }
 
@@ -216,7 +212,14 @@ class AP_WorkingWithShopCatalog_ImportMovingGroup extends AP_WorkingWithShopCata
         $this->html = $this->getReport($this->getReportAdditionally(), $this->info['properties']['available']);
     }
 
+    private function getDataPersonalPropertyNew() {
+        foreach ($this->info['properties']['personal'] as $value) {
+            $this->personalPropertyNew[] = $value["property"];
+        }
+    }
+
     private function getReportAdditionally() {
+        $this->getDataPersonalPropertyNew();
         return( '<div class="addGroupCatalogReportText">Каталог "' . $this->getGroupName($this->groupId) . '" успешно перенесен</div>');
     }
 
@@ -334,34 +337,6 @@ class AP_WorkingWithShopCatalog_ImportMovingGroup extends AP_WorkingWithShopCata
     }
 
     /**
-     * MAX sequence из `ShopPropertiesInGroupsRanking`
-     * @param type $group - id группы
-     * @return type
-     */
-    private function getMaxSequenceRanking($group) {
-        $query = "SELECT MAX(`sequence`) as maximum 
-                    FROM `ShopPropertiesInGroupsRanking` 
-                    WHERE `group` = '" . $group . "';";
-        $result = $this->SQL_HELPER->select($query);
-        $maxSequence = $result[0]['maximum'];
-        return $maxSequence;
-    }
-
-    /**
-     * MAX sequence из `ShopPropertiesInGroups` для записи нового св-ва
-     * @param type $id - id группы
-     * @return type
-     */
-    private function getMaxSequence($id) {
-        $query = "SELECT MAX(`sequence`) as maximum 
-                    FROM `ShopPropertiesInGroups` 
-                    WHERE `group` = '" . $id . "';";
-        $result = $this->SQL_HELPER->select($query);
-        $maxSequence = $result[0]['maximum'];
-        return $maxSequence;
-    }
-
-    /**
      * Генерация отчета
      * @param type $content
      * @param type $button
@@ -383,7 +358,7 @@ class AP_WorkingWithShopCatalog_ImportMovingGroup extends AP_WorkingWithShopCata
     }
 
     private function provisionalReport() {
-        $propertyForDelete = $this->getPropertyForDeleteCarentGroup($this->groupId, $this->parent);
+        $propertyForDelete = $this->getPropertyForDeleteCarentGroup($this->groupId);
         $html = '<table class="addGroupCatalogGroupPropertyWrapper">';
         $html .= '<tr>';
         $html .= '<th>Текущие св-ва</th>';

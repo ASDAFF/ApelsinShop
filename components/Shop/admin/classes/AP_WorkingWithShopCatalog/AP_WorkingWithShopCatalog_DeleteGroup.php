@@ -103,7 +103,7 @@ class AP_WorkingWithShopCatalog_DeleteGroup extends AP_WorkingWithShopCatalog_Ge
         if ($this->parent != null) {
             $this->newOwner = $this->parent;
         } else {
-            $this->newOwner = SystemGroupIdConstants::FOR_DELETE;
+            $this->newOwner = SystemGroupIdConstants::SYSTEM_GROUP_UNALLOCATED_ITEMS;
         }
     }
 
@@ -191,9 +191,9 @@ class AP_WorkingWithShopCatalog_DeleteGroup extends AP_WorkingWithShopCatalog_Ge
     }
 
     private function deleteRecursion() {
-        $this->newOwner = SystemGroupIdConstants::FOR_DELETE;
+        $this->newOwner = SystemGroupIdConstants::SYSTEM_GROUP_UNALLOCATED_ITEMS;
         $this->deleteRecursionOrStructure();
-        $text = "Каталог удален полностью, товары перенесены в `Системный каталог` - Recursion";
+        $text = "Каталог удален полностью, товары перенесены в `Системный каталог`";
         $this->html = $this->generationUI($text);
     }
 
@@ -201,7 +201,7 @@ class AP_WorkingWithShopCatalog_DeleteGroup extends AP_WorkingWithShopCatalog_Ge
         $this->deleteRecursionOrStructure();
         $parent = "";
         ($this->parent !== null) ? $parent .= $this->getGroupName($this->parent) : $parent .= "Системный каталог";
-        $text = "Каталог удален, товары перенесены в `" . $parent . "` - Structure";
+        $text = "Каталог удален, товары перенесены в `" . $parent . "`";
         $this->html = $this->generationUI($text);
     }
 
@@ -217,7 +217,7 @@ class AP_WorkingWithShopCatalog_DeleteGroup extends AP_WorkingWithShopCatalog_Ge
     private function getTextForShift() {
         $parent = "";
         ($this->parent !== null) ? $parent .= $this->getGroupName($this->parent) : $parent .= "Корневой  каталог";
-        $text = "Каталог удален, содержимое перенесено вверх по иерархии. Новый владелец - `" . $parent . "` - Shift<br />";
+        $text = "Каталог удален, содержимое перенесено вверх по иерархии. Новый владелец - `" . $parent . "`<br />";
         $text .= "В него перемещены товары и вложенные каталоги:<br />";
         foreach ($this->info['children'] as $child) {
             $text .= $this->getGroupName($child) . ";<br />";

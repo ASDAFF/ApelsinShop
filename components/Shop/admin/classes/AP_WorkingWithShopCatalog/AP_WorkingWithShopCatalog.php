@@ -98,6 +98,12 @@ class AP_WorkingWithShopCatalog {
                         $page = new AP_WorkingWithShopCatalog_ImportMovingGroup($groupId, $moveGroupId);
                     }
                     break;
+                case 'ImportMoveProperty':
+                    if (isset($this->params[5])) {
+                        $groupId = $this->params[5];
+                        $page = new AP_WorkingWithShopCatalog_MoveProperty($groupId);
+                    }
+                    break;
                 default:
                     $this->html = 'неверная URL';
                     break;
@@ -114,11 +120,15 @@ class AP_WorkingWithShopCatalog {
             $ShopGroupsTree->addFunctionalButton(
                     'DeleteGroup', 'window.location.href = "' . $this->urlHelper->chengeParams($this->params) . 'DeleteGroup/" + groupId + "/"', 'Удалить', true);
             $ShopGroupsTree->addFunctionalButton(
-                    'MovingGroup', 'moveGroup ($("#" + elementId),groupId);', 'Перенести', true);
+                    'MovingGroup', 'moveGroup ($("#" + elementId),groupId);', 'Перенести каталог', true);
             $ShopGroupsTree->addFunctionalButton(
                     'ImportMoveGroup', 'window.location.href = "' . $this->urlHelper->chengeParams($this->params) . 'ImportMoveGroup/" + moveGroupId + "/" + groupId + "/"', 'Вставить');
             $ShopGroupsTree->addFunctionalButton(
                     'CancelMoveGroup', 'cancelMoveGroup ();', 'Отменить перенос');
+
+            $ShopGroupsTree->addFunctionalButton(
+                    'ImportMoveProperty', 'window.location.href = "' . $this->urlHelper->chengeParams($this->params) . 'ImportMoveProperty/" + groupId + "/"', 'Перенести свойство', true);
+
             $this->html .= '<div class="AddGroupNameAndPropertyParent" id="AddGroupNameAndPropertyParent"></div>';
             $this->html .= '<div class="AddGroupRanKingParent" id="AddGroupRanKingParent"></div>';
             $this->html .= $ShopGroupsTree->getTree();
