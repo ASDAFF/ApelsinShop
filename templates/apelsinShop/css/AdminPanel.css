@@ -593,37 +593,31 @@ legend {
     margin: 0 auto;
     padding: 5px 20px;
     text-align: center;
-}.uploadImagesItemsShop > div > p {
+}
+.uploadImagesItemsShop .uploadImagesItemsShopHead {
     margin: 0;
     padding: 0px;
     text-align: center;
-}
-.uploadImagesItemsShop > div:first-child, .listImagesItemsAndIconsShop > p:first-child {
     font-size: 20px;
     font-weight: bold;
     background: #bbb;
     color: #fff;
-    padding: 0;
-    height: 40px;
+}
+.uploadImagesItemsShop .uploadImagesItemsShopTitle {
     text-shadow: none;
-}
-.uploadImagesItemsShop > div:first-child > p {
-    float: left;
     padding: 10px;
-    width: 888px;
-}
-.uploadImagesItemsShop > div:first-child > p:last-child {
-    width: 30px;
-    cursor: pointer;
+    width: 908px;
+    float: left;
 }
 .uploadImagesItemsShop .viewLogsShopImage {
     width: 30px;
+    height: 30px;
     cursor: pointer;
-    background: url('../img/icons/info.png') center center no-repeat;
+    padding: 0px;
+    margin: 5px 0;
+    cursor: pointer;
+    background: url('../img/icons/info.svg') center center no-repeat;
 }
-/*.uploadImagesItemsShop .viewLogsShopImage:hover {
-    background: url('../img/icons/info.png') center center no-repeat;
-}*/
 .uploadImagesItemsShopInfo {
     width: 800px;
     margin: 0 auto;
@@ -667,6 +661,7 @@ legend {
     display: block;
 }
 .listImagesItemsAndIconsShop > p:first-child {
+    
     /* наследует от .uploadImagesItemsShop > div:first-child */
     padding: 10px;
     height: 20px;

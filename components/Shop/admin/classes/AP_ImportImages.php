@@ -262,11 +262,11 @@ class AP_ImportImages {
     protected function generationReport() {
         $this->html .= '<div class="uploadImagesItemsShop">';
 
-        $this->html .= '<div>';
-        $this->html .= '<p>Изображения товаров</p>';
-        $this->html .= '<p class="viewLogsShopImage" onclick="listImagesItems(\'infoInformation\');" title="Информация"></p>';
-        $this->html .= '</div>';
+        $this->html .= '<div class="uploadImagesItemsShopHead">';
+        $this->html .= '<div class="uploadImagesItemsShopTitle">Изображения товаров</div>';
+        $this->html .= '<div class="viewLogsShopImage" onclick="listImagesItems(\'infoInformation\');" title="Информация"></div>';
         $this->html .= '<div class="clear"></div>';
+        $this->html .= '</div>';
 
         $this->html .= '<div>';
         $this->html .= '<p>Найдено ';
