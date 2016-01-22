@@ -75,7 +75,7 @@ class ImportImage {
         $this->dirImport = $path['import'];
         $this->miniature = $miniature;
         $this->errors = [];
-        $this->maxFilesImport = 5000;
+        $this->maxFilesImport = 10000;
     }
 
     /**
