@@ -11,8 +11,17 @@ class ShopGroupsItemList {
     private $HTML;
     private $imageItemPath;
     private $defaultImageItemPath;
+    private $statusToCSS;
 
     public function __construct($page = 1, $groupID = 'none', $showInformation = true) {
+        $this->statusToCSS['Возится и в наличии']['css'] = "status_available";
+        $this->statusToCSS['Возится и в наличии']['notAvailableText'] = " Отсутствует";
+        $this->statusToCSS['Возится под заказ']['css'] = "status_for_order";
+        $this->statusToCSS['Возится под заказ']['notAvailableText'] = "Под заказ";
+        $this->statusToCSS['Распродается, возится под заказ']['css'] = "status_sold_out";
+        $this->statusToCSS['Распродается, возится под заказ']['notAvailableText'] = "Под заказ";
+        $this->statusToCSS['Снят с производства, распродается']['css'] = "status_out_of_production";
+        $this->statusToCSS['Снят с производства, распродается']['notAvailableText'] = "Под заказ";
         $this->setImagePath();
         global $_SQL_HELPER;
         $this->SQL_HELPER = $_SQL_HELPER;
@@ -99,11 +108,24 @@ class ShopGroupsItemList {
     private function getItemHTML($item) {
         $itemURL = $this->urlHelper->chengeParams(array('item', $item['id']));
         $item['action'] === 1 ? $itemClass = 'ActionItem' : $itemClass = 'NormalItem';
+        
         $item['totalAmount'] > 0 ? $availableClass = 'Available' : $availableClass = 'NotAvailable';
+        if(isset($this->statusToCSS[$item['status']]['css'])) {
+            $statusClass = $this->statusToCSS[$item['status']]['css'];
+        } else {
+            $statusClass = "status_default";
+        }
         $out = '';
-        $out .= "<div class='ShopItemElement " . $itemClass . " " . $availableClass . "'>";
+        $out .= "<div class='ShopItemElement " . $itemClass . " " . $statusClass. " " . $availableClass . "'>";
         if ($item['action'] == 1) {
             $out .= "<div class='ActionItemLable'></div>";
+        }
+        if ($statusClass != "" && $availableClass == 'NotAvailable') {
+            if(isset($this->statusToCSS[$item['status']]['notAvailableText'])) {
+                $out .= "<div class='StatusItemLable'>".$this->statusToCSS[$item['status']]['notAvailableText']."</div>";
+            } else {
+                $out .= "<div class='StatusItemLable'>Отсутствует </div>";
+            }
         }
         $out .= "<a href='" . $itemURL . "'>";
         $out .= $this->getItemImage($item['id']);

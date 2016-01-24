@@ -121,7 +121,11 @@
 .ShopItemsListBlock .ShopItemsList .ShopItemElement.NormalItem {}
 .ShopItemsListBlock .ShopItemsList .ShopItemElement.ActionItem {}
 .ShopItemsListBlock .ShopItemsList .ShopItemElement.Available {}
-/*.ShopItemsListBlock .ShopItemsList .ShopItemElement.NotAvailable {
+.ShopItemsListBlock .ShopItemsList .ShopItemElement.status_available.NotAvailable {
+    
+}
+.ShopItemsListBlock .ShopItemsList .ShopItemElement.status_default.NotAvailable,
+.ShopItemsListBlock .ShopItemsList .ShopItemElement.notAvailableText.NotAvailable {
     filter: grayscale(100%);
     -webkit-filter: grayscale(100%);
     -moz-filter: grayscale(100%);
@@ -131,7 +135,7 @@
     filter: gray;
     -webkit-filter: grayscale(1);
     opacity: 0.5;
-}*/
+}
 .ShopItemsListBlock .ShopItemsList .ShopItemElement a {}
 .ShopItemsListBlock .ShopItemsList .ShopItemElement .ActionItemLable {
     position: absolute;
@@ -142,6 +146,19 @@
     width: 50px;
     background: url('../img/ActionItemLable.png') top left no-repeat;
 }
+.ShopItemsListBlock .ShopItemsList .ShopItemElement .StatusItemLable {
+    position: absolute;
+    top: 50px;
+    left: 29px;
+    z-index: 999;
+    width: 100px;
+    background: rgba(0,0,0,.5);
+    text-align: center;
+    color: #fff;
+    font:  10px/20px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    text-transform: uppercase;
+}
+
 .ShopItemsListBlock .ShopItemsList .ShopItemElement .ShopItemElement_Image {
     width: 100px;
     height: 100px;

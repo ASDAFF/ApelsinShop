@@ -288,6 +288,7 @@ class ShopHelperSQL {
             t1.`itemName`, 
             t1.`group`, 
             t1.`action`, 
+            t1.`status`, 
             t1.`totalAmount`, 
             t1.`minAmount`,
             t1.`description`,
@@ -298,6 +299,7 @@ class ShopHelperSQL {
                 `itemName`, 
                 `group`, 
                 `action`, 
+                `status`, 
                 `totalAmount`, 
                 `minAmount`,
                 `description` 
@@ -322,6 +324,7 @@ class ShopHelperSQL {
             t1.`itemName`, 
             t1.`group`, 
             t1.`action`, 
+            t1.`status`, 
             t1.`totalAmount`, 
             t1.`minAmount`,
             t1.`description`,
@@ -332,6 +335,7 @@ class ShopHelperSQL {
                 t2.`itemName`, 
                 t2.`group`, 
                 t2.`action`, 
+                t2.`status`, 
                 t2.`totalAmount`, 
                 t2.`minAmount`,
                 t2.`description`
