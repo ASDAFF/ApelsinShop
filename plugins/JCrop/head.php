@@ -1,6 +1,6 @@
 <script src="./plugins/JCrop/js/jquery.Jcrop.js"></script>
 <link rel="stylesheet" href="./plugins/JCrop/css/jquery.Jcrop.css" type="text/css" />
-<script src="./plugins/JCrop/js/jcrop_main.js"></script>
+<!--<script src="./plugins/JCrop/js/jcrop_main.js"></script>-->
 
 <script type="text/javascript">
 $(function(){

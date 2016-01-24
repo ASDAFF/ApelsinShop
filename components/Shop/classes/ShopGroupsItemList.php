@@ -7,7 +7,7 @@ class ShopGroupsItemList {
     private $page;
     private $showInformation;
     private $urlHelper;
-    private $itemsList;
+    private $itemsList = array();
     private $HTML;
     private $imageItemPath;
     private $defaultImageItemPath;
