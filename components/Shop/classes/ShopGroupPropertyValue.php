@@ -59,7 +59,7 @@ class ShopGroupPropertyValue {
             case 'inStock':
                 return self::getPropertyValueString($propertyId, "Наличие товара", 'Товар в наличии');
             default:
-                return '123';
+                return '';
         }
     }
 
