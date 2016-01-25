@@ -25,12 +25,12 @@ class ShopSearchItem {
     }
 
     private function getData() {
-        $query = "SELECT `groupName`, `id` FROM `ShopGroups` WHERE `groupName` LIKE '%" . $this->searchQuery . "%';";
+        $query = "SELECT `groupName`, `id` FROM `ShopGroups` WHERE `groupName` LIKE '%" . $this->searchQuery . "%' AND `systemGroup` > 0;";
         $groups = $this->SQL_HELPER->select($query);
         foreach ($groups as $group) {
             $this->data[ShopPageInfoHelper::CatalogPage][$group['id']] = $group['groupName'];
         }
-        $query = "SELECT `itemName`, `id` FROM `ShopItems` WHERE `itemName` LIKE '%" . $this->searchQuery . "%';";
+        $query = "SELECT `itemName`, `id` FROM `ShopItems` WHERE `itemName` LIKE '%" . $this->searchQuery . "%' AND `group` NOT IN (SELECT `id` FROM `ShopGroups` WHERE `systemGroup` > 0);";
         $items = $this->SQL_HELPER->select($query);
         foreach ($items as $item) {
             $this->data[ShopPageInfoHelper::ItemPage][$item['id']] = $item['itemName'];
