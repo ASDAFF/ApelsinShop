@@ -9,7 +9,7 @@ class ShopItemAmountScale {
             $scaleValue = 0;
             $text = "Товара нет в наличии.";
             $css = "";
-        } else if ($amount >= 0 && $amount < $minAmount) {
+        } else if (($amount >= 0 && $amount < $minAmount) || $amount <= 1 ) {
             $scaleValue = 25;
             $text = "Очень мало.\nУточняйте наличие в магазине у менеджеров.";
             $css = "VeryFew";
@@ -26,7 +26,7 @@ class ShopItemAmountScale {
             $text = "Много.";
             $css = "Many";
         }
-        $out = "<div class='ShopItemAmount' title='".$text." ".$amount." ".$minAmount."'>";
+        $out = "<div class='ShopItemAmount' title='".$text."'>";
         $out .= "<div class='ShopItemAmountScale ".$css."' style='width: ".$scaleValue."%;'></div>";
         $out .= "</div>";
         return $out;
