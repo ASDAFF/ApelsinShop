@@ -142,6 +142,13 @@ class ShopGroupsHelper {
      */
     public function getGroupInfo($groupID) {
         if (isset($this->groupPath[$groupID])) {
+            if(!isset($this->groups[$groupID]['properties'])) {
+                $this->groups[$groupID]['properties']['available'] = ShopGroupPropertiesDataHelper::getGroupAvailableProperties($groupID);
+                $this->groups[$groupID]['properties']['personal'] = ShopGroupPropertiesDataHelper::getGroupPersonalProperties($groupID);
+                $this->groups[$groupID]['properties']['unused'] = ShopGroupPropertiesDataHelper::getGroupUnusedProperties($groupID);
+                $this->groups[$groupID]['properties']['unusedForChild'] = ShopGroupPropertiesDataHelper::getGroupUnusedForChildrenProperties($groupID);
+                $this->groups[$groupID]['properties']['childrenProperties'] = ShopGroupPropertiesDataHelper::getGroupChildrenProperties($groupID);
+            }
             return $this->groups[$groupID];
         } else {
             return NULL;

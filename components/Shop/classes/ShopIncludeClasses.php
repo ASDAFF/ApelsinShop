@@ -8,6 +8,7 @@ class ShopIncludeClasses {
         if (self::$notIncluded) {
             self::$notIncluded = false;
             include_once $componentPath . 'classes/ShopGroupsHelper.php';
+            include_once $componentPath . 'classes/ShopGroupPropertiesDataHelper.php';
             include_once $componentPath . 'classes/ShopGroupsDataHelper.php';
             include_once $componentPath . 'classes/ShopPageInfoHelper.php';
             include_once $componentPath . 'classes/ShopGroupsUrlHelper.php';
