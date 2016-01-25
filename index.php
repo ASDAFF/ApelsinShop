@@ -1,5 +1,9 @@
 <?php
-ini_set("memory_limit", "2048M");
+//$mtime = microtime();
+//$mtime = explode(" ",$mtime);
+//$mtime = $mtime[1] + $mtime[0];
+//$tstart = $mtime;
+ini_set("memory_limit", "1024M");
 @session_start();
 // Включить отображение ошибок
 ini_set("display_errors",1);
@@ -45,4 +49,10 @@ if(!$_SITECONFIG->getSiteClosed()) {
     // Перенаправить в случае если сайт закрыт
     header('Location: ./sistem/closedPage.php');
 }
+//$mtime = microtime(); 
+//$mtime = explode(" ",$mtime); 
+//$mtime = $mtime[1] + $mtime[0]; 
+//$tend = $mtime; 
+//$total = ($tend - $tstart);
+//echo $total;
 ?>
