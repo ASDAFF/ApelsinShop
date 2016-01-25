@@ -87,6 +87,14 @@ class ShopHelperSQL {
         }
     }
     
+    private static function generateWhereSQL_InStock($array) {
+        if(self::checkArrayValues($array,'InStock') && self::getArrayValues($array,'InStock') !== 'all') {
+            return " AND `totalAmount`>'0' ";
+        } else {
+            return "";
+        }
+    }
+    
     /**
      * Генерирует отсеивание по соответствию имени.
      * @param array $array - параметры отсеивания
@@ -230,6 +238,7 @@ class ShopHelperSQL {
                 AND `group` NOT IN (SELECT `id` FROM `ShopGroups` WHERE `systemGroup` > 0)
                 ".self::generateWhereSQL_Group($groupID, $array)."
                 ".self::generateWhereSQL_Action($array)."
+                ".self::generateWhereSQL_InStock($array)."
                 ".self::generateWhereSQL_ItemName($array)."
             ) as t1
             LEFT JOIN `ShopItemsPrices` as t2
@@ -251,6 +260,7 @@ class ShopHelperSQL {
                     SELECT `id` FROM `ShopItems` WHERE `shown` = '1' 
                     AND `group` NOT IN (SELECT `id` FROM `ShopGroups` WHERE `systemGroup` > 0) "
                     .self::generateWhereSQL_Action($array)
+                    .self::generateWhereSQL_InStock($array)
                     .self::generateWhereSQL_ItemName($array)."
                 ) as t1
                 LEFT JOIN `ShopItemsPrices` as t2
@@ -261,6 +271,7 @@ class ShopHelperSQL {
             $sql = "SELECT count(`id`) as amount FROM `ShopItems` WHERE `shown` = '1' 
                     AND `group` NOT IN (SELECT `id` FROM `ShopGroups` WHERE `systemGroup` > 0) "
                 .self::generateWhereSQL_Action($array)
+                .self::generateWhereSQL_InStock($array)
                 .self::generateWhereSQL_ItemName($array).";
             ";
         }
@@ -306,6 +317,7 @@ class ShopHelperSQL {
                 FROM `ShopItems` 
                 WHERE `shown` = '1'
                 ".self::generateWhereSQL_Action($array)."
+                ".self::generateWhereSQL_InStock($array)."
                 ".self::generateWhereSQL_ItemName($array)."
             ) as t1
             LEFT JOIN `ShopItemsPrices` as t2

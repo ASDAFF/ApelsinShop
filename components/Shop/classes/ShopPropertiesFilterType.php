@@ -236,6 +236,21 @@ class ShopPropertiesFilterType {
         $out .= InputHelper::select('Action', 'Action', $actionArray, true, $value);
         return self::getFilterBlock($out);
     }
+    private static function getMainFilters_inStock($groupID) {
+        $value = self::getSearchFilterElementData($groupID,'InStock');
+        if($value === NULL) {
+            $value = 'all';
+        }
+        $actionArray = array();
+        $actionArray[0]['text'] = 'Весь товар';
+        $actionArray[0]['value'] = 'all';
+        $actionArray[1]['text'] = 'Товар в наличии';
+        $actionArray[1]['value'] = 'inStock';
+        $out = '';
+        $out .= "Наличие товара ";
+        $out .= InputHelper::select('InStock', 'InStock', $actionArray, true, $value);
+        return self::getFilterBlock($out);
+    }
     
     private static function getMainFilters_Subgroup($groupID) {
         if($groupID !== NULL) {
@@ -264,6 +279,7 @@ class ShopPropertiesFilterType {
         $out = '';
         $out .= self::getMainFilters_ItemName($groupID);
         $out .= self::getMainFilters_Action($groupID);
+        $out .= self::getMainFilters_inStock($groupID);
         $out .= self::getMainFilters_ItemPrise($groupID);
         $out .= self::getMainFilters_Subgroup($groupID);
         return $out;

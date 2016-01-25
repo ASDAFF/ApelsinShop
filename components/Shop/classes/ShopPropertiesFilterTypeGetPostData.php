@@ -151,6 +151,7 @@ class ShopPropertiesFilterTypeGetPostData {
             self::$searchFilterDataArray[$groupID] = array();
             self::addSearchFilterData($groupID, 'ItemName', 'main', self::getPostValue('ItemName', NULL));
             self::addSearchFilterData($groupID, 'Action', 'main', self::getPostValue('Action', NULL));
+            self::addSearchFilterData($groupID, 'InStock', 'main', self::getPostValue('InStock', NULL));
             $itemPrise_min = self::getPostValue('ItemPrise_min', NULL);
             $itemPrise_max = self::getPostValue('ItemPrise_max', NULL);
             $itemPriseValue = array();

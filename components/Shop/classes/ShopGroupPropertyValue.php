@@ -54,6 +54,15 @@ class ShopGroupPropertyValue {
         }
     }
 
+    private static function getPropertyValueForGroup_Main_InStock($propertyId, $action) {
+        switch ($action) {
+            case 'inStock':
+                return self::getPropertyValueString($propertyId, "Наличие товара", 'Товар в наличии');
+            default:
+                return '123';
+        }
+    }
+
     private static function getPropertyValueForGroup_Main_ItemPrise($propertyId, $itemPrise) {
         $itemPriseValue = '';
         if (isset($itemPrise['min']) && isset($itemPrise['max'])) {
@@ -92,6 +101,9 @@ class ShopGroupPropertyValue {
                     break;
                 case 'Action':
                     $out .= self::getPropertyValueForGroup_Main_Action($property, $data['value']);
+                    break;
+                case 'InStock':
+                    $out .= self::getPropertyValueForGroup_Main_InStock($property, $data['value']);
                     break;
                 case 'ItemPrise':
                     $out .= self::getPropertyValueForGroup_Main_ItemPrise($property, $data['value']);
