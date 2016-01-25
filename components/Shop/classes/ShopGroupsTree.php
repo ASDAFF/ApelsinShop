@@ -63,8 +63,8 @@ class ShopGroupsTree {
      * Возвращает дерево каталогов. Если после последнего получения были внесены изменения, то последующие вызовы данной функции автоматически обновят 
      * @return string - html код дерева каталогов
      */
-    public function getTree() {
-        $this->generateTree();
+    public function getTree($groupId = null) {
+        $this->generateTree($groupId);
         return $this->tree;
     }
     
@@ -87,7 +87,7 @@ class ShopGroupsTree {
     /**
      * Запуск процесса генерации дерева.
      */
-    private function generateTree() {
+    private function generateTree($groupId = null) {
         $this->updateFunctionalButtonId();
         $rootId = ID_GENERATOR::generateID("RootGroup");
         $treeId = ID_GENERATOR::generateID("GroupTree");
@@ -100,7 +100,12 @@ class ShopGroupsTree {
             }
         }
         $this->tree .= "<ul class='RootGroup' id='".$rootId."'>";
-        foreach ($this->rootGroups as $group) {
+        if($groupId == null) {
+            $rootGroups = $this->rootGroups;
+        } else {
+            $rootGroups = $this->shopGroupsHelper->getGroupIdNodeChildren($groupId);
+        }
+        foreach ($rootGroups as $group) {
             $this->tree .= "<li>" . $this->getTreeNode($group) . "</li>";
         }
         $this->tree .= "</ul>";
@@ -115,7 +120,7 @@ class ShopGroupsTree {
      * @param string $groupId - идентификатор группы
      * @return string - узел дерева
      */
-    public function getTreeNode($groupId) {
+    private function getTreeNode($groupId) {
         $gteId = ID_GENERATOR::generateID("GTE");
         $CGId = ID_GENERATOR::generateID("CG");
         $children = $this->shopGroupsHelper->getGroupNodeChildren($groupId);
