@@ -70,6 +70,7 @@ class ShopHelperSQL {
             if($sql !== '') {
                 $sql = " AND (". mb_substr($sql, 0,   mb_strlen($sql)-4).") ";
             }
+            $sql .= "AND `group` NOT IN (SELECT `id` FROM `ShopGroups` WHERE `systemGroup` > 0)";
         }
         return $sql;
     }
@@ -316,6 +317,7 @@ class ShopHelperSQL {
                 `description` 
                 FROM `ShopItems` 
                 WHERE `shown` = '1'
+                AND `group` NOT IN (SELECT `id` FROM `ShopGroups` WHERE `systemGroup` > 0)
                 ".self::generateWhereSQL_Action($array)."
                 ".self::generateWhereSQL_InStock($array)."
                 ".self::generateWhereSQL_ItemName($array)."
