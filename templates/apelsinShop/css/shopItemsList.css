@@ -125,7 +125,7 @@
     
 }
 .ShopItemsListBlock .ShopItemsList .ShopItemElement.status_default.NotAvailable,
-.ShopItemsListBlock .ShopItemsList .ShopItemElement.notAvailableText.NotAvailable {
+.ShopItemsListBlock .ShopItemsList .ShopItemElement.status_available.NotAvailable {
     filter: grayscale(100%);
     -webkit-filter: grayscale(100%);
     -moz-filter: grayscale(100%);
