@@ -88,6 +88,7 @@ class ShopBasketHelper {
                 if($itemData['shown']) {
                     $_SESSION['ShopBasket'][$itemID] = $itemData;
                     $_SESSION['ShopBasket'][$itemID]['totalAmount'] = $amount;
+                    $_SESSION['ShopBasket'][$itemID]['amount'] = $amount;
                     $_SESSION['ShopBasket'][$itemID]['allPriceValue'] = $itemData['priceValue'] * $amount;
                     $_SESSION['ShopBasket'][$itemID]['itemUrl'] = self::$urlHelper->pageUrl(self::$shopPageAlias, array('item',$itemID));
                     $_SESSION['ShopBasket'][$itemID]['groupUrl'] = self::$urlHelper->pageUrl(self::$shopPageAlias, array('catalog',$itemData['group']));
