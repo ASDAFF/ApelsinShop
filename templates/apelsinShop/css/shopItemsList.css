@@ -111,7 +111,7 @@
 .ShopItemsListBlock .ShopItemsList .ShopItemElement {
     float: left;
     width: 158px;
-    padding: 10px 0px 10px 0px;
+    padding: 3px 0px 10px 0px;
     border: 1px transparent solid;
     position: relative;
 }
@@ -121,11 +121,10 @@
 .ShopItemsListBlock .ShopItemsList .ShopItemElement.NormalItem {}
 .ShopItemsListBlock .ShopItemsList .ShopItemElement.ActionItem {}
 .ShopItemsListBlock .ShopItemsList .ShopItemElement.Available {}
-.ShopItemsListBlock .ShopItemsList .ShopItemElement.status_available.NotAvailable {
-    
-}
+.ShopItemsListBlock .ShopItemsList .ShopItemElement.status_available.NotAvailable {}
 .ShopItemsListBlock .ShopItemsList .ShopItemElement.status_default.NotAvailable,
-.ShopItemsListBlock .ShopItemsList .ShopItemElement.status_available.NotAvailable {
+.ShopItemsListBlock .ShopItemsList .ShopItemElement.status_available.NotAvailable,
+.ShopItemsListBlock .ShopItemsList .ShopItemElement.status_out_of_production.NotAvailable {
     filter: grayscale(100%);
     -webkit-filter: grayscale(100%);
     -moz-filter: grayscale(100%);
@@ -136,16 +135,61 @@
     -webkit-filter: grayscale(1);
     opacity: 0.5;
 }
+
 .ShopItemsListBlock .ShopItemsList .ShopItemElement a {}
-.ShopItemsListBlock .ShopItemsList .ShopItemElement .ActionItemLable {
+
+.ShopItemsListBlock .ShopItemsList .ShopItemElement .ItemLable {
     position: absolute;
     top: 0px;
     left: 0px;
-    z-index: 999;
-    height: 50px;
-    width: 50px;
-    background: url('../img/ActionItemLable.png') top left no-repeat;
+    z-index: 12;
+    height: 70px;
+    width: 70px;
 }
+
+.ShopItemsListBlock .ShopItemsList .ShopItemElement .ItemLable.amount_available.action {
+    background: url('../img/itemLableIcon/available_action.png') top left no-repeat;}
+.ShopItemsListBlock .ShopItemsList .ShopItemElement .ItemLable.amount_available.no_action {}
+.ShopItemsListBlock .ShopItemsList .ShopItemElement .ItemLable.amount_not_available.action {
+    background: url('../img/itemLableIcon/not_available_action.png') top left no-repeat;}
+.ShopItemsListBlock .ShopItemsList .ShopItemElement .ItemLable.amount_not_available.no_action {
+    background: url('../img/itemLableIcon/not_available.png') top left no-repeat;}
+
+.ShopItemsListBlock .ShopItemsList .ShopItemElement .ItemLable.status_available.amount_available.action {
+    background: url('../img/itemLableIcon/available_action.png') top left no-repeat;}
+.ShopItemsListBlock .ShopItemsList .ShopItemElement .ItemLable.status_available.amount_available.no_action {}
+.ShopItemsListBlock .ShopItemsList .ShopItemElement .ItemLable.status_available.amount_not_available.action {
+    background: url('../img/itemLableIcon/not_available_action.png') top left no-repeat;}
+.ShopItemsListBlock .ShopItemsList .ShopItemElement .ItemLable.status_available.amount_not_available.no_action {
+    background: url('../img/itemLableIcon/not_available.png') top left no-repeat;}
+
+.ShopItemsListBlock .ShopItemsList .ShopItemElement .ItemLable.status_for_order.amount_available.action {
+    background: url('../img/itemLableIcon/for_order_action.png') top left no-repeat;}
+.ShopItemsListBlock .ShopItemsList .ShopItemElement .ItemLable.status_for_order.amount_available.no_action {
+    background: url('../img/itemLableIcon/for_order.png') top left no-repeat;}
+.ShopItemsListBlock .ShopItemsList .ShopItemElement .ItemLable.status_for_order.amount_not_available.action {
+    background: url('../img/itemLableIcon/for_order_action.png') top left no-repeat;}
+.ShopItemsListBlock .ShopItemsList .ShopItemElement .ItemLable.status_for_order.amount_not_available.no_action {
+    background: url('../img/itemLableIcon/for_order.png') top left no-repeat;}
+
+.ShopItemsListBlock .ShopItemsList .ShopItemElement .ItemLable.status_sold_out.amount_available.action {
+    background: url('../img/itemLableIcon/for_order_action.png') top left no-repeat;}
+.ShopItemsListBlock .ShopItemsList .ShopItemElement .ItemLable.status_sold_out.amount_available.no_action {
+    background: url('../img/itemLableIcon/for_order.png') top left no-repeat;}
+.ShopItemsListBlock .ShopItemsList .ShopItemElement .ItemLable.status_sold_out.amount_not_available.action {
+    background: url('../img/itemLableIcon/for_order_action.png') top left no-repeat;}
+.ShopItemsListBlock .ShopItemsList .ShopItemElement .ItemLable.status_sold_out.amount_not_available.no_action {
+    background: url('../img/itemLableIcon/for_order.png') top left no-repeat;}
+
+.ShopItemsListBlock .ShopItemsList .ShopItemElement .ItemLable.status_out_of_production.amount_available.action {
+    background: url('../img/itemLableIcon/out_of_production_action.png') top left no-repeat;}
+.ShopItemsListBlock .ShopItemsList .ShopItemElement .ItemLable.status_out_of_production.amount_available.no_action {
+    background: url('../img/itemLableIcon/out_of_production.png') top left no-repeat;}
+.ShopItemsListBlock .ShopItemsList .ShopItemElement .ItemLable.status_out_of_production.amount_not_available.action {
+    background: url('../img/itemLableIcon/not_available_action.png') top left no-repeat;}
+.ShopItemsListBlock .ShopItemsList .ShopItemElement .ItemLable.status_out_of_production.amount_not_available.no_action {
+    background: url('../img/itemLableIcon/not_available.png') top left no-repeat;}
+
 .ShopItemsListBlock .ShopItemsList .ShopItemElement .StatusItemLable {
     position: absolute;
     top: 50px;
@@ -160,8 +204,8 @@
 }
 
 .ShopItemsListBlock .ShopItemsList .ShopItemElement .ShopItemElement_Image {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     margin: 0 auto;
     text-align: center;
 }
@@ -215,19 +259,6 @@
     font:  bold 11px/20px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
     padding-left: 2px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .ShopItemElement_Amount {
     height: 5px;

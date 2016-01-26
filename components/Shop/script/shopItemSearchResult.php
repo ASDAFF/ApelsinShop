@@ -36,7 +36,7 @@ if (!(isset($_GET['noPostData']) && $_GET['noPostData'] === 'yes')) {
 }
 $shopGroupsItemList = new ShopGroupsItemList($page, $groupID, $showInformation);
 $imageItemPath = '../../../resources/Components/Shop/Image/ITEMS/';
-$defaultImageItemPath = '../../../resources/Components/Shop/Image/ITEMS/defaultIcon_100x100.png';
+$defaultImageItemPath = '../../../resources/Components/Shop/Image/ITEMS/defaultIcon_150x150.png';
 $shopGroupsItemList->setImagePath($imageItemPath, $defaultImageItemPath);
 $shopGroupsItemList->get();
 ?>

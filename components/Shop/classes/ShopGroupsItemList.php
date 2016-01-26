@@ -15,13 +15,25 @@ class ShopGroupsItemList {
 
     public function __construct($page = 1, $groupID = 'none', $showInformation = true) {
         $this->statusToCSS['Возится и в наличии']['css'] = "status_available";
-        $this->statusToCSS['Возится и в наличии']['notAvailableText'] = " Отсутствует";
+        $this->statusToCSS['Возится и в наличии']['ItemLable']['css'] = "status_available";
+        $this->statusToCSS['Возится и в наличии']['ItemLable']['Available'] = false;
+        $this->statusToCSS['Возится и в наличии']['ItemLable']['NotAvailable'] = true;
+        $this->statusToCSS['Возится и в наличии']['ItemLable']['actionPriority'] = false;
         $this->statusToCSS['Возится под заказ']['css'] = "status_for_order";
-        $this->statusToCSS['Возится под заказ']['notAvailableText'] = "Под заказ";
+        $this->statusToCSS['Возится под заказ']['ItemLable']['css'] = "status_for_order";
+        $this->statusToCSS['Возится под заказ']['ItemLable']['Available'] = true;
+        $this->statusToCSS['Возится под заказ']['ItemLable']['NotAvailable'] = true;
+        $this->statusToCSS['Возится под заказ']['ItemLable']['actionPriority'] = true;
         $this->statusToCSS['Распродается, возится под заказ']['css'] = "status_sold_out";
-        $this->statusToCSS['Распродается, возится под заказ']['notAvailableText'] = "Под заказ";
+        $this->statusToCSS['Распродается, возится под заказ']['ItemLable']['css'] = "status_sold_out";
+        $this->statusToCSS['Распродается, возится под заказ']['ItemLable']['Available'] = true;
+        $this->statusToCSS['Распродается, возится под заказ']['ItemLable']['NotAvailable'] = true;
+        $this->statusToCSS['Распродается, возится под заказ']['ItemLable']['actionPriority'] = true;
         $this->statusToCSS['Снят с производства, распродается']['css'] = "status_out_of_production";
-        $this->statusToCSS['Снят с производства, распродается']['notAvailableText'] = "Под заказ";
+        $this->statusToCSS['Снят с производства, распродается']['ItemLable']['css'] = "status_out_of_production";
+        $this->statusToCSS['Снят с производства, распродается']['ItemLable']['Available'] = true;
+        $this->statusToCSS['Снят с производства, распродается']['ItemLable']['NotAvailable'] = true;
+        $this->statusToCSS['Снят с производства, распродается']['ItemLable']['actionPriority'] = true;
         $this->setImagePath();
         global $_SQL_HELPER;
         $this->SQL_HELPER = $_SQL_HELPER;
@@ -33,7 +45,7 @@ class ShopGroupsItemList {
         $this->generateHTML();
     }
 
-    public function setImagePath($imageItemPath = './resources/Components/Shop/Image/ITEMS/', $defaultImageItemPath = './resources/Components/Shop/Image/ITEMS/defaultIcon_100x100.png') {
+    public function setImagePath($imageItemPath = './resources/Components/Shop/Image/ITEMS/', $defaultImageItemPath = './resources/Components/Shop/Image/ITEMS/defaultIcon_150x150.png') {
         $this->imageItemPath = $imageItemPath;
         $this->defaultImageItemPath = $defaultImageItemPath;
         if (isset($this->HTML) && $this->HTML !== NULL && $this->HTML !== '') {
@@ -71,7 +83,7 @@ class ShopGroupsItemList {
     }
 
     private function getItemImage($itemId) {
-        $imageName = $itemId . "_100x100";
+        $imageName = $itemId . "_150x150";
         $background = '';
         $img = '<img src="' . $this->getImage($imageName) . '">';
         return '<div class="ShopItemElement_Image" ' . $background . '>' . $img . '</div>';
@@ -107,9 +119,12 @@ class ShopGroupsItemList {
 
     private function getItemHTML($item) {
         $itemURL = $this->urlHelper->chengeParams(array('item', $item['id']));
-        $item['action'] === 1 ? $itemClass = 'ActionItem' : $itemClass = 'NormalItem';
+        $item['action'] > 0 ? $itemClass = 'ActionItem' : $itemClass = 'NormalItem';
+        $item['action'] > 0 ? $itemLableClass_action = 'action' : $itemLableClass_action = 'no_action';
         
         $item['totalAmount'] > 0 ? $availableClass = 'Available' : $availableClass = 'NotAvailable';
+        $item['totalAmount'] > 0 ? $itemLableClass_amount = 'amount_available' : $itemLableClass_amount = 'amount_not_available';
+        
         if(isset($this->statusToCSS[$item['status']]['css'])) {
             $statusClass = $this->statusToCSS[$item['status']]['css'];
         } else {
@@ -117,15 +132,15 @@ class ShopGroupsItemList {
         }
         $out = '';
         $out .= "<div class='ShopItemElement " . $itemClass . " " . $statusClass. " " . $availableClass . "'>";
-        if ($item['action'] == 1) {
-            $out .= "<div class='ActionItemLable'></div>";
-        }
-        if ($statusClass != "" && $availableClass == 'NotAvailable') {
-            if(isset($this->statusToCSS[$item['status']]['notAvailableText'])) {
-                $out .= "<div class='StatusItemLable'>".$this->statusToCSS[$item['status']]['notAvailableText']."</div>";
+        
+        
+        if($item['action'] == 1 || $this->checkStatusToCSS_ItemLable($item['status'], $availableClass)) {
+            if(isset($this->statusToCSS[$item['status']]['ItemLable']['css'])) {
+                $itemLableStatusCss = $this->statusToCSS[$item['status']]['ItemLable']['css'];
             } else {
-                $out .= "<div class='StatusItemLable'>Отсутствует </div>";
+                $itemLableStatusCss = "status_default";
             }
+            $out .= "<div class='ItemLable ".$itemLableStatusCss." ".$itemLableClass_amount." ".$itemLableClass_action."'></div>";
         }
         $out .= "<a href='" . $itemURL . "'>";
         $out .= $this->getItemImage($item['id']);
@@ -135,6 +150,10 @@ class ShopGroupsItemList {
         $out .= "</a>";
         $out .= "</div>";
         return $out;
+    }
+    
+    private function checkStatusToCSS_ItemLable($status, $availableClass) {
+        return isset($this->statusToCSS[$status]['ItemLable'][$availableClass]) && $this->statusToCSS[$status]['ItemLable'][$availableClass];
     }
 
     private function getPageNavigator() {
