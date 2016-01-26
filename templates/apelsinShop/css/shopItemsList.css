@@ -149,7 +149,8 @@
 
 .ShopItemsListBlock .ShopItemsList .ShopItemElement .ItemLable.amount_available.action {
     background: url('../img/itemLableIcon/available_action.png') top left no-repeat;}
-.ShopItemsListBlock .ShopItemsList .ShopItemElement .ItemLable.amount_available.no_action {}
+.ShopItemsListBlock .ShopItemsList .ShopItemElement .ItemLable.amount_available.no_action {
+    display: none;}
 .ShopItemsListBlock .ShopItemsList .ShopItemElement .ItemLable.amount_not_available.action {
     background: url('../img/itemLableIcon/not_available_action.png') top left no-repeat;}
 .ShopItemsListBlock .ShopItemsList .ShopItemElement .ItemLable.amount_not_available.no_action {
@@ -157,7 +158,8 @@
 
 .ShopItemsListBlock .ShopItemsList .ShopItemElement .ItemLable.status_available.amount_available.action {
     background: url('../img/itemLableIcon/available_action.png') top left no-repeat;}
-.ShopItemsListBlock .ShopItemsList .ShopItemElement .ItemLable.status_available.amount_available.no_action {}
+.ShopItemsListBlock .ShopItemsList .ShopItemElement .ItemLable.status_available.amount_available.no_action {
+    display: none;}
 .ShopItemsListBlock .ShopItemsList .ShopItemElement .ItemLable.status_available.amount_not_available.action {
     background: url('../img/itemLableIcon/not_available_action.png') top left no-repeat;}
 .ShopItemsListBlock .ShopItemsList .ShopItemElement .ItemLable.status_available.amount_not_available.no_action {

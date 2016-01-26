@@ -132,16 +132,12 @@ class ShopGroupsItemList {
         }
         $out = '';
         $out .= "<div class='ShopItemElement " . $itemClass . " " . $statusClass. " " . $availableClass . "'>";
-        
-        
-        if($item['action'] == 1 || $this->checkStatusToCSS_ItemLable($item['status'], $availableClass)) {
-            if(isset($this->statusToCSS[$item['status']]['ItemLable']['css'])) {
-                $itemLableStatusCss = $this->statusToCSS[$item['status']]['ItemLable']['css'];
-            } else {
-                $itemLableStatusCss = "status_default";
-            }
-            $out .= "<div class='ItemLable ".$itemLableStatusCss." ".$itemLableClass_amount." ".$itemLableClass_action."'></div>";
+        if(isset($this->statusToCSS[$item['status']]['ItemLable']['css'])) {
+            $itemLableStatusCss = $this->statusToCSS[$item['status']]['ItemLable']['css'];
+        } else {
+            $itemLableStatusCss = "status_default";
         }
+        $out .= "<div class='ItemLable ".$itemLableStatusCss." ".$itemLableClass_amount." ".$itemLableClass_action."'></div>";
         $out .= "<a href='" . $itemURL . "'>";
         $out .= $this->getItemImage($item['id']);
         $out .= "<div class='ShopItemElement_ItemName'><div>" . $item['itemName'] . "</div></div>";
