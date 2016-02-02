@@ -48,88 +48,117 @@ class ShopItemDataHelper {
     }
 
     private static function getPropertiesInGroups($item, $group) {
-        $query = "SELECT
-            SP.`property`,
-            SP.`propertyName`,
-            SP.`filterType`,
-            SP.`valueType`,
-            SP.`oneOfAllValues`,
-            SP.`mainSequence`,
-            SIPV.`value`
-            FROM (
-                SELECT
-                SPIG.`property`,
-                SP.`propertyName`,
-                SP.`filterType`,
-                SP.`valueType`,
-                SP.`oneOfAllValues`,
-                SPIG.`mainSequence`
-                FROM (
-                    SELECT
-                    SPIG.`property`,
-                    SPIGR.`sequence` as mainSequence
-                    FROM `ShopPropertiesInGroupsRanking` as SPIGR 
-                    LEFT JOIN `ShopPropertiesInGroups` as SPIG
-                    on SPIGR.`propertyInGroup` = SPIG.`id`
-                    WHERE SPIGR.`group`='".$group."' AND SPIGR.`shown`='1'
-                ) as SPIG
-                LEFT JOIN `ShopProperties` as SP
-                ON SPIG.`property` = SP.`id`
+        $query = "SELECT 
+            SP.`property`, 
+            SP.`propertyName`, 
+            SP.`filterType`, 
+            SP.`valueType`, 
+            SP.`oneOfAllValues`, 
+            SP.`mainSequence`, 
+            SP.`measureF`,
+            SP.`measureS`,
+            SIPV.`value` 
+            FROM ( 
+                SELECT 
+                SP.`property`, 
+                SP.`propertyName`, 
+                SP.`filterType`, 
+                SP.`valueType`, 
+                SP.`oneOfAllValues`, 
+                SP.`mainSequence`,
+                SM.`measureF`,
+                SM.`measureS`
+                FROM ( 
+                    SELECT 
+                    SP.`property`, 
+                    SP.`propertyName`, 
+                    SP.`filterType`, 
+                    SP.`valueType`, 
+                    SP.`oneOfAllValues`, 
+                    SP.`mainSequence`,
+                    SPM.`measure`
+                    FROM ( 
+                        SELECT 
+                        SPIG.`property`, 
+                        SP.`propertyName`, 
+                        SP.`filterType`, 
+                        SP.`valueType`, 
+                        SP.`oneOfAllValues`, 
+                        SPIG.`mainSequence` 
+                        FROM ( 
+                            SELECT 
+                            SPIG.`property`, 
+                            SPIGR.`sequence` as mainSequence 
+                            FROM `ShopPropertiesInGroupsRanking` as SPIGR 
+                            LEFT JOIN `ShopPropertiesInGroups` as SPIG 
+                            on SPIGR.`propertyInGroup` = SPIG.`id` 
+                            WHERE SPIGR.`group`='".$group."' 
+                            AND SPIGR.`shown`='1' 
+                        ) as SPIG 
+                        LEFT JOIN `ShopProperties` as SP 
+                        ON SPIG.`property` = SP.`id`
+                    ) as SP 
+                    LEFT JOIN `ShopPropertiesMeasure` as SPM
+                    on SP.`property` = SPM.`property`
+                ) as SP 
+                LEFT JOIN `ShopMeasure` as SM
+                on SP.`measure` = SM.`measureF`
             ) as SP 
-            INNER JOIN `ShopItemsPropertiesValues` as SIPV
-            ON SP.`property` = SIPV.`property`
-            WHERE SIPV.`item` = '".$item."'
+            INNER JOIN `ShopItemsPropertiesValues` as SIPV 
+            ON SP.`property` = SIPV.`property` 
+            WHERE SIPV.`item` = '".$item."' 
             ORDER BY SP.`mainSequence` ASC;";
+//        echo $query."<br>";
         $rezult = self::$SQL_HELPER->select($query);
         foreach ($rezult as $value) {
             self::$property[$value["property"]]['property'] = $value['property'];
             self::$property[$value["property"]]['propertyName'] = $value['propertyName'];
             self::$property[$value["property"]]['valueType'] = $value['valueType'];
             self::$property[$value["property"]]['oneOfAllValues'] = $value['oneOfAllValues'];
-//            self::$property[$value["property"]]['measure'] = $value['measure'];
-            self::$property[$value["property"]]['measure'] = " #TESTDATA#";
+            self::$property[$value["property"]]['measure'] = $value['measureF'];
+//            self::$property[$value["property"]]['measure'] = " #TESTDATA#";
             self::$property[$value["property"]]['value'][] = $value['value'];
         }
     }
-    /**
-     * Записать свойства группы
-     * @param type $item
-     * @param type $group
-     */
-    private static function getPropertiesInGroup($item, $group) {
-        $query = "SELECT
-            SP.`property`,
-            SP.`propertyName`,
-            SP.`valueType`,
-            SP.`oneOfAllValues`,
-            SIPV.`value`
-            FROM (
-                SELECT
-                SPIG.`property`,
-                SPIG.`sequence`,
-                SP.`propertyName`,
-                SP.`valueType`,
-                SP.`oneOfAllValues`
-                FROM `ShopPropertiesInGroups` as SPIG
-                lEFT JOIN `ShopProperties` as SP
-                ON SPIG.`property` = SP.`id`
-                WHERE SPIG.`group` = '".$group."'
-            ) as SP
-            INNER JOIN `ShopItemsPropertiesValues` as SIPV
-            ON SP.`property` = SIPV.`property`
-            WHERE SIPV.`item` = '".$item."'
-            ORDER BY SP.`sequence`;";
-        $rezult = self::$SQL_HELPER->select($query);
-        foreach ($rezult as $value) {
-            self::$property[$value["property"]]['property'] = $value['property'];
-            self::$property[$value["property"]]['propertyName'] = $value['propertyName'];
-            self::$property[$value["property"]]['valueType'] = $value['valueType'];
-            self::$property[$value["property"]]['oneOfAllValues'] = $value['oneOfAllValues'];
-//            self::$property[$value["property"]]['measure'] = $value['measure'];
-            self::$property[$value["property"]]['measure'] = " #TESTDATA#";
-            self::$property[$value["property"]]['value'][] = $value['value'];
-        }
-    }
+//    /**
+//     * Записать свойства группы
+//     * @param type $item
+//     * @param type $group
+//     */
+//    private static function getPropertiesInGroup($item, $group) {
+//        $query = "SELECT
+//            SP.`property`,
+//            SP.`propertyName`,
+//            SP.`valueType`,
+//            SP.`oneOfAllValues`,
+//            SIPV.`value`
+//            FROM (
+//                SELECT
+//                SPIG.`property`,
+//                SPIG.`sequence`,
+//                SP.`propertyName`,
+//                SP.`valueType`,
+//                SP.`oneOfAllValues`
+//                FROM `ShopPropertiesInGroups` as SPIG
+//                lEFT JOIN `ShopProperties` as SP
+//                ON SPIG.`property` = SP.`id`
+//                WHERE SPIG.`group` = '".$group."'
+//            ) as SP
+//            INNER JOIN `ShopItemsPropertiesValues` as SIPV
+//            ON SP.`property` = SIPV.`property`
+//            WHERE SIPV.`item` = '".$item."'
+//            ORDER BY SP.`sequence`;";
+//        $rezult = self::$SQL_HELPER->select($query);
+//        foreach ($rezult as $value) {
+//            self::$property[$value["property"]]['property'] = $value['property'];
+//            self::$property[$value["property"]]['propertyName'] = $value['propertyName'];
+//            self::$property[$value["property"]]['valueType'] = $value['valueType'];
+//            self::$property[$value["property"]]['oneOfAllValues'] = $value['oneOfAllValues'];
+////            self::$property[$value["property"]]['measure'] = $value['measure'];
+//            self::$property[$value["property"]]['measure'] = " #TESTDATA#";
+//            self::$property[$value["property"]]['value'][] = $value['value'];
+//        }
+//    }
 
     /**
      * Получение св-в всех групп
