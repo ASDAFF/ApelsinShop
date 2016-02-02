@@ -86,7 +86,10 @@ class ShopItem {
             $this->HTML .= $this->data['itemName'];
             $this->HTML .= '</div>';  // ShopItemName
             $this->HTML .= '<div class="ShopItemPrice">';
-            $this->HTML .= TextGenerator::formattingPrices_RUB($this->price['value']);
+            if($this->data['pricePer'] == '') {
+                $this->data['pricePer'] = 'шт';
+            }
+            $this->HTML .= TextGenerator::formattingPrices_RUB($this->price['value'])."<span class='PricePer'>/".$this->data['pricePer']."</span>";
             $this->HTML .= '</div>';  // ShopItemPrice
             $this->HTML .= ShopItemAmountScale::getAmountScale($this->data['totalAmount'], $this->data['minAmount']);
             $this->HTML .= '<div class="ShopItemBuyButtonWrapper">';

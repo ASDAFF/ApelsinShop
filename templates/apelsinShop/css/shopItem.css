@@ -30,7 +30,8 @@
 .ShopItemMainWrapper .ShopItemLeftBlock .ShopItemPrice .Price .PriceBasic,
 .ShopItemMainWrapper .ShopItemLeftBlock .ShopItemPrice .Price .PriceAuxiliary {}
 .ShopItemMainWrapper .ShopItemLeftBlock .ShopItemPrice .Price .PriceBasicText,
-.ShopItemMainWrapper .ShopItemLeftBlock .ShopItemPrice .Price .PriceAuxiliaryText {
+.ShopItemMainWrapper .ShopItemLeftBlock .ShopItemPrice .Price .PriceAuxiliaryText,
+.ShopItemMainWrapper .ShopItemLeftBlock .ShopItemPrice .PricePer {
     font:  bold 14px/20px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
     padding-left: 2px;
 }
