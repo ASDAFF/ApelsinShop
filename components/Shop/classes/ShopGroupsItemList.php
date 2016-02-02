@@ -137,8 +137,8 @@ class ShopGroupsItemList {
         } else {
             $itemLableStatusCss = "status_default";
         }
-        $out .= "<div class='ItemLable ".$itemLableStatusCss." ".$itemLableClass_amount." ".$itemLableClass_action."'></div>";
         $out .= "<a href='" . $itemURL . "'>";
+        $out .= "<div class='ItemLable ".$itemLableStatusCss." ".$itemLableClass_amount." ".$itemLableClass_action."'></div>";
         $out .= $this->getItemImage($item['id']);
         $out .= "<div class='ShopItemElement_ItemName'><div>" . $item['itemName'] . "</div></div>";
         $out .= ShopItemAmountScale::getAmountScale($item['totalAmount'], $item['minAmount']);
