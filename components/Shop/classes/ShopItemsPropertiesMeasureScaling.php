@@ -105,7 +105,6 @@ class ShopItemsPropertiesMeasureScaling {
     }
     
     private static function ScalingMeasure($measure, $value) {
-        self::createObject();
         $scalingValue = $value;
         $scalingMeasurePrefix = array();
         foreach (self::$scalingMeasure[$measure]['scaling'] as $scalingData) {
@@ -128,16 +127,24 @@ class ShopItemsPropertiesMeasureScaling {
 
     public static function ScalingMeasureString($measure, $value) {
         self::createObject();
-        $scalingRezult = self::ScalingMeasure($measure, $value);
-        if(!empty($scalingRezult['scaling'])) {
-            if($scalingRezult['scaling']['aliasS'] == '') {
-                $measureString = $scalingRezult['scaling']['prefixS'].self::$scalingMeasure[$measure]['measureS'];
+        if(isset(self::$scalingMeasure[$measure])) {
+            $scalingRezult = self::ScalingMeasure($measure, $value);
+            if(!empty($scalingRezult['scaling'])) {
+                if($scalingRezult['scaling']['aliasS'] == '') {
+                    $measureString = $scalingRezult['scaling']['prefixS'].self::$scalingMeasure[$measure]['measureS'];
+                } else {
+                    $measureString = $scalingRezult['scaling']['aliasS'];
+                }
             } else {
-                $measureString = $scalingRezult['scaling']['aliasS'];
+                $measureString = self::$scalingMeasure[$measure]['measureS'];
             }
+            return $scalingRezult['roundValue']." ".$measureString;
         } else {
-            $measureString = self::$scalingMeasure[$measure]['measureS'];
+            return $value." ".$measure;
         }
-        return $scalingRezult['roundValue']." ".$measureString;
+    }
+    
+    public static function ConvertMeasureToSI($measure, $value, $prefixF) {
+        
     }
 }
