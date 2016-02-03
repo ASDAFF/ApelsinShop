@@ -110,21 +110,38 @@ class ShopPropertiesFilterTypeGetPostData {
     private static function getPostData_range($groupID, $propertyID) {
         $filterId_min = self::getFilterID($groupID, $propertyID).'_min';
         $filterId_max = self::getFilterID($groupID, $propertyID).'_max';
+        $filterId_min_measure = self::getFilterID($groupID, $propertyID).'_min_measure';
+        $filterId_max_measure = self::getFilterID($groupID, $propertyID).'_max_measure';
+        
+        $measure = ShopItemsPropertiesMeasureScaling::getPropertiesMeasure($propertyID);
+        
         $min = self::getPostValue($filterId_min);
         $max = self::getPostValue($filterId_max);
-        $value = array();
-        if($min!==NULL && $min!=='' && $max!==NULL && $max!=='') {
-            $value['min'] = min($min, $max);
-            $value['max'] = max($min, $max);
-        } else {
-            if($min!==NULL && $min!=='') {
-                $value['min']=$min;
+        
+        if(($min!==NULL && $min!=='') || ($max!==NULL && $max!=='')) {
+            $min_measure = self::getPostValue($filterId_min_measure);
+            $max_measure = self::getPostValue($filterId_max_measure);
+            if($min_measure != $measure) {
+                $min = ShopItemsPropertiesMeasureScaling::ConvertMeasureToSI($measure, $min, $min_measure);
             }
-            if($max!==NULL && $max!=='') {
-                $value['max']=$max;
+            if($max_measure != $measure) {
+                $max = ShopItemsPropertiesMeasureScaling::ConvertMeasureToSI($measure, $max, $max_measure);
             }
+
+            $value = array();
+            if($min!==NULL && $min!=='' && $max!==NULL && $max!=='') {
+                $value['min'] = min($min, $max);
+                $value['max'] = max($min, $max);
+            } else {
+                if($min!==NULL && $min!=='') {
+                    $value['min']=$min;
+                }
+                if($max!==NULL && $max!=='') {
+                    $value['max']=$max;
+                }
+            }
+            self::addSearchFilterData($groupID,$propertyID,'range',$value);
         }
-        self::addSearchFilterData($groupID,$propertyID,'range',$value);
     }
     
     private static function getPostData_select($groupID, $propertyID) {

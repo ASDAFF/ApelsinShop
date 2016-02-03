@@ -155,13 +155,51 @@ class ShopPropertiesFilterType {
         } else {
             $pattern = '^[0-9.,-]+';
         }
+        $measure = ShopItemsPropertiesMeasureScaling::getPropertiesMeasure($propertyID);
         $out = '';
         $out .= self::getFilterName($groupID, $propertyID)." от ";
         $out .= InputHelper::paternTextBox($filterId.'_min', $filterId.'_min', 'ShopPropertiesFilter FilterType_range MINrange', $maxlength, FALSE, "Минимальное значение", $pattern, min($value["min"],$value["max"]), NULL);
+        $out .= self::MeasureScalingSelect($filterId, $measure, null, '_min_measure');
         $out .= " до ";
         $out .= InputHelper::paternTextBox($filterId.'_max', $filterId.'_max', 'ShopPropertiesFilter FilterType_range MAXrange', $maxlength, FALSE, "Максимальное значение", $pattern, max($value["min"],$value["max"]), NULL);
-        $out .= " (от ".$min_v." до ".$max_v.")";
+        $out .= self::MeasureScalingSelect($filterId, $measure, null, '_max_measure');
+        $out .= " (от ".ShopItemsPropertiesMeasureScaling::ScalingMeasureString($measure, $min_v)." до ".ShopItemsPropertiesMeasureScaling::ScalingMeasureString($measure, $max_v).")";
         return $out;
+    }
+    
+    private static function MeasureScalingSelect($filterId, $measure, $value, $postfix = "") {
+        $measureS = ShopItemsPropertiesMeasureScaling::measurefToMeasures($measure);
+        $scalingData = ShopItemsPropertiesMeasureScaling::getMeasureScaling($measure);
+        $defaultMesure = false;
+        if(!empty($scalingData)) {
+            $array = array();
+            foreach ($scalingData as $scalingElement) {
+                if($scalingElement['factor'] >= 1) {
+                    $element['text'] = $measureS;
+                    $element['value'] = $measure;
+                    $array[] = $element;
+                    $defaultMesure = true;
+                }
+                if(isset($scalingElement['aliasS']) && $scalingElement['aliasS']!=='') {
+                    $element['text'] = $scalingElement['aliasS'];
+                } else {
+                    $element['text'] = $scalingElement['prefixS'].$measureS;
+                }
+                $element['value'] = $scalingElement['prefixF'];
+                $array[] = $element;
+            }
+            if(!$defaultMesure) {
+                $element['text'] = $measureS;
+                $element['value'] = $measure;
+                $array[] = $element;
+            }
+            if($value == null || $value == '') {
+                $value = $measure;
+            }
+            return InputHelper::select($filterId.$postfix, $filterId.$postfix, $array, true, $value);
+        } else {
+            return "";
+        }
     }
     
     private static function FilterType_select($groupID, $propertyID) {

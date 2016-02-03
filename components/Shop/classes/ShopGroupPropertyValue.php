@@ -140,12 +140,17 @@ class ShopGroupPropertyValue {
 
     private static function getPropertyValueForGroup_Other_range($property, $value) {
         $valueString = '';
+        $measure = ShopItemsPropertiesMeasureScaling::getPropertiesMeasure($property);
         if (isset($value['min']) && isset($value['max'])) {
+            $value['min']= ShopItemsPropertiesMeasureScaling::ScalingMeasureString($measure, $value['min']);
+            $value['max']= ShopItemsPropertiesMeasureScaling::ScalingMeasureString($measure, $value['max']);
             $valueString = "от " . $value['min'] . " до " . $value['max'];
         } else {
             if (isset($value['min'])) {
+                $value['min']= ShopItemsPropertiesMeasureScaling::ScalingMeasureString($measure, $value['min']);
                 $valueString = "от " . $value['min'];
             } else {
+                $value['max']= ShopItemsPropertiesMeasureScaling::ScalingMeasureString($measure, $value['max']);
                 $valueString = "до " . $value['max'];
             }
         }

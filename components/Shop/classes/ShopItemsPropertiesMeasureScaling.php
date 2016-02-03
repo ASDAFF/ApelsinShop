@@ -100,8 +100,14 @@ class ShopItemsPropertiesMeasureScaling {
             FROM `ShopMeasureScaling` as SMS
             LEFT JOIN `ShopMeasurePrefix` as SMP
             on SMS.`prefix` = SMP.`prefixF`
-            WHERE SMS.`measure` = '".$measure."';";
-        return self::$SQL_HELPER->select($query);
+            WHERE SMS.`measure` = '".$measure."'
+            ORDER BY `SMP`.`factor` ASC;";
+        $rezult = self::$SQL_HELPER->select($query);
+        $scaling = array();
+        foreach ($rezult as $scal) {
+            $scaling[$scal['prefixF']] = $scal;
+        }
+        return $scaling;
     }
     
     private static function ScalingMeasure($measure, $value) {
@@ -145,6 +151,45 @@ class ShopItemsPropertiesMeasureScaling {
     }
     
     public static function ConvertMeasureToSI($measure, $value, $prefixF) {
-        
+        self::createObject();
+        if(isset(self::$scalingMeasure[$measure]['scaling'][$prefixF]['factor'])) {
+            return $value * self::$scalingMeasure[$measure]['scaling'][$prefixF]['factor'];
+        } else {
+            $value;
+        }
+    }
+    
+    public static function getMeasureScaling($measure) {
+        if(isset(self::$scalingMeasure[$measure]['scaling'])) {
+            return self::$scalingMeasure[$measure]['scaling'];
+        } else {
+            return array();
+        }
+    }
+    
+    public static function getPropertiesMeasure($propertyID) {
+        self::createObject();
+        $query = "SELECT `measure` FROM `ShopPropertiesMeasure` WHERE `property` = '".$propertyID."';";
+        $rezult = self::$SQL_HELPER->select($query,1);
+        if($rezult == null || empty($rezult)) {
+            return "";
+        } else {
+            return $rezult['measure'];
+        }
+    }
+    
+    public static function measurefToMeasures($measureF) {
+        self::createObject();
+        if(isset(self::$scalingMeasure[$measureF]['measureS'])) {
+            return self::$scalingMeasure[$measureF]['measureS'];
+        } else {
+            return $measureF;
+        }
+    }
+    
+    public static function getPropertiesShortMeasure($propertyID) {
+        self::createObject();
+        $measureF = self::getPropertiesMeasure($propertyID);
+        return self::measurefToMeasures($measureF);
     }
 }
