@@ -107,7 +107,7 @@ class ShopPropertiesFilterTypeGetPostData {
         self::addSearchFilterData($groupID,$propertyID,'groupSelect',self::getPostValue($filterId,array()));
     }
     
-    private static function getPostData_intRange($groupID, $propertyID) {
+    private static function getPostData_range($groupID, $propertyID) {
         $filterId_min = self::getFilterID($groupID, $propertyID).'_min';
         $filterId_max = self::getFilterID($groupID, $propertyID).'_max';
         $min = self::getPostValue($filterId_min);
@@ -124,7 +124,7 @@ class ShopPropertiesFilterTypeGetPostData {
                 $value['max']=$max;
             }
         }
-        self::addSearchFilterData($groupID,$propertyID,'intRange',$value);
+        self::addSearchFilterData($groupID,$propertyID,'range',$value);
     }
     
     private static function getPostData_select($groupID, $propertyID) {
@@ -180,8 +180,8 @@ class ShopPropertiesFilterTypeGetPostData {
                         case 'groupSelect':
                             self::getPostData_groupSelect($groupID, $propertyID);
                             break;
-                        case 'intRange':
-                            self::getPostData_intRange($groupID, $propertyID);
+                        case 'range':
+                            self::getPostData_range($groupID, $propertyID);
                             break;
                         case 'select':
                             self::getPostData_select($groupID, $propertyID);

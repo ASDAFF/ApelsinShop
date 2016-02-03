@@ -138,7 +138,7 @@ class ShopGroupPropertyValue {
         return self::getPropertyValueString($property, self::$properties[$property], $valueString);
     }
 
-    private static function getPropertyValueForGroup_Other_intRange($property, $value) {
+    private static function getPropertyValueForGroup_Other_range($property, $value) {
         $valueString = '';
         if (isset($value['min']) && isset($value['max'])) {
             $valueString = "от " . $value['min'] . " до " . $value['max'];
@@ -162,8 +162,8 @@ class ShopGroupPropertyValue {
                 case 'groupSelect':
                     $out .= self::getPropertyValueForGroup_Other_groupSelect($property, $data["value"]);
                     break;
-                case 'intRange':
-                    $out .= self::getPropertyValueForGroup_Other_intRange($property, $data["value"]);
+                case 'range':
+                    $out .= self::getPropertyValueForGroup_Other_range($property, $data["value"]);
                     break;
                 case 'select':
                     $out .= self::getPropertyValueString(self::$properties[$property], $data["value"]);

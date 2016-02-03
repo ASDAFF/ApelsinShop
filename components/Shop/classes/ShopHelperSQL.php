@@ -153,7 +153,7 @@ class ShopHelperSQL {
         return $sql;
     }
     
-    private static function generateWhereSQL_PropertyValue_intRange($array, $valuesID) {
+    private static function generateWhereSQL_PropertyValue_range($array, $valuesID) {
         $value = self::getArrayValues($array, $valuesID);
         if(isset($value['min']) && isset($value['max'])) {
             return " AND t2.`value` >= ".min($value['min'], $value['max'])." AND t2.`value` <= ".max($value['min'], $value['max'])." ";
@@ -192,8 +192,8 @@ class ShopHelperSQL {
                 case 'groupSelect':
                     $sql = self::generateWhereSQL_PropertyValue_groupSelect($array, $valuesID);
                     break;
-                case 'intRange':
-                    $sql = self::generateWhereSQL_PropertyValue_intRange($array, $valuesID);
+                case 'range':
+                    $sql = self::generateWhereSQL_PropertyValue_range($array, $valuesID);
                     break;
                 case 'select':
                     $sql = self::generateWhereSQL_PropertyValue_select($array, $valuesID);

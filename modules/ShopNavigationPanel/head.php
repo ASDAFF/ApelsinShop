@@ -18,7 +18,7 @@ jQuery(document).ready(function() {
         clearTimeout(shopItemsListTimer);
         getShopItemsList();
     });
-    jQuery("form.ShopPropertiesFilterForm .FilterType_intRange ").keyup(function(){
+    jQuery("form.ShopPropertiesFilterForm .FilterType_range ").keyup(function(){
         clearTimeout(shopItemsListTimer);
         shopItemsListTimer = setTimeout(getShopItemsList, shopItemsListTime);
     });
@@ -27,7 +27,7 @@ jQuery(document).ready(function() {
         shopItemsListTimer = setTimeout(getShopItemsList, shopItemsListTime);
     });
     
-    jQuery('form.ShopPropertiesFilterForm .FilterType_intRange').keypress(function(e) {
+    jQuery('form.ShopPropertiesFilterForm .FilterType_range').keypress(function(e) {
         if (!(e.which==8 || e.which==46 ||(e.which>47 && e.which<58))) return false;
 //        if (!(e.which==8 || e.which==44 ||e.which==45 ||e.which==46 ||(e.which>47 && e.which<58))) return false;
     });

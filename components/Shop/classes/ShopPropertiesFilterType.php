@@ -77,7 +77,7 @@ class ShopPropertiesFilterType {
         return $min === NULL ? 0 : $min;
     }
     
-    private static function getIntRangeMaxlength($min,$max) {
+    private static function getRangeMaxlength($min,$max) {
         $min_l = strlen($min);
         $max_l = strlen($max);
         return $min_l > $max_l ? $min_l : $max_l;
@@ -132,7 +132,7 @@ class ShopPropertiesFilterType {
         return $out;
     }
     
-    private static function FilterType_intRange($groupID, $propertyID) {
+    private static function FilterType_range($groupID, $propertyID) {
         $filterId = ShopPropertiesFilterTypeGetPostData::getFilterID($groupID, $propertyID);
         $filterData = self::getDataForFilter($groupID, $propertyID);
         if(empty($filterData)) {
@@ -149,7 +149,7 @@ class ShopPropertiesFilterType {
 //            $value["max"] = $max_v;
             $value["max"] = NULL;
         }
-        $maxlength = self::getIntRangeMaxlength($min_v,$max_v);
+        $maxlength = self::getRangeMaxlength($min_v,$max_v);
         if(self::$allGroupPropertiesData[$groupID][$propertyID]['valueType'] === 'int') {
             $pattern = '^[0-9]+';
         } else {
@@ -157,9 +157,9 @@ class ShopPropertiesFilterType {
         }
         $out = '';
         $out .= self::getFilterName($groupID, $propertyID)." от ";
-        $out .= InputHelper::paternTextBox($filterId.'_min', $filterId.'_min', 'ShopPropertiesFilter FilterType_intRange MINintRange', $maxlength, FALSE, "Минимальное значение", $pattern, min($value["min"],$value["max"]), NULL);
+        $out .= InputHelper::paternTextBox($filterId.'_min', $filterId.'_min', 'ShopPropertiesFilter FilterType_range MINrange', $maxlength, FALSE, "Минимальное значение", $pattern, min($value["min"],$value["max"]), NULL);
         $out .= " до ";
-        $out .= InputHelper::paternTextBox($filterId.'_max', $filterId.'_max', 'ShopPropertiesFilter FilterType_intRange MAXintRange', $maxlength, FALSE, "Максимальное значение", $pattern, max($value["min"],$value["max"]), NULL);
+        $out .= InputHelper::paternTextBox($filterId.'_max', $filterId.'_max', 'ShopPropertiesFilter FilterType_range MAXrange', $maxlength, FALSE, "Максимальное значение", $pattern, max($value["min"],$value["max"]), NULL);
         $out .= " (от ".$min_v." до ".$max_v.")";
         return $out;
     }
@@ -214,9 +214,9 @@ class ShopPropertiesFilterType {
         $pattern = '^[0-9.,-]+';
         $out = '';
         $out .= "Цена от ";
-        $out .= InputHelper::paternTextBox('ItemPrise_min', 'ItemPrise_min', 'ShopPropertiesFilter FilterType_intRange MINintRange ItemPrise_min', $maxlength, FALSE, "Минимальное значение", $pattern, $value["min"], NULL);
+        $out .= InputHelper::paternTextBox('ItemPrise_min', 'ItemPrise_min', 'ShopPropertiesFilter FilterType_range MINrange ItemPrise_min', $maxlength, FALSE, "Минимальное значение", $pattern, $value["min"], NULL);
         $out .= " до ";
-        $out .= InputHelper::paternTextBox('ItemPrise_max', 'ItemPrise_max', 'ShopPropertiesFilter FilterType_intRange MAXintRange ItemPrise_max', $maxlength, FALSE, "Максимальное значение", $pattern, $value["max"], NULL);
+        $out .= InputHelper::paternTextBox('ItemPrise_max', 'ItemPrise_max', 'ShopPropertiesFilter FilterType_range MAXrange ItemPrise_max', $maxlength, FALSE, "Максимальное значение", $pattern, $value["max"], NULL);
         return self::getFilterBlock($out);
     }
     private static function getMainFilters_Action($groupID) {
@@ -295,8 +295,8 @@ class ShopPropertiesFilterType {
                 case 'groupSelect':
                     $out = self::FilterType_groupSelect($groupID, $propertyID);
                     break;
-                case 'intRange':
-                    $out = self::FilterType_intRange($groupID, $propertyID);
+                case 'range':
+                    $out = self::FilterType_range($groupID, $propertyID);
                     break;
                 case 'select':
                     $out = self::FilterType_select($groupID, $propertyID);
