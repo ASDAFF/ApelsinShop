@@ -25,7 +25,7 @@ class ShopSearchItem {
     }
 
     private function getData() {
-        $query = "SELECT `groupName`, `id` FROM `ShopGroups` WHERE `groupName` LIKE '%" . $this->searchQuery . "%' AND `systemGroup` > 0;";
+        $query = "SELECT `groupName`, `id` FROM `ShopGroups` WHERE `groupName` LIKE '%" . $this->searchQuery . "%' AND `systemGroup` < 1;";
         $groups = $this->SQL_HELPER->select($query);
         foreach ($groups as $group) {
             $this->data[ShopPageInfoHelper::CatalogPage][$group['id']] = $group['groupName'];
