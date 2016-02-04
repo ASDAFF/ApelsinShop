@@ -31,11 +31,14 @@ class ShopImportData_MySQL {
     private $numericColumn = array();
     private $fileName ;
     
+    private $uniqueColumnsArray = array();
+    
     public function __construct($fileName) {
         global $SHOP_ADMIN_TEST_MOD;
         $this->fileName = $fileName;
         global $_SQL_HELPER;
         $this->SQL_HELPER = $_SQL_HELPER;
+        $this->setUniqueColumnsArray();
         $this->setNumericColumn();
         $this->getUserData();
         $this->getData_XML();
@@ -46,6 +49,11 @@ class ShopImportData_MySQL {
         } else {
             $this->importIsNotSuccess();
         }
+    }
+    
+    private function setUniqueColumnsArray () {
+        $this->uniqueColumnsArray['ShopGroups'] = 'id';
+        $this->uniqueColumnsArray['ShopItems'] = 'id';
     }
     
     private function setNumericColumn() {
@@ -231,7 +239,7 @@ class ShopImportData_MySQL {
         $queryStart = substr($queryStart, 0,  strlen($queryStart)-2).") VALUES ";
         
         
-        foreach ($this->DATA[$importSetKey] as $element) {
+        foreach ($this->getUniqueElements($table, $this->DATA[$importSetKey]) as $element) {
             if($counter == 0) {
                 $query = $queryStart;
                 $start = true;
@@ -302,7 +310,7 @@ class ShopImportData_MySQL {
     }
     private function generateQueriesMySQL_UpdateData($apdateSetKey, $table, $columns, $importSetKey, $idColumn) {
         $this->MySQL_QUERIES['UpdateData'][$apdateSetKey] = array();
-        foreach ($this->DATA[$importSetKey] as $element) {
+        foreach ($this->getUniqueElements($table, $this->DATA[$importSetKey]) as $element) {
             if($this->MySQL_IDsync[$importSetKey][$element[$idColumn]] == 'old') {
                 $query = "UPDATE `".$table."` SET ";
                 foreach ($columns as $column) {
@@ -336,7 +344,7 @@ class ShopImportData_MySQL {
         $queryStart = substr($queryStart, 0,  strlen($queryStart)-2).") VALUES ";
         
         
-        foreach ($this->DATA[$importSetKey] as $element) {
+        foreach ($this->getUniqueElements($table, $this->DATA[$importSetKey]) as $element) {
             if($this->MySQL_IDsync[$importSetKey][$element[$idColumn]] == 'new') {
                 if($counter == 0) {
                     $query = $queryStart;
@@ -371,6 +379,22 @@ class ShopImportData_MySQL {
             $this->MySQL_QUERIES['AddData'][$addSetKey][] = $query;
         }
     }
+    
+    private function getUniqueElements($table, $elements) {
+        if(isset($this->uniqueColumnsArray[$table])) {
+            $uniqueColumn = $this->uniqueColumnsArray[$table];
+            $uniqueElements = array();
+            foreach ($elements as $element) {
+                if(isset($elements[$uniqueColumn])) {
+                    $uniqueElements[$element[$uniqueColumn]] = $element;
+                }
+            }
+            return $uniqueElements;
+        } else {
+            return $elements;
+        }
+    }
+    
     private function createMysqlScript() {
         $this->SQL = '';
         $this->SQL .= "--\r\n";
