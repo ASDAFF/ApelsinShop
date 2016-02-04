@@ -107,7 +107,7 @@ class MysqliHelper {
         . ' --password=' . $_DBSETTINGS['password']
         . ' --database=' . $_DBSETTINGS['db_name']
         . ' --default_character_set utf8'
-        . ' --execute="SOURCE '.$scriptFile.'" 2>&1';
+        . ' --execute="SOURCE '.$scriptFile.'" > /dev/null 2>/dev/null &';
         return shell_exec($command);
     }
 }

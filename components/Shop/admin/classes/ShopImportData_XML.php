@@ -506,6 +506,7 @@ class ShopImportData_XML {
                         if(isset($item['#']['prices'][0]['#']['price'])) {
                             $this->getXmlData_ItemsPrices($item['#']['id'][0]['#'],$item['#']['prices'][0]['#']['price']);
                         } else {
+                            $this->getXmlData_ItemsPrices($item['#']['id'][0]['#'], array(), true);
                             $this->ERRORS[] = 'Для товара <span class="WarErrTextId">'.$item['#']['id'][0]['#'].'</span> <span class="WarErrTextName">"'.$item['#']['itemName'][0]['#'].'"</span> не указана ни одна цена';
                         }
                         if(isset($item['#']['propertiesValues'][0]['#']['propertyValue'])) {
@@ -591,26 +592,29 @@ class ShopImportData_XML {
             }
             $noError = false;
         }
-        if (!$this->checkXmlDataInArray($item, 'prices')) {
-            $block = 'Items::Item::prices';
-            if($goodID) {
-                $this->ERRORS[] = $this->getErrorTextNoBlock_ID($block,$item['id'][0]['#']);
-            } else {
-                $this->ERRORS[] = $this->getErrorTextNoBlock($block,$key);
-            }
-            $noError = false;
-        }
+//        if (!$this->checkXmlDataInArray($item, 'prices')) {
+//            $block = 'Items::Item::prices';
+//            if($goodID) {
+//                $this->ERRORS[] = $this->getErrorTextNoBlock_ID($block,$item['id'][0]['#']);
+//            } else {
+//                $this->ERRORS[] = $this->getErrorTextNoBlock($block,$key);
+//            }
+//            $noError = false;
+//        }
         return $noError;
     }
-    private function getXmlData_ItemsPrices($item,$prices) {
+    
+    private function getXmlData_ItemsPrices($item, $prices, $noError = false) {
         if(!isset($this->DATA_XML['ItemsPrices'])) {
             $this->DATA_XML['ItemsPrices'] = array();
         }
         $data['item'] = $item;
+        $usedPrices = array();
         foreach ($prices as $key => $price) {
             if(isset($price['#'])) {
                 if($this->checkXmlData_ItemsPrices($key,$price['#'],$item)) {
                     $data['price'] = $price['#']['id'][0]['#'];
+                    $usedPrices[] = $data['price'];
                     $price['#']['value'][0]['#'] = str_replace(',', '.', $price['#']['value'][0]['#']);
                     if($price['#']['value'][0]['#'] <= 0) {
                         $this->ERRORS[] = 'Цена ('.$price['#']['value'][0]['#'].') для товара '.$item.' меньше или равна нулю.';
@@ -628,6 +632,16 @@ class ShopImportData_XML {
                 }
             } else {
                 $this->ERRORS[] = $this->getErrorTextNoBlock('Items::Item['.$item.']::prices::price',$key);
+            }
+        }
+        $data['value'] = 0;
+        foreach ($this->xmlDataIdSet["PricesTypes"] as $PriceType) {
+            if(!in_array($PriceType, $usedPrices)) {
+                $data['price'] = $PriceType;
+                $this->DATA_XML['ItemsPrices'][] = $data;
+                if(!$noError) {
+                    $this->ERRORS[] = 'Значение для типа цен ('.$PriceType.') товара '.$item.' отсутствует.';
+                }
             }
         }
     }

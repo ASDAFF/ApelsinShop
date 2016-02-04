@@ -385,7 +385,7 @@ class ShopImportData_MySQL {
             $uniqueColumn = $this->uniqueColumnsArray[$table];
             $uniqueElements = array();
             foreach ($elements as $element) {
-                if(isset($elements[$uniqueColumn])) {
+                if(isset($element[$uniqueColumn])) {
                     $uniqueElements[$element[$uniqueColumn]] = $element;
                 }
             }
