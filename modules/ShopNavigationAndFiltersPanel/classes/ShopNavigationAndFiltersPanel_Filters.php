@@ -538,6 +538,9 @@ class ShopNavigationAndFiltersPanel_Filters {
             case 'text':
                 $out .= $this->FilterType_text($groupID, $propertyID);
                 break;
+            case 'none':
+                $out .= '';
+                break;
             default:
                 $out .= "?E: Unidentified Filter Type ?";
                 break;
