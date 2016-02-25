@@ -593,15 +593,18 @@ class ShopNavigationAndFiltersPanel_Filters {
      * @return String - блок фильтра
      */
     private function getFilterBlock($groupID, $propertyID) {
-        $out = '<div class="ShopFilterElementBlock" id="ShopFilterElementBlock_'.$propertyID.'">';
-        $out .= '<div class="ShopFilterElementUnsetButton" propertyId="'.$propertyID.'"></div>';
-        $out .= '<div class="ShopFilterElementNameBlock">';
-        $out .= $this->getFilterName($groupID, $propertyID);
-        $out .= '</div>';
-        $out .= '<div class="ShopFilterElementValueBlock">';
-        $out .= $this->getFilterValue($groupID, $propertyID);
-        $out .= '</div>';
-        $out .= '</div>';
+        $out = '';
+        if(!isset($this->allGroupPropertiesData[$groupID][$propertyID]['filterType']) || $this->allGroupPropertiesData[$groupID][$propertyID]['filterType'] != 'none') {
+            $out .= '<div class="ShopFilterElementBlock" id="ShopFilterElementBlock_'.$propertyID.'">';
+            $out .= '<div class="ShopFilterElementUnsetButton" propertyId="'.$propertyID.'"></div>';
+            $out .= '<div class="ShopFilterElementNameBlock">';
+            $out .= $this->getFilterName($groupID, $propertyID);
+            $out .= '</div>';
+            $out .= '<div class="ShopFilterElementValueBlock">';
+            $out .= $this->getFilterValue($groupID, $propertyID);
+            $out .= '</div>';
+            $out .= '</div>';
+        }
         return $out;
     }
 
