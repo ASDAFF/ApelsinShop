@@ -100,9 +100,15 @@ class ShopGroupsItemList {
 
     private function generateHTML() {
         $this->HTML = "<div class='ShopItemsListBlock'>";
+        $this->HTML .= "<div class='ShopItemsListPanelBlock'>";
         if ($this->showInformation) {
             $this->HTML .= ShopGroupPropertyValue::getPropertyValueForGroup($this->groupID);
         }
+        $shopGroupsItemListOrderByPanel = new ShopGroupsItemListOrderByPanel($this->groupID);
+        $this->HTML .= $shopGroupsItemListOrderByPanel->getPanel();
+        $this->HTML .= "<div class='clear'></div>";
+        $this->HTML .= "</div>";
+        
 //            $this->HTML .= $this->getPageNavigator();
         $this->HTML .= "<div class='ShopItemsList'>";
         foreach ($this->itemsList as $item) {
@@ -142,7 +148,11 @@ class ShopGroupsItemList {
         $out .= $this->getItemImage($item['id']);
         $out .= "<div class='ShopItemElement_ItemName'><div>" . $item['itemName'] . "</div></div>";
         $out .= ShopItemAmountScale::getAmountScale($item['totalAmount'], $item['minAmount']);
-        $out .= "<div class='ShopItemElement_PriceValue'>" . TextGenerator::formattingPrices_RUB($item['priceValue']) . "</div>";
+        if($item['priceValue'] > 0) {
+            $out .= "<div class='ShopItemElement_PriceValue'>" . TextGenerator::formattingPrices_RUB($item['priceValue']) . "</div>";
+        } else {
+            $out .= "<div class='ShopItemElement_PriceValue zero'>Уточняйте у менеджера</div>";
+        }
         $out .= "</a>";
         $out .= "</div>";
         return $out;

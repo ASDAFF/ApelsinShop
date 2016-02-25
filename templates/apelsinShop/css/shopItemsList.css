@@ -6,6 +6,57 @@
     font: 11px/12px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
     margin: 10px 0px 10px 0px;
 }
+.ShopItemsListBlock .PropertyValueForGroup .PropertyValueString {
+    margin-bottom: 10px;
+}
+.ShopItemsListBlock .PropertyValueForGroup .PropertyValueString .PropertyValueStringClearButton, 
+.ShopItemsListBlock .PropertyValueForGroup .PropertyValueString .property, 
+.ShopItemsListBlock .PropertyValueForGroup .PropertyValueString .value {
+    float: left;
+}
+.ShopItemsListBlock .PropertyValueForGroup .PropertyValueString .PropertyValueStringClearButton {
+    cursor: pointer;
+    width: 6px;
+    height: 6px;
+    margin: 0px 3px;
+    background: url('../img/close.png') center center no-repeat;
+}
+.ShopItemsListBlock .PropertyValueForGroup .PropertyValueString .property {
+    font: bold 11px/12px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    color: #ef7f1a;
+}
+.ShopItemsListBlock .PropertyValueForGroup .PropertyValueString .value {
+    padding: 0px 3px;
+    font: 11px/12px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+}
+.ShopItemsListBlock .PropertyValueForGroup .PropertyValueString .value .ShopPropertyGroupSelectValueDeletedElement {
+    /*cursor: pointer;*/
+    /*display: inline-block;*/
+    float: left;
+    background: #C8C8C8;
+    color: #fff;
+    padding: 1px 5px 0px 5px;
+    font: bold 10px/14px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 0px 3px 3px 0px;
+}
+.ShopItemsListBlock .PropertyValueForGroup .PropertyValueString .value .ShopPropertyGroupSelectValueDeletedElement .ShopPropertyGroupSelectValueDeletedElementValue,
+.ShopItemsListBlock .PropertyValueForGroup .PropertyValueString .value .ShopPropertyGroupSelectValueDeletedElement .ShopPropertyGroupSelectValueDeletedElementDeletButton {
+    float: left;
+}
+.ShopItemsListBlock .PropertyValueForGroup .PropertyValueString .value .ShopPropertyGroupSelectValueDeletedElement .ShopPropertyGroupSelectValueDeletedElementDeletButton {
+    cursor: pointer;
+    width: 6px;
+    height: 6px;
+    background: url('../img/white_close.png') center center no-repeat;
+    padding: 3px;
+    /*margin: 3px;*/
+}
+.ShopItemsListBlock .PropertyValueForGroup .PropertyValueString .value .ShopPropertyGroupSelectValueDeletedElement .ShopPropertyGroupSelectValueDeletedElementDeletButton:hover {
+    background: url('../img/close.png') center center no-repeat;
+}
+
 .ShopItemsListBlock .deleteBlockProperty {
     cursor: pointer;
     display: inline-block;
@@ -20,7 +71,7 @@
 .ShopItemsListBlock .deleteBlockProperty:hover {
     background: #ef7f1a;
 }
-.ShopItemsListBlock .PropertyValueForGroup .PropertyValueString .propertyValueStringClear.deleteValueInGroupSelect,
+/*.ShopItemsListBlock .PropertyValueForGroup .PropertyValueString .propertyValueStringClear.deleteValueInGroupSelect,
 .ShopItemsListBlock .PropertyValueForGroup .deleteValueInGroupSelect {
     cursor: pointer;
     display: inline-block;
@@ -35,7 +86,11 @@
 }
 .ShopItemsListBlock .PropertyValueForGroup .value {
     font: 11px/12px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
-}
+}*/
+
+
+
+
 .ShopItemsListBlock .ItemsFound {
     font:  bold 13px/20px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
     text-align: right;
@@ -116,7 +171,7 @@
     position: relative;
 }
 .ShopItemsListBlock .ShopItemsList .ShopItemElement:hover {
-    border: 1px #C3C3C3 solid;
+    border: 1px #ef7f1a solid;
 }
 .ShopItemsListBlock .ShopItemsList .ShopItemElement.NormalItem {}
 .ShopItemsListBlock .ShopItemsList .ShopItemElement.ActionItem {}
@@ -140,8 +195,8 @@
 
 .ShopItemsListBlock .ShopItemsList .ShopItemElement .ItemLable {
     position: absolute;
-    top: 0px;
-    left: 0px;
+    top: -1px;
+    left: -1px;
     z-index: 12;
     height: 70px;
     width: 70px;
@@ -252,6 +307,13 @@
     font:  bold 14px/20px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
     text-align: center;
 }
+.ShopItemsListBlock .ShopItemsList .ShopItemElement .ShopItemElement_PriceValue.zero {
+    height: 20px;
+    width: 140px;
+    margin: 0 auto;
+    font:  bold 10px/10px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    text-align: center;
+}
 
 .ShopItemsListBlock .ShopItemsList .ShopItemElement .ShopItemElement_PriceValue .Price {}
 .ShopItemsListBlock .ShopItemsList .ShopItemElement .ShopItemElement_PriceValue .Price .PriceBasic,
@@ -271,4 +333,11 @@
 .ShopItemElement_Amount .ShopItemElement_AmountScale {
     height: 5px;
     background: #00cf00;
+}
+
+.ShopItemsListBlock .ShopItemsListPanelBlock .ShopItemsListBlockTop {
+    float: left;
+}
+.ShopItemsListBlock .ShopItemsListPanelBlock .ShopGroupsItemListOrderByPanelWrapper {
+    float: right;
 }

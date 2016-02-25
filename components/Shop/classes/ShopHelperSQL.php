@@ -48,8 +48,14 @@ class ShopHelperSQL {
         }
     }
     
-    private static function generateOrderBySQL() {
-        return " ORDER BY priceValue DESC ";
+    private static function generateOrderBySQL($groupID) {
+        $orderBy = ShopPropertiesFilterSerchArray::getOrderBy($groupID);
+        if(empty($orderBy)) {
+            $orderBy['COLUMN'] = ShopPropertiesFilterSerchArray::ORDER_BY_COLUMN;
+            $orderBy['ASC_DESC'] = ShopPropertiesFilterSerchArray::ORDER_BY_ASC_DESC;
+        }
+        
+        return " ORDER BY `".$orderBy['COLUMN']."` ".$orderBy['ASC_DESC']." ";
     }
 
 
@@ -90,10 +96,13 @@ class ShopHelperSQL {
     
     private static function generateWhereSQL_InStock($array) {
         if(self::checkArrayValues($array,'InStock') && self::getArrayValues($array,'InStock') !== 'all') {
-            return " AND `totalAmount`>'0' ";
-        } else {
-            return "";
+            if(self::getArrayValues($array,'InStock') == 'inStock') {
+                return " AND (`totalAmount` > '0' AND `status` LIKE 'Возится и в наличии') ";
+            } else if(self::getArrayValues($array,'InStock') == 'inStockAndOrder') {
+                return " AND (`totalAmount` > '0' OR `status` != 'Возится и в наличии') ";
+            }
         }
+        return "";
     }
     
     /**
@@ -325,7 +334,7 @@ class ShopHelperSQL {
             LEFT JOIN `ShopItemsPrices` as t2
             on t1.`id` = t2.`item`
             WHERE ".self::generateWhereSQL_Price($array,'t2')."
-            ".self::generateOrderBySQL().self::generateLimitSQL($page).";
+            ".self::generateOrderBySQL($groupID).self::generateLimitSQL($page).";
         ";
         return $sql;
     }
@@ -362,7 +371,7 @@ class ShopHelperSQL {
             LEFT JOIN `ShopItemsPrices` as t2
             on t1.`id` = t2.`item`
             WHERE ".self::generateWhereSQL_Price($array,'t2')."
-            ".self::generateOrderBySQL().self::generateLimitSQL($page).";
+            ".self::generateOrderBySQL($groupID).self::generateLimitSQL($page).";
         ";
         return $sql;
     }

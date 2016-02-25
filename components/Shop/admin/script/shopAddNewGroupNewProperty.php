@@ -58,7 +58,7 @@ include_once '../../../../ROOT/functions/includeSistemClasses.php';
 includeSistemClasses('../../../../ROOT/');
 
 include_once '../../classes/ShopIncludeClasses.php';
-ShopIncludeClasses::includeAllClasses('../../', '../../../../modules/ShopNavigationPanel/');
+ShopIncludeClasses::includeAllClasses('../../', '../../../../modules/ShopNavigationAndFiltersPanel/');
 
 include_once '../../../../plugins/InteractiveLists/classes/InteractiveListsPlugin.php';
 

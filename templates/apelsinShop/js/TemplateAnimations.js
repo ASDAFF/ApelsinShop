@@ -45,6 +45,14 @@ jQuery(document).ready(function() {
         }
     });
     ShowHideBeforeContentWraper();
+    $(window).scroll(function() {
+        var top = $(document).scrollTop();
+        if (top > 100) {
+            $(".Wraper .MenuWraper").addClass('sticky');
+        } else {
+            $(".Wraper .MenuWraper").removeClass('sticky');
+        }
+    });
 });
 
 function ShowHideBeforeContentWraper() {

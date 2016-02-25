@@ -145,6 +145,16 @@ ul li:before {
     width: 960px;
     height: 30px;
 }
+
+
+.Wraper .MenuWraper.sticky {
+    width: 100%;
+    background: #ffffff;
+    position: fixed;
+    top: 0px;
+    z-index: 101;
+}
+
 .Wraper .BeforeContentWraper {
     border-bottom: 1px solid #ef7f1a;
 }
@@ -215,12 +225,50 @@ ul li:before {
 .Wraper .ContentWraper {}
 .Wraper .ContentWraper .ContentBlock {}
 .Wraper .ContentWraper .ContentBlock .ContentTopWraper {}
-.Wraper .ContentWraper .ContentBlock .ContentTopWraper .ContentTopBlock {}
+.Wraper .ContentWraper .ContentBlock .ContentTopWraper .ContentTopBlock {
+    margin: 0 auto;
+    width: 960px;
+}
 .Wraper .ContentWraper .ContentBlock .ContentMainWraper {}
 .Wraper .ContentWraper .ContentBlock .ContentMainWraper .ContentMainBlock {
     margin: 0 auto;
     width: 960px;
 }
+.Wraper .ContentWraper .ContentBlock .ContentMainWraper .ContentMainBlock .ContentMainBlockLeft {
+    display: none;
+}
+/* CatalogList */
+.Wraper .ContentWraper .ContentBlock .ContentMainWraper .ContentMainBlock .ContentMainBlockLeft.leftPanelShown.CatalogList {
+    display: block;
+    width: 480px;
+    min-height: 900px;
+    float: left;
+}
+.Wraper .ContentWraper .ContentBlock .ContentMainWraper .ContentMainBlock .ContentMainBlockRight.leftPanelShown.CatalogList {
+    width: 480px;
+    min-height: 900px;
+    float: right;
+}
+/* NoCatalogList */
+.Wraper .ContentWraper .ContentBlock .ContentMainWraper .ContentMainBlock .ContentMainBlockLeft.leftPanelShown.NoCatalogList {
+    display: block;
+}
+.Wraper .ContentWraper .ContentBlock .ContentMainWraper .ContentMainBlock .ContentMainBlockLeft.leftPanelShown.NoCatalogList {
+    width: 480px;
+    height: 0px;
+}
+.Wraper .ContentWraper .ContentBlock .ContentMainWraper .ContentMainBlock .ContentMainBlockLeft.leftPanelShown.NoCatalogList .m_block.ShopNavigationAndFiltersPanel {
+    position: relative;
+    top: 0px;
+    left: 480px;
+    z-index: 999;
+    height: auto;
+    background: #fff;
+    border-left: 1px solid #B8B8B8;
+    border-bottom: 1px solid #B8B8B8;
+}
+
+
 .Wraper .ContentWraper .ContentBlock .ContentBottomWraper {}
 .Wraper .ContentWraper .ContentBlock .ContentBottomWraper .ContentBottomBlock {}
 .Wraper .AfterContentWraper {}
@@ -258,7 +306,6 @@ ul li:before {
     text-align: right;
     padding: 40px 0px 40px 0px;
 }
-
 
 
 /** ToTopSite **/

@@ -66,6 +66,8 @@ class AP_ImportItemsGroup extends AP_ImportImages {
         $this->setAccessTypeFile(['image/png']);
         $this->setSizeMiniature(70, 70);
         $this->setSizeMiniature(50, 50);
+        $this->setSizeMiniature(40, 40);
+        $this->setSizeMiniature(30, 30);
     }
 
 }

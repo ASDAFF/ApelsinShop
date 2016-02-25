@@ -93,7 +93,7 @@ class AP_WorkingWithShopCatalog_General {
         $this->params = $_URL_PARAMS['params'];
         $this->urlHelper = new UrlHelper();
         $this->helperGroup = new ShopGroupsHelper();
-        $this->info = $this->helperGroup->getGroupInfo($this->groupId);
+        $this->info = $this->helperGroup->getGroupInfo($this->groupId,true);
         $this->path = $this->helperGroup->getGroupPath($this->groupId);
         $this->node = $this->helperGroup->getGroupNodeChildren($this->groupId);
         $this->nodeChildrenAndParent = $this->helperGroup->getGroupChildren($this->groupId);
@@ -285,7 +285,7 @@ class AP_WorkingWithShopCatalog_General {
      */
     protected function dataUpdate() {
         $this->helperGroup->update();
-        $this->info = $this->helperGroup->getGroupInfo($this->groupId);
+        $this->info = $this->helperGroup->getGroupInfo($this->groupId,true);
         $this->path = $this->helperGroup->getGroupPath($this->groupId);
     }
 

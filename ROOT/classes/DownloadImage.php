@@ -156,7 +156,7 @@ class DownloadImage extends DownloadFile {
                                 $this->parameterImage = $parameterImage;
                             } else {
                                 // ресайз будет по default
-                                $this->parameterImage = 'default';
+                                $this->parameterImage = 'placedIn';
                             }
                         }
                     }

@@ -15,7 +15,7 @@ global $_SQL_HELPER;
 $_SQL_HELPER = new MysqliHelper();
 
 include_once '../classes/ShopIncludeClasses.php';
-ShopIncludeClasses::includeAllClasses('../', '../../../modules/ShopNavigationPanel/');
+ShopIncludeClasses::includeAllClasses('../', '../../../modules/ShopNavigationAndFiltersPanel/');
 
 
 if (isset($_POST['id']) && $_POST['id'] != "" && $_POST['id'] != null) {

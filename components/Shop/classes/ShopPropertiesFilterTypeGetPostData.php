@@ -187,6 +187,9 @@ class ShopPropertiesFilterTypeGetPostData {
             }
             self::addSearchFilterData($groupID, 'ItemPrise', 'main', $itemPriseValue);
             $subgroup = self::getPostValue('Subgroup', $groupID);
+            if($subgroup == ShopNavigationAndFiltersPanel_Filters::SYSTEM_ROOT_GROUP) {
+                $subgroup = null;
+            }
             self::addSearchFilterData($groupID, 'Subgroup', 'main', $subgroup);
             foreach (self::$allGroupProperties[$groupID] as $propertyID) {
                 if(isset(self::$allGroupPropertiesData[$groupID][$propertyID])) {

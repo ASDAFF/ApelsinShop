@@ -102,7 +102,12 @@ class ResizeImage {
      * @param  string $resizeOption - соотношение длины-ширины
      * @return 
      */
-    public function resizeTo( $width, $height, $resizeOption = 'default' ) {
+    public function resizeTo( $width, $height, $resizeOption = 'placedin' ) {
+        if(($this->origWidth > $this->origHeight && $width < $height) || ($this->origWidth < $this->origHeight && $width > $height)) {
+            $tempWidth = $width;
+            $width = $height;
+            $height = $tempWidth;
+        }
         switch (strtolower($resizeOption)) {
             case 'exact': 
                 $this->resizeWidth = $width;
@@ -115,6 +120,15 @@ class ResizeImage {
             case 'maxheight':
                 $this->resizeWidth  = $this->resizeWidthByHeight($height);
                 $this->resizeHeight = $height;
+                break;
+            case 'placedin':
+                if($this->resizeHeightByWidth($width) <= $height) {
+                    $this->resizeWidth  = $width;
+                    $this->resizeHeight = $this->resizeHeightByWidth($width);
+                } else {
+                    $this->resizeWidth  = $this->resizeWidthByHeight($height);
+                    $this->resizeHeight = $height;
+                }
                 break;
             case 'crop': 
                 $heightRatio = $this->origHeight / $height;  
@@ -129,14 +143,14 @@ class ResizeImage {
             default:
                 if ($this->origWidth > $width || $this->origHeight > $height) {
                     if ( $this->origWidth > $this->origHeight ) {
-                     $this->resizeHeight = $this->resizeHeightByWidth($width);
-                             $this->resizeWidth  = $width;
+                        $this->resizeHeight = $this->resizeHeightByWidth($width);
+                        $this->resizeWidth  = $width;
                     } else if ( $this->origWidth < $this->origHeight ) {
-                            $this->resizeWidth  = $this->resizeWidthByHeight($height);
-                            $this->resizeHeight = $height;
+                        $this->resizeWidth  = $this->resizeWidthByHeight($height);
+                        $this->resizeHeight = $height;
                     }  else {
-                            $this->resizeWidth = $width;
-                            $this->resizeHeight = $height;	
+                        $this->resizeWidth = $width;
+                        $this->resizeHeight = $height;	
                     }
                 } else {
                     $this->resizeWidth = $width;
@@ -199,7 +213,7 @@ class ResizeImage {
      * @return 
      */
     private function resizeHeightByWidth($width) {
-        return floor(($this->origHeight/$this->origWidth)*$width);
+        return floor(($width/$this->origWidth)*$this->origHeight);
     }
 
     /**
@@ -208,6 +222,6 @@ class ResizeImage {
      * @return 
      */
     private function resizeWidthByHeight($height) {
-        return floor(($this->origWidth/$this->origHeight)*$height);
+        return floor(($height/$this->origHeight)*$this->origWidth);
     }
 }

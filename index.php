@@ -44,6 +44,12 @@ if(!$_SITECONFIG->getSiteClosed()) {
         $ROOT= new Root();
         // Подключение шаблона
         $ROOT->includeTemplate();
+        
+//        for($i=0; $i < 10000; $i++) {
+//            echo $i.' &#'.$i.';<br>';
+//        }
+        
+        
     }
 } else {
     // Перенаправить в случае если сайт закрыт

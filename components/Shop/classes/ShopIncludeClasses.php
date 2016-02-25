@@ -4,7 +4,7 @@ class ShopIncludeClasses {
 
     private static $notIncluded = true;
 
-    public static function includeAllClasses($componentPath = './components/Shop/', $modulesPath = './modules/ShopNavigationPanel/') {
+    public static function includeAllClasses($componentPath = './components/Shop/', $modulesPath = './modules/ShopNavigationAndFiltersPanel/') {
         if (self::$notIncluded) {
             self::$notIncluded = false;
             include_once $componentPath . 'classes/ShopGroupsHelper.php';
@@ -37,11 +37,16 @@ class ShopIncludeClasses {
             include_once $componentPath . 'classes/ShopJsHelper.php';
             include_once $componentPath . 'classes/ShopGroupsTree.php';
             include_once $componentPath . 'classes/SystemGroupIdConstants.php';
+            include_once $componentPath . 'classes/ShopGroupsItemListOrderByPanel.php';
 
-            include_once $modulesPath . 'classes/ShopNavigationPanel.php';
-            include_once $modulesPath . 'classes/ShopNavigationPanel_Menu.php';
-            include_once $modulesPath . 'classes/ShopNavigationPanel_Filter.php';
-            include_once $modulesPath . 'classes/ShopNavigationPanel_ThisGroupIconPanel.php';
+//            include_once $modulesPath . 'classes/ShopNavigationPanel.php';
+//            include_once $modulesPath . 'classes/ShopNavigationPanel_Menu.php';
+//            include_once $modulesPath . 'classes/ShopNavigationPanel_Filter.php';
+//            include_once $modulesPath . 'classes/ShopNavigationPanel_ThisGroupIconPanel.php';
+            
+            include_once $modulesPath . 'classes/ShopNavigationAndFiltersPanel.php';
+            include_once $modulesPath . 'classes/ShopNavigationAndFiltersPanel_Filters.php';
+            include_once $modulesPath . 'classes/ShopNavigationAndFiltersPanel_Navigation.php';
         }
     }
 

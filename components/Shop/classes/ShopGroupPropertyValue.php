@@ -33,14 +33,20 @@ class ShopGroupPropertyValue {
     }
 
     private static function getPropertyValueString($propertyId, $property, $value) {
-        return "<div class='PropertyValueString' id='PrValStr_" . $propertyId . "'>" . self::clearPropertyValue($propertyId) . "<span class='property'>" . $property . "</span>: <span class='value'>&nbsp;" . $value . "</span></div>";
+        $out = "";
+        $out .= "<div class='PropertyValueString' id='PrValStr_" . $propertyId . "'>";
+            $out .= self::clearPropertyValue($propertyId);
+            $out .= "<div class='property'>" . $property . "</div>";
+            $out .= "<div class='value'>" . $value . "</div>";
+            $out .= "<div class='clear'></div>";
+        $out .= "</div>";
+        return $out;
+//        return "<div class='PropertyValueString' id='PrValStr_" . $propertyId . "'>" . self::clearPropertyValue($propertyId) . "<div class='property'>" . $property . "</div>: <div class='value'>&nbsp;" . $value . "</div></div>";
 //        return "<span class='property'>".$property."</span>: <span class='value'>".$value."</span>; ";
     }
 
     private static function clearPropertyValue($propertyId) {
-        $out = '<span class="propertyValueStringClear deleteValueInGroupSelect" onclick="shopPropertyValueStringClear(\'' . $propertyId . '\');" itemID="' . $propertyId . '"></span>';
-        $out .= "";
-        return $out;
+        return '<div class="PropertyValueStringClearButton" onclick="shopPropertyValueStringClear(\'' . $propertyId . '\');" itemID="' . $propertyId . '"></div>';
     }
 
     private static function getPropertyValueForGroup_Main_Action($propertyId, $action) {
@@ -56,8 +62,13 @@ class ShopGroupPropertyValue {
 
     private static function getPropertyValueForGroup_Main_InStock($propertyId, $action) {
         switch ($action) {
+            case 'all':
+                return self::getPropertyValueString($propertyId, "Наличие товара", 'Весь товар');
             case 'inStock':
                 return self::getPropertyValueString($propertyId, "Наличие товара", 'Товар в наличии');
+            case 'inStockAndOrder':
+//                return self::getPropertyValueString($propertyId, "Наличие товара", 'Товар в наличии или под заказ');
+                return '';
             default:
                 return '';
         }
@@ -123,9 +134,19 @@ class ShopGroupPropertyValue {
 
     private static function generationIdAndStringForValue($key, $val, $i) {
         $id = 'val_' . $key . '_' . $i;
-        $out = '<span id="' . $id . '">&nbsp;' . $val;
-        $out .= '<span class="deleteValueInGroupSelect" onclick="deleteValueInGroupSelect(\'' . $id . '\', \'' . $key . '\' , \'' . $val . '\');"></span>';
-        $out .= '</span>';
+        
+        $out = '<div id="' . $id . '" class="ShopPropertyGroupSelectValueDeletedElement">';
+            $out .= '<div class="ShopPropertyGroupSelectValueDeletedElementValue">';
+                $out .= $val;
+            $out .= '</div>';
+            $out .= '<div class="ShopPropertyGroupSelectValueDeletedElementDeletButton deleteValueInGroupSelect" onclick="deleteValueInGroupSelect(\'' . $id . '\', \'' . $key . '\' , \'' . $val . '\');"></div>';
+            $out .= "<div class='clear'></div>";
+        $out .= '</div>';
+        
+        
+//        $out = '<span id="' . $id . '">&nbsp;' . $val;
+//        $out .= '<span class="deleteValueInGroupSelect" onclick="deleteValueInGroupSelect(\'' . $id . '\', \'' . $key . '\' , \'' . $val . '\');"></span>';
+//        $out .= '</span>';
         return $out;
     }
 
@@ -196,6 +217,7 @@ class ShopGroupPropertyValue {
         if ($propertyValueString !== '') {
             $out .= '<div class="PropertyValueForGroup">';
             $out .= $propertyValueString;
+            $out .= "<div class='clear'></div>";
             $out .= '</div>';
         }
         if (count($arrayActivFilter) > 0) {
@@ -211,6 +233,9 @@ class ShopGroupPropertyValue {
         $allProperty = ShopPropertiesFilterSerchArray::getArrayGroupProperties($groupID);
         if (isset($allProperty["Action"]["value"]) && $allProperty["Action"]["value"] === "all") {
             unset($allProperty["Action"]);
+        }
+        if (isset($allProperty["InStock"]["value"]) && $allProperty["InStock"]["value"] === "inStockAndOrder") {
+            unset($allProperty["InStock"]);
         }
         if (isset($allProperty["Subgroup"]["value"]) && $allProperty["Subgroup"]["value"] === $groupID) {
             unset($allProperty["Subgroup"]);

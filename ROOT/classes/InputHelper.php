@@ -1,7 +1,7 @@
 <?php
 class InputHelper {
 
-    public static function checkbox($name,$id,$class,$mandatory,$value,$checked=null,$JSevents=null) {
+    public static function checkbox($name,$id,$class,$mandatory,$value,$checked=null,$JSevents=null,$attrMas=array()) {
         if($mandatory) {
             $required = " required ";
         } else {
@@ -15,9 +15,13 @@ class InputHelper {
         } else {
             $checked='';
         }
+        $atrString = '';
+        foreach ($attrMas as $attr) {
+            $atrString .= ' '.$attr["name"].'="'.$attr["value"].'" ';
+        }
         $out = '<input type="checkbox" class="'.$class.'" name="'.$name.'" value="'.
                 $value.'" id="'.$id.'" '.$checked.' '.
-                $required.' '.$JSevents.' autocomplete="off" />';
+                $required.' '.$JSevents.' autocomplete="off" '.$atrString.' />';
         return $out;
     }
 
@@ -138,6 +142,10 @@ class InputHelper {
      * @return string
      */
     public static function select($name,$id,$array,$mandatory,$value,$JSevents=null) {
+        return self::selectBox($name,$id,'',$array,$mandatory,$value,$JSevents);
+    }
+    
+    public static function selectBox($name,$id,$class,$array,$mandatory,$value,$JSevents=null) {
         if($mandatory) {
             $required = " required ";
         } else {
@@ -146,8 +154,7 @@ class InputHelper {
         if($JSevents==null) {
             $JSevents="";
         }
-        $out = '<select class="selectBox" name="'.$name.'" value="" id="'.$id.'" '.$required.' '.$JSevents.' >';
-//        $out .= '<option></option>';
+        $out = '<select class="selectBox '.$class.'" name="'.$name.'" value="" id="'.$id.'" '.$required.' '.$JSevents.' >';
         foreach ($array as $val) {
             if($value == $val['value']) {
                 $selected = "selected";

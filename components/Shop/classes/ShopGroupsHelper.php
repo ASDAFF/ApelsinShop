@@ -140,9 +140,9 @@ class ShopGroupsHelper {
      * @param string $groupID - ID группы
      * @return array - информация о группе
      */
-    public function getGroupInfo($groupID) {
+    public function getGroupInfo($groupID, $getPropertiesData = false) {
         if (isset($this->groupPath[$groupID])) {
-            if(!isset($this->groups[$groupID]['properties'])) {
+            if($getPropertiesData && !isset($this->groups[$groupID]['properties'])) {
                 $this->groups[$groupID]['properties']['available'] = ShopGroupPropertiesDataHelper::getGroupAvailableProperties($groupID);
                 $this->groups[$groupID]['properties']['personal'] = ShopGroupPropertiesDataHelper::getGroupPersonalProperties($groupID);
                 $this->groups[$groupID]['properties']['unused'] = ShopGroupPropertiesDataHelper::getGroupUnusedProperties($groupID);
@@ -150,6 +150,19 @@ class ShopGroupsHelper {
                 $this->groups[$groupID]['properties']['childrenProperties'] = ShopGroupPropertiesDataHelper::getGroupChildrenProperties($groupID);
             }
             return $this->groups[$groupID];
+        } else {
+            return NULL;
+        }
+    }
+
+    /**
+     * Получаем информацию о группе из дерева;
+     * @param string $groupID - ID группы
+     * @return array - информация о группе
+     */
+    public function getGroupName($groupID) {
+        if (isset($this->groups[$groupID]['groupName'])) {
+            return $this->groups[$groupID]['groupName'];
         } else {
             return NULL;
         }

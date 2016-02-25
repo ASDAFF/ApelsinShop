@@ -219,7 +219,7 @@ class AP_WorkingWithShopCatalog_AddGroup extends AP_WorkingWithShopCatalog_Gener
         array_push($this->path, $this->groupId);
         $i = 0;
         foreach ($this->path as $group) {
-            $propertiesInGroupsRanking = $this->helperGroup->getGroupInfo($group);
+            $propertiesInGroupsRanking = $this->helperGroup->getGroupInfo($group,true);
             if ($propertiesInGroupsRanking != null) {
                 foreach ($propertiesInGroupsRanking['properties']['personal'] as $value) {
                     $this->parentPropertyId[$i] = $value['property'];
@@ -251,7 +251,7 @@ class AP_WorkingWithShopCatalog_AddGroup extends AP_WorkingWithShopCatalog_Gener
     }
 
     private function getDataNewGroup() {
-        $info = $this->helperGroup->getGroupInfo($this->insertValue['id']);
+        $info = $this->helperGroup->getGroupInfo($this->insertValue['id'],true);
         foreach ($info['properties']['personal'] as $value) {
             $this->personalPropertyNew[] = $value["property"];
         }

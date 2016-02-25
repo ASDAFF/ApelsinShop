@@ -4,7 +4,7 @@ header("Content-type: text/html; charset=UTF-8");
 include_once '../../../ROOT/functions/includeSistemClasses.php';
 includeSistemClasses('../../../ROOT/');
 include_once '../../../components/Shop/classes/ShopIncludeClasses.php';
-ShopIncludeClasses::includeAllClasses("../../../components/Shop/","../../ShopNavigationPanel/");
+ShopIncludeClasses::includeAllClasses("../../../components/Shop/","../../ShopNavigationAndFiltersPanel/");
 
 global $_SQL_HELPER;
 $_SQL_HELPER = new MysqliHelper();

@@ -1,0 +1,354 @@
+/*
+НЕ ИЗМЕНЯТЬ И НЕ УДАЛЯТЬ АВТОРСКИЕ ПРАВА И ЗАГОЛОВОК ФАЙЛА
+
+Копирайт © 2010-2016, CompuProject и/или дочерние компании.
+Все права защищены.
+
+CSystem это программное обеспечение предоставленное и разработанное 
+CompuProject в рамках проекта CSystem без каких либо сторонних изменений.
+
+Распространение, использование исходного кода в любой форме и/или его 
+модификация разрешается при условии, что выполняются следующие условия:
+
+1. При распространении исходного кода должно оставатсья указанное выше 
+   уведомление об авторских правах, этот список условий и последующий 
+   отказ от гарантий.
+
+2. При изменении исходного кода должно оставатсья указанное выше 
+   уведомление об авторских правах, этот список условий, последующий 
+   отказ от гарантий и пометка о сделанных изменениях.
+
+3. Распространение и/или изменение исходного кода должно происходить
+   на условиях Стандартной общественной лицензии GNU в том виде, в каком 
+   она была опубликована Фондом свободного программного обеспечения;
+   либо лицензии версии 3, либо (по вашему выбору) любой более поздней
+   версии. Вы должны были получить копию Стандартной общественной 
+   лицензии GNU вместе с этой программой. Если это не так, см. 
+   <http://www.gnu.org/licenses/>.
+
+CSystem распространяется в надежде, что она будет полезной,
+но БЕЗО ВСЯКИХ ГАРАНТИЙ; даже без неявной гарантии ТОВАРНОГО ВИДА
+или ПРИГОДНОСТИ ДЛЯ ОПРЕДЕЛЕННЫХ ЦЕЛЕЙ. Подробнее см. в Стандартной
+общественной лицензии GNU.
+
+НИ ПРИ КАКИХ УСЛОВИЯХ ПРОЕКТ, ЕГО УЧАСТНИКИ ИЛИ CompuProject НЕ 
+НЕСУТ ОТВЕТСТВЕННОСТИ ЗА КАКИЕ ЛИБО ПРЯМЫЕ, КОСВЕННЫЕ, СЛУЧАЙНЫЕ, 
+ОСОБЫЕ, ШТРАФНЫЕ ИЛИ КАКИЕ ЛИБО ДРУГИЕ УБЫТКИ (ВКЛЮЧАЯ, НО НЕ 
+ОГРАНИЧИВАЯСЬ ПРИОБРЕТЕНИЕМ ИЛИ ЗАМЕНОЙ ТОВАРОВ И УСЛУГ; ПОТЕРЕЙ 
+ДАННЫХ ИЛИ ПРИБЫЛИ; ПРИОСТАНОВЛЕНИЕ БИЗНЕСА). 
+
+ИСПОЛЬЗОВАНИЕ ДАННОГО ИСХОДНОГО КОДА ОЗНАЧАЕТ, ЧТО ВЫ БЫЛИ ОЗНАКОЛМЛЕНЫ
+СО ВСЕМИ ПРАВАМИ, СТАНДАРТАМИ И УСЛОВИЯМИ, УКАЗАННЫМИ ВЫШЕ, СОГЛАСНЫ С НИМИ
+И ОБЯЗУЕТЕСЬ ИХ СОБЛЮДАТЬ.
+
+ЕСЛИ ВЫ НЕ СОГЛАСНЫ С ВЫШЕУКАЗАННЫМИ ПРАВАМИ, СТАНДАРТАМИ И УСЛОВИЯМИ, 
+ТО ВЫ МОЖЕТЕ ОТКАЗАТЬСЯ ОТ ИСПОЛЬЗОВАНИЯ ДАННОГО ИСХОДНОГО КОДА.
+
+Данная копия CSystem используется для проекта Apelsin SHOP
+
+*/
+/* 
+    Created on : 11.02.2016, 15:08:36
+    Author     : Maxim Zaitsev
+*/
+
+.ShopFilterElementBlock {
+    height: 40px;
+    width: 460px;
+    background: #E4E4E4;
+    margin-bottom: 3px;
+    font: bold 12px/14px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+}
+
+.ShopFilterElementBlock .ShopFilterElementUnsetButton {
+    text-align: center;
+    color: #ef7f1a;
+    background: #FFF;
+    height: 20px;
+    width: 20px;
+    border:0;
+    text-decoration: none;
+    float: left;
+    /*margin: 10px 10px 10px 0px;*/
+    margin: 10px 5px 10px 5px;
+    cursor: pointer;
+}
+.ShopFilterElementBlock .ShopFilterElementUnsetButton:before {
+    font-family: Arial;
+    color: #ef7f1a;
+    content: "X";
+    font: bold 10px/20px Arial;
+    outline: none;
+}
+
+.ShopFilterElementBlock .ShopFilterElementNameBlock {
+    float: left;
+    height: 40px;
+    width: 119px;
+    border-right: 1px solid #FFF;
+    cursor: default;
+}
+
+.ShopFilterElementBlock .ShopFilterElementNameBlock div {
+    height: 40px;
+    width: 109px;
+    padding: 0px 5px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: right;
+    padding: 0px;
+}
+
+.ShopFilterElementBlock .ShopFilterElementValueBlock {
+    width: 290px;
+    padding: 0px 10px;
+    float: left;
+    position: relative;
+}
+.ShopFilterElementBlock .ShopFilterElementValueBlock .NoData {
+    font: bold 12px/40px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    text-align: center;
+}
+
+.ShopFilterElementBlock .ShopFilterElementValueBlock .selectBox {
+    background: #FFF;
+    padding: 0px;
+    margin: 0px;
+    padding: 1px 5px;
+    font: bold 12px/12px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    color: #ef7f1a;
+    border: none;
+    outline: none;
+    height: 20px;
+    width: 290px;
+    margin: 10px 0px;
+    cursor: pointer;
+}
+.ShopFilterElementBlock .ShopFilterElementValueBlock .ScalingSelect {
+    font: 12px/12px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    width: 55px;
+    float: left;
+    margin-left: 5px;
+}
+.ShopFilterElementBlock .ShopFilterElementValueBlock .ShopFilterElementValueInput {
+    background: #FFF;
+    padding: 4px 5px;
+    font: bold 12px/12px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    color: #ef7f1a;
+    margin: 0px;
+    border: none;
+    outline: none;
+    height: 12px;
+}
+.ShopFilterElementBlock .ShopFilterElementValueBlock .ShopFilterElementValueInput.FilterTypeText {
+    width: 280px;
+    margin: 10px 0px;
+}
+.ShopFilterElementBlock .ShopFilterElementValueBlock .FilterTypeRangeFromTo {
+    width: 20px;
+    height: 20px;
+    font: bold 12px/20px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    margin: 10px 0px;
+    text-align: center;
+    float: left;
+    
+}
+.ShopFilterElementBlock .ShopFilterElementValueBlock .ShopFilterElementValueInput.FilterTypeRange {
+    width: 115px;
+    margin: 10px 0px;
+    float: left;
+}
+.ShopFilterElementBlock .ShopFilterElementValueBlock .ShopFilterElementValueInput.FilterTypeRange.Scaling {
+    width: 55px;
+}
+
+.ShopFilterElementBlock .ShopFilterElementValueBlock .FilterTypeBool {
+  position: absolute;
+  margin-left: -9999px;
+  visibility: hidden;
+}
+.ShopFilterElementBlock .ShopFilterElementValueBlock .FilterTypeBool + label {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  margin: 10px 0px;
+}
+
+.ShopFilterElementBlock .ShopFilterElementValueBlock .FilterTypeBool + label {
+  padding: 2px;
+  width: 40px;
+  height: 16px;
+  background-color: #dddddd;
+  -webkit-transition: background 0.4s;
+  -moz-transition: background 0.4s;
+  -o-transition: background 0.4s;
+  transition: background 0.4s;
+}
+.ShopFilterElementBlock .ShopFilterElementValueBlock .FilterTypeBool + label:before, 
+.ShopFilterElementBlock .ShopFilterElementValueBlock .FilterTypeBool + label:after {
+  display: block;
+  position: absolute;
+  content: "";
+}
+.ShopFilterElementBlock .ShopFilterElementValueBlock .FilterTypeBool + label:before {
+    top: 2px;
+    left: 2px;
+    bottom: 2px;
+    right: 2px;
+    background-color: #fff;
+    -webkit-transition: background 0.4s;
+    -moz-transition: background 0.4s;
+    -o-transition: background 0.4s;
+    transition: background 0.4s;
+    font: bold 12px/16px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    content: "НЕТ";
+    padding-left: 15px;
+    color: #dddddd;
+}
+.ShopFilterElementBlock .ShopFilterElementValueBlock .FilterTypeBool + label:after {
+  top: 4px;
+  left: 4px;
+  bottom: 4px;
+  width: 7px;
+  background-color: #dddddd;
+  -webkit-transition: margin 0.4s, background 0.4s;
+  -moz-transition: margin 0.4s, background 0.4s;
+  -o-transition: margin 0.4s, background 0.4s;
+  transition: margin 0.4s, background 0.4s;
+}
+.ShopFilterElementBlock .ShopFilterElementValueBlock .FilterTypeBool:checked + label {
+  background-color: #ef7f1a;
+}
+.ShopFilterElementBlock .ShopFilterElementValueBlock .FilterTypeBool:checked + label:after {
+  margin-left: 29px;
+  background-color: #ef7f1a;
+}
+.ShopFilterElementBlock .ShopFilterElementValueBlock .FilterTypeBool:checked + label:before {
+    content: "ДА";
+    padding-left: 9px;
+    color: #ef7f1a;
+}
+.ShopFilterElementBlock .ShopFilterElementValueBlock .ShopFilterGroupSelectShortValueBlock {
+    height: 30px;
+    padding: 5px 0px;
+}
+.ShopFilterElementBlock .ShopFilterElementValueBlock .ShopFilterGroupSelectShortValueBlock .ShopFilterGroupSelectShortValue {
+    width: 260px;
+    height: 30px;
+    margin: 0px;
+    font: 10px/10px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    background: #fff;
+    float: left;
+}
+.ShopFilterElementBlock .ShopFilterElementValueBlock .ShopFilterGroupSelectShortValueBlock .ShopFilterGroupSelectShortValue div {
+    height: 30px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    padding: 0px 5px;
+}
+.ShopFilterElementBlock .ShopFilterElementValueBlock .ShopFilterGroupSelectShortValueBlock .ShopFilterGroupSelectShortValueMoreButton {
+    width: 30px;
+    height: 30px;
+    background: #D4D4D4;
+    float: left;
+    position: relative;
+    cursor: pointer;
+    font: bold 20px/20px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    color: #FFF;
+    text-align: center;
+}
+
+.ShopFilterElementBlock .ShopFilterElementValueBlock .ShopFilterGroupSelectElementsBlock {
+    z-index: 200;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: none;
+    background: #E4E4E4;
+    margin-left: 320px;
+    padding: 5px;
+    min-height: 30px;
+    width: max-content;
+    max-width: 492px;
+}
+.ShopFilterElementBlock .ShopFilterElementValueBlock .ShopFilterGroupSelectElementsBlock:before {
+    z-index: 200;
+    position: absolute;
+    top: 0px;
+    left: -10px;
+    background: #E4E4E4;
+    height: 40px;
+    width: 10px;
+    content: "";
+}
+.ShopFilterElementBlock .ShopFilterElementValueBlock .ShopFilterGroupSelectElementsBlock.SHOWN {
+    display: block;
+}
+.ShopFilterElementBlock .ShopFilterElementValueBlock .ShopFilterGroupSelectElementsBlock .ShopFilterGroupSelectElementsBlockCloseButton {
+    float: right;
+    height: 20px;
+    width: 20px;
+    background: #FFF;
+    text-align: center;
+    margin: 2px 3px 3px 10px;
+}
+.ShopFilterElementBlock .ShopFilterElementValueBlock .ShopFilterGroupSelectElementsBlock .ShopFilterGroupSelectElementsBlockCloseButton:before {
+    height: 20px;
+    width: 20px;
+    font-family: Arial;
+    color: #ef7f1a;
+    content: "X";
+    font: bold 10px/20px Arial;
+    outline: none;
+    text-align: center;
+    cursor: pointer;
+}
+.ShopFilterElementBlock .ShopFilterElementValueBlock .ShopFilterGroupSelectElementsBlock .ShopFilterGroupSelectElement {
+    float: left;
+}
+input.FilterTypeGroupSelect {
+    position: absolute;
+    visibility: hidden;
+}
+input.FilterTypeGroupSelect + label {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font: 11px/11px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    color: #5f5f5f;
+    background: #DCDCDC;
+    background: #FFF;
+    margin: 2px;
+    /*width: 150px;*/
+    /*min-width: 150px;*/
+    padding: 5px;
+    -webkit-transition: background 0.5s;
+    -moz-transition: background 0.5s;
+    -o-transition: background 0.5s;
+    transition: background 0.5s;
+    float: left;
+    padding-left: 19px;
+}
+input.FilterTypeGroupSelect:checked+label {
+    padding-left: 5px;
+}
+input.FilterTypeGroupSelect:checked+label {
+  background-color: #ef7f1a;
+  color: #fff;
+}
+input.FilterTypeGroupSelect:checked+label:before {
+    content: '\2713';
+    padding-right: 5px;
+}

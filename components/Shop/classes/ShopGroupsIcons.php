@@ -26,20 +26,26 @@ class ShopGroupsIcons {
         }
     }
 
-    public static function getGroupIcon_Menu_Background($groupID) {
+    public static function getGroupIcon_Menu_Background($groupID, $size = "") {
         self::createObject();
-        $background = self::getGroupIconIteration_Menu_Background($groupID);
+        $background = self::getGroupIconIteration_Menu_Background($groupID, $size);
         if ($background === '') {
-            $background = BackgroundGeneratorHelper::getBackgroundStyleImg(self::iconPath_NavPa, self::defaultIcon_NavPa);
+            if($size != "") {
+                $size = "_".$size."x".$size;
+            }
+            $background = BackgroundGeneratorHelper::getBackgroundStyleImg(self::iconPath_NavPa, self::defaultIcon_NavPa.$size);
         }
         return $background;
     }
 
-    private static function getGroupIconIteration_Menu_Background($groupID) {
-        $background = BackgroundGeneratorHelper::getBackgroundStyleImg(self::iconPath_NavPa, $groupID);
+    private static function getGroupIconIteration_Menu_Background($groupID, $size = "") {
+        if($size != "") {
+            $size = "_".$size."x".$size;
+        }
+        $background = BackgroundGeneratorHelper::getBackgroundStyleImg(self::iconPath_NavPa, $groupID.$size);
         $parentGroup = self::$shopGroupsHelper->getGroupParentID($groupID);
         if ($background === '' && $parentGroup != null) {
-            $background = self::getGroupIconIteration_Menu_Background($parentGroup);
+            $background = self::getGroupIconIteration_Menu_Background($parentGroup, $size);
         }
         return $background;
     }

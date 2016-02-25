@@ -15,5 +15,5 @@ global $_SQL_HELPER;
 $_SQL_HELPER = new MysqliHelper();
 
 include_once '../classes/ShopIncludeClasses.php';
-ShopIncludeClasses::includeAllClasses('../', '../../../modules/ShopNavigationPanel/');
+ShopIncludeClasses::includeAllClasses('../', '../../../modules/ShopNavigationAndFiltersPanel/');
 echo TextGenerator::formattingPrices_RUB(ShopBasketHelper::getTotal());

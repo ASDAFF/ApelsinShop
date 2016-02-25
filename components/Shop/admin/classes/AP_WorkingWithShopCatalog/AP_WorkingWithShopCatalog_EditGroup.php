@@ -264,7 +264,7 @@ class AP_WorkingWithShopCatalog_EditGroup extends AP_WorkingWithShopCatalog_Gene
     private function getListParentProperty() {
         $i = 0;
         foreach ($this->path as $group) {
-            $propertiesInGroupsRanking = $this->helperGroup->getGroupInfo($group);
+            $propertiesInGroupsRanking = $this->helperGroup->getGroupInfo($group,true);
             if ($propertiesInGroupsRanking != null) {
                 foreach ($propertiesInGroupsRanking['properties']['personal'] as $value) {
                     $this->parentPropertyId[$i] = $value['property'];

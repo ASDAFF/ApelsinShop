@@ -50,6 +50,7 @@
     display: block;
     padding-left: 10px;
     width: 680px;
+    margin-bottom: 3px;
 }
 .searchModuleResult .searchModuleResultContent .searchOneItem .elementImage {
     float: left;
