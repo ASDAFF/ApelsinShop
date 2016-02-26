@@ -100,14 +100,14 @@ class ShopGroupsItemList {
 
     private function generateHTML() {
         $this->HTML = "<div class='ShopItemsListBlock'>";
-        $this->HTML .= "<div class='ShopItemsListPanelBlock'>";
         if ($this->showInformation) {
-            $this->HTML .= ShopGroupPropertyValue::getPropertyValueForGroup($this->groupID);
+            $this->HTML .= "<div class='ShopItemsListPanelBlock'>";
+                $this->HTML .= ShopGroupPropertyValue::getPropertyValueForGroup($this->groupID);
+                $shopGroupsItemListOrderByPanel = new ShopGroupsItemListOrderByPanel($this->groupID);
+                $this->HTML .= $shopGroupsItemListOrderByPanel->getPanel();
+            $this->HTML .= "<div class='clear'></div>";
+            $this->HTML .= "</div>";
         }
-        $shopGroupsItemListOrderByPanel = new ShopGroupsItemListOrderByPanel($this->groupID);
-        $this->HTML .= $shopGroupsItemListOrderByPanel->getPanel();
-        $this->HTML .= "<div class='clear'></div>";
-        $this->HTML .= "</div>";
         
 //            $this->HTML .= $this->getPageNavigator();
         $this->HTML .= "<div class='ShopItemsList'>";
