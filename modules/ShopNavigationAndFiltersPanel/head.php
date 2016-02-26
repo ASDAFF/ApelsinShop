@@ -56,7 +56,16 @@ jQuery(document).ready(function() {
         var show = !$(blockId).hasClass('SHOWN');
         $('.ShopFilterGroupSelectElementsBlock').removeClass('SHOWN');
         if(show) {
+            var bloksWidth = 0;
             $(blockId).addClass('SHOWN');
+            $(blockId).find('.ShopFilterGroupSelectElement').each(function (){
+                bloksWidth += $(this).outerWidth(true);
+            });
+            bloksWidth += $(blockId).find('.ShopFilterGroupSelectElementsBlockCloseButton').outerWidth(true);
+            if(bloksWidth > 480) {
+                bloksWidth = 480;
+            }
+            $(blockId).width(bloksWidth);
         }
     });
     jQuery('.ShopFilterGroupSelectElementsBlockCloseButton').click(function(){

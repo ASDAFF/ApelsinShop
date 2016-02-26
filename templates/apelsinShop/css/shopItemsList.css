@@ -185,7 +185,7 @@
     -moz-filter: grayscale(100%);
     -ms-filter: grayscale(100%);
     -o-filter: grayscale(100%);
-    filter: url(desaturate.svg#greyscale);
+    /*filter: url(desaturate.svg#greyscale);*/
     filter: gray;
     -webkit-filter: grayscale(1);
     opacity: 0.5;
