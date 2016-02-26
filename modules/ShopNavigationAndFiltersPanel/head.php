@@ -79,7 +79,7 @@ jQuery(document).ready(function() {
 });
 
 function cutLongStringAll(){
-    $(".ShopFilterGroupSelectShortValue div").each(function() {
+    $(".ShopFilterGroupSelectShortValue .ShopFilterElementBlock").each(function() {
         cutLongString($(this), ShopFilterGroupSelectShortValueTextLimit, true);
     });
 }
@@ -134,105 +134,140 @@ function setGroupSelectValueStringInBlock (obj) {
     cutLongString($("#"+ShortBlockId+ " .ShopFilterGroupSelectShortValue div"), ShopFilterGroupSelectShortValueTextLimit, true);
 }
 
-function unsetFilterValueForPropId(propertyId) {
+function unsetFilterValueForPropId(propertyId, update) {
     var filterType = $('#ShopFilterElementValueBlockConteiner_' + propertyId).attr('filterType');
     if(filterType == 'ItemName') {
-        unsetFilterValue_ItemName();
+        unsetFilterValue_ItemName(update);
     } else if (filterType == 'Action') {
-        unsetFilterValue_Action();
+        unsetFilterValue_Action(update);
     } else if (filterType == 'InStock') {
-        unsetFilterValue_InStock();
+        unsetFilterValue_InStock(update);
     } else if(filterType == 'ItemPrise') {
-        unsetFilterValue_ItemPrise();
+        unsetFilterValue_ItemPrise(update);
     } else if(filterType == 'Subgroup') {
-        unsetFilterValue_Subgroup();
+        unsetFilterValue_Subgroup(update);
     } else if(filterType == 'text') {
-        unsetFilterValue_text($('#ShopFilterElementValueBlockConteiner_' + propertyId));
+        unsetFilterValue_text($('#ShopFilterElementValueBlockConteiner_' + propertyId), update);
     } else if(filterType == 'select') {
-        unsetFilterValue_select($('#ShopFilterElementValueBlockConteiner_' + propertyId));
+        unsetFilterValue_select($('#ShopFilterElementValueBlockConteiner_' + propertyId), update);
     } else if(filterType == 'range') {
-        unsetFilterValue_range($('#ShopFilterElementValueBlockConteiner_' + propertyId));
+        unsetFilterValue_range($('#ShopFilterElementValueBlockConteiner_' + propertyId), update);
     } else if(filterType == 'groupSelect') {
-        unsetFilterValue_groupSelect($('#ShopFilterElementValueBlockConteiner_' + propertyId));
+        unsetFilterValue_groupSelect($('#ShopFilterElementValueBlockConteiner_' + propertyId), update);
     } else if(filterType == 'bool') {
-        unsetFilterValue_bool($('#ShopFilterElementValueBlockConteiner_' + propertyId));
+        unsetFilterValue_bool($('#ShopFilterElementValueBlockConteiner_' + propertyId), update);
     }
 }
 
-function unsetFilterValueElementForPropId(propertyId, value) {
+function unsetFilterValueElementForPropId(propertyId, value, update) {
     var filterType = $('#ShopFilterElementValueBlockConteiner_' + propertyId).attr('filterType');
     if(filterType == 'groupSelect') {
         unsetFilterValue_groupSelectElement($('#ShopFilterElementValueBlockConteiner_' + propertyId),value);
     } else {
+        if(update) {
+            getShopItemsList();
+        }
+    }
+}
+
+function unsetFilterValue_bool(obj, update) {
+    $(obj).find('.FilterTypeBool').removeAttr("checked");
+    if(update) {
         getShopItemsList();
     }
 }
 
-function unsetFilterValue_bool(obj) {
-    $(obj).find('.FilterTypeBool').removeAttr("checked");
-    getShopItemsList();
-}
-
-function unsetFilterValue_groupSelect(obj) {
+function unsetFilterValue_groupSelect(obj, update) {
     $(obj).find('.FilterTypeGroupSelect').removeAttr("checked");
     $(obj).find('.ShopFilterGroupSelectShortValue div').html('');
-    getShopItemsList();
+    if(update) {
+        getShopItemsList();
+    }
 }
-function unsetFilterValue_groupSelectElement(obj, value) {
+
+function unsetFilterValue_groupSelectElement(obj, value, update) {
     $(obj).find('.FilterTypeGroupSelect').each(function () {
         if($(this).val() == value) {
             $(this).removeAttr("checked");
             setGroupSelectValueStringInBlock (this);
         }
     });
-    getShopItemsList();
+    if(update) {
+        getShopItemsList();
+    }
 }
 
-function unsetFilterValue_range(obj) {
+function unsetFilterValue_range(obj, update) {
     $(obj).find('.MINrange').val('');
     $(obj).find('.MAXrange').val('');
-    getShopItemsList();
+    if(update) {
+        getShopItemsList();
+    }
 }
 
-function unsetFilterValue_select(obj) {
+function unsetFilterValue_select(obj, update) {
     $(obj).find('.selectBox').val('');
-    getShopItemsList();
+    if(update) {
+        getShopItemsList();
+    }
 }
 
-function unsetFilterValue_text(obj) {
+function unsetFilterValue_text(obj, update) {
     $(obj).find('.FilterTypeText').val('');
-    getShopItemsList();
+    if(update) {
+        getShopItemsList();
+    }
 }
 
-function unsetFilterValue_ItemName() {
+function unsetFilterValue_ItemName(update) {
     $('.ShopFilterElementValueBlock #ItemName').val('');
-    getShopItemsList();
+    if(update) {
+        getShopItemsList();
+    }
 }
 
-function unsetFilterValue_Action() {
+function unsetFilterValue_Action(update) {
     $('.ShopFilterElementValueBlock #Action').val('all');
-    getShopItemsList();
+    if(update) {
+        getShopItemsList();
+    }
 }
 
-function unsetFilterValue_InStock() {
+function unsetFilterValue_InStock(update) {
     $('.ShopFilterElementValueBlock #InStock').val('inStockAndOrder');
-    getShopItemsList();
+    if(update) {
+        getShopItemsList();
+    }
 }
 
-function unsetFilterValue_ItemPrise() {
+function unsetFilterValue_ItemPrise(update) {
     $('.ShopFilterElementValueBlock #ItemPrise_min').val('');
     $('.ShopFilterElementValueBlock #ItemPrise_max').val('');
-    getShopItemsList();
+    if(update) {
+        getShopItemsList();
+    }
 }
 
-function unsetFilterValue_Subgroup() {
+function unsetFilterValue_Subgroup(update) {
     var thisGroup = '<?php echo ShopPageInfoHelper::shopPageGroupId();?>';
     if(thisGroup == '') {
         thisGroup = 'SYSTEM_ROOT_GROUP';
     }
     $('.ShopFilterElementValueBlock #Subgroup').val(thisGroup);
-    getShopItemsList();
+    if(update) {
+        getShopItemsList();
+    }
 }
+
+
+function cleanAllFiltersValueInPanel() {
+    $(".ShopPropertiesFilterForm .ShopFilterElementBlock").each(function() {
+        var propertyId = $(this).attr('propertyId');
+        unsetFilterValueForPropId(propertyId, false);
+        updateShopItemsList();
+    });
+}
+
 </script>
 
 <?php

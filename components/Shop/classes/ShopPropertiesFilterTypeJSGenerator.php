@@ -110,7 +110,7 @@ class ShopPropertiesFilterTypeJSGenerator {
         $this->HTML .= '        cache: false,';
         $this->HTML .= '        success: function(result) {';
         $this->HTML .= '                $("#PrValStr_" + propertyId).remove();';
-        $this->HTML .= '                unsetFilterValueForPropId(propertyId);';
+        $this->HTML .= '                unsetFilterValueForPropId(propertyId,true);';
         $this->HTML .= '        }';
         $this->HTML .= '    });';
         $this->HTML .= '        return true;';
@@ -143,8 +143,7 @@ class ShopPropertiesFilterTypeJSGenerator {
         $this->HTML .= '                },';
         $this->HTML .= '        cache: false,';
         $this->HTML .= '        success: function(result) {';
-        $this->HTML .= '                $(".c_block.Shop").append(result);';
-        $this->HTML .= '                updateShopItemsList();';
+        $this->HTML .= '                cleanAllFiltersValueInPanel();';
         $this->HTML .= '        }';
         $this->HTML .= '    });';
         $this->HTML .= '};';

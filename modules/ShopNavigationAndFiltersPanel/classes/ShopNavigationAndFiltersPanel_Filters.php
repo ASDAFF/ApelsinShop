@@ -595,7 +595,7 @@ class ShopNavigationAndFiltersPanel_Filters {
     private function getFilterBlock($groupID, $propertyID) {
         $out = '';
         if(!isset($this->allGroupPropertiesData[$groupID][$propertyID]['filterType']) || $this->allGroupPropertiesData[$groupID][$propertyID]['filterType'] != 'none') {
-            $out .= '<div class="ShopFilterElementBlock" id="ShopFilterElementBlock_'.$propertyID.'">';
+            $out .= '<div class="ShopFilterElementBlock" id="ShopFilterElementBlock_'.$propertyID.'" groupID="'.$groupID.'" propertyID="'.$propertyID.'">';
             $out .= '<div class="ShopFilterElementUnsetButton" propertyId="'.$propertyID.'"></div>';
             $out .= '<div class="ShopFilterElementNameBlock">';
             $out .= $this->getFilterName($groupID, $propertyID);
