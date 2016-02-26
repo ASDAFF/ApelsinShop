@@ -1,3 +1,7 @@
+<?php
+include_once './components/Shop/classes/ShopIncludeClasses.php';
+ShopIncludeClasses::includeAllClasses();
+?>
 <script type="text/javascript">
 var shopItemsListTimer; // Таймер для запроса данных по задержке;
 var shopItemsListTime = 2000; // время на задержку при запросе данных;
@@ -223,9 +227,6 @@ function unsetFilterValue_Subgroup() {
 </script>
 
 <?php
-include_once './components/Shop/classes/ShopIncludeClasses.php';
-ShopIncludeClasses::includeAllClasses();
-
 global $ShopNavigationAndFiltersPanel;
 if(!isset($ShopNavigationAndFiltersPanel) || $ShopNavigationAndFiltersPanel === null) {
     $ShopNavigationAndFiltersPanel = new ShopNavigationAndFiltersPanel();
