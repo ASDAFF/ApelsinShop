@@ -232,7 +232,7 @@ class AP_WorkingWithShopCatalog_EditGroup extends AP_WorkingWithShopCatalog_Gene
         if (isset($this->propertyInGroupId[$property])) {
             return $this->propertyInGroupId[$property];
         } else {
-            return $this->insertValue['id'] . "-" . $property;
+            return $this->insertValue['id'] . $property;
         }
     }
 
@@ -341,21 +341,18 @@ class AP_WorkingWithShopCatalog_EditGroup extends AP_WorkingWithShopCatalog_Gene
 
     private function insertExecute() {
         $newGroup = "UPDATE `ShopGroups` SET ";
-        $newGroup .= "`id` = '" . $this->insertValue['id'] . "', ";
         $newGroup .= "`groupName` = '" . $this->insertValue['groupName'] . "', ";
         $newGroup .= "`shown` = '" . $this->insertValue['shown'] . "', ";
-        $newGroup .= "`showInHierarchy` = '" . $this->insertValue['showInHierarchy'] . "', ";
-        $newGroup .= "`systemGroup` = '0' ";
+        $newGroup .= "`showInHierarchy` = '" . $this->insertValue['showInHierarchy'] . "'";
         $newGroup .= " WHERE `id`='" . $this->insertValue['id'] . "';";
         $this->SQL_HELPER->insert($newGroup);
-        if ($this->parent != null) {
-            $groupHierarchy = "UPDATE `ShopGroupsHierarchy` SET ";
-            $groupHierarchy .= "`group` = '" . $this->insertValue['id'] . "', ";
-            $groupHierarchy .= "`parentGroup` = '" . $this->parent . "'";
-            $groupHierarchy .= " WHERE `group`='" . $this->insertValue['id'] . "';";
-            $this->SQL_HELPER->insert($groupHierarchy);
-        }
-
+//        if ($this->parent != null) {
+//            $groupHierarchy = "UPDATE `ShopGroupsHierarchy` SET ";
+//            $groupHierarchy .= "`group` = '" . $this->insertValue['id'] . "', ";
+//            $groupHierarchy .= "`parentGroup` = '" . $this->parent . "'";
+//            $groupHierarchy .= " WHERE `group`='" . $this->insertValue['id'] . "';";
+//            $this->SQL_HELPER->insert($groupHierarchy);
+//        }
         if (!empty($this->insertValue['property'])) {
             $this->getInsertInShopPropertiesInGroups();
             $this->getInsertInShopPropertiesInGroupsRanking();
@@ -370,7 +367,7 @@ class AP_WorkingWithShopCatalog_EditGroup extends AP_WorkingWithShopCatalog_Gene
         foreach ($this->insertValue['property'] as $propertyId) {
             if (!in_array($propertyId, $this->parentPropertyId) && !in_array($propertyId, $this->personalPropertyId)) {
                 $property = "INSERT INTO `ShopPropertiesInGroups` SET ";
-                $property .= "`id` = '" . $this->insertValue['id'] . "-" . $propertyId . "', ";
+                $property .= "`id` = '" . $this->getPropertyInGroupId($propertyId) . "', ";
                 $property .= "`group` = '" . $this->insertValue['id'] . "', ";
                 $property .= "`property` = '" . $propertyId . "', ";
                 $property .= "`sequence` = '" . $i++ . "';";
@@ -379,10 +376,10 @@ class AP_WorkingWithShopCatalog_EditGroup extends AP_WorkingWithShopCatalog_Gene
             }
             foreach ($this->personalPropertyId as $personalId) {
                 if (!in_array($personalId, $this->insertValue['property'])) {
-                    $propertyId = $this->insertValue['id'] . "-" . $personalId;
-                    $query = "DELETE FROM `ShopPropertiesInGroups` WHERE `id` = '" . $propertyId . "';";
+                    $propertyInGroupId = $this->getPropertyInGroupId($propertyId);
+                    $query = "DELETE FROM `ShopPropertiesInGroups` WHERE `id` = '" . $propertyInGroupId . "';";
                     $this->SQL_HELPER->insert($query);
-                    $this->delChildrenProperty($propertyId);
+                    $this->delChildrenProperty($propertyInGroupId);
                     $this->deleteProperty[$personalId] = $personalId;
                 }
             }
@@ -399,7 +396,7 @@ class AP_WorkingWithShopCatalog_EditGroup extends AP_WorkingWithShopCatalog_Gene
                 if (in_array($propertyId, $this->personalPropertyNew)) {
                     $propertySequenceUpdate2 = "UPDATE `ShopPropertiesInGroups` SET ";
                     $propertySequenceUpdate2 .= "`sequence` = '" . $sequence++ . "'";
-                    $propertySequenceUpdate2 .= " WHERE `id`='" . $this->insertValue['id'] . "-" . $propertyId . "';";
+                    $propertySequenceUpdate2 .= " WHERE `id`='" . $this->getPropertyInGroupId($propertyId) . "';";
                     $this->SQL_HELPER->insert($propertySequenceUpdate2);
                 }
             }

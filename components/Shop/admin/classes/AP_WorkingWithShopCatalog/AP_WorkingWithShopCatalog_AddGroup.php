@@ -208,7 +208,7 @@ class AP_WorkingWithShopCatalog_AddGroup extends AP_WorkingWithShopCatalog_Gener
         if (isset($this->propertyInGroupId[$property])) {
             return $this->propertyInGroupId[$property];
         } else {
-            return $this->insertValue['id'] . "-" . $property;
+            return $this->insertValue['id'] . $property;
         }
     }
 
@@ -328,7 +328,7 @@ class AP_WorkingWithShopCatalog_AddGroup extends AP_WorkingWithShopCatalog_Gener
         foreach ($this->insertValue['property'] as $propertyId) {
             if (!in_array($propertyId, $this->parentPropertyId)) {
                 $property = "INSERT INTO `ShopPropertiesInGroups` SET ";
-                $property .= "`id` = '" . $this->insertValue['id'] . "-" . $propertyId . "', ";
+                $property .= "`id` = '" . $this->getPropertyInGroupId($propertyId) . "', ";
                 $property .= "`group` = '" . $this->insertValue['id'] . "', ";
                 $property .= "`property` = '" . $propertyId . "', ";
                 $property .= "`sequence` = '" . $i++ . "';";
