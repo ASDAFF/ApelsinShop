@@ -26,25 +26,36 @@ class ShopPropertiesFilterTypeGetPostData {
     private static function getShopGroupsPropertiesID($groupID) {
         if(!isset(self::$allGroupProperties[$groupID]) || empty(self::$allGroupProperties[$groupID])) {
             self::$allGroupProperties[$groupID] = array();
-            $properties = array();
-            $groups = self::getGroupPath($groupID);
-            foreach ($groups as $group) {
-                $properties = array_merge($properties, self::getShopGroupProperties($group));
-            }
+            $properties = self::getShopGroupPropertiesData ($groupID);
             foreach ($properties as $property) {
                 self::$allGroupProperties[$groupID][] = $property['property'];
+                self::$allGroupPropertiesData[$groupID][$property['property']] = $property;
             }
         }
     }
 
-    private static function getShopGroupProperties($groupID) {
-        $query = "SELECT 
-            SPIG.`property`
-            FROM `ShopPropertiesInGroups` as SPIG
+    private static function getShopGroupPropertiesData ($groupID) {
+        $query = "SELECT
+            SPIGR.`group`,
+            SPIGR.`property`,
+            SPIGR.`sequence`,
+            SP.`propertyName`,
+            SP.`filterType`,
+            SP.`valueType`,
+            SP.`oneOfAllValues`
+            FROM
+                (SELECT
+                SPIG.`property`,
+                SPIG.`group`,
+                SPIGR.`sequence`
+                FROM `ShopPropertiesInGroupsRanking` AS SPIGR
+                LEFT JOIN `ShopPropertiesInGroups` AS SPIG
+                on SPIGR.`propertyInGroup` = SPIG.`id`
+                WHERE SPIGR.`group`='".$groupID."' 
+                AND SPIGR.`shown` > 0) AS SPIGR
             LEFT JOIN `ShopProperties` AS SP
-            ON SPIG.`property` = SP.`id`
-            WHERE `group`='".$groupID."' 
-            ORDER BY SPIG.`sequence` ASC";
+            ON SPIGR.`property` = SP.`id`
+            ORDER BY SPIGR.`sequence` ASC";
         return self::$SQL_HELPER->select($query);
     }
     
@@ -53,34 +64,6 @@ class ShopPropertiesFilterTypeGetPostData {
         $groups[] = $groupID;
         return $groups;
     }
-    
-    private static function getShopGroupPropertiesData($groupID) {
-        if(!isset(self::$allGroupPropertiesData[$groupID]) || empty(self::$allGroupPropertiesData[$groupID])) {
-            self::$allGroupPropertiesData[$groupID] = array();
-            $groups = self::getGroupPath($groupID);
-            $query = "SELECT 
-                SPIG.`group`,
-                SPIG.`property`,
-                SPIG.`sequence`,
-                SP.`propertyName`,
-                SP.`filterType`,
-                SP.`valueType`,
-                SP.`oneOfAllValues`
-                FROM `ShopPropertiesInGroups` as SPIG
-                LEFT JOIN `ShopProperties` AS SP
-                ON SPIG.`property` = SP.`id`
-                WHERE ";
-            foreach ($groups as $group) {
-                $query .= "`group`='".$group."' OR ";
-            }
-            $query = substr($query, 0,  strlen($query)-4).";";
-            $properties = self::$SQL_HELPER->select($query);
-            foreach ($properties as $property) {
-                self::$allGroupPropertiesData[$groupID][$property['property']] = $property;
-            }
-        }
-    }
-    
     
     private static function getPostValue($id, $falseValue = NULL) {
         if(isset($_POST[$id]) && $_POST[$id]!==NULL && $_POST[$id]!==NULL) {
