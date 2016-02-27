@@ -107,6 +107,7 @@ class ImportImage {
     public function importImage() {
         $this->counter = 0;
         foreach ($this->importImage as $image) {
+            set_time_limit(60);
             if ($image['status'] == 'export') {
                 $this->execute($image['name']);
                 $this->counter++;

@@ -95,6 +95,7 @@ class StatisticsFiles {
         $this->allFileExport = $this->scanDir($this->dirExport);
         $i = 0;
         foreach ($this->allFileExport as $this->image) {
+            set_time_limit(60);
             $pathImage = $this->dirExport . $this->image;
             // если есть в БД
             if ($this->getTextNameImage($this->image)) {
