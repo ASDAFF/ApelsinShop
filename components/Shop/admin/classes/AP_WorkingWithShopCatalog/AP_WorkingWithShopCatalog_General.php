@@ -138,7 +138,9 @@ class AP_WorkingWithShopCatalog_General {
         $out .= $property["filterType"] . ' / ' . $property["valueType"];
         $out .= '</div>';
         $out .= '<div class="addGroupDragDropListElementShow"  title="Отображение в фильтрах">';
-        $out .= InputHelper::select("addGroupDragDropListElementShowSelect[]", "addGroupDragDropListElementShowSelect", array(array('value' => "1", 'text' => "show"), array('value' => "0", 'text' => "hide")), true, "1");
+        if (isset($property["shown"])) {
+            $out .= InputHelper::select("addGroupDragDropListElementShowSelect[]", "addGroupDragDropListElementShowSelect", array(array('value' => "1", 'text' => "show"), array('value' => "0", 'text' => "hide")), true, $property["shown"]);
+        }
         $out .= '</div>';
         $out .= $show;
         $out .= '</div>';
@@ -275,6 +277,7 @@ class AP_WorkingWithShopCatalog_General {
                 $this->availableProperty[$i]['filterType'] = $value['filterType'];
                 $this->availableProperty[$i]['valueType'] = $value['valueType'];
                 $this->availableProperty[$i]['id'] = $value['property'];
+                $this->availableProperty[$i]['shown'] = $value['shown'];
                 $this->availableProperty[$i++]['oneOfAllValues'] = $value['oneOfAllValues'];
             }
         }
