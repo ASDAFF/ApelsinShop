@@ -60,6 +60,7 @@
 class AP_ImportItemsImage extends AP_ImportImages {
 
     public function __construct() {
+        set_time_limit(4000);
         parent::__construct();
         $this->getDirName('ITEMS/');
         $this->setAccessExtFile(['jpg', 'jpeg']);

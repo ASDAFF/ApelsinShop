@@ -315,6 +315,7 @@ class AP_ImportImages {
             $this->html .= '<p><span class="' . $class . '">' . $text . ': </span></p>';
             $this->html .= '<ol>';
             foreach ($info as $file) {
+                set_time_limit(300);
                 if ($flag) {
                     $nameFile = $this->getTextNameImage($file);
                     $this->html .= '<li>' . $nameFile . '</li>';
@@ -367,6 +368,7 @@ class AP_ImportImages {
     private function getStringAccessExtFile() {
         $out = '';
         foreach ($this->accessExtFile as $value) {
+            set_time_limit(300);
             $out .= $value . ', ';
         }
         return $out;
@@ -379,6 +381,7 @@ class AP_ImportImages {
     private function getStringAccessTypeFile() {
         $out = '';
         foreach ($this->accessTypeFile as $value) {
+            set_time_limit(300);
             $out .= $value . ', ';
         }
         return $out;

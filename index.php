@@ -4,7 +4,7 @@
 //$mtime = $mtime[1] + $mtime[0];
 //$tstart = $mtime;
 ini_set("memory_limit", "1024M");
-ini_set('max_execution_time', 1200);
+ini_set('max_execution_time', 5000);
 @session_start();
 // Включить отображение ошибок
 ini_set("display_errors",1);

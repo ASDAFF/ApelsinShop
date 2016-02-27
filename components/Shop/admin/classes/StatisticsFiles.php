@@ -95,7 +95,7 @@ class StatisticsFiles {
         $this->allFileExport = $this->scanDir($this->dirExport);
         $i = 0;
         foreach ($this->allFileExport as $this->image) {
-            set_time_limit(60);
+            set_time_limit(300);
             $pathImage = $this->dirExport . $this->image;
             // если есть в БД
             if ($this->getTextNameImage($this->image)) {
@@ -193,6 +193,7 @@ class StatisticsFiles {
             // сканируем и считываем в массив
             $all = scandir($dir);
             foreach ($all as $file) {
+                set_time_limit(300);
                 if (!is_dir($dir . $file) && $file !== '.' && $file !== '..') {
                     $filesArray[] = $file;
                 }

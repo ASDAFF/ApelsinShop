@@ -107,7 +107,7 @@ class ImportImage {
     public function importImage() {
         $this->counter = 0;
         foreach ($this->importImage as $image) {
-            set_time_limit(60);
+            set_time_limit(600);
             if ($image['status'] == 'export') {
                 $this->execute($image['name']);
                 $this->counter++;
@@ -132,11 +132,13 @@ class ImportImage {
         // если необходимо создать изображения разного размера
         if ($this->miniature !== null) {
             foreach ($this->miniature as $value) {
+                set_time_limit(300);
                 $mini->makeMiniature($value['w'], $value['h'], $pathTemp);
             }
             // перемещаем в dirImport
             $rename = $this->scanDir($this->dirTemp);
             foreach ($rename as $file) {
+                set_time_limit(300);
                 $this->renameImage($this->dirTemp . $file, $this->dirImport);
             }
         }
@@ -152,6 +154,7 @@ class ImportImage {
             // сканируем и считываем в массив
             $all = scandir($dir);
             foreach ($all as $file) {
+                set_time_limit(300);
                 if (!is_dir($dir . $file) && $file !== '.' && $file !== '..') {
                     $filesArray[] = $file;
                 }
