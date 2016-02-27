@@ -39,7 +39,9 @@ class ShopItemDataHelper {
         self::createObject();
         if (file_exists(self::$imageDir.$item.$imgSize.'.jpg')) {
             $image = $item.$imgSize.'.jpg';
-        } elseif (file_exists(self::$imageDir.$item.$imgSize.'.png')) {
+        } else if (file_exists(self::$imageDir.$item.$imgSize.'.jpeg')) {
+            $image = $item.$imgSize.'.jpeg';
+        } else if (file_exists(self::$imageDir.$item.$imgSize.'.png')) {
             $image = $item.$imgSize.'.png';
         } else {
             $image = self::$defaultIcon.$imgSize.'.png';
