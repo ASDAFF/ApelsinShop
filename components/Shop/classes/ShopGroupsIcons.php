@@ -40,9 +40,9 @@ class ShopGroupsIcons {
 
     private static function getGroupIconIteration_Menu_Background($groupID, $size = "") {
         if($size != "") {
-            $size = "_".$size."x".$size;
+            $sizeString = "_".$size."x".$size;
         }
-        $background = BackgroundGeneratorHelper::getBackgroundStyleImg(self::iconPath_NavPa, $groupID.$size);
+        $background = BackgroundGeneratorHelper::getBackgroundStyleImg(self::iconPath_NavPa, $groupID.$sizeString);
         $parentGroup = self::$shopGroupsHelper->getGroupParentID($groupID);
         if ($background === '' && $parentGroup != null) {
             $background = self::getGroupIconIteration_Menu_Background($parentGroup, $size);
