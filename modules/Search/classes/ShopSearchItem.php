@@ -68,9 +68,11 @@ class ShopSearchItem {
         } else {
             $imageDir = $this->dir . 'ITEMS/';
         }
-        if (file_exists($imageDir . $item . '_' . $this->imgSize . '.jpg')) {
+        if (file_exists('../../../'.$imageDir . $item . '_' . $this->imgSize . '.jpg')) {
             $image = $item . '_' . $this->imgSize . '.jpg';
-        } elseif (file_exists($imageDir . $item . '_' . $this->imgSize . '.png')) {
+        } else if (file_exists('../../../'.$imageDir . $item . '_' . $this->imgSize . '.jpeg')) {
+            $image = $item . '_' . $this->imgSize . '.jpeg';
+        } else if (file_exists('../../../'.$imageDir . $item . '_' . $this->imgSize . '.png')) {
             $image = $item . '_' . $this->imgSize . '.png';
         } else {
             $image = $this->defaultIcon;
