@@ -74,7 +74,7 @@ jQuery(document).ready(function() {
     
     jQuery('.ShopFilterElementUnsetButton').click(function(){
         var propertyId = $(this).attr('propertyId');
-        unsetFilterValueForPropId(propertyId);
+        unsetFilterValueForPropId(propertyId, true);
     });
 });
 

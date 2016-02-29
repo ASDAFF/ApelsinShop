@@ -129,7 +129,7 @@ class ShopPropertiesFilterTypeJSGenerator {
         $this->HTML .= '        success: function(result) {';
         $this->HTML .= '                $(".c_block.Shop").append(result);';
         $this->HTML .= '                $("#" + id).remove();';
-        $this->HTML .= '                unsetFilterValueElementForPropId(propertyId, value);';
+        $this->HTML .= '                unsetFilterValueElementForPropId(propertyId, value, true);';
         $this->HTML .= '        }';
         $this->HTML .= '    });';
         $this->HTML .= '};';
