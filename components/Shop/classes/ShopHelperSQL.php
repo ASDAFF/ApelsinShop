@@ -71,7 +71,9 @@ class ShopHelperSQL {
             $serchGroup = self::checkArrayValues($array,'Subgroup') ? self::getArrayValues($array,'Subgroup') : $groupID;
             $groups = self::$shopGroupsHelper->getGroupChildren($serchGroup);
             foreach ($groups as $group) {
-                $sql .= "`group`='".$group."' OR ";
+                if(!self::$shopGroupsHelper->groupIsHidden($group)) {
+                    $sql .= "`group`='".$group."' OR ";
+                }
             }
             if($sql !== '') {
                 $sql = " AND (". mb_substr($sql, 0,   mb_strlen($sql)-4).") ";
