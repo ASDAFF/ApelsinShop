@@ -372,7 +372,9 @@ class ShopHelperSQL {
             ) as t1
             LEFT JOIN `ShopItemsPrices` as t2
             on t1.`id` = t2.`item`
-            WHERE ".self::generateWhereSQL_Price($array,'t2')."
+            WHERE `shown` = '1'
+                AND `group` NOT IN (SELECT `id` FROM `ShopGroups` WHERE `systemGroup` > 0 OR `shown` < 1)
+                AND ".self::generateWhereSQL_Price($array,'t2')."
             ".self::generateOrderBySQL($groupID).self::generateLimitSQL($page).";
         ";
         return $sql;
