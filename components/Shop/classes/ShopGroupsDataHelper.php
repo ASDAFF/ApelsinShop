@@ -11,6 +11,8 @@ class ShopGroupsDataHelper {
     static private $object;
     static private $SQL_DATA;
     static private $allGroupsId;
+    
+    static private $hiddenGroups;
 
     /**
      * Конструктор вызывается автоматически
@@ -50,6 +52,9 @@ class ShopGroupsDataHelper {
         foreach ($rezult as $group) {
             self::$allGroupsId[] = $group['id'];
             self::$SQL_DATA['Groups'][$group['id']] = $group;
+            if($group['shown'] < 1) {
+                self::$SQL_DATA['hiddenGroups'][] = $group['id'];
+            }
         }
     }
 

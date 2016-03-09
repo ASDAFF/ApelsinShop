@@ -13,6 +13,7 @@ class ShopGroupsHelper {
     private $groupsTree; // Дерево групп
     private $groupPath; // Пути из родительских групп до указанной группы
     private $groupChildren; // Список всех дочерних групп указанной группы.
+    private $groupHidden;
     private $showHidden;
 
     public function __construct($showHidden = false) {
@@ -23,6 +24,7 @@ class ShopGroupsHelper {
         $this->rootGroups = ShopGroupsDataHelper::getData('RootGroups', $update);
         $this->groups = ShopGroupsDataHelper::getData('Groups', $update);
         $this->groupsHierarchyData = ShopGroupsDataHelper::getData('GroupsHierarchy', $update);
+        $this->groupHidden = ShopGroupsDataHelper::getData('hiddenGroups', $update);
         $this->showHidden = $showHidden;
         $this->getGroupsTree();
         $this->getGroupsPath();
@@ -250,6 +252,17 @@ class ShopGroupsHelper {
 
     public function update($showHidden = false) {
         $this->getShopGroupsHelperData($showHidden, true);
+    }
+    
+    public function groupIsHidden($groupID) {
+        $groupPath = $this->getGroupPath($groupID);
+        array_push($groupPath, $groupID);
+        foreach ($groupPath as $group) {
+            if(in_array($group, $this->groupHidden)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public function TEST_DATA() {
