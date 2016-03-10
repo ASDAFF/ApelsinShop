@@ -11,8 +11,6 @@ class ShopGroupsDataHelper {
     static private $object;
     static private $SQL_DATA;
     static private $allGroupsId;
-    
-    static private $hiddenGroups;
 
     /**
      * Конструктор вызывается автоматически

@@ -114,10 +114,34 @@ class ShopItem {
                 $this->HTML .= '</div></div>';  // ShopItemParamValue
                 $this->HTML .= '</div>';  // ShopItemParam
             }
+            $this->HTML .= $this->getShopItemsAmountForShops();
             $this->HTML .= '</div>';  // ShopItemParams
             $this->HTML .= '</div>';  // ShopItemMainBlock
             $this->HTML .= '<div class="clear"></div>';
         $this->HTML .= '</div>';  // ShopItemMainWrapper
+    }
+    
+    private function getShopItemsAmountForShops() {
+        $query = "SELECT 
+            SIA.`item`, 
+            SIA.`storage`, 
+            SIA.`value` , 
+            SS.`storageName` 
+            FROM `ShopItemsAmount` as SIA
+            LEFT JOIN `ShopStorages` as SS
+            ON SIA.`storage`=SS.`id`
+            WHERE SIA.`item` = '".$this->elementID."';";
+        $rezult = $this->SQL_HELPER->select($query);
+        $out = '<div class="ShopItemsAmountForShops">';
+        foreach ($rezult as $value) {
+            $out .= '<div class="ShopItemsAmountForShopsBlock">';
+            $out .= '<div class="ShopItemsAmountForShopsName">'.$value['storageName'].'</div>';
+            $out .= ShopItemAmountScale::getAmountScale($value['value'], $this->data['totalAmount']);
+//            $out .= '<div class="clear"></div>';
+            $out .= '</div>';
+        }
+        $out .= '</div>';
+        return $out;
     }
 
     /**

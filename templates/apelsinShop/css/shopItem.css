@@ -129,3 +129,37 @@
     vertical-align: middle;
     text-align: center;
 }
+
+
+.ShopItemMainWrapper .ShopItemsAmountForShops .ShopItemsAmountForShopsBlock {
+    height: 30px;
+}
+.ShopItemMainWrapper .ShopItemsAmountForShops .ShopItemsAmountForShopsName {
+    width: 300px;
+    text-align: right;
+    float: left;
+}
+.ShopItemMainWrapper .ShopItemsAmountForShops .ShopItemAmount {
+    margin: 5px;
+    height: 10px;
+    width: 60px;
+    background: #C3C3C3;
+    cursor: pointer;
+    float: left;
+}
+.ShopItemMainWrapper .ShopItemsAmountForShops .ShopItemAmount .ShopItemAmountScale {
+    height: 10px;
+    background: #00cf00;
+}
+.ShopItemMainWrapper .ShopItemsAmountForShops .ShopItemAmount .ShopItemAmountScale.VeryFew {
+    background: #CF0000;
+}
+.ShopItemMainWrapper .ShopItemsAmountForShops .ShopItemAmount .ShopItemAmountScale.Few {
+    background: #CF7600;
+}
+.ShopItemMainWrapper .ShopItemsAmountForShops .ShopItemAmount .ShopItemAmountScale.Suffice {
+    background: #CFB500;
+}
+.ShopItemMainWrapper .ShopItemsAmountForShops .ShopItemAmount .ShopItemAmountScale.Many {
+    background: #00cf00;
+}
