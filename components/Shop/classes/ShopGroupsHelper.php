@@ -264,6 +264,17 @@ class ShopGroupsHelper {
         }
         return false;
     }
+    public function getHiddenGroups() {
+        var_dump($this->getGroupChildren($this->groupHidden[0]));
+        return $this->groupHidden;
+    }
+    public function getAllHiddenGroups() {
+        $allHiddenGroups = array();
+        foreach ($this->groupHidden as $group) {
+            $allHiddenGroups = array_merge($allHiddenGroups,$this->getGroupChildren($group));
+        }
+        return $allHiddenGroups;
+    }
 
     public function TEST_DATA() {
         echo '<pre>';

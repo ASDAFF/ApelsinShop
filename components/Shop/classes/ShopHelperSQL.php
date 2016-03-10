@@ -83,6 +83,19 @@ class ShopHelperSQL {
         return $sql;
     }
     
+    private static function generateWhereSQL_IgnoreHideGroup() {
+        $hiddenGroups = self::$shopGroupsHelper->getAllHiddenGroups();
+        $sql = '';
+        if(!empty($hiddenGroups)) {
+            $sql .= " AND `group` NOT IN (SELECT `id` FROM `ShopGroups` WHERE ";
+            foreach ($hiddenGroups as $group) {
+                $sql .= "`group`='".$group."' OR ";
+            }
+            $sql = mb_substr($sql, 0,   mb_strlen($sql)-4).") ";
+        }
+        return $sql;
+    }
+    
     /**
      * Генерирует отсеивание по принадлежности к акционному товару.
      * @param array $array - параметры отсеивания
@@ -271,6 +284,7 @@ class ShopHelperSQL {
                 FROM (
                     SELECT `id` FROM `ShopItems` WHERE `shown` = '1' 
                     AND `group` NOT IN (SELECT `id` FROM `ShopGroups` WHERE `systemGroup` > 0) "
+                    .self::generateWhereSQL_IgnoreHideGroup()
                     .self::generateWhereSQL_Action($array)
                     .self::generateWhereSQL_InStock($array)
                     .self::generateWhereSQL_ItemName($array)."
@@ -282,6 +296,7 @@ class ShopHelperSQL {
         } else {
             $sql = "SELECT count(`id`) as amount FROM `ShopItems` WHERE `shown` = '1' 
                     AND `group` NOT IN (SELECT `id` FROM `ShopGroups` WHERE `systemGroup` > 0) "
+                .self::generateWhereSQL_IgnoreHideGroup()
                 .self::generateWhereSQL_Action($array)
                 .self::generateWhereSQL_InStock($array)
                 .self::generateWhereSQL_ItemName($array).";
@@ -329,6 +344,7 @@ class ShopHelperSQL {
                 FROM `ShopItems` 
                 WHERE `shown` = '1'
                 AND `group` NOT IN (SELECT `id` FROM `ShopGroups` WHERE `systemGroup` > 0)
+                ".self::generateWhereSQL_IgnoreHideGroup()."
                 ".self::generateWhereSQL_Action($array)."
                 ".self::generateWhereSQL_InStock($array)."
                 ".self::generateWhereSQL_ItemName($array)."
