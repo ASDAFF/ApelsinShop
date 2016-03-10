@@ -273,7 +273,7 @@ class ShopGroupsHelper {
         foreach ($this->groupHidden as $group) {
             $allHiddenGroups = array_merge($allHiddenGroups,$this->getGroupChildren($group));
         }
-        return $allHiddenGroups;
+        return array_merge($allHiddenGroups,$this->groupHidden);
     }
 
     public function TEST_DATA() {
