@@ -4,42 +4,61 @@
 .ShopNavigationAndFiltersPanelMenuMainBlock .ShopNavigationAndFiltersPanelMenuBlock {
     font: bold 12px/15px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
     height: 20px;
-    width: 160px;
+    width: 200px;
     padding: 5px 0px;
-    float: right;
+    float: left;
 }
-.ShopNavigationAndFiltersPanelMenuMainBlock .ShopNavigationAndFiltersPanelMenuBlock .ShopNavigationAndFiltersPanelMenuElement {
+.ShopNavigationAndFiltersPanelMenuMainBlock .ShopNavigationAndFiltersPanelMenuBlock.ItemBack {
+    width: 100px;
+/*    width: 200px;*/
+}
+.ShopNavigationAndFiltersPanelMenuMainBlock .ShopNavigationAndFiltersPanelMenuBlock .ShopNavigationAndFiltersPanelMenuElement,
+.ShopNavigationAndFiltersPanelMenuMainBlock .ShopNavigationAndFiltersPanelMenuBlock .BackOutFromItemPage {
     padding: 5px;
     height: 10px;
     display: block;
-    float: right;
+    float: left;
     font: bold 10px/10px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
     text-transform: uppercase;
-    border-left: 1px solid #ef7f1a;
+    /*border-left: 1px solid #ef7f1a;*/
+    /*border: 1px solid #ef7f1a;*/
+    border: none;
+    background: #C3C3C3;
+    color: #FFFFFF;
     cursor: pointer;
     -webkit-user-select: none;
     -moz-user-select: none;
     -khtml-user-select: none;
     user-select: none; 
-
+    margin-right: 5px;
+    width: 80px;
+    text-align: center;
 }
+/*.ShopNavigationAndFiltersPanelMenuMainBlock .ShopNavigationAndFiltersPanelMenuBlock .BackOutFromItemPage {
+    float: none;
+    margin: 0px auto;
+    width: 180px;
+}*/
 .ShopNavigationAndFiltersPanelMenuMainBlock .ShopNavigationAndFiltersPanelMenuBlock .ShopNavigationAndFiltersPanelMenuElement.thisOpen {
-    color: #ef7f1a;
+    background: #ef7f1a;
+    /*color: #ef7f1a;*/
 }
-.ShopNavigationAndFiltersPanelMenuMainBlock .ShopNavigationAndFiltersPanelMenuBlock .ShopNavigationAndFiltersPanelMenuElement:hover {
-    color: #ef7f1a;
+.ShopNavigationAndFiltersPanelMenuMainBlock .ShopNavigationAndFiltersPanelMenuBlock .ShopNavigationAndFiltersPanelMenuElement:hover,
+.ShopNavigationAndFiltersPanelMenuMainBlock .ShopNavigationAndFiltersPanelMenuBlock .BackOutFromItemPage:hover {
+    background: #ef7f1a;
+    /*color: #ef7f1a;*/
 }
 /*.ShopNavigationAndFiltersPanelMenuMainBlock .ShopNavigationAndFiltersPanelMenuBlock .ShopNavigationAndFiltersPanelMenuElement:first-child {
     border: none;
 }*/
-.ShopNavigationAndFiltersPanelMenuMainBlock .ShopNavigationAndFiltersPanelMenuBlock .ShopNavigationAndFiltersPanelMenuElement:last-child {
+/*.ShopNavigationAndFiltersPanelMenuMainBlock .ShopNavigationAndFiltersPanelMenuBlock .ShopNavigationAndFiltersPanelMenuElement:last-child {
     border: none;
-}
+}*/
 .ShopNavigationAndFiltersPanelMenuMainBlock .ShopNavigationAndFiltersPanelMenuBlock .ShopNavigationAndFiltersPanelMenuElement.closeButton {
     display: none;
 }
 .ShopNavigationAndFiltersPanelMenuMainBlock .ThisGroupPathPanel {
-    width: 800px;
+    width: 760px;
     float: left;
 }
 
