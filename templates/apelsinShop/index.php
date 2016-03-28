@@ -20,6 +20,7 @@
         <link rel="stylesheet" href="<?php $ROOT->templatePath(); ?>css/account.css" type="text/css" />
         <link rel="stylesheet" href="<?php $ROOT->templatePath(); ?>css/AdminPanel.css" type="text/css" />
         <link rel="stylesheet" href="<?php $ROOT->templatePath(); ?>css/ShopGroupsTree.css" type="text/css" />
+        <link rel="stylesheet" href="<?php $ROOT->templatePath(); ?>css/ShopLastItems.css" type="text/css" />
         
         <link rel="stylesheet" href="<?php $ROOT->templatePath(); ?>css/ShopNavigationAndFiltersPanel.css" type="text/css" />
         <link rel="stylesheet" href="<?php $ROOT->templatePath(); ?>css/ShopNavigationAndFiltersPanel_Filters.css" type="text/css" />

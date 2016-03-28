@@ -270,7 +270,10 @@ ul li:before {
 
 
 .Wraper .ContentWraper .ContentBlock .ContentBottomWraper {}
-.Wraper .ContentWraper .ContentBlock .ContentBottomWraper .ContentBottomBlock {}
+.Wraper .ContentWraper .ContentBlock .ContentBottomWraper .ContentBottomBlock {
+    margin: 0 auto;
+    width: 960px;
+}
 .Wraper .AfterContentWraper {}
 .Wraper .AfterContentWraper .AfterContentBlock {}
 .Wraper .FutterWraper {

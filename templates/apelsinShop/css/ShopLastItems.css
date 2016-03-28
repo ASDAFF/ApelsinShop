@@ -1,0 +1,39 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 28.03.2016, 10:36:45
+    Author     : Максим
+*/
+.ShopLastItemsBlock {}
+.ShopLastItemsBlock .ShopLastItemsBlockTitle {
+    font: bold 15px/20px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    color: #6d6d6d;
+}
+.ShopLastItemsBlock .ShopLastItemsElementBlock {
+    float: left;
+    width: 158px;
+    padding: 3px 0px 10px 0px;
+    border: 1px transparent solid;
+    position: relative;
+}
+.ShopLastItemsBlock .ShopLastItemsElementBlock:hover {
+    /*border: 1px #ef7f1a solid;*/
+    background: #F8F8F8;
+    cursor: pointer;
+}
+
+.ShopLastItemsBlock .ShopLastItemsElementBlock .ShopLastItemsElementBlock_ItemName {
+    width: 140px;
+    height: 60px;
+    margin: 0 auto;
+    font: 10px/10px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+}
+.ShopLastItemsBlock .ShopLastItemsElementBlock .ShopLastItemsElementBlock_ItemName div {
+    height: 60px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
