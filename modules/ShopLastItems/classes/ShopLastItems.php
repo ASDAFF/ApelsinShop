@@ -73,6 +73,7 @@ class ShopLastItems {
     
     private function getCookies() {
         $this->cookies = array();
+        $cookiesTemp = array();
         if(isset($_COOKIE["ShopLastItemsCookies"])) {
             $cookiesTemp = explode(";",$_COOKIE["ShopLastItemsCookies"]);
         }
