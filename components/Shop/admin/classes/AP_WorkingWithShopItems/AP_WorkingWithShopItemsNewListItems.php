@@ -151,19 +151,11 @@ class AP_WorkingWithShopItemsNewListItems extends AP_WorkingWithShopItemsNewGene
         return $out;
     }
 
-    private function getDataRight($data) {
-        foreach ($data as &$item) {
-            $this->replaceName($item);
-        }
-        return $data;
-    }
-
     private function getDataItem() {
         $query = "SELECT `id`, `itemName`, `directoryPath`, `status` FROM `ShopItems` WHERE "
                 . "`group` = '" . SystemGroupIdConstants::SYSTEM_GROUP_UNALLOCATED_ITEMS . "' "
                 . "OR `group` = '" . SystemGroupIdConstants::SYSTEM_GROUP_FOR_NEW_ITEMS . "' GROUP BY `directoryPath`;";
-        $result = $this->SQL_HELPER->select($query);
-        $this->data = $this->getDataRight($result);
+        $this->data = $this->SQL_HELPER->select($query);
     }
 
     private function generationUI() {
