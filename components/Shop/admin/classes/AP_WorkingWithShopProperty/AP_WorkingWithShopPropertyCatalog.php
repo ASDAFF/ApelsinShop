@@ -134,9 +134,9 @@ class AP_WorkingWithShopPropertyCatalog {
         $this->html .= '</div>'; // ShopPropertyCatalogMainBlock
 
         $this->html .= '<div class="ShopPropertyCatalogBottomBlock">';
-        $this->html .= '<div class="ShopPropertyCatalogTopBlockAddProperty">';
-        $this->html .= '<div class="ShopPropertyCatalogButtonAdd">Создать новое свойство</div>';
-        $this->html .= '</div>';
+//        $this->html .= '<div class="ShopPropertyCatalogTopBlockAddProperty">';
+//        $this->html .= '<div class="ShopPropertyCatalogButtonAdd">Создать новое свойство</div>';
+//        $this->html .= '</div>';
         $this->html .= '</div>'; // ShopPropertyCatalogButtomBlock
 
         $this->html .= '</div>'; //ShopPropertyCatalog

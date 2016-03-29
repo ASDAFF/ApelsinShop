@@ -63,7 +63,7 @@ ShopIncludeClasses::includeAllClasses('../../', '../../../../modules/ShopNavigat
 include_once '../../../../plugins/InteractiveLists/classes/InteractiveListsPlugin.php';
 
 include_once '../classes/AP_WorkingWithShopCatalog/AP_WorkingWithShopCatalog_General.php';
-include_once '../classes/AP_WorkingWithShopProperty/AP_WorkingWithShopCatalog_AddNewProperty.php';
+include_once '../classes/AP_WorkingWithShopCatalog/AP_WorkingWithShopCatalog_AddNewProperty.php';
 include_once '../classes/AP_WorkingWithShopProperty/AP_WorkingWithShopPropertyCatalog.php';
 
 global $_SQL_HELPER;
