@@ -66,6 +66,7 @@ class AP_WorkingWithShopItemsNewGeneral {
     protected $dataListElement;
     protected $items;
     protected $data;
+    protected $dataListElementGroups = array();
 
     public function __construct() {
         global $_SQL_HELPER;
@@ -84,16 +85,6 @@ class AP_WorkingWithShopItemsNewGeneral {
         $item['directoryPath'] = $this->cropString($item['directoryPath']);
         $item['directoryPath'] = str_replace("[", "", $item['directoryPath']);
         $item['directoryPath'] = str_replace("]", "", $item['directoryPath']);
-    }
-
-    protected function sortDataItem() {
-        $this->dataListElement = [];
-        foreach ($this->data as $item) {
-            $this->dataListElement[$item['directoryPath']][$item['id']]['itemName'] = $item['itemName'];
-            $this->dataListElement[$item['directoryPath']][$item['id']]['id'] = $item['id'];
-            $this->dataListElement[$item['directoryPath']][$item['id']]['directoryPath'] = $item['directoryPath'];
-            $this->dataListElement[$item['directoryPath']][$item['id']]['status'] = $item['status'];
-        }
     }
 
     protected function cropString($path) {

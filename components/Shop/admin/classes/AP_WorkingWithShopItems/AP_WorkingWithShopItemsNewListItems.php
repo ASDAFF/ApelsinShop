@@ -152,9 +152,9 @@ class AP_WorkingWithShopItemsNewListItems extends AP_WorkingWithShopItemsNewGene
     }
 
     private function getDataItem() {
-        $query = "SELECT `id`, `itemName`, `directoryPath`, `status` FROM `ShopItems` WHERE "
+        $query = "SELECT `id`, `itemName`, `directory`, `directoryPath`, `status` FROM `ShopItems` WHERE "
                 . "`group` = '" . SystemGroupIdConstants::SYSTEM_GROUP_UNALLOCATED_ITEMS . "' "
-                . "OR `group` = '" . SystemGroupIdConstants::SYSTEM_GROUP_FOR_NEW_ITEMS . "' GROUP BY `directoryPath`;";
+                . "OR `group` = '" . SystemGroupIdConstants::SYSTEM_GROUP_FOR_NEW_ITEMS . "';";
         $this->data = $this->SQL_HELPER->select($query);
     }
 
@@ -173,6 +173,20 @@ class AP_WorkingWithShopItemsNewListItems extends AP_WorkingWithShopItemsNewGene
         $this->html .= '</div>'; // newItemCatalogWrapper
     }
 
+
+    private function sortDataItem() {
+        $this->dataListElement = [];
+        foreach ($this->data as $item) {
+            if(!isset($this->dataListElementGroups[$item['directory']])) {
+                $this->dataListElementGroups[$item['directory']] = $item['directoryPath'];
+            }
+            $this->dataListElement[$item['directory']][$item['id']]['itemName'] = $item['itemName'];
+            $this->dataListElement[$item['directory']][$item['id']]['id'] = $item['id'];
+            $this->dataListElement[$item['directory']][$item['id']]['directoryPath'] = $item['directoryPath'];
+            $this->dataListElement[$item['directory']][$item['id']]['status'] = $item['status'];
+            $this->dataListElement[$item['directory']][$item['id']]['directory'] = $item['directory'];
+        }
+    }
     private function generationGroup() {
         $out = '';
         foreach ($this->dataListElement as $group => $items) {
@@ -181,7 +195,7 @@ class AP_WorkingWithShopItemsNewListItems extends AP_WorkingWithShopItemsNewGene
             $out .= '<div class="newItemListGroupTitle">';
             $out .= '<div class="newItemListGroupTitleButtonSelectAll newItemListGroupTitleButton checkboxNone" id="newItemListGroupTitleButtonSelectAll" title="" blockId="' . $id . '">Выделить</div>';
             $out .= '<div class="newItemListGroupTitleButtonCancelAll newItemListGroupTitleButton" id="newItemListGroupTitleButtonCancelAll" title="" blockId="' . $id . '">Очистить</div>';
-            $out .= '<div class="newItemListGroupTitleText" blockId="' . $id . '" title="показать/скрыть">' . $group . '</div>';
+            $out .= '<div class="newItemListGroupTitleText" blockId="' . $id . '" title="показать/скрыть">' . $this->dataListElementGroups[$group] . '</div>';
             $out .= '<div class="clear"></div>';
             $out .= '</div>';
             $out .= '<div class="newItemListGroupWrapper" style="display: none">';
