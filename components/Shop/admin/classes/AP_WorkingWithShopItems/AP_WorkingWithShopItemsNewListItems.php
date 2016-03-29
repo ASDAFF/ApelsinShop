@@ -154,7 +154,7 @@ class AP_WorkingWithShopItemsNewListItems extends AP_WorkingWithShopItemsNewGene
     private function getDataItem() {
         $query = "SELECT `id`, `itemName`, `directory`, `directoryPath`, `status` FROM `ShopItems` WHERE "
                 . "`group` = '" . SystemGroupIdConstants::SYSTEM_GROUP_UNALLOCATED_ITEMS . "' "
-                . "OR `group` = '" . SystemGroupIdConstants::SYSTEM_GROUP_FOR_NEW_ITEMS . "';";
+                . "OR `group` = '" . SystemGroupIdConstants::SYSTEM_GROUP_FOR_NEW_ITEMS . "' ORDER BY `directoryPath`;";
         $this->data = $this->SQL_HELPER->select($query);
     }
 
