@@ -129,7 +129,8 @@ class AP_WorkingWithShopCatalog_EditGroup extends AP_WorkingWithShopCatalog_Gene
         $out .= '<div class="addGroupCatalogGroupNameWrapper">';
         $out .= '<div class="addGroupCatalogGroupName">';
         $out .= '<div class="addGroupCatalogGroupNameInput">';
-        $out .= InputHelper::paternTextBox('groupName', 'groupName', 'groupName', 50, false, "Название каталога", "[А-Яа-яA-Za-z0-9][^@#$%&*]{3,50}", $this->originalInsertValue['groupName']);
+//        $out .= InputHelper::paternTextBox('groupName', 'groupName', 'groupName', 50, false, "Название каталога", "[А-Яа-яA-Za-z0-9][^@#$%&*]{3,50}", $this->originalInsertValue['groupName']);
+        $out .= InputHelper::textBox('groupName', 'groupName', 'groupName', 50, false, $this->originalInsertValue['groupName']);
         $out .= '</div>';
         $out .= '</div>';
         $out .= '<div class="addGroupCatalogGroupVisible">';
@@ -264,7 +265,7 @@ class AP_WorkingWithShopCatalog_EditGroup extends AP_WorkingWithShopCatalog_Gene
     private function getListParentProperty() {
         $i = 0;
         foreach ($this->path as $group) {
-            $propertiesInGroupsRanking = $this->helperGroup->getGroupInfo($group,true);
+            $propertiesInGroupsRanking = $this->helperGroup->getGroupInfo($group, true);
             if ($propertiesInGroupsRanking != null) {
                 foreach ($propertiesInGroupsRanking['properties']['personal'] as $value) {
                     $this->parentPropertyId[$i] = $value['property'];
@@ -321,15 +322,19 @@ class AP_WorkingWithShopCatalog_EditGroup extends AP_WorkingWithShopCatalog_Gene
 
     private function checkAllValue() {
         $error = false;
-        if (isset($_POST['groupName']) && $_POST['groupName'] != null && $_POST['groupName'] != "") {
-            if (!InputValueHelper::checkValue('groupName', "/[А-Яа-яA-Za-z0-9][^@#$%&*]{3,50}/")) {
-                $error = true;
-                $this->checkAllValueErrors[] = "Разрешены латинские буквы, кирилические буквы, цифры и щаник тире и нижнее подчеркивание";
-            }
-        } else {
+        if (!isset($_POST['groupName']) || $_POST['groupName'] == null || $_POST['groupName'] == "") {
             $error = true;
             $this->checkAllValueErrors[] = "Название каталога - обязательное поле ";
         }
+//        if (isset($_POST['groupName']) && $_POST['groupName'] != null && $_POST['groupName'] != "") {
+//            if (!InputValueHelper::checkValue('groupName', "/[А-Яа-яA-Za-z0-9][^@#$%&*]{3,50}/")) {
+//                $error = true;
+//                $this->checkAllValueErrors[] = "Разрешены латинские буквы, кирилические буквы, цифры и щаник тире и нижнее подчеркивание";
+//            }
+//        } else {
+//            $error = true;
+//            $this->checkAllValueErrors[] = "Название каталога - обязательное поле ";
+//        }
         if ($this->insertValue['groupName'] !== $this->oldName) {
             if (!$this->checkDuplicateGroupName()) {
                 $error = true;
@@ -353,10 +358,8 @@ class AP_WorkingWithShopCatalog_EditGroup extends AP_WorkingWithShopCatalog_Gene
 //            $groupHierarchy .= " WHERE `group`='" . $this->insertValue['id'] . "';";
 //            $this->SQL_HELPER->insert($groupHierarchy);
 //        }
-        if (!empty($this->insertValue['property'])) {
-            $this->getInsertInShopPropertiesInGroups();
-            $this->getInsertInShopPropertiesInGroupsRanking();
-        }
+        $this->getInsertInShopPropertiesInGroups();
+        $this->getInsertInShopPropertiesInGroupsRanking();
         $this->dataUpdate();
     }
 
@@ -374,17 +377,16 @@ class AP_WorkingWithShopCatalog_EditGroup extends AP_WorkingWithShopCatalog_Gene
                 $this->SQL_HELPER->insert($property);
                 $this->addProperty[] = $propertyId;
             }
-            foreach ($this->personalPropertyId as $personalId) {
-                if (!in_array($personalId, $this->insertValue['property'])) {
-                    $propertyInGroupId = $this->getPropertyInGroupId($propertyId);
-                    $query = "DELETE FROM `ShopPropertiesInGroups` WHERE `id` = '" . $propertyInGroupId . "';";
-                    $this->SQL_HELPER->insert($query);
-                    $this->delChildrenProperty($propertyInGroupId);
-                    $this->deleteProperty[$personalId] = $personalId;
-                }
+        }
+        foreach ($this->personalPropertyId as $personalId) {
+            if (!in_array($personalId, $this->insertValue['property'])) {
+                $propertyInGroupId = $this->getPropertyInGroupId($personalId);
+                $query = "DELETE FROM `ShopPropertiesInGroups` WHERE `id` = '" . $propertyInGroupId . "';";
+                $this->SQL_HELPER->insert($query);
+                $this->delChildrenProperty($propertyInGroupId);
+                $this->deleteProperty[$personalId] = $personalId;
             }
         }
-
         $maxSequence2 = $this->getMaxSequence($this->insertValue['id']);
         if ($maxSequence2 != null) {
             $propertySequenceUpdate = "UPDATE `ShopPropertiesInGroups` SET `sequence` = `sequence` + " . $maxSequence2 . " 

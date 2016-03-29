@@ -49,7 +49,27 @@
  * Данная копия CSystem используется для проекта Apelsin SHOP
  * 
  */
-include_once './components/Shop/admin/classes/AP_ImportItemsGroup.php';
-$importImages = new AP_ImportItemsGroup();
-echo $importImages->getHtml();
 
+ini_set("display_errors", 1);
+error_reporting(E_ALL);
+header("Content-type: text/html; charset=UTF-8");
+@session_start();
+
+include_once '../../../../ROOT/functions/includeSistemClasses.php';
+includeSistemClasses('../../../../ROOT/');
+include_once '../../classes/ShopIncludeClasses.php';
+ShopIncludeClasses::includeAllClasses('../../', '../../../../modules/ShopNavigationAndFiltersPanel/');
+
+include_once '../classes/AP_WorkingWithShopItems/AP_WorkingWithShopNewItemsEdit/AP_ListPanelNewItems.php';
+include_once '../classes/AP_WorkingWithShopItems/AP_WorkingWithShopNewItemsEdit/AP_AbstractPanelEditNewItems.php';
+include_once '../classes/AP_WorkingWithShopItems/AP_WorkingWithShopNewItemsEdit/AP_WorkingWithShopItemsNewEditDescription.php';
+
+global $_SQL_HELPER;
+$_SQL_HELPER = new MysqliHelper();
+
+global $_SITECONFIG;
+$_SITECONFIG = new SiteConfig();
+
+if (isset($_POST)) {
+    echo AP_WorkingWithShopItemsNewEditDescription::generationListItemHasDescription(false);
+}

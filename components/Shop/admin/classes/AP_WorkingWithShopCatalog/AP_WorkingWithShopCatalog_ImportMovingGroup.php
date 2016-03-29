@@ -72,7 +72,7 @@ class AP_WorkingWithShopCatalog_ImportMovingGroup extends AP_WorkingWithShopCata
         $this->parentOldDeleteId = [];
         $this->parentNewInsert = [];
         $this->newGroupId = $newGroupId;
-        $this->infoNewGroupId = $this->helperGroup->getGroupInfo($this->newGroupId,true);
+        $this->infoNewGroupId = $this->helperGroup->getGroupInfo($this->newGroupId, true);
         $this->nodeChildrenGroupId = $this->helperGroup->getGroupNodeChildren($this->newGroupId);
         $this->getParentNewInsert();
         $this->getPersonalDelete($this->groupId);
@@ -98,7 +98,7 @@ class AP_WorkingWithShopCatalog_ImportMovingGroup extends AP_WorkingWithShopCata
      */
     private function getParentOldDelete() {
         $this->parentOldDeleteId = [];
-        $infoGroup = $this->helperGroup->getGroupInfo($this->parent,true);
+        $infoGroup = $this->helperGroup->getGroupInfo($this->parent, true);
         if (!empty($infoGroup['properties']['available']) && $infoGroup['properties']['available'] != null) {
             foreach ($infoGroup['properties']['available'] as $value) {
                 $this->parentOldDeleteId['propertyInGroup'][] = $value["id"];
@@ -114,7 +114,7 @@ class AP_WorkingWithShopCatalog_ImportMovingGroup extends AP_WorkingWithShopCata
      */
     private function getPersonalDelete($group) {
         $this->personalDelete = [];
-        $infoGroup = $this->helperGroup->getGroupInfo($group,true);
+        $infoGroup = $this->helperGroup->getGroupInfo($group, true);
         if (!empty($infoGroup['properties']['personal']) && $infoGroup['properties']['personal'] != null && isset($this->parentNewInsert["propertyId"])) {
             foreach ($infoGroup['properties']['personal'] as $value) {
                 if (in_array($value["property"], $this->parentNewInsert["propertyId"])) {

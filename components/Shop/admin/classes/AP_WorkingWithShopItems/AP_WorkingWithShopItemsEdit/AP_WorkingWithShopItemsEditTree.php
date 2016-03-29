@@ -49,7 +49,57 @@
  * Данная копия CSystem используется для проекта Apelsin SHOP
  * 
  */
-include_once './components/Shop/admin/classes/AP_ImportItemsGroup.php';
-$importImages = new AP_ImportItemsGroup();
-echo $importImages->getHtml();
 
+/**
+ * Description of AP_WorkingWithShopItemsEditTree
+ *
+ * @author Olga Rjabchikova
+ * @copyright © 2010-2016, CompuProjec
+ * @created 10.03.2016 16:29:57
+ */
+class AP_WorkingWithShopItemsEditTree {
+
+    private $html;
+    private $urlHelper;
+    private $params = [];
+
+    public function __construct() {
+        global $_URL_PARAMS;
+        $this->params = $_URL_PARAMS['params'];
+        $this->urlHelper = new UrlHelper();
+        $this->generationTree();
+    }
+
+    public function getHtml() {
+        return $this->html;
+    }
+
+    private function generationTree() {
+        if (isset($this->params[4]) && isset($this->params[5])) {
+            $groupId = $this->params[5];
+            switch ($this->params[4]) {
+                case 'workingWithShopItemsEditItems':
+                    $page = new AP_WorkingWithShopItemsEditSelectItems($groupId);
+                    break;
+                case 'workingWithShopItemsEditItemsEdit':
+                    $page = new AP_WorkingWithShopItemsEditEdit($groupId);
+                    break;
+                case 'workingWithShopNewItemsHandlerData':
+                    $page = new AP_WorkingWithShopItemsNewHandlerData($groupId);
+                    break;
+                default:
+                    $this->html = 'неверная URL';
+                    break;
+            }
+        } else {
+            $shopGroupsTree = new ShopGroupsTree();
+            $shopGroupsTree->addFunctionalButton(
+                    'workingWithShopItemsEditItems', 'window.location.href = "' . $this->urlHelper->chengeParams($this->params) . 'workingWithShopItemsEditItems/" + groupId + "/"', 'Выбрать', true);
+            $this->html = $shopGroupsTree->getTree();
+        }
+        if (isset($page)) {
+            $this->html = $page->getHtml();
+        }
+    }
+
+}

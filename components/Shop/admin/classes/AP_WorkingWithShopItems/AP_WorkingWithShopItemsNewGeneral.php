@@ -49,7 +49,70 @@
  * Данная копия CSystem используется для проекта Apelsin SHOP
  * 
  */
-include_once './components/Shop/admin/classes/AP_ImportItemsGroup.php';
-$importImages = new AP_ImportItemsGroup();
-echo $importImages->getHtml();
 
+/**
+ * Общий для размещения новых товаров
+ *
+ * @author Olga Rjabchikova
+ * @copyright © 2010-2016, CompuProjec
+ * @created 27.01.2016 8:14:46
+ */
+class AP_WorkingWithShopItemsNewGeneral {
+
+    protected $html;
+    protected $SQL_HELPER;
+    protected $params;
+    protected $urlHelper;
+    protected $dataListElement;
+    protected $items;
+    protected $data;
+
+    public function __construct() {
+        global $_SQL_HELPER;
+        global $_URL_PARAMS;
+        $this->SQL_HELPER = $_SQL_HELPER;
+        $this->params = $_URL_PARAMS['params'];
+        $this->urlHelper = new UrlHelper();
+        $this->items = [];
+    }
+
+    public function getHtml() {
+        return $this->html;
+    }
+
+    protected function replaceName(&$item) {
+        $item['directoryPath'] = $this->cropString($item['directoryPath']);
+        $item['directoryPath'] = str_replace("[", "", $item['directoryPath']);
+        $item['directoryPath'] = str_replace("]", "", $item['directoryPath']);
+    }
+
+    protected function sortDataItem() {
+        $this->dataListElement = [];
+        foreach ($this->data as $item) {
+            $this->dataListElement[$item['directoryPath']][$item['id']]['itemName'] = $item['itemName'];
+            $this->dataListElement[$item['directoryPath']][$item['id']]['id'] = $item['id'];
+            $this->dataListElement[$item['directoryPath']][$item['id']]['directoryPath'] = $item['directoryPath'];
+            $this->dataListElement[$item['directoryPath']][$item['id']]['status'] = $item['status'];
+        }
+    }
+
+    protected function cropString($path) {
+        $pos = strrpos($path, "] / [");
+        if (!$pos) {
+            return $path;
+        }
+        return substr($path, 0, $pos + 1);
+    }
+
+    /**
+     * Возвращает название группы
+     * @param type $id
+     * @return type
+     */
+    protected function getGroupName($id) {
+        $query = "SELECT `groupName` FROM `ShopGroups` WHERE `id` = '" . $id . "'";
+        $name = $this->SQL_HELPER->select($query, 1);
+        return $name['groupName'];
+    }
+
+}

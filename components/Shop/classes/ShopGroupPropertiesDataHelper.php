@@ -141,10 +141,18 @@ class ShopGroupPropertiesDataHelper {
             if (isset(self::$groupsHierarchy[$group])) {
                 $clildren = array_diff(self::$groups[$group]['children'], self::$groupsHierarchy[$group]);
             } else {
-                $clildren = self::$groups[$group]['children'];
+                if (isset(self::$groups[$group])) {
+                    $clildren = self::$groups[$group]['children'];
+                } else {
+                    $clildren = array();
+                }
             }
         } else {
-            $clildren = self::$groups[$group]['children'];
+            if (isset(self::$groups[$group])) {
+                $clildren = self::$groups[$group]['children'];
+            } else {
+                $clildren = array();
+            }
         }
         $where = "";
 
@@ -181,9 +189,13 @@ class ShopGroupPropertiesDataHelper {
 
     private static function getGroupsChildrenPropertiesData($group) {
         $properties = array();
-        
-        $clildren = self::$groups[$group]['children'];
-        
+
+        if (isset(self::$groups[$group])) {
+            $clildren = self::$groups[$group]['children'];
+        } else {
+            $clildren = array();
+        }
+
         if (count($clildren) > 0) {
             $query = "SELECT 
                 SP.`id`, 
@@ -244,7 +256,7 @@ class ShopGroupPropertiesDataHelper {
         self::createObject($updateGroupsDataHelper);
         return self::getGroupPropertiesValue($groupId, 'available', $update);
     }
-    
+
     /**
      * Вернет свойства который являются персональными для этой группы.
      * @param type $groupId - идентификатор группы

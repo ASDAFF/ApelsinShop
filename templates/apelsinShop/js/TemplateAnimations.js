@@ -1,3 +1,10 @@
+jQuery(window).load(function() {
+    $('.PreloaderBlock').hide(); // скрываем прелоудер
+    $('.PreloaderBlockContent').show(); // отображаем контент который скрывался до полной загрузки
+});
+
+
+
 jQuery(document).ready(function() {
  
     jQuery(".to-top").click(function(){ 

@@ -93,7 +93,7 @@ class AP_WorkingWithShopCatalog_General {
         $this->params = $_URL_PARAMS['params'];
         $this->urlHelper = new UrlHelper();
         $this->helperGroup = new ShopGroupsHelper();
-        $this->info = $this->helperGroup->getGroupInfo($this->groupId,true);
+        $this->info = $this->helperGroup->getGroupInfo($this->groupId, true);
         $this->path = $this->helperGroup->getGroupPath($this->groupId);
         $this->node = $this->helperGroup->getGroupNodeChildren($this->groupId);
         $this->nodeChildrenAndParent = $this->helperGroup->getGroupChildren($this->groupId);
@@ -140,6 +140,8 @@ class AP_WorkingWithShopCatalog_General {
         $out .= '<div class="addGroupDragDropListElementShow"  title="Отображение в фильтрах">';
         if (isset($property["shown"])) {
             $out .= InputHelper::select("addGroupDragDropListElementShowSelect[]", "addGroupDragDropListElementShowSelect", array(array('value' => "1", 'text' => "show"), array('value' => "0", 'text' => "hide")), true, $property["shown"]);
+        } else {
+            $out .= InputHelper::select("addGroupDragDropListElementShowSelect[]", "addGroupDragDropListElementShowSelect", array(array('value' => "1", 'text' => "show"), array('value' => "0", 'text' => "hide")), true, "1");
         }
         $out .= '</div>';
         $out .= $show;
@@ -288,7 +290,7 @@ class AP_WorkingWithShopCatalog_General {
      */
     protected function dataUpdate() {
         $this->helperGroup->update();
-        $this->info = $this->helperGroup->getGroupInfo($this->groupId,true);
+        $this->info = $this->helperGroup->getGroupInfo($this->groupId, true);
         $this->path = $this->helperGroup->getGroupPath($this->groupId);
     }
 

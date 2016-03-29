@@ -49,7 +49,46 @@
  * Данная копия CSystem используется для проекта Apelsin SHOP
  * 
  */
-include_once './components/Shop/admin/classes/AP_ImportItemsGroup.php';
-$importImages = new AP_ImportItemsGroup();
-echo $importImages->getHtml();
 
+/**
+ * Непосредственное размещение новых товаров в указанный каталог
+ *
+ * @author Olga Rjabchikova
+ * @copyright © 2010-2016, CompuProjec
+ * @created 28.01.2016 12:59:14
+ */
+class AP_WorkingWithShopItemsNewInsert extends AP_WorkingWithShopItemsNewGeneral {
+
+    public function __construct() {
+        parent::__construct();
+        if (isset($_POST) && !empty($_POST)) {
+            $this->items = $_POST;
+            $this->insert();
+            $this->goEdit();
+        }
+    }
+
+    private function insert() {
+        $query = "UPDATE `ShopItems` SET `group` = '" . $this->items['hiddenNewGroup'] . "' WHERE ";
+        foreach ($this->items['hiddenNewItem'] as $item) {
+            $query .= "`id` = '" . $item . "' OR ";
+        }
+        $query = mb_strcut($query, 0, strlen($query) - 4);
+        $query .= ";";
+        $this->SQL_HELPER->insert($query);
+    }
+
+    private function getDataForEdit($data) {
+        $this->dataForEdit['groupId'] = $data['hiddenNewGroup'];
+        foreach ($data['hiddenNewItem'] as $unit) {
+            $this->dataForEdit['itemId'][] = $unit;
+        }
+    }
+
+    private function goEdit() {
+        $this->getDataForEdit($this->items);
+        $edit = new AP_ListPanelNewItems($this->dataForEdit);
+        echo $edit->getHtml();
+    }
+
+}

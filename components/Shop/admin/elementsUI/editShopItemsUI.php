@@ -49,7 +49,19 @@
  * Данная копия CSystem используется для проекта Apelsin SHOP
  * 
  */
-include_once './components/Shop/admin/classes/AP_ImportItemsGroup.php';
-$importImages = new AP_ImportItemsGroup();
-echo $importImages->getHtml();
 
+include_once './components/Shop/admin/classes/AP_WorkingWithShopItems/AP_WorkingWithShopItemsEdit/AP_WorkingWithShopItemsEditTree.php';
+include_once './components/Shop/admin/classes/AP_WorkingWithShopItems/AP_WorkingWithShopItemsEdit/AP_WorkingWithShopItemsEditSelectItems.php';
+include_once './components/Shop/admin/classes/AP_WorkingWithShopItems/AP_WorkingWithShopItemsEdit/AP_WorkingWithShopItemsEditEdit.php';
+
+//AP_WorkingWithShopNewItemsEdit
+
+include_once './components/Shop/admin/classes/AP_WorkingWithShopItems/AP_WorkingWithShopNewItemsEdit/AP_ListPanelNewItems.php';
+include_once './components/Shop/admin/classes/AP_WorkingWithShopItems/AP_WorkingWithShopNewItemsEdit/AP_AbstractPanelEditNewItems.php';
+include_once './components/Shop/admin/classes/AP_WorkingWithShopItems/AP_WorkingWithShopNewItemsEdit/AP_WorkingWithShopItemsNewEditDescription.php';
+include_once './components/Shop/admin/classes/AP_WorkingWithShopItems/AP_WorkingWithShopNewItemsEdit/AP_WorkingWithShopItemsNewEditName.php';
+include_once './components/Shop/admin/classes/AP_WorkingWithShopItems/AP_WorkingWithShopNewItemsEdit/AP_WorkingWithShopItemsNewEditProperty.php';
+include_once './components/Shop/admin/classes/AP_WorkingWithShopItems/AP_WorkingWithShopNewItemsEdit/AP_WorkingWithShopItemsNewHandlerData.php';
+include_once './components/Shop/admin/classes/AP_WorkingWithShopItems/AP_WorkingWithShopNewItemsEdit/AP_WorkingWithShopItemsNewItemsCards.php';
+$workingWithShopItemsEditTree = new AP_WorkingWithShopItemsEditTree();
+echo $workingWithShopItemsEditTree->getHtml();

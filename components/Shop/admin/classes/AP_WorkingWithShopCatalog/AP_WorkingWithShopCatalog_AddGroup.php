@@ -136,8 +136,10 @@ class AP_WorkingWithShopCatalog_AddGroup extends AP_WorkingWithShopCatalog_Gener
         $out = '<div class="addGroupCatalogGroupNameWrapper">';
         $out .= '<div class="addGroupCatalogGroupName">';
         $out .= '<div class="addGroupCatalogGroupNameInput">';
-        $out .= '<input type="text" class="groupName" name="groupName" id="groupName" pattern="[А-Яа-яA-Za-z0-9][^@#$%&*]{3,50}" '
-                . 'maxlength="50" required placeholder="Название каталога" title="Латиница, кирилица" autofocus autocomplete="off">';
+//        $out .= '<input type="text" class="groupName" name="groupName" id="groupName" pattern="[А-Яа-яA-Za-z0-9][^@#$%&*]{3,50}" '
+//                . 'maxlength="50" required placeholder="Название каталога" title="Латиница, кирилица" autofocus autocomplete="off">';">';
+        $out .= '<input type="text" class="groupName" name="groupName" id="groupName"'
+                . ' maxlength="50" required placeholder="Название каталога" title="Латиница, кирилица" autofocus autocomplete="off">';
         $out .= '</div>';
         $out .= '</div>';
         $out .= '<div class="addGroupCatalogGroupVisible">';
@@ -219,7 +221,7 @@ class AP_WorkingWithShopCatalog_AddGroup extends AP_WorkingWithShopCatalog_Gener
         array_push($this->path, $this->groupId);
         $i = 0;
         foreach ($this->path as $group) {
-            $propertiesInGroupsRanking = $this->helperGroup->getGroupInfo($group,true);
+            $propertiesInGroupsRanking = $this->helperGroup->getGroupInfo($group, true);
             if ($propertiesInGroupsRanking != null) {
                 foreach ($propertiesInGroupsRanking['properties']['personal'] as $value) {
                     $this->parentPropertyId[$i] = $value['property'];
@@ -251,7 +253,7 @@ class AP_WorkingWithShopCatalog_AddGroup extends AP_WorkingWithShopCatalog_Gener
     }
 
     private function getDataNewGroup() {
-        $info = $this->helperGroup->getGroupInfo($this->insertValue['id'],true);
+        $info = $this->helperGroup->getGroupInfo($this->insertValue['id'], true);
         foreach ($info['properties']['personal'] as $value) {
             $this->personalPropertyNew[] = $value["property"];
         }
@@ -286,15 +288,19 @@ class AP_WorkingWithShopCatalog_AddGroup extends AP_WorkingWithShopCatalog_Gener
 
     private function checkAllValue() {
         $error = false;
-        if (isset($_POST['groupName']) && $_POST['groupName'] != null && $_POST['groupName'] != "") {
-            if (!InputValueHelper::checkValue('groupName', "/[А-Яа-яA-Za-z0-9][^@#$%&*]{3,50}/")) {
-                $error = true;
-                $this->checkAllValueErrors[] = "Разрешены латинские буквы, кирилические буквы, цифры и щаник тире и нижнее подчеркивание";
-            }
-        } else {
+        if (!isset($_POST['groupName']) || $_POST['groupName'] == null || $_POST['groupName'] == "") {
             $error = true;
-            $this->checkAllValueErrors[] = "Название группы - обязательное поле ";
+            $this->checkAllValueErrors[] = "Название каталога - обязательное поле ";
         }
+//        if (isset($_POST['groupName']) && $_POST['groupName'] != null && $_POST['groupName'] != "") {
+//            if (!InputValueHelper::checkValue('groupName', "/[А-Яа-яA-Za-z0-9][^@#$%&*]{3,50}/")) {
+//                $error = true;
+//                $this->checkAllValueErrors[] = "Разрешены латинские буквы, кирилические буквы, цифры и щаник тире и нижнее подчеркивание";
+//            }
+//        } else {
+//            $error = true;
+//            $this->checkAllValueErrors[] = "Название группы - обязательное поле ";
+//        }
         if (!$this->checkDuplicateGroupName()) {
             $error = true;
             $this->checkAllValueErrors[] = "Такое название каталога уже используется. Выберите другое.";
@@ -362,4 +368,5 @@ class AP_WorkingWithShopCatalog_AddGroup extends AP_WorkingWithShopCatalog_Gener
         $html = '<a href="' . $this->urlHelper->chengeParams($params) . '"><input type="button" class="addGroupCatalogReportButtonEdit" id="addGroupCatalogReportButtonEdit" value="Редактировать"></a>';
         return $html;
     }
+
 }

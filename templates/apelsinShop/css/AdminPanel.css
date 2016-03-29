@@ -589,11 +589,11 @@ legend {
     /*наследует от .viewLogsShopWrapper*/
     border: 1px solid #bbb;
 }
-.uploadImagesItemsShop > div {
+/*.uploadImagesItemsShop > div {
     margin: 0 auto;
     padding: 5px 20px;
     text-align: center;
-}
+}*/
 .uploadImagesItemsShop .uploadImagesItemsShopHead {
     margin: 0;
     padding: 0px;
@@ -617,6 +617,11 @@ legend {
     margin: 5px 0;
     cursor: pointer;
     background: url('../img/icons/info.svg') center center no-repeat;
+}
+.uploadImagesItemsShop > div > p {
+    margin: 0 auto;
+    padding: 5px 20px;
+    text-align: center;
 }
 .uploadImagesItemsShopInfo {
     width: 800px;
@@ -661,7 +666,7 @@ legend {
     display: block;
 }
 .listImagesItemsAndIconsShop > p:first-child {
-    
+
     /* наследует от .uploadImagesItemsShop > div:first-child */
     padding: 10px;
     height: 20px;
@@ -1167,4 +1172,577 @@ legend {
 .addGroupCatalogReportWraper .selectBox {
     width: 465px;
     height: 27px;
+}
+
+/*------------------- Работа с новым товаром ----------------------------*/
+.newItemCatalogWrapper {}
+.newItemListGroup {
+    font: normal 12px/15px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+}
+.newItemListGroup .newItemListGroupTitle {
+    background: #bbb;;
+    text-align: left;
+    color: #fff;
+    margin-bottom: 5px; 
+}
+.newItemListGroup .newItemListGroupTitle .newItemListGroupTitleText {
+    /*width: 834px;*/
+    font: bold 12px/16px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    text-shadow: none;
+    color: #3A1F1F;
+    padding: 2px 0 2px 125px;
+    /*padding: 2px;*/
+    /*float: left;*/
+    cursor: pointer;
+}
+.newItemListGroup .newItemListGroupTitle .newItemListGroupTitleText.checkboxAll {
+    background: #C6FFBC;
+}
+.newItemListGroup .newItemListGroupTitle .newItemListGroupTitleText.checkboxSome {
+    background: #FFEEC8;
+}
+.newItemListGroup .newItemListGroupTitle .newItemListGroupTitleText.checkboxNone {
+    background: transparent;
+}
+.newItemListGroup .newItemListGroupTitle .newItemListGroupTitleButton {
+    float: left;
+    height: 20px;
+    font-weight: bold;
+    background: #a5a5a5;
+    border-right: #fff 1px solid;
+    cursor: pointer;
+    text-align: center;
+    font: normal 10px/20px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+}
+.newItemListGroup .newItemListGroupTitle .newItemListGroupTitleButton.newItemListGroupTitleButtonShowAll {
+    width: 70px;
+    float: right;
+    border-right: none;
+    border-left: #fff 1px solid;
+}
+.newItemListGroup .newItemListGroupTitle .newItemListGroupTitleButton.newItemListGroupTitleButtonSelectAll {
+    width: 60px;
+}
+.newItemListGroup .newItemListGroupTitle .newItemListGroupTitleButton.newItemListGroupTitleButtonCancelAll {
+    width: 60px;
+}
+.newItemListGroup .newItemListGroupTitle .newItemListGroupTitleButton:hover {
+    background: #959595;
+}
+.newItemListGroup .newItemListGroupWrapper {}
+.newItemListGroup .newItemListGroupWrapper .newItemListElement {
+    border-bottom: #bbb 1px solid;
+    vertical-align: middle;
+    width: 100%;
+}
+.newItemListGroup .newItemListGroupWrapper .newItemListElement .newItemListElementNameItem {
+    float: left;
+    width: 80%;
+    cursor: pointer;
+}
+.newItemListGroup .newItemListGroupWrapper .newItemListElement .newItemListElementNameItem .newItemListElementLabel {
+    padding: 5px;
+    float: left;
+    cursor: pointer;
+    width: 98%;
+}
+.newItemListGroup .newItemListGroupWrapper .newItemListElement .newItemListElementNameItem .newItemListElementLabel input {
+    padding: 0;
+    width: 15px;
+    float: left;
+}
+
+.newItemListGroup .newItemListGroupWrapper .newItemListElement .newItemListElementStatut {
+    width: 20%;
+    padding: 5px 0px;
+    float: left;
+}
+.newItemListGroup .newItemListGroupWrapper .newItemListElement .newItemListElementPath {}
+
+/*----------------- Выбор группы -------------------*/
+.newItemCatalogSelectGroupWrapper {
+    font: normal 12px/14px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+}
+.newItemCatalogSelectGroupWrapper .newItemCatalogListItemDuble {
+    border: #ef7f1a 1px solid;
+    max-height: 200px;
+    overflow-y: scroll;
+    width: 953px;
+}
+.newItemCatalogSelectGroupWrapper .newItemCatalogListItemDuble ul li {
+    padding: 1px 5px;
+}
+.SelectedGroupName {
+    color: #ef7f1a;
+}
+.AP_FormnewItemCatalogListItemInsert {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin:-25px 0 0 -300px;
+    z-index: 300;
+    background: #fff;
+    box-shadow: -3px 3px 10px rgba(139,139,139,.9);
+    width: 600px;
+    /*background: #EDEDED;*/
+    border: 1px solid #ef7f1a;
+}
+.AP_FormnewItemCatalogListItemInsert span {
+    padding-left: 20px;
+}
+
+/*-------------- Редактирование товаров ---------------*/
+.shopItemsNewEditWrapper {
+    font: normal 12px/14px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    border-bottom: 2px solid #ccc;
+}
+.shopItemsNewEditTitleGroup {
+    background: #d6d6d6;
+    color: #5f5f5f;
+    padding: 4px;
+    margin: 1px 0;
+    text-align: center;
+    cursor: pointer;
+    font: normal 15px/18px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+}
+.shopItemsNewEditWrapper .shopItemsNewEditTitle {
+    background: #ccc url('../img/down.png') right no-repeat;
+    color: #fff;
+    padding: 5px;
+    margin: 1px 0;
+    text-align: center;
+    cursor: pointer;
+    font: bold 16px/20px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+}
+.shopItemsNewEditWrapper .active {
+    background: #ef7f1a url('../img/up.png') right no-repeat;
+}
+
+.shopItemsNewEditWrapper .shopItemsNewEditContent {
+    display: none;
+}
+/*------------------ Название --------------------*/
+.shopItemsNewEditContent .shopItemsNewEditNameWrapper {
+    width: 960px;
+    /*    max-height: 600px;
+        overflow: auto;*/
+}
+.shopItemsNewEditContent .shopItemsNewEditNameWrapper .shopItemsNewEditNameElement {
+
+}
+.shopItemsNewEditContent .shopItemsNewEditNameWrapper .shopItemsNewEditNameElement .shopItemsNewEditNameInput {
+    width: 885px;
+    float: left;
+}
+.shopItemsNewEditContent .shopItemsNewEditNameWrapper .shopItemsNewEditNameElement .shopItemsNewEditNameInput input {
+    width: 877px;
+    color: #5f5f5f;
+    padding: 6px 0px 6px 4px;
+    margin: 2px 2px 2px 0px;
+}
+.shopItemsNewEditContent .shopItemsNewEditNameWrapper .shopItemsNewEditNameElement .shopItemsNewEditNameSelectBox {
+    width: 75px;
+    float: left;
+    padding: 0;
+    margin: 0;
+}
+
+/*------------------------- Описание -------------------------------*/
+
+.shopItemsNewEditTextItemName {
+    padding: 2px;
+    margin: 2px;
+    background:#EDEDED;
+    min-height: 14px;
+}
+.shopItemsNewEditContent .shopItemsNewEditDescriptionWrapper {
+    font: normal 12px/14px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    width: 960px;
+    /*    max-height: 600px;
+        overflow: auto;*/
+    position: relative;
+}
+.shopItemsNewEditContent .shopItemsNewEditDescriptionWrapper .shopItemsNewEditDescriptionBlockGeneral {}
+.shopItemsNewEditContent .shopItemsNewEditDescriptionWrapper .shopItemsNewEditDescriptionBlockGeneral .shopItemsNewEditTextItemNameInfo {
+    text-align: center;
+}
+.shopItemsNewEditContent .shopItemsNewEditDescriptionWrapper .shopItemsNewEditDescriptionBlockGeneral .shopItemsNewEditDescriptionBlockItemHasDescription {
+    border-bottom: solid 3px #ef7f1a;
+}
+.shopItemsNewEditContent .shopItemsNewEditDescriptionWrapper .shopItemsNewEditDescriptionBlockGeneral .shopItemsNewEditDescriptionBlockItemHasDescription .shopItemsNewEditDescriptionItemNameWrapper {
+    float: left;
+    width: 310px;
+}
+.shopItemsNewEditContent .shopItemsNewEditDescriptionWrapper .shopItemsNewEditDescriptionBlockGeneral .shopItemsNewEditDescriptionBlockItemHasDescription .shopItemsNewEditDescriptionItemNameWrapper .shopItemsNewEditDescriptionMainItemName {
+    background: #fff;
+    max-height: 500px;
+    overflow-x: scroll;
+}
+.shopItemsNewEditContent .shopItemsNewEditDescriptionWrapper .shopItemsNewEditDescriptionBlockGeneral .shopItemsNewEditDescriptionBlockItemHasDescription .shopItemsNewEditDescriptionItemNameWrapper .shopItemsNewEditDescriptionMainItemName .shopItemsNewEditDescriptionItemName {}
+
+.shopItemsNewEditContent .shopItemsNewEditDescriptionWrapper .shopItemsNewEditDescriptionBlockGeneral .shopItemsNewEditDescriptionBlockItemHasDescription .shopItemsNewEditDescriptionItemNameWrapper .shopItemsNewEditDescriptionButtonAllItems,
+.shopItemsNewEditContent .shopItemsNewEditDescriptionWrapper .shopItemsNewEditDescriptionBlockGeneral .shopItemsNewEditDescriptionButtonAddBlockGeneral,
+.shopItemsNewEditPropertyWrapper .shopItemsNewEditPropertyBlockGeneral .shopItemsNewEditPropertyBlockPropertyAndItems .shopItemsNewEditPropertyButtonAllItems,
+.shopItemsNewEditPropertyWrapper .shopItemsNewEditPropertyBlockGeneral .shopItemsNewEditPropertyBlockPropertyAndItems  .shopItemsNewEditPropertyBlockProperty .shopItemsNewEditPropertyAllProperty {
+    padding: 3px 2px;
+    margin: 0 0 2px 0;
+    background: #ccc;
+    cursor: pointer;
+    text-align: center;
+    color: #3A1F1F;
+    font: bold 12px/14px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+}
+.shopItemsNewEditContent .shopItemsNewEditDescriptionWrapper .shopItemsNewEditDescriptionBlockGeneral .shopItemsNewEditDescriptionBlockItemHasDescription .shopItemsNewEditDescriptionBlockDescription {
+    float: right;
+    width: 650px;
+}
+.shopItemsNewEditContent .shopItemsNewEditDescriptionWrapper .shopItemsNewEditDescriptionBlockGeneral .shopItemsNewEditDescriptionBlockItemHasDescription .shopItemsNewEditDescriptionBlockDescription textarea {
+    resize: vertical;
+    outline: none;
+    width: 100%; 
+    -webkit-box-sizing: border-box; 
+    -moz-box-sizing: border-box; 
+    box-sizing: border-box;
+    min-height: 98px;
+    color: #5f5f5f;
+    font-weight: normal;
+}
+#shopItemsNewEditDescriptionBlockAllListItems,
+#shopItemsNewEditPropertyBlockAllListItems {
+    background: #fff;
+    width: 310px;
+    position: fixed;
+    z-index: 100;
+    top:  50px;
+    left:  20px;
+    box-shadow: 3px 3px 10px rgba(139,139,139,.3);
+}
+.noItems {
+    text-align: center;
+}
+#shopItemsNewEditDescriptionBlockAllListItems .shopItemsNewEditDescriptionTitletList,
+#shopItemsNewEditPropertyBlockAllListItems .shopItemsNewEditPropertyTitletList {
+    float: left;
+    width: 272px;
+    height: 15px;
+    padding: 0;
+    margin: 2px 0 2px 2px;
+    text-align: center;
+    background: #EDEDED;
+}
+#shopItemsNewEditDescriptionButonSelectAllList,
+#shopItemsNewEditPropertyButonSelectAllList {
+    float: left;
+    margin: 2px 0 2px 2px;
+    width: 15px;
+    height: 15px;
+}
+#shopItemsNewEditDescriptionBlockAllListItems .shopItemsNewEditDescriptionButtonExitList,
+#shopItemsNewEditPropertyBlockAllListItems .shopItemsNewEditPropertyButtonExitList {
+    float: right;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    text-align: center;
+    background: #ccc;
+    margin: 2px;
+    color: #3A1F1F;
+    font-weight: bold;
+    font: bold 13px/15px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+}
+#shopItemsNewEditDescriptionBlockAllListItems .shopItemsNewEditDescriptionMainListItems {}
+#shopItemsNewEditDescriptionBlockAllListItems .shopItemsNewEditDescriptionMainListItems .shopItemsNewEditDescriptionElementAllListItems,
+#shopItemsNewEditPropertyBlockAllListItems .shopItemsNewEditPropertyMainListItems .shopItemsNewEditPropertyElementAllListItems {
+    float: left;
+    width: 306px;
+    margin-left: 0;
+    padding: 1px;
+}
+#shopItemsNewEditDescriptionBlockAllListItems .shopItemsNewEditDescriptionMainListItems .shopItemsNewEditDescriptionElementAllListItems .shopItemsNewEditDescriptionElementAllListItemsCheckbox,
+#shopItemsNewEditPropertyBlockAllListItems .shopItemsNewEditPropertyMainListItems .shopItemsNewEditPropertyElementAllListItemsCheckbox {
+    margin: 1px;
+    padding: 0px;
+    width: 13px;
+    height: 13px;
+    float: left;
+    outline: none;
+}
+#shopItemsNewEditDescriptionBlockAllListItems .shopItemsNewEditDescriptionMainListItems .shopItemsNewEditDescriptionElementAllListItems .shopItemsNewEditDescriptionElementAllListItemsItemsName,
+#shopItemsNewEditPropertyBlockAllListItems .shopItemsNewEditPropertyMainListItems .shopItemsNewEditPropertyElementAllListItemsItemsName {
+    width: 287px;
+    display: block;
+    float: right;
+}
+.shopItemsNewEditContent .shopItemsNewEditDescriptionWrapper .shopItemsNewEditDescriptionBlockGeneral .shopItemsNewEditDescriptionButtonAddBlockGeneral {}
+
+#shopItemsNewEditDescriptionBlockAllListItems .shopItemsNewEditDescriptionButtonExitList:hover,
+.shopItemsNewEditContent .shopItemsNewEditDescriptionWrapper .shopItemsNewEditDescriptionBlockGeneral .shopItemsNewEditDescriptionButtonAddBlockGeneral:hover,
+.shopItemsNewEditContent .shopItemsNewEditDescriptionWrapper .shopItemsNewEditDescriptionBlockGeneral .shopItemsNewEditDescriptionBlockItemHasDescription .shopItemsNewEditDescriptionItemNameWrapper .shopItemsNewEditDescriptionButtonAllItems:hover {
+    color: #fff;
+    background: #a8a8a8;
+}
+#shopItemsNewEditDescriptionBlockAllListItems .shopItemsNewEditDescriptionMainListItems .shopItemsNewEditDescriptionElementAllListItems:hover {
+    background: #ccc;
+    background: #F4D1B1;
+}
+
+/*------------------ Свойства -----------------------------*/
+
+.shopItemsNewEditPropertyWrapper .shopItemsNewEditPropertyButtonAddBlockGeneral,
+.shopItemsNewEditPropertyBlockPropertyElement .shopItemsNewEditPropertyBlockPropertyElementFields .shopItemsNewEditPropertyValueElement .shopItemsNewEditPropertyValueElementAddElementValue,
+.shopItemsNewEditPropertyBlockProperty .shopItemsNewEditPropertyAddElementProperty,
+.shopItemsNewEditPropertyWrapper .shopItemsNewEditPropertyBlockGeneral .shopItemsNewEditPropertyBlockPropertyAndItems  .shopItemsNewEditPropertyBlockProperty .shopItemsNewEditPropertyAllProperty {
+    padding: 3px 2px;
+    margin: 2px 0;
+    background: #ccc;
+    cursor: pointer;
+    text-align: center;
+    color: #3A1F1F;
+    font: bold 12px/14px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+} 
+.shopItemsNewEditPropertyWrapper {
+    width: 960px;
+    /*    max-height: 600px;
+        overflow: auto;*/
+    margin: 0 auto;
+    font: normal 12px/14px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    position: relative;
+}
+.shopItemsNewEditPropertyWrapper .shopItemsNewEditPropertyBlockAllListItems {}
+.shopItemsNewEditPropertyWrapper .shopItemsNewEditPropertyBlockAllListItems .shopItemsNewEditPropertyButonSelectAllList {}
+.shopItemsNewEditPropertyWrapper .shopItemsNewEditPropertyBlockAllListItems .shopItemsNewEditPropertyTitletList {}
+.shopItemsNewEditPropertyWrapper .shopItemsNewEditPropertyBlockAllListItems .shopItemsNewEditPropertyButtonExitList {}
+.shopItemsNewEditPropertyWrapper .shopItemsNewEditPropertyBlockAllListItems .shopItemsNewEditPropertyMainListItems {}
+.shopItemsNewEditPropertyWrapper .shopItemsNewEditPropertyBlockAllListItems .shopItemsNewEditPropertyMainListItems .shopItemsNewEditPropertyElementAllListItems {}
+.shopItemsNewEditPropertyWrapper .shopItemsNewEditPropertyBlockAllListItems .shopItemsNewEditPropertyMainListItems.shopItemsNewEditPropertyElementAllListItems .shopItemsNewEditPropertyElementAllListItemsCheckbox {}
+.shopItemsNewEditPropertyWrapper .shopItemsNewEditPropertyBlockAllListItems .shopItemsNewEditPropertyMainListItems.shopItemsNewEditPropertyElementAllListItems .shopItemsNewEditPropertyElementAllListItemsItemsName {}
+.shopItemsNewEditPropertyWrapper .shopItemsNewEditPropertyBlockGeneral {
+    width: 960px;
+}
+.shopItemsNewEditPropertyWrapper .shopItemsNewEditPropertyBlockGeneral .shopItemsNewEditPropertyBlockPropertyAndItems {
+    border-bottom: solid 3px #ef7f1a;
+    padding-bottom: 20px;
+}
+.shopItemsNewEditPropertyWrapper .shopItemsNewEditPropertyBlockGeneral .shopItemsNewEditPropertyBlockPropertyAndItems .shopItemsNewEditPropertyBlockItems {
+    float: left;
+    width: 310px;
+}
+.shopItemsNewEditPropertyWrapper .shopItemsNewEditPropertyBlockGeneral .shopItemsNewEditPropertyBlockPropertyAndItems .shopItemsNewEditPropertyBlockItems .shopItemsNewEditPropertyBlockItemsWrapper {
+    /*background: #fff;*/
+}
+.shopItemsNewEditPropertyWrapper .shopItemsNewEditPropertyBlockGeneral .shopItemsNewEditPropertyBlockPropertyAndItems .shopItemsNewEditPropertyBlockItems .shopItemsNewEditPropertyBlockItemsWrapper .shopItemsNewEditPropertyBlockItemsContent {
+    background: #fff;
+    max-height: 500px;
+    overflow-x: scroll;
+}
+.shopItemsNewEditPropertyWrapper .shopItemsNewEditPropertyBlockGeneral .shopItemsNewEditPropertyBlockPropertyAndItems  .shopItemsNewEditPropertyBlockItems .shopItemsNewEditPropertyBlockItemsWrapper .shopItemsNewEditPropertyElementAllListItems {
+    float: left;
+    width: 304px;
+    padding: 3px 1px;
+    margin: 0 2px 2px 2px;
+}
+.shopItemsNewEditPropertyWrapper .shopItemsNewEditPropertyBlockGeneral .shopItemsNewEditPropertyBlockPropertyAndItems .shopItemsNewEditPropertyButtonAllItems {
+    margin-right: 2px;
+}
+.shopItemsNewEditPropertyWrapper .shopItemsNewEditPropertyBlockGeneral .shopItemsNewEditPropertyBlockPropertyAndItems  .shopItemsNewEditPropertyBlockItems .shopItemsNewEditPropertyBlockItemsWrapper .shopItemsNewEditPropertyElementAllListItems .shopItemsNewEditPropertyAllListItemsCheckbox {
+    margin: 1px;
+    padding: 0px;
+    width: 13px;
+    height: 13px;
+    float: left;
+    outline: none;
+}
+.shopItemsNewEditPropertyWrapper .shopItemsNewEditPropertyBlockGeneral .shopItemsNewEditPropertyBlockPropertyAndItems  .shopItemsNewEditPropertyBlockItems .shopItemsNewEditPropertyBlockItemsWrapper .shopItemsNewEditPropertyElementAllListItems .shopItemsNewEditPropertyAllListItemsName {
+    width: 287px;
+    display: block;
+    float: right;
+}
+.shopItemsNewEditPropertyWrapper .shopItemsNewEditPropertyBlockGeneral .shopItemsNewEditPropertyBlockPropertyAndItems  .shopItemsNewEditPropertyBlockProperty {
+    float: right;
+    width: 650px;
+}
+.shopItemsNewEditPropertyWrapper .shopItemsNewEditPropertyBlockGeneral .shopItemsNewEditPropertyBlockPropertyAndItems  .shopItemsNewEditPropertyBlockProperty .shopItemsNewEditPropertyAllProperty {}
+.shopItemsNewEditPropertyWrapper .shopItemsNewEditPropertyBlockGeneral .shopItemsNewEditPropertyBlockPropertyAndItems  .shopItemsNewEditPropertyBlockProperty .shopItemsNewEditPropertyBlockPropertyElement {}
+.shopItemsNewEditPropertyBlockPropertyElement .shopItemsNewEditPropertyBlockPropertyElementFields {}
+.shopItemsNewEditPropertyBlockPropertyElement .shopItemsNewEditPropertyBlockPropertyElementFields .shopItemsNewEditPropertyPropertyElement,
+.shopItemsNewEditPropertyBlockPropertyElement .shopItemsNewEditPropertyBlockPropertyElementFields .shopItemsNewEditPropertyValueElement {
+    width: 325px;
+    float: left;
+}
+.shopItemsNewEditPropertyBlockPropertyElement .shopItemsNewEditPropertyBlockPropertyElementFields .shopItemsNewEditPropertyPropertyElement .shopItemsNewEditPropertyProperty,
+.shopItemsNewEditPropertyBlockPropertyElement .shopItemsNewEditPropertyBlockPropertyElementFields .shopItemsNewEditPropertyValueElement .shopItemsNewEditPropertyValueElementValue {
+    float: left;
+    width: 320px;
+    margin-bottom: 2px;
+    border: 2px solid #ccc;
+}
+.shopItemsNewEditPropertyBlockPropertyElement .shopItemsNewEditPropertyBlockPropertyElementFields .shopItemsNewEditPropertyPropertyElement .shopItemsNewEditPropertyProperty .shopItemsNewEditPropertyPropertyInput,
+.shopItemsNewEditPropertyBlockPropertyElement .shopItemsNewEditPropertyBlockPropertyElementFields .shopItemsNewEditPropertyValueElement .shopItemsNewEditPropertyValueElementValue .shopItemsNewEditPropertyValueElementValueInput {
+    width: 298px;
+    padding: 1px 2px;
+    font: normal 12px/14px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    float: left;
+}
+.shopItemsNewEditPropertyBlockPropertyElement .shopItemsNewEditPropertyBlockPropertyElementFields .shopItemsNewEditPropertyValueElement .shopItemsNewEditPropertyValueElementValue .shopItemsNewEditPropertyValueElementValueInput {
+    background: #fff;
+    color: #5f5f5f;
+    outline: none;
+    border: none;
+}
+.shopItemsNewEditPropertyBlockPropertyElement .shopItemsNewEditPropertyBlockPropertyElementFields .shopItemsNewEditPropertyValueElement .shopItemsNewEditPropertyValueElementAddElementValue {
+    float: right;
+    width: 321px;
+    background: #EDEDED;
+}
+.shopItemsNewEditPropertyBlockPropertyElement .shopItemsNewEditPropertyBlockPropertyElementFields .shopItemsNewEditPropertyPropertyElement .shopItemsNewEditPropertyExitBlockPropertyDeleteProperty,
+.shopItemsNewEditPropertyBlockPropertyElement .shopItemsNewEditPropertyBlockPropertyElementFields .shopItemsNewEditPropertyValueElement .shopItemsNewEditPropertyValueElementDeleteValue,
+.shopItemsNewEditPropertyWrapper .shopItemsNewEditPropertyBlockAllList .shopItemsNewEditPropertyButtonExitList {
+    float: right;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    text-align: center;
+    background: #ccc;
+    margin: 2px 2px 2px 0;
+    color: #3A1F1F;
+    font-weight: bold;
+    font: bold 13px/15px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+}
+.shopItemsNewEditPropertyBlockPropertyElement .shopItemsNewEditPropertyBlockPropertyElementFields .shopItemsNewEditPropertyValueElement {
+    float: right;
+}
+.shopItemsNewEditPropertyBlockPropertyElement .shopItemsNewEditPropertyBlockPropertyElementFields .shopItemsNewEditPropertyValueElement .shopItemsNewEditPropertyValueElementValue {}
+.shopItemsNewEditPropertyBlockPropertyElement .shopItemsNewEditPropertyBlockPropertyElementFields .shopItemsNewEditPropertyValueElement .shopItemsNewEditPropertyValueElementValue .shopItemsNewEditPropertyValueElementValueInput {}
+.shopItemsNewEditPropertyBlockPropertyElement .shopItemsNewEditPropertyBlockPropertyElementFields .shopItemsNewEditPropertyValueElement .shopItemsNewEditPropertyValueElementDeleteValue {}
+.shopItemsNewEditPropertyBlockProperty  .shopItemsNewEditPropertyAddElementProperty {
+    background: #EDEDED;
+}   
+.shopItemsNewEditPropertyWrapper .shopItemsNewEditPropertyBlockGeneral .shopItemsNewEditPropertyBlockPropertyAndItems  .shopItemsNewEditPropertyBlockProperty .shopItemsNewEditPropertyAllProperty {}
+.shopItemsNewEditPropertyWrapper .shopItemsNewEditPropertyButtonAddBlockGeneral {}
+.shopItemsNewEditPropertyWrapper .shopItemsNewEditPropertyBlockAllList {
+    background: #fff;
+    width: 210px;
+    position: fixed;
+    z-index: 100;
+    top: 50px;
+    right: 0px;
+    box-shadow: -3px 3px 10px rgba(139,139,139,.3);
+}
+.shopItemsNewEditPropertyWrapper .shopItemsNewEditPropertyBlockAllList .shopItemsNewEditDescriptionTitletList {
+    float: left;
+    width: 172px;
+    height: 15px;
+    padding: 0;
+    margin: 2px 0 2px 2px;
+    text-align: center;
+    background: #EDEDED;
+}
+#shopItemsNewEditPropertyButonSelectAllProperty {
+    float: left;
+    margin: 2px 0 2px 2px;
+    width: 15px;
+    height: 15px;
+}
+.shopItemsNewEditPropertyWrapper .shopItemsNewEditPropertyBlockAllList .shopItemsNewEditPropertyButtonExitList {}
+.shopItemsNewEditPropertyWrapper .shopItemsNewEditPropertyBlockAllList .shopItemsNewEditPropertyMainList {
+    width: 210px;
+}
+.shopItemsNewEditPropertyWrapper .shopItemsNewEditPropertyBlockAllList .shopItemsNewEditPropertyMainList .shopItemsNewEditPropertyBlockAllListProperty {
+    float: left;
+    width: 208px;
+    padding: 0 1px;
+}
+.shopItemsNewEditPropertyWrapper .shopItemsNewEditPropertyBlockAllList .shopItemsNewEditPropertyMainList .shopItemsNewEditPropertyBlockAllListProperty .shopItemsNewEditPropertyElementAllListProperty {
+    float: left;
+    width: 204px;
+    padding: 0px;
+}
+.shopItemsNewEditPropertyWrapper .shopItemsNewEditPropertyBlockAllList .shopItemsNewEditPropertyMainList .shopItemsNewEditPropertyBlockAllListProperty .shopItemsNewEditPropertyElementAllListProperty .shopItemsNewEditDescriptionElementAllListPropertyCheckbox {
+    margin: 1px;
+    padding: 0px;
+    width: 13px;
+    height: 13px;
+    float: left;
+    outline: none;
+}
+.shopItemsNewEditPropertyWrapper .shopItemsNewEditPropertyBlockAllList .shopItemsNewEditPropertyMainList .shopItemsNewEditPropertyBlockAllListProperty .shopItemsNewEditPropertyElementAllListProperty .shopItemsNewEditPropertyBlockAllListPropertyItemsName {
+    width: 189px;
+    display: block;
+    float: right;
+} 
+/*-------------- Search ----------------*/
+.shopItemsSearchResult {}
+.shopItemsSearchResultContent {
+    width: 319px;
+    background: #fff;
+    border: 1px solid #c3c3c3;
+    border-top: none;
+    text-align: left;
+    position: absolute;
+    margin: 25px 0px;
+    z-index: 1000;
+    box-shadow: 1px 9px 10px rgba(139,139,139,.3);
+}
+.shopItemsSearchResultContent .shopItemsSearchResultValue {
+    padding-left: 10px;
+    width: 309px;
+    margin-bottom: 3px;
+    cursor: pointer;
+}
+.shopItemsSearchResultContent .shopItemsSearchResultValue:hover {
+    background: #F4D1B1;
+}
+.ui-autocomplete {
+    background: #fff;
+    width: 320px;
+}
+.ui-autocomplete .ui-menu-item:hover {
+    background: #F4D1B1;
+}
+
+/*--------------------- Просмотр товаров ------------------------*/
+.shopItemsNewItemsCardsWrapper {}
+.shopItemsNewItemsCardsWrapper .shopItemsNewItemsCardsBlockItems {
+    width: 960px;
+    margin: 0 auto;
+    font: normal 12px/14px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+}
+.shopItemsNewItemsCardsWrapper .shopItemsNewItemsCardsBlockItems .shopItemsNewItemsCardsGroup {}
+.shopItemsNewItemsCardsWrapper .shopItemsNewItemsCardsBlockItems .shopItemsNewItemsCardsBlockItemList {
+    /*    max-height: 400px;
+        overflow-x: scroll;*/
+}
+.shopItemsNewItemsCardsWrapper .shopItemsNewItemsCardsBlockItems .shopItemsNewItemsCardsBlockItemList .shopItemsNewItemsCardsBlockItemCardItem {
+    padding: 3px 1px;
+    margin: 2px 0px;
+    cursor: pointer;
+}
+.shopItemsNewItemsCardsWrapper .shopItemsNewItemsCardsBlockItems .shopItemsNewItemsCardsBlockItemList .shopItemsNewItemsCardsBlockItemCardItem:hover {
+    background: #F4D1B1;
+}
+.shopItemsNewItemsCardsWrapper .shopItemsNewItemsCardsBlockItems .shopItemsNewItemsCardsBlockItemCardWrapper {
+    background: #fff;
+    border-bottom: 2px solid #ccc;
+}
+.shopItemsNewItemsCardsBlockItemCardWrapper {
+    position: relative;
+}
+.shopItemsNewItemsCardsBlockItemCardWrapper .ShopItemMainWrapper {}
+.shopItemsNewItemsCardsBlockItemCardWrapper .ShopItemMainWrapper .ShopItemMainBlock {}
+.shopItemsNewItemsCardsBlockItemCardWrapper .ShopItemMainWrapper .ShopItemMainBlock .ShopItemName {}
+.shopItemsNewItemsCardsBlockItemCardWrapper .ShopItemMainWrapper .ShopItemMainBlock .ShopItemDescription {}
+.shopItemsNewItemsCardsBlockItemCardWrapper .ShopItemMainWrapper .ShopItemMainBlock .ShopItemParams {}
+.shopItemsNewItemsCardsBlockItemCardWrapper .ShopItemMainWrapper .ShopItemMainBlock .ShopItemParams .ShopItemParam {}
+.shopItemsNewItemsCardsBlockItemCardWrapper .ShopItemMainWrapper .ShopItemMainBlock .ShopItemParams .ShopItemParam .ShopItemParamName {
+    text-align: right;
+}
+.shopItemsNewItemsCardsBlockItemCardWrapper .ShopItemMainWrapper .ShopItemMainBlock .ShopItemParams .ShopItemParam .ShopItemParamValue {}
+.shopItemsNewItemsCardsBlockItemCardActiveClass {
+    background: #F4D1B1;
+}
+/*--------------------------- Редактирование товаров ---------------------------*/
+
+.newItemCatalogSelectGroupWrapperUL {
+    list-style: none;
+    margin-left: 30px;
 }

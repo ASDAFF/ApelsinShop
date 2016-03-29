@@ -91,57 +91,57 @@ class AP_WorkingWithShopPropertyCatalog {
         $this->getAction();
         return $this->html;
     }
-    
+
     private function generationUI() {
         $this->getAllProperty();
         $this->html = $this->generationJS();
         $this->html .= '<div class="ShopPropertyCatalog">';
-            $this->html .= '<div class="ShopPropertyCatalogTopBlock">';
-                $this->html .= '<div class="ShopPropertyCatalogTopBlockSearch">Искать по названию';
-                $this->html .= '</div>';
-                $this->html .= '<div class="ShopPropertyCatalogTopBlockAddProperty">';
-                    $this->html .= '<div class="ShopPropertyCatalogButtonAdd">Создать новое свойство</div>';
-                $this->html .= '</div>';
-            $this->html .= '</div>'; // ShopPropertyCatalogTopBlock
-            $this->html .= '<div class="ShopPropertyCatalogMainBlock">';
-                $this->html .= '<div class="addGroupCatalogNewPropertyWrapper">';
-                    $this->html .= '<div class="addGroupCatalogNewProperty">';
-                        $this->html .= '<form class="AP_FormShopAddPropertyCatalog" name="AP_FormShopAddPropertyCatalog" action="' . $this->urlHelper->getThisPage() . '" method="POST" accept - charset="UTF-8">';
-                            $this->html .= '<div class="addGroupCatalogNewPropertyButton">';
-                                $this->html .= '<input class="AP_ShopPropertyCatalogButton" type="submit" name="AP_ShopPropertyCatalogButtonTop" id="AP_ShopPropertyCatalogButton" value="Изменить">';
-                            $this->html .= '</div>';
-                            $this->html .= '<table class="ShopPropertyCatalogTable">';
-                                $this->html .= $this->generationHeaderTable();
-                                if (!empty($this->allProperty)) {
-                                    foreach ($this->allProperty as $property) {
-                                        $this->element->getBlockId();
-                                        $this->html .= $this->element->getElementTable($property);
-                                    }
-                                } else {
-                                    $this->html .= 'Свойства не определены';
-                                    $this->html .=  $this->element->getElementTable();
-                                }
-                            $this->html .= '</table>';
-                            $this->html .= '<center>';
-                                $this->html .= '<div class="addGroupCatalogNewPropertyButton">';
-                                    $this->html .= '<input class="AP_ShopPropertyCatalogButton" type="submit" name="AP_ShopPropertyCatalogButtonBottom" id="AP_ShopPropertyCatalogButton" value="Изменить">';
-                                $this->html .= '</div>';
-                            $this->html .= '</center>';
-                        $this->html .= '</form>';
-                        $this->html .= '<div class="clear"></div>';
-                    $this->html .= '</div>'; // addGroupCatalogNewProperty
-                $this->html .= '</div>'; // addGroupCatalogNewPropertyWrapper
-            $this->html .= '</div>'; // ShopPropertyCatalogMainBlock
-            
-            $this->html .= '<div class="ShopPropertyCatalogBottomBlock">';
-                $this->html .= '<div class="ShopPropertyCatalogTopBlockAddProperty">';
-                    $this->html .= '<div class="ShopPropertyCatalogButtonAdd">Создать новое свойство</div>';
-                $this->html .= '</div>';
-            $this->html .= '</div>'; // ShopPropertyCatalogButtomBlock
-            
+        $this->html .= '<div class="ShopPropertyCatalogTopBlock">';
+        $this->html .= '<div class="ShopPropertyCatalogTopBlockSearch">Искать по названию';
+        $this->html .= '</div>';
+        $this->html .= '<div class="ShopPropertyCatalogTopBlockAddProperty">';
+        $this->html .= '<div class="ShopPropertyCatalogButtonAdd">Создать новое свойство</div>';
+        $this->html .= '</div>';
+        $this->html .= '</div>'; // ShopPropertyCatalogTopBlock
+        $this->html .= '<div class="ShopPropertyCatalogMainBlock">';
+        $this->html .= '<div class="addGroupCatalogNewPropertyWrapper">';
+        $this->html .= '<div class="addGroupCatalogNewProperty">';
+        $this->html .= '<form class="AP_FormShopAddPropertyCatalog" name="AP_FormShopAddPropertyCatalog" action="' . $this->urlHelper->getThisPage() . '" method="POST" accept - charset="UTF-8">';
+        $this->html .= '<div class="addGroupCatalogNewPropertyButton">';
+        $this->html .= '<input class="AP_ShopPropertyCatalogButton" type="submit" name="AP_ShopPropertyCatalogButtonTop" id="AP_ShopPropertyCatalogButton" value="Изменить">';
+        $this->html .= '</div>';
+        $this->html .= '<table class="ShopPropertyCatalogTable">';
+        $this->html .= $this->generationHeaderTable();
+        if (!empty($this->allProperty)) {
+            foreach ($this->allProperty as $property) {
+                $this->element->getBlockId();
+                $this->html .= $this->element->getElementTable($property);
+            }
+        } else {
+            $this->html .= 'Свойства не определены';
+            $this->html .= $this->element->getElementTable();
+        }
+        $this->html .= '</table>';
+        $this->html .= '<center>';
+        $this->html .= '<div class="addGroupCatalogNewPropertyButton">';
+        $this->html .= '<input class="AP_ShopPropertyCatalogButton" type="submit" name="AP_ShopPropertyCatalogButtonBottom" id="AP_ShopPropertyCatalogButton" value="Изменить">';
+        $this->html .= '</div>';
+        $this->html .= '</center>';
+        $this->html .= '</form>';
+        $this->html .= '<div class="clear"></div>';
+        $this->html .= '</div>'; // addGroupCatalogNewProperty
+        $this->html .= '</div>'; // addGroupCatalogNewPropertyWrapper
+        $this->html .= '</div>'; // ShopPropertyCatalogMainBlock
+
+        $this->html .= '<div class="ShopPropertyCatalogBottomBlock">';
+        $this->html .= '<div class="ShopPropertyCatalogTopBlockAddProperty">';
+        $this->html .= '<div class="ShopPropertyCatalogButtonAdd">Создать новое свойство</div>';
+        $this->html .= '</div>';
+        $this->html .= '</div>'; // ShopPropertyCatalogButtomBlock
+
         $this->html .= '</div>'; //ShopPropertyCatalog
     }
-    
+
     private function generationHeaderTable() {
         $html = '<tr class="ShopPropertyCatalogHeaderTable">';
         $html .= '<th colspan="2">Название</th>';
@@ -156,23 +156,23 @@ class AP_WorkingWithShopPropertyCatalog {
     private function generationJS() {
         $html = '<script type="text/javascript">';
         $html .= '  jQuery(document).ready(function() {';
-        
+
         // add
         $html .= '      $(".ShopPropertyCatalogButtonAdd").click(function() {';
         $html .= '          addNewFieldProperty();';
         $html .= '      });';
-        
+
         // delete  step1      
         $html .= '    function ShopPropertyCatalogButtonDelEvent() {';
         $html .= '      $(".ShopPropertyCatalogButtonDel").click(function() {';
         $html .= '          $(this).parent().parent().remove();';
         $html .= '      });';
         $html .= '    }';
-        
+
         $html .= '    $(function() {';
         $html .= '       ShopPropertyCatalogButtonDelEvent();';
         $html .= '    });';
-        
+
         // delete  step2     addGroupCatalogNewPropertyNameInput propertyName $(t).first().next()
         $html .= '      $(".ShopPropertyCatalogButtonDeleteStepSecond").click(function() {';
         $html .= '          var idBlock = $(this).parent().parent().attr("id");';
@@ -182,7 +182,7 @@ class AP_WorkingWithShopPropertyCatalog {
         $html .= '              $(this).parent().parent().remove();';
         $html .= '          } ';
         $html .= '      });';
-        
+
         // addNewFieldProperty()
         $html .= '      function addNewFieldProperty() {';
         $html .= '          $.ajax({';
@@ -195,12 +195,12 @@ class AP_WorkingWithShopPropertyCatalog {
         $html .= '              }';
         $html .= '          });';
         $html .= '      };';
-        
+
         $html .= '  });';
         $html .= '</script>';
-        return $html; 
+        return $html;
     }
-    
+
     private function getAllProperty() {
         $this->allProperty = [];
         $query = "SELECT 
@@ -217,7 +217,7 @@ class AP_WorkingWithShopPropertyCatalog {
             ORDER BY SHPR.`propertyName` ASC;";
         $this->allProperty = $this->SQL_HELPER->select($query);
     }
-    
+
     public function getAction() {
         if (isset($_POST)) {
             $this->dataPost = $_POST;
@@ -228,7 +228,7 @@ class AP_WorkingWithShopPropertyCatalog {
             }
         }
     }
-    
+
 // -------------- Шаг 1 (получение данных для изменений) -------------------
     private function updateStepFirst() {
         $this->getAllValue();
@@ -244,14 +244,14 @@ class AP_WorkingWithShopPropertyCatalog {
             }
         }
     }
-    
+
     private function generationMessageErrorJS($message) {
         $html = '<script type="text/javascript">';
         $html .= 'alert("' . $message . '");';
         $html .= '</script>';
         return $html;
     }
-    
+
     // ----------- получение данных ---------------
     private function getAllValue() {
         $this->getAllPropertySort();
@@ -259,7 +259,7 @@ class AP_WorkingWithShopPropertyCatalog {
         $this->getDataAddAndEdit();
         $this->getDataDelete();
     }
-    
+
     /**
      * Пересортировка массива св-тв для дальнейшего использования
      */
@@ -281,12 +281,12 @@ class AP_WorkingWithShopPropertyCatalog {
         foreach ($this->dataPost as $post => $propertyEdit) {
             foreach ($this->allPropertySort as $propertys => $property) {
                 if ($post == $propertys) {
-                    $this->dataPostNew[$post] = array_diff_assoc($propertyEdit, $property);       
+                    $this->dataPostNew[$post] = array_diff_assoc($propertyEdit, $property);
                 }
             }
         }
     }
-    
+
     /**
      * Получение св-тв для создания и изменений значений св-тв для редактирования
      */
@@ -300,7 +300,7 @@ class AP_WorkingWithShopPropertyCatalog {
             }
         }
     }
-    
+
     /**
      * Получение св-тв для удаления
      */
@@ -312,40 +312,40 @@ class AP_WorkingWithShopPropertyCatalog {
     // ----------------- проверка данных ------------------------
     private function checkAllValue() {
         $error = false;
-        if (isset($this->dataAdd['propertyName'])  &&  !empty($this->dataAdd['propertyName'])) {
+        if (isset($this->dataAdd['propertyName']) && !empty($this->dataAdd['propertyName'])) {
             foreach ($this->dataAdd['propertyName'] as $value) {
                 if ($value != "" && $value != null) {
-                    if (!preg_match("/[А-Яа-яA-Za-z0-9][^@#$%&*]{1,50}/", InputValueHelper::getMysqlText($value))) {
-                        $error = true;
-                        $this->checkAllValueErrors[] = "Разрешены латинские буквы, кирилические буквы, цифры";
-                    }
+//                    if (!preg_match("/[А-Яа-яA-Za-z0-9][^@#$%&*]{1,50}/", InputValueHelper::getMysqlText($value))) {
+//                        $error = true;
+//                        $this->checkAllValueErrors[] = "Разрешены латинские буквы, кирилические буквы, цифры";
+//                    }
                     if (!$this->checkDuplicatePropertyName($value)) {
                         $error = true;
-                        $this->checkAllValueErrors[] = '\"'.$value.'\" - такое название свойства уже используется. Выберите другое.';
+                        $this->checkAllValueErrors[] = '\"' . $value . '\" - такое название свойства уже используется. Выберите другое.';
                     }
                 } else {
                     $error = true;
                     $this->checkAllValueErrors[] = "Название свойства - обязательное поле";
-                } 
+                }
             }
         }
-        if (isset($this->dataEdit['propertyName'])  &&  !empty($this->dataEdit['propertyName'])) {
+        if (isset($this->dataEdit['propertyName']) && !empty($this->dataEdit['propertyName'])) {
             foreach ($this->dataEdit['propertyName'] as $value) {
                 if ($value != "" && $value != null) {
-                    if (!preg_match("/[А-Яа-яA-Za-z0-9][^@#$%&*]{1,50}/", InputValueHelper::getMysqlText($value))) {
-                        $error = true;
-                        $this->checkAllValueErrors[] = "Разрешены латинские буквы, кирилические буквы, цифры";
-                    }
+//                    if (!preg_match("/[А-Яа-яA-Za-z0-9][^@#$%&*]{1,50}/", InputValueHelper::getMysqlText($value))) {
+//                        $error = true;
+//                        $this->checkAllValueErrors[] = "Разрешены латинские буквы, кирилические буквы, цифры";
+//                    }
                     if (!$this->checkDuplicatePropertyName($value)) {
                         $error = true;
-                        $this->checkAllValueErrors[] = '"'.$value.'" - такое название свойства уже используется. Выберите другое.';
+                        $this->checkAllValueErrors[] = '"' . $value . '" - такое название свойства уже используется. Выберите другое.';
                     }
                 } else {
                     $error = true;
                     $this->checkAllValueErrors[] = "Название свойства - обязательное поле";
-                } 
+                }
             }
-        } 
+        }
         return !$error;
     }
 
@@ -356,14 +356,13 @@ class AP_WorkingWithShopPropertyCatalog {
     }
 
 // -------------- Шаг 2 (отчет) ------------------------
-    
     // ---------------- подготовка данных для отчета и insert-а ------------------------
     private function insertPrepare() {
         $this->insertPrepareAdd();
         $this->insertPrepareEdit();
         $this->insertPrepareDelete();
     }
-    
+
     private function insertPrepareAdd() {
         if (!empty($this->dataAdd)) {
             foreach (array_keys($this->dataAdd["propertyName"]) as $value) {
@@ -377,8 +376,8 @@ class AP_WorkingWithShopPropertyCatalog {
                 $this->insertSQL[$id][] = $newProperty;
                 if ($this->dataAdd['measure'][$value] != NULL) {
                     $propertyMeasure = "INSERT INTO `ShopPropertiesMeasure` SET ";
-                    $propertyMeasure .= "`property` = '" . $id. "', ";
-                    $propertyMeasure .= "`measure` =  '" . $this->dataAdd['measure'][$value]  . "';";
+                    $propertyMeasure .= "`property` = '" . $id . "', ";
+                    $propertyMeasure .= "`measure` =  '" . $this->dataAdd['measure'][$value] . "';";
                     $this->insertSQL[$id][] = $propertyMeasure;
                 }
                 $this->dataAddForReport[$id]['id'] = $id;
@@ -390,23 +389,23 @@ class AP_WorkingWithShopPropertyCatalog {
             }
         }
     }
-    
+
     private function insertPrepareEdit() {
         if (!empty($this->dataEdit)) {
             foreach ($this->dataEdit as $field => $property) {
                 foreach ($property as $id => $value) {
                     if ($field === "measure") {
-                        if ($value == null ) {
+                        if ($value == null) {
                             $propertyMeasure = "DELETE FROM `ShopPropertiesMeasure` WHERE `property`='" . $id . "';";
                         } else {
                             $propertyMeasure = "UPDATE `ShopPropertiesMeasure` SET ";
-                            $propertyMeasure .= " `".$field."` = '" . $value . "' ";
+                            $propertyMeasure .= " `" . $field . "` = '" . $value . "' ";
                             $propertyMeasure .= " WHERE `property` = '" . $id . "';";
                         }
                         $this->insertSQL[$id][] = $propertyMeasure;
                     } else {
                         $updateProperty = "UPDATE `ShopProperties` SET ";
-                        $updateProperty .= " `".$field."` = '" . $value . "' ";
+                        $updateProperty .= " `" . $field . "` = '" . $value . "' ";
                         $updateProperty .= " WHERE `id` = '" . $id . "';";
                         $this->insertSQL[$id][] = $updateProperty;
                     }
@@ -418,7 +417,7 @@ class AP_WorkingWithShopPropertyCatalog {
             }
         }
     }
-    
+
     private function insertPrepareDelete() {
         if (isset($this->dataDelete['propertyName']) && !empty($this->dataDelete['propertyName'])) {
             foreach (array_keys($this->dataDelete['propertyName']) as $id) {
@@ -432,7 +431,7 @@ class AP_WorkingWithShopPropertyCatalog {
             }
         }
     }
-    
+
     // получение данных о редактируемом элементе
     private function getDataEditElement($id) {
         $query = "SELECT 
@@ -443,97 +442,96 @@ class AP_WorkingWithShopPropertyCatalog {
             SHPR.`oneOfAllValues`, 
             SHPRM.`measure`
             FROM 
-                (SELECT * FROM `ShopProperties` WHERE `id` = '".$id."') AS SHPR
+                (SELECT * FROM `ShopProperties` WHERE `id` = '" . $id . "') AS SHPR
             LEFT JOIN `ShopPropertiesMeasure` AS SHPRM
             ON SHPRM.`property` = SHPR.`id`;";
-        $dataCurentProperty = $this->SQL_HELPER->select($query, 1); 
+        $dataCurentProperty = $this->SQL_HELPER->select($query, 1);
         return $dataCurentProperty;
     }
-    
+
     private function getReport() {
         $this->html = '<div class="ShopPropertyCatalog">';
         $this->html .= $this->generationJS();
-            $this->html .= '<div class="ShopPropertyCatalogMainBlock">';
-                $this->html .= '<div class="addGroupCatalogNewPropertyWrapper">';
-                    $this->html .= '<div class="addGroupCatalogNewProperty">';
-                        $this->html .= '<form class="AP_FormShopAddPropertyCatalogStepSecond" name="AP_FormShopAddPropertyCatalogStepSecond" action="' . $this->urlHelper->getThisPage() . '" method="POST" accept - charset="UTF-8">';
-                            $this->html .= '<table class="ShopPropertyCatalogTable">';
-                                $this->html .= $this->generationHeaderTable();
-                                $this->html .= $this->getBlockForReport($this->dataAddForReport, "Создваемые свойства");
-                                $this->html .= $this->getBlockForReport($this->dataEditForReport, "Редактируемые свойства", $this->dataEditTitle);
-                                $this->html .= $this->getBlockForReport($this->dataDeleteForReport, "Удаляемые свойства");
-                            $this->html .= '</table>';
-                            $this->html .= '<center>';
-                                $this->html .= '<div class="addGroupCatalogNewPropertyButton">';
-                                    $this->html .= '<input class="AP_ShopPropertyCatalogButtonApply" type="submit" name="AP_ShopPropertyCatalogButtonApply" id="AP_ShopPropertyCatalogButtonApply" value="Применить">';
-                                $this->html .= '</div>';
-                            $this->html .= '</center>';
-                        $this->html .= '</form>';
-                        $this->html .= '<div class="clear"></div>';
-                    $this->html .= '</div>'; // addGroupCatalogNewProperty
-                $this->html .= '</div>'; // addGroupCatalogNewPropertyWrapper
-            $this->html .= '</div>'; // ShopPropertyCatalogMainBlock
+        $this->html .= '<div class="ShopPropertyCatalogMainBlock">';
+        $this->html .= '<div class="addGroupCatalogNewPropertyWrapper">';
+        $this->html .= '<div class="addGroupCatalogNewProperty">';
+        $this->html .= '<form class="AP_FormShopAddPropertyCatalogStepSecond" name="AP_FormShopAddPropertyCatalogStepSecond" action="' . $this->urlHelper->getThisPage() . '" method="POST" accept - charset="UTF-8">';
+        $this->html .= '<table class="ShopPropertyCatalogTable">';
+        $this->html .= $this->generationHeaderTable();
+        $this->html .= $this->getBlockForReport($this->dataAddForReport, "Создваемые свойства");
+        $this->html .= $this->getBlockForReport($this->dataEditForReport, "Редактируемые свойства", $this->dataEditTitle);
+        $this->html .= $this->getBlockForReport($this->dataDeleteForReport, "Удаляемые свойства");
+        $this->html .= '</table>';
+        $this->html .= '<center>';
+        $this->html .= '<div class="addGroupCatalogNewPropertyButton">';
+        $this->html .= '<input class="AP_ShopPropertyCatalogButtonApply" type="submit" name="AP_ShopPropertyCatalogButtonApply" id="AP_ShopPropertyCatalogButtonApply" value="Применить">';
+        $this->html .= '</div>';
+        $this->html .= '</center>';
+        $this->html .= '</form>';
+        $this->html .= '<div class="clear"></div>';
+        $this->html .= '</div>'; // addGroupCatalogNewProperty
+        $this->html .= '</div>'; // addGroupCatalogNewPropertyWrapper
+        $this->html .= '</div>'; // ShopPropertyCatalogMainBlock
         $this->html .= '</div>'; //ShopPropertyCatalog
-        
     }
-    
+
     private function getBlockForReport($data, $text, $title = array()) {
         $html = '';
         if (empty($title)) {
             $title = $data;
         }
         if (!empty($data)) {
-            $html .= '<tr class="ShopPropertyCatalogTitleReport"><td colspan="6">'.$text.'</td></tr>';
-            foreach ($data as $property) {    
+            $html .= '<tr class="ShopPropertyCatalogTitleReport"><td colspan="6">' . $text . '</td></tr>';
+            foreach ($data as $property) {
                 $hidden = '';
                 foreach ($this->insertSQL[$property['id']] as $value) {
-                    $hidden .= '<input type="hidden" name="hiddenStepSecond[]" value="'.$value.'">';
+                    $hidden .= '<input type="hidden" name="hiddenStepSecond[]" value="' . $value . '">';
                 }
                 $html .= $this->getElementReportTable($property, $hidden, $title[$property['id']]);
             }
-        } 
+        }
         return $html;
     }
 
     private function getElementReportTable($property, $hidden, $title) {
         $id = ID_GENERATOR::generateID("ShopPropertyElementReport");
-        $html = '<tr id="'.$id.'" class="ShopPropertyCatalogElementTable">';
-            $html .= '<td>';
-            $html .= '<div class="ShopPropertyCatalogButtonDeleteStepSecond">Отменить</div>';
-            $html .= '</td>';
-            $html .= '<td>';
-            $html .= '<div class="addGroupCatalogNewPropertyNameInput '.$this->getColorUpdate($title['propertyName'], $property['propertyName']).'" propertyName="'.$property['propertyName'].'" title="'.$title['propertyName'].'">'.$property['propertyName'];
-            $html .= $hidden;
-            $html .= '</div>';
-            $html .= '</td>';
-            $html .= '<td>';
-            $html .= '<div class="addGroupCatalogNewPropertyType '.$this->getColorUpdate($title['filterType'], $property['filterType']).'" title="'.$title['filterType'].'">'.$property['filterType'];
-            $html .= '</div>';
-            $html .= '</td>';
-            $html .= '<td>';
-            $html .= '<div class="addGroupCatalogNewPropertyType '.$this->getColorUpdate($title['valueType'], $property['valueType']).'" title="'.$title['valueType'].'">'.$property['valueType'];
-            $html .= '</div>';
-            $html .= '</td>';
-            $html .= '<td>';
-            $measure = '';
-            $measureTitle = '';
-            ($property["measure"] != NULL) ? $measure .= $property["measure"] : $measure .= "без единицы";
-            ($title["measure"] != NULL) ? $measureTitle .= $title["measure"] : $measureTitle .= "без единицы";
-            $html .= '<div class="addGroupCatalogNewPropertyType '.$this->getColorUpdate($measureTitle, $measure).'" title="'.$measureTitle.'">'.$measure;
-            $html .= '</div>';
-            $html .= '</td>';
-            $html .= '<td>';
-            $oneOfAll = '';
-            $oneOfAllTitle = '';
-            ($property["oneOfAllValues"] !== '0') ? $oneOfAll .= "да" : $oneOfAll .= "нет";
-            ($title["oneOfAllValues"] !== '0') ? $oneOfAllTitle .= "да" : $oneOfAllTitle .= "нет";
-            $html .= '<div class="addGroupCatalogNewPropertyType '.$this->getColorUpdate($oneOfAllTitle, $oneOfAll).'" title="'.$oneOfAllTitle.'">'.$oneOfAll;
-            $html .= '</div>';
-            $html .= '</td>';
+        $html = '<tr id="' . $id . '" class="ShopPropertyCatalogElementTable">';
+        $html .= '<td>';
+        $html .= '<div class="ShopPropertyCatalogButtonDeleteStepSecond">Отменить</div>';
+        $html .= '</td>';
+        $html .= '<td>';
+        $html .= '<div class="addGroupCatalogNewPropertyNameInput ' . $this->getColorUpdate($title['propertyName'], $property['propertyName']) . '" propertyName="' . $property['propertyName'] . '" title="' . $title['propertyName'] . '">' . $property['propertyName'];
+        $html .= $hidden;
+        $html .= '</div>';
+        $html .= '</td>';
+        $html .= '<td>';
+        $html .= '<div class="addGroupCatalogNewPropertyType ' . $this->getColorUpdate($title['filterType'], $property['filterType']) . '" title="' . $title['filterType'] . '">' . $property['filterType'];
+        $html .= '</div>';
+        $html .= '</td>';
+        $html .= '<td>';
+        $html .= '<div class="addGroupCatalogNewPropertyType ' . $this->getColorUpdate($title['valueType'], $property['valueType']) . '" title="' . $title['valueType'] . '">' . $property['valueType'];
+        $html .= '</div>';
+        $html .= '</td>';
+        $html .= '<td>';
+        $measure = '';
+        $measureTitle = '';
+        ($property["measure"] != NULL) ? $measure .= $property["measure"] : $measure .= "без единицы";
+        ($title["measure"] != NULL) ? $measureTitle .= $title["measure"] : $measureTitle .= "без единицы";
+        $html .= '<div class="addGroupCatalogNewPropertyType ' . $this->getColorUpdate($measureTitle, $measure) . '" title="' . $measureTitle . '">' . $measure;
+        $html .= '</div>';
+        $html .= '</td>';
+        $html .= '<td>';
+        $oneOfAll = '';
+        $oneOfAllTitle = '';
+        ($property["oneOfAllValues"] !== '0') ? $oneOfAll .= "да" : $oneOfAll .= "нет";
+        ($title["oneOfAllValues"] !== '0') ? $oneOfAllTitle .= "да" : $oneOfAllTitle .= "нет";
+        $html .= '<div class="addGroupCatalogNewPropertyType ' . $this->getColorUpdate($oneOfAllTitle, $oneOfAll) . '" title="' . $oneOfAllTitle . '">' . $oneOfAll;
+        $html .= '</div>';
+        $html .= '</td>';
         $html .= '</tr>';
         return $html;
     }
-    
+
     private function getColorUpdate($old, $new) {
         if ($old !== $new) {
             return "ShopPropertyElementReportColorUpdate";
@@ -541,13 +539,13 @@ class AP_WorkingWithShopPropertyCatalog {
     }
 
 // ----------------- Шаг 3 () применение изменений -----------------------------
-    
+
     private function applyUpdate() {
         if (isset($this->dataPost['AP_ShopPropertyCatalogButtonApply'])) {
             $this->insertExecute();
         }
     }
-    
+
     private function insertExecute() {
         if (isset($this->dataPost["hiddenStepSecond"])) {
             foreach ($this->dataPost["hiddenStepSecond"] as $query) {
@@ -563,7 +561,7 @@ class GenerationFieldForProperty {
 
     private $blockId;
     private $SQL_HELPER;
-    
+
     public function __construct() {
         global $_SQL_HELPER;
         $this->SQL_HELPER = $_SQL_HELPER;
@@ -575,7 +573,7 @@ class GenerationFieldForProperty {
     }
 
     public function getElementTable($property = array()) {
-        $html = '<tr id="'.$this->blockId.'" class="ShopPropertyCatalogElementTable">';
+        $html = '<tr id="' . $this->blockId . '" class="ShopPropertyCatalogElementTable">';
         if (empty($property)) {
             $property['propertyName'] = $property['filterType'] = $property['valueType'] = $property['measure'] = '';
             $property['oneOfAllValues'] = '0';
@@ -583,40 +581,40 @@ class GenerationFieldForProperty {
         if (!isset($property['id'])) {
             $property['id'] = $this->blockId;
         }
-            $html .= '<td>';
-            $html .= '<div class="ShopPropertyCatalogButtonDel">x</div>';
-            $html .= '</td>';
-            $html .= '<td>';
-            $html .= '<div class="addGroupCatalogNewPropertyNameInput">';
-            $html .= InputHelper::paternTextBox("propertyName[".$property['id']."]", "propertyName", "propertyName", 50, true, "Латиница, кирилица", "[А-Яа-яA-Za-z0-9][^@#$%&*]{1,50}", $property["propertyName"]);
-            $html .= '</div>';
-            $html .= '</td>';
-            $html .= '<td>';
-            $html .= '<div class="addGroupCatalogNewPropertyType">';
-            $html .= InputHelper::select("filterType[".$property['id']."]", "filterType", $this->getFilterType(), true, $property["filterType"]);
-            $html .= '</div>';
-            $html .= '</td>';
-            $html .= '<td>';
-            $html .= '<div class="addGroupCatalogNewPropertyType">';
-            $html .= InputHelper::select("valueType[".$property['id']."]", "valueType", $this->getValueType(), true, $property["valueType"]);
-            $html .= '</div>';
-            $html .= '</td>';
-            $html .= '<td>';
-            $html .= '<div class="addGroupCatalogNewPropertyType">';
-            $measure = '';
-            ($property["measure"] !== NULL) ? $measure .= $property["measure"] : $measure .= NULL;
-            $html .= InputHelper::select("measure[".$property['id']."]", "measure", $this->getMeasureF(), true, $measure);
-            $html .= '</div>';
-            $html .= '</td>';
-            $html .= '<td>';
-            $html .= '<div class="addGroupCatalogNewPropertyType">';
-            $html .= InputHelper::select("oneOfAllValues[".$property['id']."]", "oneOfAllValues", array(array('value' => "1", 'text' => "да"), array('value' => "0", 'text' => "нет")), true, $property["oneOfAllValues"]);
-            $html .= '</div>';
-            $html .= '</td>';
+        $html .= '<td>';
+        $html .= '<div class="ShopPropertyCatalogButtonDel">x</div>';
+        $html .= '</td>';
+        $html .= '<td>';
+        $html .= '<div class="addGroupCatalogNewPropertyNameInput">';
+        $html .= InputHelper::textBox("propertyName[" . $property['id'] . "]", "propertyName", "propertyName", 50, true, $property["propertyName"]);
+        $html .= '</div>';
+        $html .= '</td>';
+        $html .= '<td>';
+        $html .= '<div class="addGroupCatalogNewPropertyType">';
+        $html .= InputHelper::select("filterType[" . $property['id'] . "]", "filterType", $this->getFilterType(), true, $property["filterType"]);
+        $html .= '</div>';
+        $html .= '</td>';
+        $html .= '<td>';
+        $html .= '<div class="addGroupCatalogNewPropertyType">';
+        $html .= InputHelper::select("valueType[" . $property['id'] . "]", "valueType", $this->getValueType(), true, $property["valueType"]);
+        $html .= '</div>';
+        $html .= '</td>';
+        $html .= '<td>';
+        $html .= '<div class="addGroupCatalogNewPropertyType">';
+        $measure = '';
+        ($property["measure"] !== NULL) ? $measure .= $property["measure"] : $measure .= NULL;
+        $html .= InputHelper::select("measure[" . $property['id'] . "]", "measure", $this->getMeasureF(), true, $measure);
+        $html .= '</div>';
+        $html .= '</td>';
+        $html .= '<td>';
+        $html .= '<div class="addGroupCatalogNewPropertyType">';
+        $html .= InputHelper::select("oneOfAllValues[" . $property['id'] . "]", "oneOfAllValues", array(array('value' => "1", 'text' => "да"), array('value' => "0", 'text' => "нет")), true, $property["oneOfAllValues"]);
+        $html .= '</div>';
+        $html .= '</td>';
         $html .= '</tr>';
         return $html;
     }
-    
+
     private function getFilterType() {
         $listFilterType = [];
         $query = "SELECT `type` FROM `ShopPropertiesFilterType` ORDER BY `type` ASC;";
@@ -651,5 +649,5 @@ class GenerationFieldForProperty {
         $listMeasureF[$key + 1]['value'] = NULL;
         return $listMeasureF;
     }
-    
+
 }

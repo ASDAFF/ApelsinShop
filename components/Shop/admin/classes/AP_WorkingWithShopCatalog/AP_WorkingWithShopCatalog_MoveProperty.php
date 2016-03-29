@@ -251,7 +251,7 @@ class AP_WorkingWithShopCatalog_MoveProperty extends AP_WorkingWithShopCatalog_G
         // новое св-во добавить родителю (в обе таблицы)
         $this->addNewPropertyForNewOwner();
         // редактируем ShopPropertiesInGroupsRanking
-        $infoGroup = $this->helperGroup->getGroupInfo($this->newOwner,true);
+        $infoGroup = $this->helperGroup->getGroupInfo($this->newOwner, true);
         foreach ($infoGroup['children'] as $group) {
             $this->getPersonalDelete($group);
             // сменить владельца св-вом в InGroupsRanking и удалить дубликат св-ва из InGroups
@@ -275,7 +275,7 @@ class AP_WorkingWithShopCatalog_MoveProperty extends AP_WorkingWithShopCatalog_G
             $html .= '<div class="addGroupCatalogReportText">' . $this->getPropertyName($value) . '</div>';
         }
         $html .= '<div class="addGroupCatalogReportText">1) Новые свойства добавлены в каталог "' . $this->getGroupName($this->newOwner) . '" и стали доступны в каталогах:</div>';
-        $infoGroup = $this->helperGroup->getGroupInfo($this->newOwner,true);
+        $infoGroup = $this->helperGroup->getGroupInfo($this->newOwner, true);
         foreach ($infoGroup['children'] as $group) {
             $html .= '<div class="addGroupCatalogReportText">' . $this->getGroupName($group) . '</div>';
         }
@@ -361,7 +361,7 @@ class AP_WorkingWithShopCatalog_MoveProperty extends AP_WorkingWithShopCatalog_G
      */
     private function getPersonalDelete($group) {
         $this->personalDelete = [];
-        $infoGroup = $this->helperGroup->getGroupInfo($group,true);
+        $infoGroup = $this->helperGroup->getGroupInfo($group, true);
         if (!empty($infoGroup['properties']['personal']) && $infoGroup['properties']['personal'] != null) {
             foreach ($infoGroup['properties']['personal'] as $value) {
                 if (in_array($value["property"], $this->propertyMoveId)) {

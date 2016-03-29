@@ -10,4 +10,6 @@ $mainPanelUI->addElement('importImages', 'Загрузка изображени�
 $mainPanelUI->addElement('importGroups', 'Загрузка изображений групп', 'importGroupsUI.php');
 $mainPanelUI->addElement('workingWithShopCatalog', 'Работа с каталогами магазина', 'workingWithShopCatalogUI.php');
 $mainPanelUI->addElement('workingWithShopCatalogProperty', 'Работа с свойствами каталогов магазина', 'workingWithShopCatalogPropertyUI.php');
+$mainPanelUI->addElement('workingWithShopNewItems', 'Работа с новыми товарами', 'workingWithShopNewItemsUI.php');
+$mainPanelUI->addElement('editShopItems', 'Редактирование товаров', 'editShopItemsUI.php');
 $mainPanelUI->getUI();

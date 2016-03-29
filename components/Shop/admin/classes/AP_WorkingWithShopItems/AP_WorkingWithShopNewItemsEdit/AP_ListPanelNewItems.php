@@ -49,7 +49,86 @@
  * Данная копия CSystem используется для проекта Apelsin SHOP
  * 
  */
-include_once './components/Shop/admin/classes/AP_ImportItemsGroup.php';
-$importImages = new AP_ImportItemsGroup();
-echo $importImages->getHtml();
 
+/**
+ * Генерирование общей страницы редактирования товаров
+ *
+ * @author Olga Rjabchikova
+ * @copyright © 2010-2016, CompuProjec
+ * @created 05.02.2016 12:28:39
+ */
+class AP_ListPanelNewItems {
+
+    private $html;
+    private $data;
+    private $urlHelper;
+
+    public function __construct($data) {
+        $this->data = $data;
+        $this->urlHelper = new UrlHelper();
+    }
+
+    public function getHtml() {
+        $this->generationUI();
+        return $this->html;
+    }
+
+    private function generationUI() {
+        global $_URL_PARAMS;
+        $params = $_URL_PARAMS['params'];
+        $params[4] = 'workingWithShopNewItemsHandlerData';
+        $this->html = '<div class="shopItemsNewEditWrapper">';
+        $this->html .= '<form name="AP_FormShopItemsNew" id="AP_FormShopItemsNew" action="' . $this->urlHelper->chengeParams($params) . '" method="POST">';
+        $this->html .= '<input type="hidden" name="shopItemsNewItemGroup" value="' . $this->data['groupId'] . '">';
+        $panels[0] = new AP_WorkingWithShopItemsNewEditName($this->data);
+        $panels[1] = new AP_WorkingWithShopItemsNewEditDescription($this->data);
+        $panels[2] = new AP_WorkingWithShopItemsNewEditProperty($this->data);
+        $panels[3] = new AP_WorkingWithShopItemsNewItemsCards($this->data);
+        foreach ($panels as $panel) {
+            if ($panel instanceof AP_AbstractPanelEditNewItems) {
+                $this->html .= $this->getElementPanel($panel);
+            } else {
+                $this->html .= '';
+            }
+        }
+        $this->html .= $this->generationJS();
+        $this->html .= '<input type=submit name="AP_FormShopItemsNewSubmit" value="Применить">';
+        $this->html .= '</form >';
+        $this->html .= '</div>'; // ShopItemsNewEditWrapper
+        return $this->html;
+    }
+
+    private function generationJS() {
+        $out = '<script type="text/javascript">
+                    $(document).ready(function(){
+                        $(".shopItemsNewEditWrapper .shopItemsNewEditTitle").click(function() {
+                            var isHide = true;
+                            if ($(this).next().css("display") != "none") {
+                                isHide = false;
+                            }
+                            $(".shopItemsNewEditContent").hide(); 
+                            $(".shopItemsNewItemsCardsBlockItemCardWrapper").hide();
+                            if (isHide) {
+                                $(this).next().show();
+                                $(this).addClass("active");
+                            } else {
+                                $(this).removeClass("active");
+                            }
+                            $(this).siblings(".shopItemsNewEditTitle").removeClass("active");
+                        });
+                    });
+                </script>';
+        return $out;
+    }
+
+    private function getElementPanel(AP_AbstractPanelEditNewItems $panel) {
+        $html = '<div class="shopItemsNewEditTitle">';
+        $html .= $panel->getNamePanel();
+        $html .= '</div>';
+        $html .= '<div class="shopItemsNewEditContent">';
+        $html .= $panel->getContentPanel();
+        $html .= '</div>';
+        return $html;
+    }
+
+}

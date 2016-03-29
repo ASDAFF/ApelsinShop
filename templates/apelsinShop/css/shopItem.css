@@ -108,7 +108,7 @@
     color: #ef7f1a;
     display: inline-block;
     width: 200px;
-    font:  12px/12px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    font:  12px/14px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
     padding-right: 10px;
 }
 .ShopItemMainWrapper .ShopItemMainBlock .ShopItemParams .ShopItemParam .ShopItemParamName div {
@@ -121,7 +121,7 @@
     height: 24px;
     display: inline-block;
     /*height: 30px;*/
-    font:  14px/15px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
+    font:  14px/14px "PT Sans",helvetica,"segoe UI",arial,sans-serif;
 }
 .ShopItemMainWrapper .ShopItemMainBlock .ShopItemParams .ShopItemParam .ShopItemParamValue div {
     /*height: 30px;*/

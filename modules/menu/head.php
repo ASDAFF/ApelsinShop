@@ -14,12 +14,14 @@
 //    }   
     
     function showChildMenu(element_id) {
-        param=document.getElementById(element_id);
-        param.style.display = "block";
+//        param=document.getElementById(element_id);
+//        param.style.display = "block";
+        $("#" + element_id).show();
     }     
     
     function hideChildMenu(element_id) {
-        param=document.getElementById(element_id);
-        param.style.display = "none";
+//        param=document.getElementById(element_id);
+//        param.style.display = "none";
+        $("#" + element_id).hide();
     }    
 </script>

@@ -49,7 +49,78 @@
  * Данная копия CSystem используется для проекта Apelsin SHOP
  * 
  */
-include_once './components/Shop/admin/classes/AP_ImportItemsGroup.php';
-$importImages = new AP_ImportItemsGroup();
-echo $importImages->getHtml();
 
+/**
+ * Редактирование названия товара
+ *
+ * @author Olga Rjabchikova
+ * @copyright © 2010-2016, CompuProjec
+ * @created 29.01.2016 12:06:00
+ */
+class AP_WorkingWithShopItemsNewEditName extends AP_AbstractPanelEditNewItems {
+
+    public function __construct($data) {
+        parent::__construct($data);
+        $this->setNamePanel('Редактирование названия');
+    }
+
+    public function getContentPanel() {
+        $this->html .= '<div class="shopItemsNewEditNameWrapper">';
+        foreach ($this->items as $item) {
+            $dataItem = $this->getDataItem($item);
+            $this->html .= $this->getElement($dataItem);
+        }
+        $this->html .= $this->generationJS();
+        $this->html .= '</div>';
+        return $this->html;
+    }
+
+    private function getElement($item) {
+        $html = '<div class="shopItemsNewEditNameElement">';
+        $html .= '<div class="shopItemsNewEditNameInput">';
+//                $html .= '<input type="text" class="itemName" itemid="'.$item['id'].'" name="itemName['.$item['id'].']" value="'.htmlspecialchars($item['itemName']).'" id="itemName" maxlength="200" pattern="[A-Za-zА-Яа-я0-9][^@#$%&]{1,200}">';
+        $html .= '<input type="text" class="itemName" itemid="' . $item['id'] . '" name="itemName[' . $item['id'] . ']" value="' . trim(htmlspecialchars(strip_tags($item['itemName']))) . '" id="itemName" maxlength="200">';
+        $html .= '</div>';
+        $html .= '<div class="shopItemsNewEditNameSelectBox">';
+        $html .= InputHelper::select("shown[" . $item['id'] . "]", "shown", array(array('value' => "1", 'text' => "shown"), array('value' => "0", 'text' => "hide")), true, $item['shown']);
+        $html .= '</div>';
+        $html .= '<div class="clear"></div>';
+        $html .= '</div>';
+        return $html;
+    }
+
+    private function getDataItem($id) {
+        $query = "SELECT `itemName`, `shown`, `id`  FROM `ShopItems` WHERE `id` = '" . $id . "';";
+        $result = $this->SQL_HELPER->select($query, 1);
+        return $result;
+    }
+
+    private function generationJS() {
+        $out = '
+            <script type="text/javascript">
+            
+                $(document).ready(function() { 
+                    textNewAjax = {};
+
+                    function changeNameItem() {
+                        $(".itemName").change(function() {
+                            textNew = $(this).val();
+                            id = $(this).attr("itemid");
+                            $("#descriptionItemId_" + id).text(textNew);
+                            $("#propertyItemId_" + id).text(textNew);
+                            $("#itemsCards_" + id).text(textNew);
+                            textNewAjax[id] = textNew;
+                        });
+                    }
+                    
+                    $(function() {
+                        changeNameItem();
+                    });
+                          
+                });  
+            </script>
+        ';
+        return $out;
+    }
+
+}

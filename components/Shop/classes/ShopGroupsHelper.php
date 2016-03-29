@@ -144,12 +144,12 @@ class ShopGroupsHelper {
      */
     public function getGroupInfo($groupID, $getPropertiesData = false) {
         if (isset($this->groupPath[$groupID])) {
-            if($getPropertiesData && !isset($this->groups[$groupID]['properties'])) {
-                $this->groups[$groupID]['properties']['available'] = ShopGroupPropertiesDataHelper::getGroupAvailableProperties($groupID);
-                $this->groups[$groupID]['properties']['personal'] = ShopGroupPropertiesDataHelper::getGroupPersonalProperties($groupID);
-                $this->groups[$groupID]['properties']['unused'] = ShopGroupPropertiesDataHelper::getGroupUnusedProperties($groupID);
-                $this->groups[$groupID]['properties']['unusedForChild'] = ShopGroupPropertiesDataHelper::getGroupUnusedForChildrenProperties($groupID);
-                $this->groups[$groupID]['properties']['childrenProperties'] = ShopGroupPropertiesDataHelper::getGroupChildrenProperties($groupID);
+            if ($getPropertiesData && !isset($this->groups[$groupID]['properties'])) {
+                $this->groups[$groupID]['properties']['available'] = ShopGroupPropertiesDataHelper::getGroupAvailableProperties($groupID, $getPropertiesData);
+                $this->groups[$groupID]['properties']['personal'] = ShopGroupPropertiesDataHelper::getGroupPersonalProperties($groupID, $getPropertiesData);
+                $this->groups[$groupID]['properties']['unused'] = ShopGroupPropertiesDataHelper::getGroupUnusedProperties($groupID, $getPropertiesData);
+                $this->groups[$groupID]['properties']['unusedForChild'] = ShopGroupPropertiesDataHelper::getGroupUnusedForChildrenProperties($groupID, $getPropertiesData);
+                $this->groups[$groupID]['properties']['childrenProperties'] = ShopGroupPropertiesDataHelper::getGroupChildrenProperties($groupID, $getPropertiesData);
             }
             return $this->groups[$groupID];
         } else {

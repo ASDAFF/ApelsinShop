@@ -21,13 +21,12 @@
         <link rel="stylesheet" href="<?php $ROOT->templatePath(); ?>css/AdminPanel.css" type="text/css" />
         <link rel="stylesheet" href="<?php $ROOT->templatePath(); ?>css/ShopGroupsTree.css" type="text/css" />
         <link rel="stylesheet" href="<?php $ROOT->templatePath(); ?>css/ShopLastItems.css" type="text/css" />
-        
         <link rel="stylesheet" href="<?php $ROOT->templatePath(); ?>css/ShopNavigationAndFiltersPanel.css" type="text/css" />
         <link rel="stylesheet" href="<?php $ROOT->templatePath(); ?>css/ShopNavigationAndFiltersPanel_Filters.css" type="text/css" />
         <link rel="stylesheet" href="<?php $ROOT->templatePath(); ?>css/ShopNavigationAndFiltersPanel_Menu.css" type="text/css" />
-        
-        
-        
+
+
+
         <script src="<?php $ROOT->templatePath(); ?>js/TemplateAnimations.js"></script>
         <link rel="stylesheet" href="<?php $ROOT->templatePath(); ?>css/print.css" type="text/css" />
 
@@ -59,18 +58,18 @@
                     <?php $ROOT->block('MenuBlock'); ?>
                 </div>
             </div>
-<!--            <div class="BeforeContentWraper">
-                <div class="BeforeContentBlock">
-                    <?php // $ROOT->block('BeforeContentBlock'); ?>
-                </div>
-            </div>-->
-<!--            <div class="BeforeContentButtonWraper">
-                <div class="BeforeContentButtonBlock">
-                    <div class="BeforeContentButton">
-                        <div class="BeforeContentButtonText ShowText"></div>
-                    </div>
-                </div>
-            </div>-->
+            <!--            <div class="BeforeContentWraper">
+                            <div class="BeforeContentBlock">
+            <?php // $ROOT->block('BeforeContentBlock'); ?>
+                            </div>
+                        </div>-->
+            <!--            <div class="BeforeContentButtonWraper">
+                            <div class="BeforeContentButtonBlock">
+                                <div class="BeforeContentButton">
+                                    <div class="BeforeContentButtonText ShowText"></div>
+                                </div>
+                            </div>
+                        </div>-->
             <div class="ContentWraper">
                 <div class="ContentBlock">
                     <div class="ContentTopWraper">
@@ -80,12 +79,14 @@
                     </div>
                     <div class="ContentMainWraper">
                         <div class="ContentMainBlock">
-                            
+
                             <div class="ContentMainBlockLeft">
                                 <?php $ROOT->block('ContentMainBlockLeft'); ?>
                             </div>
                             <div class="ContentMainBlockRight">
-                            <?php $ROOT->content(); ?>
+                                <?php
+                                $ROOT->content();
+                                ?>
                             </div>
                             <div class="clear"></div>
                         </div>

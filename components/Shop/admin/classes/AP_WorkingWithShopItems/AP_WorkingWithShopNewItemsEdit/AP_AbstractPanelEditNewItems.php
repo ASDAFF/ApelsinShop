@@ -49,7 +49,76 @@
  * Данная копия CSystem используется для проекта Apelsin SHOP
  * 
  */
-include_once './components/Shop/admin/classes/AP_ImportItemsGroup.php';
-$importImages = new AP_ImportItemsGroup();
-echo $importImages->getHtml();
 
+/**
+ * Абстрастный класс для создания панелей редактирования товаров
+ *
+ * @author Olga Rjabchikova
+ * @copyright © 2010-2016, CompuProjec
+ * @created 05.02.2016 12:38:31
+ */
+class AP_AbstractPanelEditNewItems {
+
+    protected $html;
+    protected $SQL_HELPER;
+    protected $namePanel;
+    protected $data;
+    protected $items;
+    protected $group;
+
+    public function __construct($data) {
+        global $_SQL_HELPER;
+        $this->SQL_HELPER = $_SQL_HELPER;
+        $this->data = $data;
+        $this->items = $this->data['itemId'];
+        $this->group = $this->data['groupId'];
+    }
+
+    public function getContentPanel() {
+        
+    }
+
+    public function getNamePanel() {
+        return $this->namePanel;
+    }
+
+    protected function setNamePanel($name) {
+        $this->namePanel = $name;
+    }
+
+    protected function getHtml() {
+        return $this->html;
+    }
+
+    protected function getNameItem($id) {
+        $query = "SELECT `itemName` FROM `ShopItems` WHERE `id` = '" . $id . "';";
+        $nameItem = $this->SQL_HELPER->select($query, 1);
+        return $nameItem['itemName'];
+    }
+
+    /**
+     * Возвращает название группы
+     * @return type
+     */
+    private function getGroupName() {
+        $query = "SELECT `groupName` FROM `ShopGroups` WHERE `id` = '" . $this->group . "'";
+        $name = $this->SQL_HELPER->select($query, 1);
+        return $name['groupName'];
+    }
+
+    protected function getBlockGroupName() {
+        $html = '<div class="shopItemsNewEditTitleGroup">' . $this->getGroupName() . '</div>';
+        return $html;
+    }
+
+    /**
+     * Возвращает название 
+     * @return type
+     */
+    protected function getPropertyName($id) {
+        $query = "SELECT `propertyName` FROM `ShopProperties` WHERE `id` = '" . $id . "'";
+        $name = $this->SQL_HELPER->select($query, 1);
+        return $name['propertyName'];
+    }
+
+}
