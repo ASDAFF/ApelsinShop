@@ -71,6 +71,7 @@ class AP_WorkingWithShopItemsNewEditProperty extends AP_AbstractPanelEditNewItem
         parent::__construct($data);
         $this->setNamePanel('Редактирование свойств');
         $this->properties = $this->getDataPropertyInGroups();
+//        var_dump($this->properties);
         $this->dataProperty = $this->getDataProperty();
         $this->dataItems = $this->getDataItems();
         $this->getItemsPropertyValue();
@@ -362,13 +363,6 @@ class AllPropertyBllock {
         } else {
             $html .= '<div class="shopItemsNewEditDescriptionElementAllListItems shopItemsNewEditTextItemName noItems">Доступных свойств нет</div>';
         }
-
-
-        foreach ($data as $property) {
-            $html .= self::getListPropertyElement($property, $hasProperty, $blockId);
-        }
-
-
         $html .= '</div>';
         $html .= '</div>';
         $html .= '</div>';

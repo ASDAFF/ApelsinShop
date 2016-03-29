@@ -197,7 +197,7 @@ class BlockItemCard {
                 }
             }
         }
-        return array_unique($descriptionItem);
+        return $descriptionItem;
     }
 
     private function getProperty() {
