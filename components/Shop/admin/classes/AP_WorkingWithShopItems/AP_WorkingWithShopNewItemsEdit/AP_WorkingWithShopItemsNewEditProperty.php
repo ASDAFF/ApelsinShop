@@ -60,8 +60,6 @@
 class AP_WorkingWithShopItemsNewEditProperty extends AP_AbstractPanelEditNewItems {
 
     private $dataItems;
-    private $dataProperty;
-    private $properties;
     private $hasProperty;
     private $propertyValue = array();
     private $groupedPropertyValueHelperArray = array();
@@ -70,9 +68,6 @@ class AP_WorkingWithShopItemsNewEditProperty extends AP_AbstractPanelEditNewItem
     public function __construct($data) {
         parent::__construct($data);
         $this->setNamePanel('Редактирование свойств');
-        $this->properties = $this->getDataPropertyInGroups();
-//        var_dump($this->properties);
-        $this->dataProperty = $this->getDataProperty();
         $this->dataItems = $this->getDataItems();
         $this->getItemsPropertyValue();
     }
@@ -83,19 +78,6 @@ class AP_WorkingWithShopItemsNewEditProperty extends AP_AbstractPanelEditNewItem
         foreach ($this->items as $item) {
             $data[$item] = $this->getNameItem($item);
         }
-        return $data;
-    }
-
-    private function getDataProperty() {
-        $data = [];
-        foreach ($this->properties as $property) {
-            $data[$property['property']] = $property['propertyName'];
-        }
-        return $data;
-    }
-
-    private function getDataPropertyInGroups() {
-        $data = ShopGroupPropertiesDataHelper::getGroupAvailableProperties($this->group);
         return $data;
     }
 
@@ -285,9 +267,8 @@ class AP_WorkingWithShopItemsNewEditProperty extends AP_AbstractPanelEditNewItem
 
         $out .= '$(document).ready(function() {';
 
-        // данные
-        $out .='dataProperty = ' . json_encode($this->dataProperty) . ';
-                        allItemsForProperty = ' . json_encode($this->items) . ';
+        // данные 
+        $out .='allItemsForProperty = ' . json_encode($this->items) . ';
                         dataItemsForProperty = ' . json_encode($this->dataItems) . ';
                         hasProperty = ' . json_encode($this->hasProperty) . ';';
 
@@ -305,7 +286,7 @@ class AP_WorkingWithShopItemsNewEditProperty extends AP_AbstractPanelEditNewItem
         $out .= GenerationJS::getCodeSearch();
 
         // свойства 
-        $out .= GenerationJS::getCodeAllProperty(json_encode($this->properties), json_encode($this->dataItems));
+        $out .= GenerationJS::getCodeAllProperty($this->group, json_encode($this->dataItems));
 
         // товар
         $out .= GenerationJS::getCodeAllItems();
@@ -346,7 +327,25 @@ class AP_WorkingWithShopItemsNewEditProperty extends AP_AbstractPanelEditNewItem
 
 class AllPropertyBllock {
 
-    public static function getBlockAllListProperty($data, $hasProperty, $blockId) {
+    private static $properties = [];
+    private static $dataProperty = "";
+
+    private static function getDataProperty() {
+        $data = [];
+        foreach (self::$properties as $property) {
+            $data[$property['property']] = $property['propertyName'];
+        }
+        return $data;
+    }
+
+    private static function getDataPropertyInGroups($groupId) {
+        $data = ShopGroupPropertiesDataHelper::getGroupAvailableProperties($groupId);
+        return $data;
+    }
+
+    public static function getBlockAllListProperty($groupId, $hasProperty, $blockId) {
+        self::$properties = self::getDataPropertyInGroups($groupId);
+        self::$dataProperty = self::getDataProperty();
         $html = '';
         // Список св-тв
         $html .= self::generationJS();
@@ -356,8 +355,8 @@ class AllPropertyBllock {
         $html .= '<div class="shopItemsNewEditPropertyButtonExitList">x</div>';
         $html .= '<div class="shopItemsNewEditPropertyMainList" >';
         $html .= '<div class="shopItemsNewEditPropertyBlockAllListProperty">';
-        if (!empty($data)) {
-            foreach ($data as $property) {
+        if (!empty(self::$properties)) {
+            foreach (self::$properties as $property) {
                 $html .= self::getListPropertyElement($property, $hasProperty, $blockId);
             }
         } else {
@@ -386,6 +385,7 @@ class AllPropertyBllock {
         $out .= '<script type="text/javascript">';
         $out .= '$(document).ready(function() {';
 
+        $out .='dataProperty = ' . json_encode(self::$dataProperty) . ';';
         // search 
         $out .= GenerationJS::getCodeSearch();
 
@@ -715,7 +715,7 @@ class GenerationJS {
         return $out;
     }
 
-    public static function getCodeAllProperty($property, $item) {
+    public static function getCodeAllProperty($idGroup, $item) {
         $out = '';
         // Сгенерировать блок со всеми св-ми
         $out .='function getAllProperty() {
@@ -742,17 +742,17 @@ class GenerationJS {
                     $("#shopItemsNewEditPropertyBlockProperty_" + blockId + " .shopItemsNewEditPropertyExitBlockPropertyDeleteProperty").map(function(i, element) {
                        return $(element).attr("idProperty");
                     }).get(); 
-                    var property = ' . $property . ';
-                    generationHtmlAllProperty(property, curentPropertyBlock);
+                    generationHtmlAllProperty(curentPropertyBlock);
                 }';
         // Генерирование HTML блока со всеми св-ми
-        $out .= 'function generationHtmlAllProperty(property, curentPropertyBlock) {
+        $out .= 'function generationHtmlAllProperty(curentPropertyBlock) {
+                    var groupId = "' . $idGroup . '";
                     $.ajax({
                         type: "POST",
                         url: "./components/Shop/admin/script/shopItemsNewEditPropertyAllProperty.php",
                         cache: false,
                         data: { 
-                            "property":property,
+                            "groupId":groupId,
                             "curentPropertyBlock":curentPropertyBlock,
                             "blockId":blockId
                         },

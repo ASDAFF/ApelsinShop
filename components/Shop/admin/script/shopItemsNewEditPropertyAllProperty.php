@@ -72,16 +72,12 @@ $_SITECONFIG = new SiteConfig();
 
 if (isset($_POST)) {
     $blockId = $_POST['blockId'];
-    if (isset($_POST['property'])) {
-        $data = $_POST['property'];
-    } else {
-        $data = [];
-    }
+    $groupId = $_POST['groupId'];
     if (isset($_POST['curentPropertyBlock'])) {
         $curentPropertyBlock = $_POST['curentPropertyBlock'];
     } else {
         $curentPropertyBlock = [];
     }
-    echo AllPropertyBllock::getBlockAllListProperty($data, $curentPropertyBlock, $blockId);
+    echo AllPropertyBllock::getBlockAllListProperty($groupId, $curentPropertyBlock, $blockId);
 }
 
