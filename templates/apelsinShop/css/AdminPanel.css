@@ -1049,7 +1049,7 @@ legend {
 }
 .ShopPropertyCatalog .addGroupCatalogNewPropertyWrapper .addGroupCatalogNewProperty .ShopPropertyCatalogTable .ShopPropertyCatalogElementTable .addGroupCatalogNewPropertyNameInput,
 .ShopPropertyCatalog .addGroupCatalogNewPropertyWrapper .addGroupCatalogNewProperty .ShopPropertyCatalogTable .ShopPropertyCatalogElementTable .propertyName {
-    width: 478px;
+    width: 493px;
 }
 
 .ShopPropertyCatalog  .ShopPropertyCatalogBottomBlock {}
@@ -1064,7 +1064,7 @@ legend {
 }
 
 .ShopPropertyCatalog .ShopPropertyCatalogElementTable .ShopPropertyCatalogButtonDeleteStepSecond {
-    width: 61px;
+    width: 12px;
     font-size: 12px;
     color: #ef7f1a;
 }
@@ -1083,7 +1083,8 @@ legend {
 .addGroupCatalogNewPropertyWrapper {}
 .addGroupCatalogNewPropertyWrapper .addGroupCatalogNewProperty .addGroupCatalogGroupPropertyWrapper {
     border-bottom: #ef7f1a 1px solid;
-    margin: 15px 10px;
+    border-collapse: collapse;
+    margin: 15px 0px;
 }
 .addGroupCatalogNewPropertyWrapper .addGroupCatalogNewProperty .addGroupCatalogGroupNameText,
 .addGroupCatalogNewPropertyWrapper .addGroupCatalogNewProperty .addGroupCatalogNewPropertyNameInput,
@@ -1097,7 +1098,7 @@ legend {
     padding: 5px 0;
 }
 .addGroupCatalogNewPropertyWrapper .addGroupCatalogNewProperty .addGroupCatalogNewPropertyNameInput {
-    width: 404px;
+    width: 450px;
 }
 .addGroupCatalogNewPropertyWrapper .addGroupCatalogNewProperty .addGroupCatalogNewPropertyNameInput input,
 .addGroupCatalogNewPropertyWrapper .addGroupCatalogNewProperty .addGroupCatalogNewPropertyType .selectBox {
@@ -1107,18 +1108,18 @@ legend {
 }
 .addGroupCatalogNewPropertyWrapper .addGroupCatalogNewProperty .addGroupCatalogNewPropertyNameInput input {
     padding: 3px 0px;
-    width: 404px;
+    width: 450px;
 }
 .addGroupCatalogNewPropertyWrapper .addGroupCatalogNewProperty .addGroupCatalogNewPropertyType {
     width: 110px;
 }
 .addGroupCatalogNewPropertyWrapper .addGroupCatalogNewProperty .addGroupCatalogNewPropertyButton {
-    width: 63px;
+    width: 58px;
     margin-right: 0;
 }
 .addGroupCatalogNewPropertyWrapper .addGroupCatalogNewProperty .addGroupCatalogNewPropertyButton .addGroupCatalogNewPropertyButtonInput {
     display: inline-block;
-    font-size: 12px;
+    font-size: 11px;
     line-height: 20px;
     padding: 0 5px;
     margin: 2px 5px 0 0;
@@ -1410,12 +1411,14 @@ legend {
 #shopItemsNewEditDescriptionBlockAllListItems,
 #shopItemsNewEditPropertyBlockAllListItems {
     background: #fff;
-    width: 310px;
+    width: 315px;
     position: fixed;
     z-index: 100;
     top:  50px;
     left:  20px;
     box-shadow: 3px 3px 10px rgba(139,139,139,.3);
+    max-height: 700px;
+    overflow: auto;
 }
 .noItems {
     text-align: center;
