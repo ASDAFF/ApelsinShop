@@ -50,8 +50,45 @@
  * 
  */
 
-include_once './components/Shop/admin/classes/AP_WorkingWithShopProperty/AP_WorkingWithShopProperty_AddNewProperty.php';
-include_once './components/Shop/admin/classes/AP_WorkingWithShopProperty/AP_WorkingWithShopProperty_AddNewPropertyForProperty.php';
-include_once './components/Shop/admin/classes/AP_WorkingWithShopProperty/AP_WorkingWithShopPropertyCatalog.php';
-$workingWithShopPropertyCatalog = new AP_WorkingWithShopPropertyCatalog();
-echo $workingWithShopPropertyCatalog->getHtml();
+/**
+ * Description of AP_WorkingWithShopProperty_AddNewPropertyForProperty
+ *
+ * @author Olga Rjabchikova
+ * @copyright © 2010-2016, CompuProjec
+ * @created 31.03.2016 10:45:06
+ */
+class AP_WorkingWithShopProperty_AddNewPropertyForProperty extends AP_WorkingWithShopProperty_AddNewProperty {
+
+    public function __construct() {
+        parent::__construct();
+    }
+
+    public function generationAJAX() {
+        parent::generationAJAX();
+        $html = '<script type="text/javascript">
+                    jQuery(document).ready(function() {
+                        $(".addGroupCatalogNewPropertyButton").click(function() {
+                            shopAddNewGroupNewProperty();
+                        });
+                    });
+                    function shopAddNewGroupNewProperty() {
+                        var form_data = $("form.AP_FormAddGroupPropertyShopCatalog").serialize();
+                        $.ajax({
+                            type: "POST",
+                            url: "./components/Shop/admin/script/shopAddNewPropertyForProperty.php",
+                            data: form_data,
+                            cache: false,
+                            success: function(result) {
+                                $(".ShopPropertyCatalogHeaderTable").after(result);
+                                $(".addGroupCatalogNewPropertyNameInput #propertyName").val("");
+                                $("#" + $(result).attr("id") + " .ShopPropertyCatalogButtonDeleteStepSecond").click(function() {
+                                    shopPropertyCatalogButtonDeletePropertyOnClick(this);
+                                });
+                            }
+                        });
+                    }
+                </script>';
+        return $html;
+    }
+
+}

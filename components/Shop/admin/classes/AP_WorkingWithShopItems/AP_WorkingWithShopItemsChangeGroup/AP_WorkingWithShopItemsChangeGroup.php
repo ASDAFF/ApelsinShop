@@ -50,8 +50,44 @@
  * 
  */
 
-include_once './components/Shop/admin/classes/AP_WorkingWithShopProperty/AP_WorkingWithShopProperty_AddNewProperty.php';
-include_once './components/Shop/admin/classes/AP_WorkingWithShopProperty/AP_WorkingWithShopProperty_AddNewPropertyForProperty.php';
-include_once './components/Shop/admin/classes/AP_WorkingWithShopProperty/AP_WorkingWithShopPropertyCatalog.php';
-$workingWithShopPropertyCatalog = new AP_WorkingWithShopPropertyCatalog();
-echo $workingWithShopPropertyCatalog->getHtml();
+/**
+ * Перемещение товаров в другой каталог
+ *
+ * @author Olga Rjabchikova
+ * @copyright © 2010-2016, CompuProjec
+ * @created 07.04.2016 9:25:02
+ */
+class AP_WorkingWithShopItemsChangeGroup {
+
+    private $html;
+    private $urlHelper;
+    private $params = [];
+
+    public function __construct() {
+        global $_URL_PARAMS;
+        $this->params = $_URL_PARAMS['params'];
+        $this->urlHelper = new UrlHelper();
+        $this->generationUI();
+    }
+
+    public function getHtml() {
+        return $this->html;
+    }
+
+    private function generationUI() {
+        $this->html = '';
+        if (isset($this->params[4]) && $this->params[4] == 'ChangeGroup') {
+            if (isset($this->params[5])) {
+                $groupId = $this->params[5];
+                $page = new AP_WorkingWithShopItemsChangeGroupUpdateItem($groupId);
+                $this->html = $page->getHtml();
+            }
+        } else {
+            $shopGroupsTree = new ShopGroupsTree();
+            $shopGroupsTree->addFunctionalButton('ChangeGroup', 'window.location.href = "' . $this->urlHelper->chengeParams($this->params) . 'ChangeGroup/" + groupId + "/"', 'Выбрать', true);
+            $this->html = $shopGroupsTree->getTree();
+        }
+        return $this->html;
+    }
+
+}

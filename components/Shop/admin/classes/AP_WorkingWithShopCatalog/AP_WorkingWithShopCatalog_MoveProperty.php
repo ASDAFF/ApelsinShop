@@ -85,13 +85,53 @@ class AP_WorkingWithShopCatalog_MoveProperty extends AP_WorkingWithShopCatalog_G
                 case 'moveChildren':
                     $listDirs = $this->nodeChildrenAndParent;
                     array_shift($listDirs);
-                    $this->html = $this->generationUI($this->moveProperty($listDirs));
+                    $this->html = $this->generationUI($this->moveProperty($listDirs, false));
                     break;
                 default:
                     $this->html = 'неверная URL';
                     break;
             }
         }
+    }
+
+    private function getUI($data, $parent) {
+        if ($parent) {
+            $html = InputHelper::select("moveParentSelect", "moveParentSelect", $this->getCataloge($data), true, '');
+        } else {
+            $shopGroupsTree = new ShopGroupsTree();
+            $shopGroupsTree->addFunctionalButton(
+                    'movePropertyChildren', 'addChildrenGroupId(groupId,object);', 'Выбрать', true);
+            $html = $shopGroupsTree->getTree($this->groupId);
+        }
+        return $html;
+    }
+
+    private function generatJS() {
+        $out = '<script type="text/javascript">
+                
+            movePropertyChildrenGroupId = [];
+
+            function addChildrenGroupId(idGroup,object) {
+                    if ($.inArray(idGroup, movePropertyChildrenGroupId) < 0 ) {
+                        movePropertyChildrenGroupId.push(idGroup);
+                        $("#blockHiddenIdProperty").prepend(getIdGroup(idGroup));
+                        $(object).addClass("shopItemsNewItemsCardsBlockItemCardActiveClass");
+                    } else {
+                        var i = movePropertyChildrenGroupId.indexOf(idGroup);
+                        movePropertyChildrenGroupId.splice(i, 1);
+                        $(object).removeClass("shopItemsNewItemsCardsBlockItemCardActiveClass");
+                        $("#shopGetIdGroup_" + idGroup).remove();
+                    }
+            }
+
+            // Генерирование HTML hidden - поля для addChildrenGroupId
+            function getIdGroup(idGroup) { 
+                var inputHidden = "<input type=\"hidden\" class=\"shopGetIdGroup\"  name=\"shopGetIdGroup[]\" value=\""+ idGroup +"\"  id=\"shopGetIdGroup_"+ idGroup +"\"> ";
+                return inputHidden;
+            }
+                
+        </script>';
+        return $out;
     }
 
     private function generationUI($content) {
@@ -145,13 +185,14 @@ class AP_WorkingWithShopCatalog_MoveProperty extends AP_WorkingWithShopCatalog_G
         return $html;
     }
 
-    private function moveProperty($data) {
+    private function moveProperty($data, $parent = true) {
         $html = '<form class="AP_FormShopCatalogMoveProperty" name="AP_FormShopCatalogMoveProperty" enctype="multipart/form-data" action="' . $this->urlHelper->getThisPage() . '" method="POST" accept - charset="UTF-8" >';
+        $html .= '<div id="blockHiddenIdProperty"></div>';
         $html .= '<div class="addGroupCatalogMovePropertyMain">';
         $html .= $this->getPersonalProperty();
         $html .= '<div class="addGroupCatalogMoveProperty">';
         $html .= '<div class="addGroupCatalogReportText">Каталоги, в которые можно перенести свойства</div>';
-        $html .= InputHelper::select("moveParentSelect", "moveParentSelect", $this->getCataloge($data), true, '');
+        $html .= $this->getUI($data, $parent);
         $html .= '</div>';
         $html .= '</div>';
         $html .= '<div class="clear"></div>';
@@ -160,6 +201,7 @@ class AP_WorkingWithShopCatalog_MoveProperty extends AP_WorkingWithShopCatalog_G
         $html .= $this->getButtonBack();
         $html .= '</center>';
         $html .= '</form>';
+        $html .= $this->generatJS();
         return $html;
     }
 
@@ -203,7 +245,7 @@ class AP_WorkingWithShopCatalog_MoveProperty extends AP_WorkingWithShopCatalog_G
         if (isset($_POST['AP_SubmitShopCatalogMoveProperty'])) {
             $this->getAllValue();
             if ($this->checkAllValue()) {
-                // проверить статус группы (куда) и выбрать insert
+//                // проверить статус группы (куда) и выбрать insert
                 $this->checkStatut();
             } else {
                 if (!empty($this->checkAllValueErrors)) {
@@ -216,8 +258,14 @@ class AP_WorkingWithShopCatalog_MoveProperty extends AP_WorkingWithShopCatalog_G
     }
 
     private function getAllValue() {
-        $this->propertyMoveId = $_POST['checkElementPersonalProperty'];
-        $this->newOwner = $_POST['moveParentSelect'];
+        if (isset($_POST['checkElementPersonalProperty'])) {
+            $this->propertyMoveId = $_POST['checkElementPersonalProperty'];
+        }
+        if (isset($_POST['moveParentSelect'])) {
+            $this->newOwner = $_POST['moveParentSelect'];
+        } elseif (isset($_POST['shopGetIdGroup'])) {
+            $this->newOwner = $_POST['shopGetIdGroup'];
+        }
     }
 
     private function checkAllValue() {
@@ -226,20 +274,43 @@ class AP_WorkingWithShopCatalog_MoveProperty extends AP_WorkingWithShopCatalog_G
             $error = true;
             $this->checkAllValueErrors[] = "Не выбрано ни одного свойства";
         }
-        if (!(isset($_POST['moveParentSelect']) && $_POST['moveParentSelect'] != null && $_POST['moveParentSelect'] != '')) {
+        if (!(isset($_POST['moveParentSelect'])) && !(isset($_POST['shopGetIdGroup']))) {
             $error = true;
             $this->checkAllValueErrors[] = "Не выбрана группа для перемещения свойства";
         }
         return !$error;
     }
 
-    // проверить статус группы (куда) и выбрать insert
+    /**
+     * Проверить статус группы (куда) и выбрать insert
+     */
     private function checkStatut() {
         if (in_array($this->newOwner, $this->path)) {
             $this->insertParent();
         } else {
-            if (in_array($this->newOwner, $this->nodeChildrenAndParent)) {
-                $this->insertChildren();
+            $this->sortChildren();
+            foreach ($this->newOwner as $group) {
+                if (in_array($group, $this->nodeChildrenAndParent)) {
+                    $this->insertChildren($group);
+                }
+            }
+            $this->deletePropertyForParent();
+            $this->html = $this->generationUI($this->getReportForChield());
+        }
+    }
+
+    /**
+     * Удаление дочерних групп из массива для переноса св-ва, если в массиве присутствует непосредственный родитель
+     */
+    private function sortChildren() {
+        foreach ($this->newOwner as $group) {
+            $parents = $this->helperGroup->getGroupPath($group);
+            foreach ($parents as $parent) {
+                if (in_array($group, $this->newOwner) && in_array($parent, $this->newOwner)) {
+                    if (($key = array_search($group, $this->newOwner)) !== false) {
+                        unset($this->newOwner[$key]);
+                    }
+                }
             }
         }
     }
@@ -301,58 +372,83 @@ class AP_WorkingWithShopCatalog_MoveProperty extends AP_WorkingWithShopCatalog_G
     /**
      * Перемещение в потомков
      */
-    private function insertChildren() {
+    private function insertChildren($newOwner) {
         // заносим св-ва новому владельцу в ShopPropertiesInGroups
-        $this->updateForNewOwnerMoveProperty();
+        $this->updateForNewOwnerMoveProperty($newOwner);
         // редактируем ShopPropertiesInGroupsRanking
-        $this->updateParentForChildren();
-        $this->deletePropertyForParent();
-        $this->html = $this->generationUI($this->getReportForChield());
+        $this->updateParentForChildren($newOwner);
     }
 
     private function deletePropertyForParent() {
         foreach ($this->propertyMoveId as $propertyId) {
-            $deletePropertyDublicate = "DELETE FROM `ShopPropertiesInGroups` WHERE `group`='" . $this->groupId . "' AND `id` = '" . $this->groupId . "-" . $propertyId . "';";
+            $deletePropertyDublicate = "DELETE FROM `ShopPropertiesInGroups` WHERE `group`='" . $this->groupId . "' AND `id` = '" . $this->groupId . $propertyId . "';";
             $this->SQL_HELPER->insert($deletePropertyDublicate);
             $this->updateSequence($this->groupId);
         }
     }
 
+    private function updateForNewOwnerMoveProperty($newOwner) {
+        $maxSequence = $this->getMaxSequence($newOwner);
+        $sequence = $maxSequence + '1';
+        foreach ($this->propertyMoveId as $id) {
+            $propertyInGroup = $newOwner . $id;
+            $property = "INSERT INTO `ShopPropertiesInGroups` SET ";
+            $property .= "`id` = '" . $propertyInGroup . "', ";
+            $property .= "`group` = '" . $newOwner . "', ";
+            $property .= "`property` = '" . $id . "', ";
+            $property .= "`sequence` = '" . $sequence++ . "';";
+            $this->SQL_HELPER->insert($property);
+            $update = "UPDATE `ShopPropertiesInGroupsRanking` SET 
+                `propertyInGroup` = '" . $propertyInGroup . "'
+                WHERE `group` = '" . $newOwner . "' 
+                AND `propertyInGroup` = '" . $this->groupId . $id . "';";
+            $this->SQL_HELPER->insert($update);
+        }
+    }
+
+    private function updateParentForChildren($newOwner) {
+        $newOwenerChildren = $this->helperGroup->getGroupChildren($newOwner);
+        foreach ($newOwenerChildren as $group) {
+            foreach ($this->propertyMoveId as $propertyId) {
+                $updatePropertyDublicate = "UPDATE `ShopPropertiesInGroupsRanking` SET 
+                    `propertyInGroup` = '" . $newOwner . $propertyId . "'
+                    WHERE `group` = '" . $group . "' 
+                    AND `propertyInGroup` = '" . $this->groupId . $propertyId . "';";
+                $this->SQL_HELPER->insert($updatePropertyDublicate);
+            }
+        }
+    }
+
     private function getReportForChield() {
+        $newGroupProperty = [];
         $html = '<div class="addGroupCatalogReportText">Перенносимые свойства каталога: </div>';
         foreach ($this->propertyMoveId as $value) {
             $html .= '<div class="addGroupCatalogReportText">' . $this->getPropertyName($value) . '</div>';
         }
-        $html .= '<div class="addGroupCatalogReportText">1) Cвойства добавлены как персональные в каталог "' . $this->getGroupName($this->newOwner) . '" и стали недоступны в каталогах:</div>';
-        foreach ($this->dataForReport as $group) {
+        $html .= '<div class="addGroupCatalogReportText">1) Cвойства доступны в каталоге: </div>';
+        foreach ($this->newOwner as $group) {
+            $newGroupProperty[] = $group;
             $html .= '<div class="addGroupCatalogReportText">' . $this->getGroupName($group) . '</div>';
-        }
-        $html .= '<div class="addGroupCatalogReportText">2) Персональные свойства удалены у каталога "' . $this->getGroupName($this->groupId) . '"</div>';
-        $html .= '<div class="addGroupCatalogReportText"></div>';
-        $html .= $this->getButtonBack();
-        return $html;
-    }
-
-    private function updateParentForChildren() {
-        $newOwenerChildren = $this->helperGroup->getGroupChildren($this->newOwner);
-        foreach ($this->nodeChildrenAndParent as $group) {
-            if ($group != $this->newOwner && $group != $this->groupId) {
-                foreach ($this->propertyMoveId as $propertyId) {
-                    if (in_array($group, $newOwenerChildren)) {
-                        $updatePropertyDublicate = "UPDATE `ShopPropertiesInGroupsRanking` SET 
-                            `propertyInGroup` = '" . $this->newOwner . "-" . $propertyId . "'
-                            WHERE `group` = '" . $group . "' 
-                            AND `propertyInGroup` = '" . $group . "-" . $propertyId . "';";
-                        $this->SQL_HELPER->insert($updatePropertyDublicate);
-                    } else {
-
-                        $this->dataForReport[$group] = $group;
-                        $deletePropertyDublicate = "DELETE FROM `ShopPropertiesInGroupsRanking` WHERE `group`='" . $group . "' AND `propertyInGroup` = '" . $group . "-" . $propertyId . "';";
-                        $this->SQL_HELPER->insert($deletePropertyDublicate);
+            $groupChildren = $this->helperGroup->getGroupChildren($group);
+            if (!empty($groupChildren)) {
+                foreach ($groupChildren as $children) {
+                    if ($children != $group) {
+                        $html .= '<div class="addGroupCatalogReportText">' . $this->getGroupName($children) . '</div>';
+                        $newGroupProperty[] = $children;
                     }
                 }
             }
         }
+        $html .= '<div class="addGroupCatalogReportText"> 2) Стали недоступны для каталога: </div>';
+        foreach ($this->nodeChildrenAndParent as $groupNode) {
+            if (!in_array($groupNode, $newGroupProperty)) {
+                $html .= '<div class="addGroupCatalogReportText">' . $this->getGroupName($groupNode) . '</div>';
+            }
+        }
+        $html .= '<div class="addGroupCatalogReportText">3) Перенносимые свойства удалены у каталога "' . $this->getGroupName($this->groupId) . '"</div>';
+        $html .= '<div class="addGroupCatalogReportText"></div>';
+        $html .= $this->getButtonBack();
+        return $html;
     }
 
     /**
@@ -382,11 +478,11 @@ class AP_WorkingWithShopCatalog_MoveProperty extends AP_WorkingWithShopCatalog_G
      */
     private function deletePersonalPropertyDublicate($group, $propertyId) {
         $updatePropertyDublicate = "UPDATE `ShopPropertiesInGroupsRanking` SET 
-            `propertyInGroup` = '" . $this->newOwner . "-" . $propertyId . "'
+            `propertyInGroup` = '" . $this->newOwner . $propertyId . "'
             WHERE `group` = '" . $group . "' 
-            AND `propertyInGroup` = '" . $group . "-" . $propertyId . "';";
+            AND `propertyInGroup` = '" . $group . $propertyId . "';";
         $this->SQL_HELPER->insert($updatePropertyDublicate);
-        $deletePropertyDublicate = "DELETE FROM `ShopPropertiesInGroups` WHERE `group`='" . $group . "' AND `id` = '" . $group . "-" . $propertyId . "';";
+        $deletePropertyDublicate = "DELETE FROM `ShopPropertiesInGroups` WHERE `group`='" . $group . "' AND `id` = '" . $group . $propertyId . "';";
         $this->SQL_HELPER->insert($deletePropertyDublicate);
     }
 
@@ -410,7 +506,7 @@ class AP_WorkingWithShopCatalog_MoveProperty extends AP_WorkingWithShopCatalog_G
         $sequence = $maxSequence + '1';
         foreach ($this->propertyMoveId as $id) {
             $property = "INSERT INTO `ShopPropertiesInGroups` SET ";
-            $property .= "`id` = '" . $this->newOwner . "-" . $id . "', ";
+            $property .= "`id` = '" . $this->newOwner . $id . "', ";
             $property .= "`group` = '" . $this->newOwner . "', ";
             $property .= "`property` = '" . $id . "', ";
             $property .= "`sequence` = '" . $sequence++ . "';";
@@ -422,30 +518,10 @@ class AP_WorkingWithShopCatalog_MoveProperty extends AP_WorkingWithShopCatalog_G
         foreach ($this->propertyMoveId as $property) {
             $ranking = "INSERT INTO `ShopPropertiesInGroupsRanking` SET ";
             $ranking .= "`group`='" . $this->newOwner . "', ";
-            $ranking .= "`propertyInGroup`='" . $this->newOwner . '-' . $property . "', ";
+            $ranking .= "`propertyInGroup`='" . $this->newOwner . $property . "', ";
             $ranking .= "`shown`= '1',";
             $ranking .= "`sequence`= '" . $incr++ . "';";
             $this->SQL_HELPER->insert($ranking);
-        }
-    }
-
-    private function updateForNewOwnerMoveProperty() {
-        $maxSequence = $this->getMaxSequence($this->newOwner);
-        $sequence = $maxSequence + '1';
-        foreach ($this->propertyMoveId as $id) {
-            $property = "INSERT INTO `ShopPropertiesInGroups` SET ";
-            $property .= "`id` = '" . $this->newOwner . "-" . $id . "', ";
-            $property .= "`group` = '" . $this->newOwner . "', ";
-            $property .= "`property` = '" . $id . "', ";
-            $property .= "`sequence` = '" . $sequence++ . "';";
-            $this->SQL_HELPER->insert($property);
-        }
-        foreach ($this->propertyMoveId as $property) {
-            $update = "UPDATE `ShopPropertiesInGroupsRanking` SET 
-                `propertyInGroup` = '" . $this->newOwner . "-" . $property . "'
-                WHERE `group` = '" . $this->newOwner . "' 
-                AND `propertyInGroup` = '" . $this->groupId . "-" . $property . "';";
-            $this->SQL_HELPER->insert($update);
         }
     }
 

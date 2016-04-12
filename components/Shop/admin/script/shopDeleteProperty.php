@@ -49,9 +49,37 @@
  * Данная копия CSystem используется для проекта Apelsin SHOP
  * 
  */
+ini_set("display_errors", 1);
+error_reporting(E_ALL);
+header("Content-type: text/html; charset=UTF-8");
+@session_start();
+include_once '../../../../ROOT/functions/includeSistemClasses.php';
 
-include_once './components/Shop/admin/classes/AP_WorkingWithShopProperty/AP_WorkingWithShopProperty_AddNewProperty.php';
-include_once './components/Shop/admin/classes/AP_WorkingWithShopProperty/AP_WorkingWithShopProperty_AddNewPropertyForProperty.php';
-include_once './components/Shop/admin/classes/AP_WorkingWithShopProperty/AP_WorkingWithShopPropertyCatalog.php';
-$workingWithShopPropertyCatalog = new AP_WorkingWithShopPropertyCatalog();
-echo $workingWithShopPropertyCatalog->getHtml();
+includeSistemClasses('../../../../ROOT/');
+
+include_once '../../classes/ShopIncludeClasses.php';
+ShopIncludeClasses::includeAllClasses('../../', '../../../../modules/ShopNavigationAndFiltersPanel/');
+
+include_once '../../../../plugins/InteractiveLists/classes/InteractiveListsPlugin.php';
+
+include_once '../classes/AP_WorkingWithShopCatalog/AP_WorkingWithShopCatalog_General.php';
+include_once '../classes/AP_WorkingWithShopCatalog/AP_WorkingWithShopCatalog_AddNewProperty.php';
+include_once '../classes/AP_WorkingWithShopProperty/AP_WorkingWithShopPropertyCatalog.php';
+
+global $_SQL_HELPER;
+$_SQL_HELPER = new MysqliHelper();
+
+global $_SITECONFIG;
+$_SITECONFIG = new SiteConfig();
+
+$urlParams = new UrlParams();
+global $_URL_PARAMS;
+$_URL_PARAMS = $urlParams->getUrlParam();
+
+if (isset($_POST['property'])) {
+    $id = $_POST['property'];
+    $query = "DELETE FROM `ShopProperties` WHERE `id`='" . $id . "';";
+    $_SQL_HELPER->insert($query);
+    echo $query;
+}
+

@@ -51,20 +51,17 @@
  */
 
 /**
- * Description of AP_WorkingWithShopCatalog_AddNewProperty
+ * Description of AP_WorkingWithShopProperty_AddNewProperty
  *
  * @author Olga Rjabchikova
  * @copyright © 2010-2016, CompuProjec
- * @created 28.11.2015 11:16:04
+ * @created 31.03.2016 10:06:38
  */
-ini_set("display_errors", 1);
-error_reporting(E_ALL);
+abstract class AP_WorkingWithShopProperty_AddNewProperty {
 
-class AP_WorkingWithShopCatalog_AddNewProperty {
-
-    private $html;
-    private $SQL_HELPER;
-    private $urlHelper;
+    protected $html;
+    protected $SQL_HELPER;
+    protected $urlHelper;
 
     public function __construct() {
         global $_SQL_HELPER;
@@ -85,7 +82,7 @@ class AP_WorkingWithShopCatalog_AddNewProperty {
         } else {
             if ($this->checkAllValueErrors != null) {
                 foreach ($this->checkAllValueErrors as $CVerror) {
-                    $this->html = $this->generationMessageErrorJS($CVerror);
+                    echo $this->generationMessageErrorJS($CVerror);
                 }
             }
         }
@@ -95,7 +92,11 @@ class AP_WorkingWithShopCatalog_AddNewProperty {
         return $this->insertValue['id'];
     }
 
-    private function generationCreateNewProperty() {
+    public function generationAJAX() {
+        
+    }
+
+    protected function generationCreateNewProperty() {
         $this->html = '';
         $this->html .= '<div class="addGroupCatalogNewPropertyWrapper">';
         $this->html .= '<div class="addGroupCatalogNewProperty">';
@@ -106,7 +107,7 @@ class AP_WorkingWithShopCatalog_AddNewProperty {
         $this->html .= '<th>Тип фильтра</th>';
         $this->html .= '<th>Тип данных</th>';
         $this->html .= '<th>Единица измерения</th>';
-        $this->html .= '<th>Один из</th>';
+        $this->html .= '<th>Один из множества</th>';
         $this->html .= '<th></th>';
         $this->html .= '</tr>';
         $this->html .= '<tr>';
@@ -128,12 +129,12 @@ class AP_WorkingWithShopCatalog_AddNewProperty {
         $this->html .= '</td>';
         $this->html .= '<td>';
         $this->html .= '<div class="addGroupCatalogNewPropertyType">';
-        $this->html .= InputHelper::select("measureF", "measureF", $this->getMeasureF(), true, "1");
+        $this->html .= InputHelper::select("measure", "measure", $this->getMeasureF(), true, "1");
         $this->html .= '</div>';
         $this->html .= '</td>';
         $this->html .= '<td>';
         $this->html .= '<div class="addGroupCatalogNewPropertyType">';
-        $this->html .= InputHelper::select("oneOfAllValues", "oneOfAllValues", array(array('value' => "1", 'text' => "ДА"), array('value' => "0", 'text' => "НЕТ")), true, "0");
+        $this->html .= InputHelper::select("oneOfAllValues", "oneOfAllValues", array(array('value' => "1", 'text' => "да"), array('value' => "0", 'text' => "нет")), true, "0");
         $this->html .= '</div>';
         $this->html .= '</td>';
         $this->html .= '<td>';
@@ -149,32 +150,7 @@ class AP_WorkingWithShopCatalog_AddNewProperty {
         $this->html .= $this->generationAJAX();
     }
 
-    private function generationAJAX() {
-        $html = '<script type="text/javascript">';
-        $html .= '  jQuery(document).ready(function() {';
-        $html .= '      $(".addGroupCatalogNewPropertyButton").click(function() {';
-        $html .= '          shopAddNewGroupNewProperty();';
-        $html .= '      });';
-        $html .= '  });';
-        $html .= 'function shopAddNewGroupNewProperty() {';
-        $html .= '    var form_data = $("form.AP_FormAddGroupPropertyShopCatalog").serialize();';
-        $html .= '    $.ajax({';
-        $html .= '        type: "POST",';
-        $html .= '        url: "./components/Shop/admin/script/shopAddNewGroupNewProperty.php",';
-        $html .= '        data: form_data,';
-        $html .= '        cache: false,';
-        $html .= '        success: function(result) {';
-        $html .= '                $(".addGroupCatalogGroupPropertyRight .SortsList").prepend(result);';
-        $html .= '                $(".addGroupCatalogNewPropertyNameInput #propertyName").val("");';
-        $html .= '                addGroupCatalogAddButtonEvent();';
-        $html .= '        }';
-        $html .= '    });';
-        $html .= '};';
-        $html .= '</script>';
-        return $html;
-    }
-
-    private function getFilterType() {
+    protected function getFilterType() {
         $listFilterType = [];
         $query = "SELECT `type` FROM `ShopPropertiesFilterType` ORDER BY `type` ASC;";
         $filterType = $this->SQL_HELPER->select($query);
@@ -185,7 +161,7 @@ class AP_WorkingWithShopCatalog_AddNewProperty {
         return $listFilterType;
     }
 
-    private function getValueType() {
+    protected function getValueType() {
         $listValueType = [];
         $query = "SELECT `type` FROM `ShopPropertiesValueType` ORDER BY `type` ASC;";
         $valueType = $this->SQL_HELPER->select($query);
@@ -196,7 +172,7 @@ class AP_WorkingWithShopCatalog_AddNewProperty {
         return $listValueType;
     }
 
-    private function getMeasureF() {
+    protected function getMeasureF() {
         $listMeasureF = [];
         $query = "SELECT `measureF` FROM `ShopMeasure` ORDER BY `measureF` ASC;";
         $measureF = $this->SQL_HELPER->select($query);
@@ -205,35 +181,35 @@ class AP_WorkingWithShopCatalog_AddNewProperty {
             $listMeasureF[$key]['value'] = $value["measureF"];
         }
         $listMeasureF[$key + 1]['text'] = "без единицы";
-        $listMeasureF[$key + 1]['value'] = "noMeasure";
+        $listMeasureF[$key + 1]['value'] = null;
         return $listMeasureF;
     }
 
-    private function generationActionJS() {
+    protected function generationActionJS() {
         $html = '<script type="text/javascript">';
         $html .= 'alert("Свойство создано");';
         $html .= '</script>';
         return $html;
     }
 
-    private function generationMessageErrorJS($message) {
+    protected function generationMessageErrorJS($message) {
         $html = '<script type="text/javascript">';
         $html .= 'alert("' . $message . '");';
         $html .= '</script>';
         return $html;
     }
 
-    private function getAllValue() {
+    protected function getAllValue() {
         $this->insertValue = [];
         $this->insertValue['id'] = ID_GENERATOR::generateID();
         $this->insertValue['propertyName'] = InputValueHelper::getPostValue('propertyName');
         $this->insertValue['filterType'] = InputValueHelper::getPostValue('filterType');
         $this->insertValue['valueType'] = InputValueHelper::getPostValue('valueType');
         $this->insertValue['oneOfAllValues'] = InputValueHelper::getPostValue('oneOfAllValues');
-        $this->insertValue['measureF'] = InputValueHelper::getPostValue('measureF');
+        $this->insertValue['measure'] = InputValueHelper::getPostValue('measure');
     }
 
-    private function checkAllValue() {
+    protected function checkAllValue() {
         $error = false;
         if (isset($_POST['propertyName']) && $_POST['propertyName'] != null && $_POST['propertyName'] != "") {
             if (!InputValueHelper::checkValue('propertyName', "/[А-Яа-яA-Za-z0-9]{1,50}/")) {
@@ -251,7 +227,7 @@ class AP_WorkingWithShopCatalog_AddNewProperty {
         return !$error;
     }
 
-    private function checkDuplicatePropertyName() {
+    protected function checkDuplicatePropertyName() {
         $result = [];
         if (isset($_POST['propertyName']) && $_POST['propertyName'] != null && $_POST['propertyName'] != "") {
             $query = "SELECT `propertyName` FROM `ShopProperties` WHERE `propertyName`='" . $_POST['propertyName'] . "';";
@@ -260,7 +236,7 @@ class AP_WorkingWithShopCatalog_AddNewProperty {
         return $result == null;
     }
 
-    private function insertExecute() {
+    protected function insertExecute() {
         $newProperties = "INSERT INTO `ShopProperties` SET ";
         $newProperties .= "`id` = '" . $this->insertValue['id'] . "', ";
         $newProperties .= "`propertyName` = '" . $this->insertValue['propertyName'] . "', ";
@@ -268,10 +244,10 @@ class AP_WorkingWithShopCatalog_AddNewProperty {
         $newProperties .= "`valueType` = '" . $this->insertValue['valueType'] . "', ";
         $newProperties .= "`oneOfAllValues` = '" . $this->insertValue['oneOfAllValues'] . "'; ";
         $this->SQL_HELPER->insert($newProperties);
-        $propertiesMeasure = "INSERT INTO `ShopPropertiesMeasure` SET ";
-        $propertiesMeasure .= "`property` = '" . $this->insertValue['id'] . "', ";
-        $propertiesMeasure .= "`measure` = '" . $this->insertValue['measureF'] . "'; ";
-        if ($this->insertValue['measureF'] !== "noMeasure") {
+        if ($this->insertValue['measure'] !== null) {
+            $propertiesMeasure = "INSERT INTO `ShopPropertiesMeasure` SET ";
+            $propertiesMeasure .= "`property` = '" . $this->insertValue['id'] . "', ";
+            $propertiesMeasure .= "`measure` = '" . $this->insertValue['measure'] . "'; ";
             $this->SQL_HELPER->insert($propertiesMeasure);
         }
     }

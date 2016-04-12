@@ -87,7 +87,7 @@ class AP_WorkingWithShopCatalog_EditGroup extends AP_WorkingWithShopCatalog_Gene
         $this->html .= $this->generationHeaderGroupName();
         $this->html .= $this->generationHeader();
         $this->html .= $this->generationMainProperty();
-        $createdProperty = new AP_WorkingWithShopCatalog_AddNewProperty();
+        $createdProperty = new AP_WorkingWithShopCatalog_AddBlockNewProperty();
         $this->html .= $createdProperty->getHtml();
         $this->html .= '</div>';
         $this->html .= '</div>';

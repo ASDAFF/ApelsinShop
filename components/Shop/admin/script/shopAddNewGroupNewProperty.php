@@ -63,7 +63,8 @@ ShopIncludeClasses::includeAllClasses('../../', '../../../../modules/ShopNavigat
 include_once '../../../../plugins/InteractiveLists/classes/InteractiveListsPlugin.php';
 
 include_once '../classes/AP_WorkingWithShopCatalog/AP_WorkingWithShopCatalog_General.php';
-include_once '../classes/AP_WorkingWithShopCatalog/AP_WorkingWithShopCatalog_AddNewProperty.php';
+include_once '../classes/AP_WorkingWithShopProperty/AP_WorkingWithShopProperty_AddNewProperty.php';
+include_once '../classes/AP_WorkingWithShopCatalog/AP_WorkingWithShopCatalog_AddBlockNewProperty.php';
 
 global $_SQL_HELPER;
 $_SQL_HELPER = new MysqliHelper();
@@ -78,7 +79,7 @@ $_URL_PARAMS = $urlParams->getUrlParam();
 if (isset($_POST)) {
     if ($_POST !== "") {
         $data = $_POST;
-        $propertyNew = new AP_WorkingWithShopCatalog_AddNewProperty();
+        $propertyNew = new AP_WorkingWithShopCatalog_AddBlockNewProperty();
         $propertyNew->insert();
         $propertyId = $propertyNew->getPropertyId();
         $data["id"] = $propertyId;

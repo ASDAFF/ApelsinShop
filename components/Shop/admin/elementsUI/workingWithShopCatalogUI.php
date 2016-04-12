@@ -56,7 +56,9 @@ include_once './components/Shop/admin/classes/AP_WorkingWithShopCatalog/AP_Worki
 include_once './components/Shop/admin/classes/AP_WorkingWithShopCatalog/AP_WorkingWithShopCatalog_DeleteGroup.php';
 include_once './components/Shop/admin/classes/AP_WorkingWithShopCatalog/AP_WorkingWithShopCatalog_EditGroup.php';
 include_once './components/Shop/admin/classes/AP_WorkingWithShopCatalog/AP_WorkingWithShopCatalog_ImportMovingGroup.php';
-include_once './components/Shop/admin/classes/AP_WorkingWithShopCatalog/AP_WorkingWithShopCatalog_AddNewProperty.php';
+//include_once './components/Shop/admin/classes/AP_WorkingWithShopCatalog/AP_WorkingWithShopCatalog_AddNewProperty.php';
 include_once './components/Shop/admin/classes/AP_WorkingWithShopCatalog/AP_WorkingWithShopCatalog_MoveProperty.php';
+include_once './components/Shop/admin/classes/AP_WorkingWithShopProperty/AP_WorkingWithShopProperty_AddNewProperty.php';
+include_once './components/Shop/admin/classes/AP_WorkingWithShopCatalog/AP_WorkingWithShopCatalog_AddBlockNewProperty.php';
 $workingWithShopCatalog = new AP_WorkingWithShopCatalog();
 echo $workingWithShopCatalog->getHtml();

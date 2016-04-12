@@ -50,8 +50,9 @@
  * 
  */
 
-include_once './components/Shop/admin/classes/AP_WorkingWithShopProperty/AP_WorkingWithShopProperty_AddNewProperty.php';
-include_once './components/Shop/admin/classes/AP_WorkingWithShopProperty/AP_WorkingWithShopProperty_AddNewPropertyForProperty.php';
-include_once './components/Shop/admin/classes/AP_WorkingWithShopProperty/AP_WorkingWithShopPropertyCatalog.php';
-$workingWithShopPropertyCatalog = new AP_WorkingWithShopPropertyCatalog();
-echo $workingWithShopPropertyCatalog->getHtml();
+include_once './components/Shop/admin/classes/AP_WorkingWithShopItems/AP_WorkingWithShopItemsChangeGroup/AP_WorkingWithShopItemsChangeGroup.php';
+include_once './components/Shop/admin/classes/AP_WorkingWithShopItems/AP_WorkingWithShopItemsChangeGroup/AP_WorkingWithShopItemsChangeGroupUpdateItem.php';
+include_once './components/Shop/admin/classes/AP_WorkingWithShopItems/AP_WorkingWithShopItemsEdit/AP_WorkingWithShopItemsEditSelectItems.php';
+$workingWithShopItemsChangeGroup = new AP_WorkingWithShopItemsChangeGroup();
+echo $workingWithShopItemsChangeGroup->getHtml();
+

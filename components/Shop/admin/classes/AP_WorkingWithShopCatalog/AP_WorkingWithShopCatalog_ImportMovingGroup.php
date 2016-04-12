@@ -117,11 +117,9 @@ class AP_WorkingWithShopCatalog_ImportMovingGroup extends AP_WorkingWithShopCata
         $infoGroup = $this->helperGroup->getGroupInfo($group, true);
         if (!empty($infoGroup['properties']['personal']) && $infoGroup['properties']['personal'] != null && isset($this->parentNewInsert["propertyId"])) {
             foreach ($infoGroup['properties']['personal'] as $value) {
-                if (in_array($value["property"], $this->parentNewInsert["propertyId"])) {
-                    $this->personalDelete['propertyInGroup'][] = $value["id"];
-                    $this->personalDelete['propertyId'][] = $value["property"];
-                    $this->personalDelete['propertyName'][] = $value["propertyName"];
-                }
+                $this->personalDelete['propertyInGroup'][] = $value["id"];
+                $this->personalDelete['propertyId'][] = $value["property"];
+                $this->personalDelete['propertyName'][] = $value["propertyName"];
             }
         } else {
             $this->personalDelete = [];

@@ -168,11 +168,10 @@ class AP_WorkingWithShopItemsEditSelectItems {
         $this->html .= '</center>';
         $this->html .= '</form>';
         $this->html .= '</div/>';
-        $this->html .= $this->generationJS();
     }
 
-    private function generationListCatalog() {
-        $out = '';
+    public function generationListCatalog() {
+        $out = $this->generationJS();
         $out .= '<div class="workingWithShopItemsEditSelectItemsWrapper">';
         $out .= $this->getListCatalog($this->group);
         $out .= '</div>';
