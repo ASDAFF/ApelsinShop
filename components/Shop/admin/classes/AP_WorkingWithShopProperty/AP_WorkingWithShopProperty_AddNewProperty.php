@@ -211,12 +211,7 @@ abstract class AP_WorkingWithShopProperty_AddNewProperty {
 
     protected function checkAllValue() {
         $error = false;
-        if (isset($_POST['propertyName']) && $_POST['propertyName'] != null && $_POST['propertyName'] != "") {
-            if (!InputValueHelper::checkValue('propertyName', "/[А-Яа-яA-Za-z0-9]{1,50}/")) {
-                $error = true;
-                $this->checkAllValueErrors[] = "Разрешены латинские буквы, кирилические буквы";
-            }
-        } else {
+        if (!(isset($_POST['propertyName']) && $_POST['propertyName'] != null && $_POST['propertyName'] != "")) {
             $error = true;
             $this->checkAllValueErrors[] = "Название свойства - обязательное поле";
         }

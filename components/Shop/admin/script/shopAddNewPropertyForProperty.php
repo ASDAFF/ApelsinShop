@@ -80,10 +80,11 @@ $_URL_PARAMS = $urlParams->getUrlParam();
 if (isset($_POST)) {
     $data = $_POST;
     $propertyNew = new AP_WorkingWithShopProperty_AddNewPropertyForProperty();
-    $propertyNew->insert();
-    $propertyId = $propertyNew->getPropertyId();
-    $data["id"] = $propertyId;
-    $propertyField = new GenerationFieldForProperty();
-    $propertyField->getBlockId();
-    echo $propertyField->getElementTable($data);
+    if ($propertyNew->insert()) {
+        $propertyId = $propertyNew->getPropertyId();
+        $data["id"] = $propertyId;
+        $propertyField = new GenerationFieldForProperty();
+        $propertyField->getBlockId();
+        echo $propertyField->getElementTable($data);
+    }
 }
