@@ -1741,11 +1741,29 @@ legend {
 }
 .shopItemsNewItemsCardsBlockItemCardWrapper .ShopItemMainWrapper .ShopItemMainBlock .ShopItemParams .ShopItemParam .ShopItemParamValue {}
 .shopItemsNewItemsCardsBlockItemCardActiveClass {
-    background: #F4D1B1;
+    background: #F4D1B1 !important;
 }
 /*--------------------------- Редактирование товаров ---------------------------*/
 
 .newItemCatalogSelectGroupWrapperUL {
     list-style: none;
     margin-left: 30px;
+}
+
+/*--------------------------- Редактирование родителя товара ---------------------------*/
+.workingWithShopItemsChangeGroupUpdateItemWrapper .workingWithShopItemsEditSelectItems,
+.workingWithShopItemsChangeGroupUpdateItemWrapper .workingWithShopItemsEditSelectGroup {
+    float: left;
+    width: 480px;
+}
+
+.workingWithShopItemsChangeGroupUpdateItemWrapper .workingWithShopItemsEditSelectItems {
+    margin-top: 5px;
+}
+.workingWithShopItemsChangeGroupUpdateItemWrapper .workingWithShopItemsEditSelectGroup {
+    margin-left: 10px;
+    width: 470px;
+}
+.workingWithShopItemsChangeGroupUpdateItemWrapper .AP_FormShopAP_SubmitworkingWithShopItemsChangeGroupUpdateItem .workingWithShopItemsEditSelectItems .workingWithShopItemsEditSelectItemsWrapper > .newItemCatalogSelectGroupWrapperUL {
+    margin: 0;
 }
