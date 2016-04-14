@@ -1,2 +1,2 @@
 #!/bin/bash
-java -jar ./ShopMigrationDatabase.jar
+java -Xmx2048m -Xms512m -jar ./ShopMigrationDatabase.jar
